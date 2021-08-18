@@ -1,0 +1,176 @@
+= render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @student.display_name => edit_admin_student_path(@student), 'сделки' => admin_student_group_subscriptions_path(@student), (@group_subscription.group_title.presence || 'новая сделка') => '#'}
+%h3.tx-center= @group_subscription.group_title.presence || 'НОВАЯ СДЕЛКА'
+= form_for [:admin, @student, @group_subscription], html: {class: 'form js-form form__admin', autocomplete: 'off', id: 'group_subscription_form'} do |f|
+  .admin_header
+    %label.form_el.form_label Группа:
+    .form_el.js-form_el.form_tx.subscription_exclusive.group-autocomplete>
+      - select_html_options = {class: 'js-course-select2 js-group-select', data: {size: 10}}
+      = f.select :group_id, options_for_select(Group.group_select_scope(@group_subscription.group), @group_subscription.group_id), {include_blank: 'не выбрано'}, select_html_options
+    - if !@group_subscription.new_record?
+      = link_to 'Справки', admin_group_subscription_certificate_path(@group_subscription), class: 'a_under tx-right'
+      &nbsp;|&nbsp;
+      = link_to 'Документы', admin_group_subscription_contract_path(@group_subscription), class: 'a_under tx-right'
+      &nbsp;|&nbsp;
+      = link_to 'Удалить', admin_student_group_subscription_path(@student, @group_subscription), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить сделку? Это действие отменить нельзя.'}, class: 'a_under tx-right'
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Курс:
+        .form_el.js-form_el.form_tx.transaction-rate{data: {course_name: true}}
+          = f.object.try(:course_name)
+      .mt-1
+        %label.form_el.form_label Дата начала обучения:
+        .form_el.js-form_el.form_tx
+          = f.text_field :begin_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:begin_on)), data: {begin_on: true}, readonly: true
+      .mt-1
+        %label.form_el.form_label Дата окончания обучения:
+        .form_el.js-form_el.form_tx
+          = f.text_field :end_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:end_on)), data: {end_on: true}, readonly: true
+      .mt-1
+        %label.form_el.form_label Время начала обучения:
+        .form_el.js-form_el.form_tx{data: {start_time: true}}
+          = format_time(f.object.try(:start_time))
+      .mt-1
+        %label.form_el.form_label Время окончания обучения:
+        .form_el.js-form_el.form_tx{data: {end_time: true}}
+          = format_time(f.object.try(:end_time))
+      .mt-1
+        %label.form_el.form_label Модуль:
+        .form_el.js-form_el
+          = f.select :amo_module_id, AmoModule.ordered.map{|l| [l.title, l.id]}, {include_blank: 'не выбран'}, class: 'form_el_tag form_select_tag selectordie js-amo-module-select', data: {size: 5}
+      - if @group_subscription.amo_module && @group_subscription.module_subscriptions.present?
+        .mt-1.tx-s.tx-700.header_blocks_settings Группы модуля:
+        = render partial: 'admin/group_subscriptions/module_subscription', collection: @group_subscription.module_subscriptions
+      .mt-2
+        .form_el.js-form_el.form_file{data: {placeholder: @group_subscription.itec.present? ? @group_subscription.itec.file.filename : 'Загрузить диплом ITEC'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700
+          = f.file_field :itec, class: 'form_el_tag form_file_tag'
+      .mt-1
+        %label.form_el.form_label.form_label__el
+          .form_el.js-form_el.form_checkbox
+            = f.check_box :expelled, class: 'form_el_tag form_checkbox_tag'
+          %p.form_el_inner.form_label_inner Отчислен
+      .mt-1
+        %label.form_el.form_label Форма обучения:
+        .form_el.js-form_el
+          = f.select :education_form_id, EducationForm.ordered.map{|l| [l.title, l.id]}, {}, class: 'form_el_tag form_select_tag selectordie js-education-form-select', data: {size: 5}
+      .mt-1
+        %label.form_el.form_label Этап продажи
+        .form_el.js-form_el
+          = f.select :amocrm_status_id, AmocrmStatus.ordered.map{|l| [l.display_title, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+      .mt-1
+        %label.form_el.form_label Вид оплаты
+        .form_el.js-form_el
+          = f.select :group_price_id, group_prices.ordered.map{|l| [l.display_text, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie js-group-price-select'
+      .mt-1
+        %label.form_el.form_label Скидка:
+        .form_el.js-form_el
+          = f.select :discount_id, Discount.ordered.map{|l| [l.title, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie js-discount-select', data: {size: 5}
+      .mt-1
+        %label.form_el.form_label Акция - источник:
+        .form_el.js-form_el.form_textarea
+          = f.text_area :promotion_source, class: 'form_el_tag form_textarea_tag'
+      .mt-1
+        %label.form_el.form_label Акция - продажа:
+        .form_el.js-form_el
+          = f.select :promotion_id, Promotion.ordered_visible.map{|l| [l.display_name, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+      .mt-1.tx-s.tx-700.header_blocks_settings
+        Оплата
+        = link_to '(рассчитать)', '#', class: 'a_under js-recalculate-payments', data: {student_id: @student.id, group_subscription_id: @group_subscription.id}
+      .mt-1
+        %label.form_el.form_label Сумма:
+        .form_el.js-form_el.form_tx
+          = f.text_field :price, class: 'form_el_tag form_tx_tag js-price'
+      = render 'admin/group_subscriptions/payments'
+      = link_to_add_association f, :payments, class: 'a_under', data: {association_insertion_method: 'append', association_insertion_node: '.js-payments'} do
+        .icon_add> +
+        Добавить
+
+      .mt-1
+        %label.form_el.form_label Плательщик:
+        .form_el.js-form_el.form_tx
+          = f.text_field :payer, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label ID в AMOcrm:
+        .form_el.js-form_el.form_tx
+          = f.text_field :amocrm_id, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Ссылка на карточку в AMOcrm:
+        - if @group_subscription.amocrm_url.present?
+          = link_to @group_subscription.amocrm_url, @group_subscription.amocrm_url, class: 'a_under', target: '_blank'
+
+      .mt-1.tx-s.tx-700.header_blocks_settings Договор
+      .mt-1
+        %label.form_el.form_label Практика:
+        .form_el.js-form_el
+          = f.select :practice, GroupSubscription.practice.options, {}, class: 'form_el_tag form_select_tag selectordie js-practice', data: {size: 5}
+      .mt-1.js-practice-basis{style: @group_subscription.practice != :practice && 'display: none;'}
+        %label.form_el.form_label Базы практики:
+        .form_el.js-form_el
+          = f.select :practice_basis_id, PracticeBasis.ordered.map{|b| [b.title, b.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+      .mt-1
+        %label.form_el.form_label Оплачивает обучение:
+        .form_el.js-form_el
+          = f.select :payer_type, GroupSubscription.payer_type.options, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+
+      .mt-1.tx-s.tx-700.header_blocks_settings Выход на практику
+      .mt-1
+        %label.form_el.form_label Подтвердил:
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :practice_entrance_agree, class: 'form_el_tag form_checkbox_tag js-checkbox-radio'
+      .mt-1
+        %label.form_el.form_label Не подтвердил:
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :practice_entrance_disagree, class: 'form_el_tag form_checkbox_tag js-checkbox-radio'
+      .mt-1
+        %label.form_el.form_label Дата:
+        .form_el.js-form_el.form_tx
+          = f.text_field :practice_date, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:practice_date)), readonly: true
+
+      .mt-1.tx-s.tx-700.header_blocks_settings Академический отпуск
+      .mt-1
+        %label.form_el.form_label.form_label__el
+          .form_el.js-form_el.form_checkbox
+            = f.check_box :academic_vacation, class: 'form_el_tag form_checkbox_tag'
+          %p.form_el_inner.form_label_inner Академический отпуск
+      .mt-1
+        %label.form_el.form_label Дата начала отпуска:
+        .form_el.js-form_el.form_tx
+          = f.text_field :vacation_begin_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:vacation_begin_on)), readonly: true
+      .mt-1
+        %label.form_el.form_label Дата окончания отпуска:
+        .form_el.js-form_el.form_tx
+          = f.text_field :vacation_end_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:vacation_end_on)), readonly: true
+
+      .mt-2.mb-2
+        .tx-s.tx-700.header_blocks_settings.mb-2 События/примечания
+        = render partial: 'admin/common/note', collection: @group_subscription.notes
+
+      .mt-1.tx-s.tx-700.header_blocks_settings
+        Выпускные документы
+        = link_to '(сгенерировать)', '#', class: 'a_under js-generate-documents', data: {student_id: @student.id}
+      .js-subscription-documents-list
+        = render 'admin/group_subscriptions/subscription_documents'
+
+      - @group_subscription.survey_responses.each do |survey_response|
+        .mt-1.tx-s.tx-700.header_blocks_settings
+          Опрос (#{format_date_time_full(survey_response.modified_at)}, IP: #{survey_response.ip}),
+          = link_to 'результаты', survey_response.analyze_url, target: '_blank', class: 'a_under'
+        - survey_response.survey_answers.each do |survey_answer|
+          .mt-1
+            %p.tx-l.tx-700= survey_answer.question
+            %p= survey_answer.answer
+
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @group_subscription.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/filter_groups'
+  = javascript_include_tag 'admin/checkbox'
+
+

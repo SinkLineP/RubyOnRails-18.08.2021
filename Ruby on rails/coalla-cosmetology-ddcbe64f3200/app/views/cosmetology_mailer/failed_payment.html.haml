@@ -1,0 +1,15 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Здравствуйте!
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Для платежа:
+    %p{style: 'margin: 0;text-align: left;'}
+      #{@params[:client_email]}, #{@params[:sum]}, #{format_date_time_full(Time.current)}
+    %p{style: 'margin: 0;text-align: left;'}
+      не удалось идентифицировать студента.
+    %p{style: 'margin: 0;text-align: left;'}
+      Платеж в СДО не был создан.

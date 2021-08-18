@@ -1,0 +1,66 @@
+{
+  "leads": {
+    "add": {
+      "0": {
+        "id": "44457232",
+        "name": "МлМС-ОД-1",
+        "status_id": "11990269",
+        "old_status_id": "",
+        "price": "",
+        "responsible_user_id": "367294",
+        "last_modified": "1510867062",
+        "modified_user_id": "367294",
+        "created_user_id": "367294",
+        "date_create": "1510867063",
+        "pipeline_id": "279892",
+        "account_id": "8391781",
+        "custom_fields": {
+          "0": {
+            "id": "1760643",
+            "name": "education_form_id",
+            "values": {
+              "0": {
+                "value": "2"
+              }
+            }
+          },
+          "1": {
+            "id": "1760641",
+            "name": "group_id",
+            "values": {
+              "0": {
+                "value": "552"
+              }
+            }
+          },
+          "2": {
+            "id": "1779746",
+            "name": "roistat",
+            "values": {
+              "0": {
+                "value": "29624"
+              }
+            }
+          },
+          "3": {
+            "id": "1760645",
+            "name": "group_price_id",
+            "values": {
+              "0": {
+                "value": "1"
+              }
+            }
+          },
+          "4": {
+            "id": "1802266",
+            "name": "Тип сделки",
+            "values": {
+              "value": "Первичная",
+              "enum": null
+            }
+          }
+        }
+      }
+    }
+  }
+}

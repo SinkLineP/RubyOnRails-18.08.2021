@@ -1,0 +1,9 @@
+.grid_i.grid_i__grid-4-6>
+  = link_to instructor.display_name, edit_admin_instructor_path(instructor)
+.grid_i.grid_i__grid-1-6>
+  %time{datetime: instructor.created_at}= format_date(instructor.created_at)
+.grid_i.grid_i__grid-1-6.tx-center>
+  = link_to edit_admin_instructor_path(instructor) do
+    .icon_edit &#9998;
+  = link_to admin_instructor_path(instructor), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

@@ -1,0 +1,34 @@
+.history-cards
+  .history-cards__list#history-cards-slider
+    .history-cards__card
+      %article.history-card
+        .history-card__inner
+          %header.history-card__header
+            .h4.history-card__title 1989
+            .h6.history-card__caption Основание института
+          %figure.history-card__content
+            = image_tag 'https://placehold.it/350x233?text=∴', alt: '', class: 'history-card__photo'
+            %figcaption.history-card__text
+              %p В&nbsp;мае 1989 года в&nbsp;рамках Центра научно-технической деятельности и&nbsp;социальных инициатив Академии Наук СССР Светлана Сикорская и&nbsp;ее&nbsp;команда начали обучение косметологов. В&nbsp;1990 году учебный центр Дома Русской Косметики стал самостоятельным учебным заведением. Советские женщины практически ничего не&nbsp;знали о&nbsp;достижениях современной косметологии, в&nbsp;стране не&nbsp;было салонов красоты, а&nbsp;создание женской красоты считалось чем-то совершенно не&nbsp;важным. В&nbsp;итоге интерес к&nbsp;литературе о&nbsp;красоте и&nbsp;обучению косметологии был огромным: брошюры и&nbsp;книги Дома Русской Косметики выходили миллионными тиражами и&nbsp;раскупались в&nbsp;считанные дни, а&nbsp;очередь из&nbsp;желающих обучиться косметологии растянулась на&nbsp;месяцы.
+          %footer.history-card__footer
+            = render 'layouts/courses_shop/hr_small'
+
+    .history-cards__card
+      %article.history-card
+        .history-card__inner
+          %header.history-card__header
+            .h4.history-card__title 1990
+            .h6.history-card__caption Открыто 3&nbsp;новых факультета
+          %figure.history-card__content
+            = image_tag 'https://placehold.it/350x233?text=∴', alt: '', class: 'history-card__photo'
+            %figcaption.history-card__text
+              %p В&nbsp;мае 1989 года в&nbsp;рамках Центра научно-технической деятельности и&nbsp;социальных инициатив Академии Наук СССР Светлана Сикорская и&nbsp;ее&nbsp;команда начали обучение косметологов. В&nbsp;1990 году учебный центр Дома Русской Косметики стал самостоятельным учебным заведением. Советские женщины практически ничего не&nbsp;знали о&nbsp;достижениях современной косметологии, в&nbsp;стране не&nbsp;было салонов красоты, а&nbsp;создание женской красоты считалось чем-то совершенно не&nbsp;важным.
+          %footer.history-card__footer
+            = render 'layouts/courses_shop/hr_small'
+
+  = link_to '#', class: 'history-cards__nav history-cards__nav--prev', id: 'history-cards-slider-prev' do
+    %svg.icon(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+  = link_to '#', class: 'history-cards__nav history-cards__nav--next', id: 'history-cards-slider-next' do
+    %svg.icon(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

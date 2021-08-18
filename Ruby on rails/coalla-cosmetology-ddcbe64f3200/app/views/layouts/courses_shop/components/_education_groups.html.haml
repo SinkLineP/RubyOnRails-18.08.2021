@@ -1,0 +1,79 @@
+.education-groups
+  %ul.education-groups__list
+    %li.education-groups__group
+      %div.dl.education-group.js-education-group
+        %div.dt.education-group__title.js-education-group-title
+          %svg.icon.education-group__icon(role='img' data-size='66')
+            %use(xlink:href='/assets/courses_shop/icons.svg#mirror')
+          .education-group__name Косметология
+          %svg.icon.education-group__toggle.js-education-group-toggle(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+          = render 'layouts/courses_shop/hr_small'
+        %div.dd.education-group__description.js-education-group-description
+          %ul
+            %li
+              = link_to 'Медицинская косметология', '#', 'data-caption' => 'базовая подготовка'
+            %li
+              = link_to 'Эстетическая косметология', '#', 'data-caption' => 'базовая подготовка'
+            %li
+              = link_to 'Медицинская косметология', '#', 'data-caption' => 'повышение квалификации'
+            %li
+              = link_to 'Эстетическая косметология', '#', 'data-caption' => 'повышение квалификации'
+            %li
+              = link_to 'Сертификация', '#'
+
+    %li.education-groups__group
+      %div.dl.education-group.js-education-group
+        %div.dt.education-group__title.js-education-group-title
+          %svg.icon.education-group__icon(role='img' data-size='66')
+            %use(xlink:href='/assets/courses_shop/icons.svg#candle')
+          .education-group__name Массаж
+          %svg.icon.education-group__toggle.js-education-group-toggle(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+          = render 'layouts/courses_shop/hr_small'
+        %div.dd.education-group__description.js-education-group-description
+          %ul
+            %li
+              = link_to 'Медицинский массаж', '#', 'data-caption' => 'базовая подготовка'
+            %li
+              = link_to 'Спа массаж', '#', 'data-caption' => 'базовая подготовка'
+            %li
+              = link_to 'Повышение квалификации', '#'
+            %li
+              = link_to 'Сертификация', '#'
+
+    %li.education-groups__group
+      %div.dl.education-group.js-education-group
+        %div.dt.education-group__title.js-education-group-title
+          %svg.icon.education-group__icon(role='img' data-size='66')
+            %use(xlink:href='/assets/courses_shop/icons.svg#mascara')
+          .education-group__name Макияж и&nbsp;бровистика
+          %svg.icon.education-group__toggle.js-education-group-toggle(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+          = render 'layouts/courses_shop/hr_small'
+        %div.dd.education-group__description.js-education-group-description
+          %ul
+            %li
+              = link_to 'Макияж', '#'
+            %li
+              = link_to 'Бровистика', '#'
+
+    %li.education-groups__group
+      %div.dl.education-group.js-education-group
+        %div.dt.education-group__title.js-education-group-title
+          %svg.icon.education-group__icon(role='img' data-size='66')
+            %use(xlink:href='/assets/courses_shop/icons.svg#briefcase')
+          .education-group__name Менеджмент
+          %svg.icon.education-group__toggle.js-education-group-toggle(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+          = render 'layouts/courses_shop/hr_small'
+        %div.dd.education-group__description.js-education-group-description
+          %ul
+            %li
+              = link_to 'Руководителям', '#'
+            %li
+              = link_to 'Владельцам бизнеса', '#'
+            %li
+              = link_to 'Администраторам и&nbsp;менеджерам'.html_safe, '#'
+            %li
+              = link_to 'Косметологам', '#', 'data-caption' => 'которые работают на&nbsp;себя'.html_safe

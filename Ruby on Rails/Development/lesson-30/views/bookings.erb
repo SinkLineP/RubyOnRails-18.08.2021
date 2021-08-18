@@ -1,0 +1,11 @@
+<h2>Список записавшихся</h2>
+<% x = 0 %>
+<% @clients.each do |client| %>
+<% x = x + 1 %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="row"><a href="/clients/<%= client.id %>"><%= x %>.  <%= client.username %></a></th>
+    </tr>
+  </thead>
+<% end %>

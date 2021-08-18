@@ -1,0 +1,24 @@
+- student_document = f.object
+.add_ctn.add_document{data: {student_document: student_document.try(:id) || f.index}, style: (f.index != 0 && 'display: none;')}
+  - unless student_document.new_record?
+    = f.hidden_field :id
+  = f.hidden_field :_destroy, data: {destroy: true}
+  .mb-3
+    %h6.tx-center Добавить копию документа
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Тип документа
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = f.select :document_type, StudentDocument.document_type.options, {}, class: 'form_el_tag form_select_tag selectordie js-student-document-type', data: {size: 5}
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10.js-title-blocks{style: !student_document.other_document? && 'display: none;'}
+      %label.form_el.form_label Название
+    .grid_i.grid_i__grid-3-6.js-title-blocks{style: !student_document.other_document? && 'display: none;'}
+      .form_el.js-form_el.form_tx
+        = f.text_field :title, class: 'form_el_tag form_tx_tag js-student-document-title'
+    .grid_i.grid_i__grid-3-6.grid_i__prefix-1-10>
+      .form_el.js-form_el.form_file{data: {placeholder: "#{student_document.filename || 'Загрузить документ'}"}}
+        %p.form_el_inner.js-form_el_inner.form_file_inner
+        %input.form_el_tag.form_file_tag.js-student-document-file{:type => 'file'}
+        = f.hidden_field :file_cache, data: {document_cache: true}
+      = render 'admin/common/download_link', file_path: student_document.file.url if student_document.try(:file).present?

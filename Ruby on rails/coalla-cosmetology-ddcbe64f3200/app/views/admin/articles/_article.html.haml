@@ -1,0 +1,23 @@
+.grid_i.grid_i__grid-2-9.table_ellipsis>
+  = link_to edit_admin_article_path(article) do
+    = article.title
+.grid_i.grid_i__grid-3-9.table_ellipsis>
+  = format_date_with_time(article.created_at)
+.grid_i.grid_i__grid-1-9.period_time>
+  = t("#{article.type}")
+.grid_i.grid_i__grid-1-9.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: article.published?, disabled: true}
+.grid_i.grid_i__grid-2-9.tx-right>
+  = link_to notify_admin_article_path(article), method: :post, remote: true, class: 'js-article-notify', title: 'Запустить рассылку' do
+    .icon_edit !
+  = link_to toggle_field_admin_article_path(article, field: :published), method: :post do
+    .icon_edit= article.published? ? '-' : '+'
+  = link_to admin_article_path(article) do
+    .icon_edit	&#128065;
+  = link_to edit_admin_article_path(article) do
+    .icon_edit &#9998;
+  = link_to admin_article_path(article), method: :delete do
+    .icon_del X
+

@@ -1,0 +1,51 @@
+= render 'admin/breadcrumbs', crumbs: {'мета-теги' => admin_meta_tags_path, (tag_name(@site_meta_tag)) => '#'}
+%h3.tx-center= tag_name(@site_meta_tag)
+= form_for [:admin, @site_meta_tag], url: admin_meta_tag_path, as: :meta_tag, html: {id: 'meta_tag_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Заголовок:
+        .form_el.js-form_el.form_tx
+          = f.text_field :title, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Описание:
+        .form_el.js-form_el.form_textarea{data: {valid: ''}, style: 'height: 24rem; '}
+          = f.text_area :description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :image, size: '200x200', uploader: MetaTagsImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt-1
+        %label.form_el.form_label Сайт:
+        .form_el.js-form_el.form_tx
+          = f.text_field :site, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Ключевые слова:
+        .form_el.js-form_el.form_tx
+          = f.text_field :keywords, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label URL:
+        .form_el.js-form_el.form_tx
+          = f.text_field :url, class: 'form_el_tag form_tx_tag'
+      .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Open Graph
+      .mt-1
+        %label.form_el.form_label Заголовок:
+        .form_el.js-form_el.form_tx
+          = f.text_field :og_title, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Описание:
+        .form_el.js-form_el.form_textarea{data: {valid: ''}, style: 'height: 24rem; '}
+          = f.text_area :og_description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :og_image, size: '200x200', uploader: MetaTagsImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt-1
+        %label.form_el.form_label URL:
+        .form_el.js-form_el.form_tx
+          = f.text_field :og_url, class: 'form_el_tag form_tx_tag'
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @site_meta_tag.errors

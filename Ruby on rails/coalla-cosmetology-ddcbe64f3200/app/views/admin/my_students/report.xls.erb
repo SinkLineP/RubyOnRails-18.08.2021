@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+
+  <Styles>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sCenter">
+        <Alignment ss:Vertical="Center" ss:Horizontal="Center"/>
+        <Font ss:Bold="1"/>
+    </Style>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sBlank">
+        <Borders />
+        <Font />
+        <Interior />
+        <NumberFormat />
+        <Protection />
+    </Style>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sHeader">
+        <Alignment ss:Vertical="Center" ss:Horizontal="Center"/>
+        <Borders>
+            <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+            <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+            <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        </Borders>
+        <Font ss:Bold="1"/>
+        <Interior />
+        <NumberFormat />
+        <Protection />
+    </Style>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sDefault">
+        <Borders>
+            <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+            <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+            <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+        </Borders>
+        <Font />
+        <Interior />
+        <NumberFormat />
+        <Protection />
+    </Style>
+  </Styles>
+
+  <Worksheet ss:Name="Cтатистика">
+    <Table>
+      <Column ss:AutoFitWidth="0" ss:Width="50"/>
+      <Column ss:AutoFitWidth="0" ss:Width="75"/>
+      <Column ss:AutoFitWidth="0" ss:Width="400"/>
+      <Column ss:AutoFitWidth="0" ss:Width="400"/>
+      <Column ss:AutoFitWidth="0" ss:Width="75"/>
+      <Column ss:AutoFitWidth="0" ss:Width="200"/>
+      <Column ss:AutoFitWidth="0" ss:Width="50"/>
+
+      <Row ss:StyleID="sBlank">
+      </Row>
+
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5" ss:StyleID="sCenter"><Data ss:Type="String">Достижения студента от <%= format_date_with_time(Time.now) %> </Data></Cell>
+      </Row>
+
+      <Row ss:StyleID="sBlank">
+      </Row>
+
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5"><Data ss:Type="String">Студент: <%= @student.display_name %></Data></Cell>
+      </Row>
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5"><Data ss:Type="String">Курс: <%= @course.name %></Data></Cell>
+      </Row>
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5"><Data ss:Type="String">Группа: <%= @group_subscription.group.title %></Data></Cell>
+      </Row>
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5"><Data ss:Type="String">Сроки обучения: <%= display_date_range(@group_subscription) %></Data></Cell>
+      </Row>
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5"><Data ss:Type="String">Электронная почта: <%= @student.email %></Data></Cell>
+      </Row>
+      <Row ss:StyleID="sBlank">
+        <Cell ss:Index="2" ss:MergeAcross="5"><Data ss:Type="String">Телефон: <%= @student.phones_string %></Data></Cell>
+      </Row>
+
+      <Row ss:StyleID="sBlank">
+      </Row>
+
+      <Row>
+        <Cell ss:Index="2" ss:StyleID="sHeader"><Data ss:Type="String">Дата</Data></Cell>
+        <Cell ss:StyleID="sHeader"><Data ss:Type="String">Блок</Data></Cell>
+        <Cell ss:StyleID="sHeader"><Data ss:Type="String">Лекция</Data></Cell>
+        <Cell ss:StyleID="sHeader"><Data ss:Type="String">Тип задания</Data></Cell>
+        <Cell ss:StyleID="sHeader"><Data ss:Type="String">Результат</Data></Cell>
+        <Cell ss:StyleID="sHeader"><Data ss:Type="String">Время</Data></Cell>
+      </Row>
+
+      <% @course_activities.sort_by(&:last_tracked_at).each do |activity| %>
+          <Row>
+            <Cell ss:Index="2" ss:StyleID="sDefault"><Data ss:Type="String"><%= display_activity_date(activity) %></Data></Cell>
+            <Cell ss:StyleID="sDefault"><Data ss:Type="String"><%= activity.trackable.block.name %></Data></Cell>
+            <Cell ss:StyleID="sDefault"><Data ss:Type="String"><%= activity_lecture_name(activity) %></Data></Cell>
+            <Cell ss:StyleID="sDefault"><Data ss:Type="String"><%= activity_task_type(activity) %></Data></Cell>
+            <Cell ss:StyleID="sDefault"><Data ss:Type="String"><%= activity_result(activity)  %></Data></Cell>
+            <Cell ss:StyleID="sDefault"><Data ss:Type="String"><%= display_activity_spent_time(activity) %></Data></Cell>
+          </Row>
+      <% end %>
+
+    </Table>
+  </Worksheet>
+
+</Workbook>

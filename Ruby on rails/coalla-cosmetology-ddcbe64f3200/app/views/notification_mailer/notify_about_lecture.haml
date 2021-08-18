@@ -1,0 +1,12 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}= ty("Напоминаем, что #{format_date_full(@subscription.academic_on)}, #{format_time(@subscription.start_time)} - #{format_time(@subscription.end_time)} состоится первая лекция в Доме Русской Косметики.")

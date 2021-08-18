@@ -1,0 +1,8 @@
+.grid.nested-fields
+  .grid_i.grid_i__grid-1-5.nested-fields_elements
+    .tx-700 Занятие
+  .grid_i.grid_i__grid-2-5.nested-fields_elements
+    .form_el.js-form_el.form_el-select2
+      = f.select :work_id, Work.order_by_title.map{|w| [w.title, w.id]}, {}, class: 'js-select2'
+  .grid_i.grid_i__grid-1-5.tx-right>
+    = link_to_remove_association raw('<div class="icon_del">X</div>'), f

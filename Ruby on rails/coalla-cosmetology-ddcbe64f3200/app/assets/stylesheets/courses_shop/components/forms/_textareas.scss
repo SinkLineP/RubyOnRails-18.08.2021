@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+// Textarea
+.textarea {
+  display: block;
+  vertical-align: top;
+
+  &[data-validation="invalid"] {
+    &[data-validation-text] {
+      &::after {
+        @include text-sm;
+        display: block;
+        margin-top: .25rem;
+        color: $color-error;
+        content: attr(data-validation-text);
+        text-align: left;
+      }
+    }
+
+    > textarea {
+      border-color: $color-error;
+    }
+  }
+
+  > textarea {
+    @include fill-parent;
+    @include transition(all $transition-duration-base);
+    @include text-lg;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid $color-base-lightest;
+    border-radius: $border-radius-sm;
+
+    &:focus {
+      border-color: $color-base;
+    }
+
+    &:disabled {
+      background: $color-base-lightest;
+      border-color: transparent;
+      color: $color-base;
+      cursor: no-drop;
+    }
+  }
+}

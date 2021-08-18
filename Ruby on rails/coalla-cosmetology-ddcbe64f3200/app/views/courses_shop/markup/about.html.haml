@@ -1,0 +1,96 @@
+.page.page--promo
+  = render 'layouts/courses_shop/promo/about'
+
+
+
+  // .tab--loading and .cp-spinner.cp-round for preloader before ajax:success. After ajax:success $('.js-tab.tab--loading').removeClass('tab--loading'); and $('.cp-spinner').remove();
+  -#.tab.tab--loading.js-tab(data-id='#history')
+    .cp-spinner.cp-round
+
+
+
+  .tab.js-tab(data-id='#history')
+    .page-section
+      .container
+        .content-announce
+          .content-announce__person
+            %article.teacher-card
+              = image_tag 'https://placehold.it/120x120?text=∴', width: '240', height: '240', alt: '', class: 'teacher-card__photo'
+              .h5.teacher-card__name Светлана Сикорская
+              %p.teacher-card__department Научный руководитель
+          .content-announce__text
+            %p Дорогие друзья!
+            %p Приветствую вас на&nbsp;официальном сайте Института косметологии, эстетической медицины и&nbsp;визажного искусства&nbsp;&mdash; Дом Русской Косметики. Мы&nbsp;успешно работаем с&nbsp;1989 года и&nbsp;являемся признанным в&nbsp;России и&nbsp;за&nbsp;рубежом центром обучения косметологии, визажа и&nbsp;эстетической медицины. Наши выпускники возглавляют крупные косметические фирмы и&nbsp;клиники, имеют собственные салоны красоты, школы профессионального макияжа и&nbsp;визажного искусства; являются чемпионами мира по&nbsp;макияжу. Преподаватели Института&nbsp;&mdash; специалисты высокого класса, обладатели многочисленных достижений и&nbsp;наград, имеющие колоссальный опыт работы в&nbsp;индустрии красоты.
+            %p Мы&nbsp;активно ведем научную и&nbsp;издательскую деятельность, реализуем разнообразные творческие проекты, в&nbsp;числе которых: проведение конференций, организация конкурсов, участие в&nbsp;международных выставках, создание художественных образов и&nbsp;фоторабот, посвященных тематике красоты и&nbsp;стиля. Студенты вместе с&nbsp;преподавателями участвуют в&nbsp;этих проектах и&nbsp;приобретают уникальный опыт, а&nbsp;также рекомендации от&nbsp;ведущих компаний и&nbsp;ВИП-клиентов. Это делает студенческую жизнь насыщенной незабываемыми событиями.
+            %p Образование, полученное в&nbsp;Институте, гарантирует нашим выпускникам интересную, высокооплачиваемую работу. Добро пожаловать в&nbsp;мир красоты, который мы&nbsp;открываем для вас!
+    .page-section.page-section--background
+      .container
+        .h3.page-section__title История института
+        = render 'layouts/courses_shop/components/history_cards'
+    .page-section
+      .container
+        .h3.page-section__title Наши награды
+        = render 'layouts/courses_shop/components/awards'
+
+
+
+  .tab.js-tab(data-id='#teachers')
+    .page-section
+      .container
+        .filter
+          %ul.filter__list
+            %li.filter__item
+              .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+                %span Все направления
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                .tooltip__popup
+                  .tooltip__popup-inner
+                    %ul
+                      %li= link_to 'Косметология', '#'
+                      %li= link_to 'Сестринское дело', '#'
+                      %li= link_to 'Хирургия', '#'
+        = render 'layouts/courses_shop/components/teachers_cards'
+        = render 'layouts/courses_shop/components/pagination_simple'
+
+
+
+  .tab.js-tab(data-id='#graduates')
+    .page-section
+      .container
+        = render 'layouts/courses_shop/components/graduates_cards'
+        = render 'layouts/courses_shop/components/pagination_simple'
+
+
+
+  .tab.js-tab(data-id='#partners')
+    .page-section
+      .container
+        = render 'layouts/courses_shop/components/partners_items'
+        = render 'layouts/courses_shop/components/pagination_simple'
+
+
+
+  .tab.js-tab(data-id='#diploma')
+    .page-section
+      .container
+        .content-announce.content-announce--itec-diploma
+          .content-announce__text
+            %p В&nbsp;2006 году Дом Русской Косметики получил аккредитацию Международного Терапевтического Экзаменационного Совета (ITEC)&nbsp;&mdash; ведущей организации, предоставляющей профессиональную квалификацию в&nbsp;сфере косметологии, нетрадиционной медицины и&nbsp;спортивной терапии.
+          .content-announce__photo
+            %figure
+              = image_tag 'courses_shop/itec_dimloma.jpg', alt: 'ITEC'
+        .content-narrow
+          .content.js-content
+            %p ITEC&nbsp;&mdash; это международный экзаменационный комитет, предлагающий специалистам индустрии красоты со&nbsp;всего мира подтвердить высокий уровень своего образования. Он&nbsp;был создан в&nbsp;Великобритании в&nbsp;1947&nbsp;году, а&nbsp;в&nbsp;1973 вышел на&nbsp;мировую арену. Благодаря этому сегодня выпускники факультетов Эстетический медицины и&nbsp;косметологии, Профессионального макияжа, СПА-технологий в&nbsp;дополнение к&nbsp;Диплому Института получают диплом ITEC. ITEC&nbsp;&mdash; это гарантия высокого стандарта обучения и&nbsp;возможность трудоустройства в&nbsp;42&nbsp;странах мира, признающих диплом ITEC официально на&nbsp;уровне министерств труда. Дом Русской Косметики&nbsp;&mdash; единственное российское учебное заведение, которое смогло получить аккредитацию в&nbsp;ITEC. Экзамен на&nbsp;международный диплом успешно сдает более&nbsp;90% студентов ДРК.
+
+
+
+  .tab.js-tab(data-id='#tour')
+    .page-section
+      .container
+        %ul.images-gallery.js-images-gallery
+          - 1.upto(7) do
+            %li.images-gallery__image
+              = link_to 'https://placehold.it/1120x740?text=∴', target: '_blank' do
+                = image_tag 'https://placehold.it/410x410?text=∴', alt: ''

@@ -1,0 +1,15 @@
+- unless has_blog_subscription?
+  .flower_subscribe
+    = form_tag blog_subscribers_path, class: 'form js-form', remote: true, data: {blog_subscribe_from: true, disable_width: 'Подождите...'} do
+      .grid.flower_subscribe_inner
+        .grid_i.grid_i__grid-1-2>
+          %label.form_el.js-form_el.form_el__block.form_label Подписаться на ежедневную рассылку
+        .grid_i.grid_i__grid-1-3>
+          .form_el.js-form_el.form_el__block.form_tx
+            = email_field_tag :email, current_user.try(:email), class: 'form_el_tag form_tx_tag', placeholder: 'Ваш email', disabled: user_signed_in?
+        .grid_i.grid_i__grid-1-6>
+          .form_el.js-form_el.form_el__block.form_btn
+            %p.form_el_inner.form_btn_inner Ура!
+            %button.form_el_tag.form_btn_tag{type: 'submit'}
+- content_for :js do
+  = javascript_include_tag 'blog_subscribers'

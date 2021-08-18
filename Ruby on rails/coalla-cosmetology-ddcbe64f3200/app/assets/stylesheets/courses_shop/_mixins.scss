@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+// Grid
+@mixin grid {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  margin: {
+    right: -#{$content-indent-sm / 2};
+    left:  -#{$content-indent-sm / 2};
+  }
+
+  @include media($breakpoint-lg) {
+    margin: {
+      right: -#{$content-indent-lg / 2};
+      left:  -#{$content-indent-lg / 2};
+    }
+  }
+
+  @include media($breakpoint-xxl) {
+    margin: {
+      right: -#{$content-indent-xl / 2};
+      left:  -#{$content-indent-xl / 2};
+    }
+  }
+}
+
+@mixin grid-columns($columns-count, $columns-total) {
+  width: 100% / $columns-total * $columns-count;
+  padding: {
+    right: $content-indent-sm / 2;
+    left:  $content-indent-sm / 2;
+  }
+
+  @include media($breakpoint-lg) {
+    padding: {
+      right: $content-indent-lg / 2;
+      left:  $content-indent-lg / 2;
+    }
+  }
+
+  @include media($breakpoint-xxl) {
+    padding: {
+      right: $content-indent-xl / 2;
+      left:  $content-indent-xl / 2;
+    }
+  }
+}
+
+// Font
+@mixin font($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: strip-units($line-height) / strip-units($font-size);
+}
+
+// Direct parent
+@mixin direct-parent($parent-selector) {
+  $current-sequences: &;
+  $new-sequences: ();
+
+  @each $sequence in $current-sequences {
+    $current-selector: nth($sequence, -1);
+    $prepended-selector: join($parent-selector, $current-selector);
+    $new-sequence: set-nth($sequence, -1, $prepended-selector);
+    $new-sequences: append($new-sequences, $new-sequence, comma);
+  }
+
+  @at-root #{$new-sequences} {
+    @content;
+  }
+}
+
+// Hover
+@mixin hover($properties-list, $values-list, $parents-selector: '') {
+  $properties-length: length($properties-list);
+  $values-length: length($values-list);
+
+  @if $properties-length == $values-length {
+    .mod_no-touchevents & {
+      @if $parents-selector == '' {
+        &:hover,
+        &.hover {
+          @for $i from 1 through $properties-length {
+            #{nth($properties-list, $i)}: nth($values-list, $i);
+          }
+        }
+      } @else {
+        @include direct-parent($parents-selector) {
+          @for $i from 1 through $properties-length {
+            #{nth($properties-list, $i)}: nth($values-list, $i);
+          }
+        }
+      }
+    }
+  } @else {
+    @error "The number of properties (#{$properties-list}) and values (#{$values-list}) are not equal."
+  }
+}
+
+// Nested ordered lists
+@mixin nested-ordered-lists() {
+  $sel: ();
+
+  $sel: append($sel, unquote('&'), comma);
+
+  @if ol {
+    $sel: append($sel, unquote(ol));
+  }
+
+  #{$sel} {
+    counter-reset: #{item};
+
+    > #{li}:before {
+      counter-increment: #{item};
+      content: if(ol, counters(#{item}, '.')'.', counter(#{item})'.');
+    }
+  }
+}
+
+// Texts
+@mixin text-sm {
+  @include font(1.3rem, 2rem);
+}
+
+@mixin text-base {
+  @include font(1.5rem, 2rem);
+}
+
+@mixin text-lg {
+  @include font(1.7rem, 2.5rem);
+}
+
+// Headings
+@mixin h1 {
+  @include font(3.5rem, 4.5rem);
+  font: {
+    family: $headings-font-family;
+    weight: 400;
+  }
+  letter-spacing: -.5pt;
+
+  @include media($breakpoint-lg) {
+    @include font(6.1rem, 7rem);
+  }
+}
+
+@mixin h2 {
+  @include font(2.9rem, 4rem);
+  font: {
+    family: $headings-font-family;
+    weight: 400;
+  }
+  letter-spacing: -.5pt;
+
+  @include media($breakpoint-lg) {
+    @include font(4.7rem, 5.5rem);
+  }
+}
+
+@mixin h3 {
+  @include font(2.3rem, 3.5rem);
+  font: {
+    family: $headings-font-family;
+    weight: 400;
+  }
+
+  @include media($breakpoint-lg) {
+    @include font(3.5rem, 4.5rem);
+  }
+}
+
+@mixin h4 {
+  @include font(1.9rem, 3rem);
+  font: {
+    family: $headings-font-family;
+    weight: 400;
+  }
+
+  @include media($breakpoint-lg) {
+    @include font(2.5rem, 3.5rem);
+  }
+}
+
+@mixin h5 {
+  @include text-lg;
+  font-weight: 700;
+}
+
+@mixin h6 {
+  @include text-base;
+  font-weight: 700;
+}
+
+// Background gradient
+@mixin background-gradient {
+  position: relative;
+
+  &::after {
+    @include linear-gradient(#fff2f0, #fff);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    height: 40rem;
+    content: "";
+  }
+}
+
+// Media queries
+@mixin mq-custom($mq-range, $mq-breakpoint) {
+  $mq-device: "";
+
+  @media all and (#{$mq-range}#{$mq-device}-width: $mq-breakpoint) {
+    @content;
+  }
+}

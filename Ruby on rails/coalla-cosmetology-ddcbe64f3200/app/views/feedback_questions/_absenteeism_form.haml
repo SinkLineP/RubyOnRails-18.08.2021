@@ -1,0 +1,17 @@
+.grid.grid__collapse.js-feedback-form#absenteeism_form{style: !@feedback_question.absenteeism? && 'display: none;'}
+  .grid_i.grid_i__grid-2-3.grid_i__prefix-1-6.grid_i__suffix-1-6>
+    .mt-1.form_el.js-form_el.form_el__block.form_tx
+      = f.text_field :work_title, class: 'form_el_tag form_tx_tag', placeholder: 'Какое занятие пропустили', disabled: !@feedback_question.absenteeism?
+    .mt-1.form_el.js-form_el.form_el__block.form_tx
+      = f.text_field :absent_dates, class: 'form_el_tag form_tx_tag', placeholder: 'Даты пропущенных занятий', disabled: !@feedback_question.absenteeism?
+    .mt-1.form_el.js-form_el.form_el__block.form_tx
+      = f.text_field :new_dates, class: 'form_el_tag form_tx_tag', placeholder: 'Удобные даты и время отработки', disabled: !@feedback_question.absenteeism?
+    .mt-1
+      %p Отработку занятия прошу предоставить:
+    = f.select_wrapped :working_off_type, FeedbackQuestion.working_off_type.options, 'выберите вариант'
+    .mt-1.mb-1.form_el.js-form_el.form_el__block.form_textarea
+      = f.text_area_with_validation :text, class: 'form_el_tag form_tx_tag', placeholder: 'Причина пропуска (поясните подробно)', disabled: !@feedback_question.absenteeism?
+  .grid_i.grid_i__grid-2-3.grid_i__prefix-1-6.grid_i__suffix-1-6>
+    .form_el.js-form_el.form_btn
+      %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+      %button.form_el_tag.form_btn_tag{type: 'submit'}

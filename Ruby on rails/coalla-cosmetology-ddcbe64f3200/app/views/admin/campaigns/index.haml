@@ -1,0 +1,13 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'рекламные каналы' => '#'}
+      %h3.tx-center РЕКЛАМНЫЕ КАНАЛЫ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+        .admin_body.table.table_base-color
+          .grid.grid__collapse
+            = render collection: @campaigns, partial: 'admin/campaigns/campaign'

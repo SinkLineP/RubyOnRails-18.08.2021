@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.page-content {
+    display: block; // IE11
+    background-color: $color-dark;
+
+    > .container {
+        padding-right: 0;
+        padding-left: 0;
+
+        @include mq(lg) {
+            padding-right: map-get($mq-container-indents, "lg");
+            padding-left: map-get($mq-container-indents, "lg");
+        }
+    }
+}

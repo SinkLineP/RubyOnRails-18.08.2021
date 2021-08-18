@@ -1,0 +1,8 @@
+- if related_post.present?
+  .grid.grid__collapse.mt-3
+    .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8>
+      .wysiwyg
+        .h2.tx-center.mb-2
+          = link_to related_post.title, blog_post_path(related_post)
+        .blog_post-text
+          = simple_format(related_post.announcement)

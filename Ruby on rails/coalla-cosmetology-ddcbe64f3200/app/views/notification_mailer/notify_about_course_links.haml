@@ -1,0 +1,16 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Здравствуйте, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}= ty('Мы очень надеемся, что Вам понравилось учиться в нашем институте. Вот еще несколько наших курсов, которые помогут вашему профессиональному росту:')
+    - @course.links.each do |link|
+      %p{style: 'margin: 0;text-align: left;'}
+        = link_to link, link, target: '_blank', rel: 'nofollow'
+    %p{style: 'margin: 0;text-align: left;'}= ty('Кстати, вам, как выпускнику мы предлагаем особенные цены на обучение. Свяжитесь  менеджером и узнайте все детали!')

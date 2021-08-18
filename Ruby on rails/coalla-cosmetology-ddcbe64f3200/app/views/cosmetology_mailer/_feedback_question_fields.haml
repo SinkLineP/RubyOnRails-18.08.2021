@@ -1,0 +1,21 @@
+%p= I18n.t("feedback_questions.#{@feedback_question.type.underscore}")
+
+%p
+  Студент:
+  = link_to [@feedback_question.student_name, @feedback_question.phone].reject(&:blank?).join(', '), edit_admin_student_url(@feedback_question.student)
+
+- if @feedback_question.groups.present?
+  %p
+    Группы:
+    = @feedback_question.groups
+
+- if @feedback_question.course.present?
+  %p
+    Курс:
+    = @feedback_question.course.name
+  %p
+    Блок:
+    = @feedback_question.block.name
+  %p
+    Лекция:
+    = @feedback_question.lecture.description

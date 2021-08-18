@@ -1,0 +1,27 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          = render 'courses_shop/common/user_settings_menu'
+
+          .filter
+            %ul.filter__list
+              %li.filter__item
+                .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+                  %span= t("course_filter.#{@current_option}")
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                  .tooltip__popup
+                    .tooltip__popup-inner
+                      %ul
+                        - @filter_options.each do |option|
+                          %li= link_to t("course_filter.#{option}"), courses_shop_profile_courses_path(filter: option)
+
+          .personal-cabinet__content
+            .personal-cabinet-courses
+              %ul.personal-cabinet-courses__list
+                = render partial: 'courses_shop/user_courses/subscription', collection: @group_subscriptions, as: :group_subscription

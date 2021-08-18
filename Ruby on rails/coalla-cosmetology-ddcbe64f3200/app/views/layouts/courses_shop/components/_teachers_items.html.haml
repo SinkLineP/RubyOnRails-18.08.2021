@@ -1,0 +1,37 @@
+.teachers-items
+  .teachers-items__list#teachers-items-slider
+    .teachers-items__item
+      %article.teacher-card
+        = image_tag 'https://placehold.it/120x120?text=∴', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+        .h5.teacher-card__name Алтухова Татьяна Николаевна
+        %p.teacher-card__department факультет косметологии и&nbsp;эстетической медицины
+        %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело. Квалификация по&nbsp;диплому: врач. Российская медицинская академия последипломного образования МЗ&nbsp;РФ&nbsp;сертификационные курсы; Московский государственный университет сервиса, факультет профессиональной подготовки и&nbsp;переподготовки кадров, профессия &laquo;косметик&raquo;, специализация &laquo;эстетист&raquo;; Российская медицинская академия последипломного образования МЗ&nbsp;РФ, клиническая ординатура по&nbsp;специальности дерматовенерология (сертификат специалиста); Московская медицинская академия&nbsp;им. И.М.Сеченова, интернатура по&nbsp;специальности дерматовенерология (сертификат специалиста).
+
+    .teachers-items__item
+      %article.teacher-card
+        = image_tag 'https://placehold.it/120x120?text=∴', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+        .h5.teacher-card__name Иванова Марина Вениаминовна
+        %p.teacher-card__department факультет сертификации
+        %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело.
+
+    .teachers-items__item
+      %article.teacher-card
+        = image_tag 'https://placehold.it/120x120?text=∴', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+        .h5.teacher-card__name Алина Петровна Сидорова
+        %p.teacher-card__department факультет косметологии
+        %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело. Квалификация по&nbsp;диплому: врач. Российская медицинская академия последипломного образования МЗ&nbsp;РФ&nbsp;сертификационные курсы.
+
+    .teachers-items__item
+      %article.teacher-card
+        = image_tag 'https://placehold.it/120x120?text=∴', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+        .h5.teacher-card__name Алина Петровна Сидорова
+        %p.teacher-card__department факультет косметологии
+        %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело. Квалификация по&nbsp;диплому: врач. Российская медицинская академия последипломного образования МЗ&nbsp;РФ&nbsp;сертификационные курсы.
+
+
+  = link_to '#', class: 'teachers-items__nav teachers-items__nav--prev', id: 'teachers-items-slider-prev' do
+    %svg.icon(role='img' data-size='34')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+  = link_to '#', class: 'teachers-items__nav teachers-items__nav--next', id: 'teachers-items-slider-next' do
+    %svg.icon(role='img' data-size='34')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

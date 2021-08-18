@@ -1,0 +1,5 @@
+%header#header.header-top{role: 'banner'}
+  .ctn.header_inner
+    = link_to '', root_path, class: 'header_logo'
+    %nav.header_nav
+      = link_to 'ВЫХОД', destroy_user_session_path, class: 'nav-a', method: :delete

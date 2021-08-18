@@ -1,0 +1,20 @@
+%section.page-promo-error#page-promo
+  // Site header, UNEXPECTEDLY!
+  = render 'layouts/courses_shop/site_header'
+
+  .page-promo-error__inner
+    .container
+      %header.page-promo-error__header
+        %h1.page-promo-error__title= "Ошибка #{@code}"
+        %p.page-promo-error__caption= @code == 404 ? t('errors_page.text_404').html_safe : t('errors_page.text_500').html_safe
+
+      .page-promo-error__education-groups
+        = render 'layouts/courses_shop/components/education_group_select'
+
+  // Site footer, UNEXPECTEDLY!
+  %footer.site-footer#site-footer
+    .container
+      .site-footer__copyright
+        %p &copy;&nbsp;Автономная некоммерческая организация дополнительного профессионального образования &laquo;Институт косметологии, эстетической медицины и&nbsp;визажного искусства&nbsp;&mdash; Дом Русской Косметики&raquo;, 2019
+      .site-footer__developer
+        %p= link_to 'Разработано в&nbsp;Coalla Agency'.html_safe, 'http://www.coalla.ru/', target: '_blank', rel: 'nofollow'

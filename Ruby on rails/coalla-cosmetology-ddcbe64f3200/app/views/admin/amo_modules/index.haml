@@ -1,0 +1,32 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'модули' => admin_amo_modules_path}
+      %h3.tx-center МОДУЛИ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_amo_module_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить модуль
+        .admin_body.table
+          = search_form_for @q, url: admin_amo_modules_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+            .mt-1
+              .grid
+                .grid_i.grid_i__grid-1-6.tx-right>
+                  %label.form_el.form_label Название:
+                .grid_i.grid_i__grid-4-6>
+                  .form_el.js-form_el{style: 'min-width: 150px;'}
+                    = f.search_field :title_cont, placeholder: 'Введите название', style: 'width: 100%;'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-8-9>
+                %p название
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-center
+                  действия
+          .grid.grid__collapse
+            = render collection: @amo_modules, partial: 'amo_module'
+      = will_paginate @amo_modules, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

@@ -1,0 +1,57 @@
+- course = local_assigns[:course_li_grid]
+%li.courses-items__item_grid
+  %article.course-item(data-actions-show='hover')
+    = link_to alternative_course_url(course, @parent_speciality), class: "course-item__image js-hover #{promotion_class(course)}", 'data-course_id' =>  course.id, data: promotion_data(course) do
+      .item-hidden
+        = image_tag course_small_image(course), alt: course.title
+    .course-item__content
+      .h4.course-item__title
+        = link_to course.title, alternative_course_url(course, @parent_speciality), class: 'js-hover'
+      %ul.course-meta
+        - nearest_group = course.nearest_group
+        %li.period_date.period
+          %span= education_period(nearest_group)
+        %li.period_time.period
+          %span= education_schedule(nearest_group, true, false, '')
+      .course-item__bottom
+        .course-item__stats
+          %ul
+            - nearest_group = course.nearest_group
+            %li
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#user')
+              %span= free_places_text(nearest_group)
+            %li
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+              %span= display_hours(course.hours)
+            %li
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#star')
+              -if course.course_counts > 0
+                %span= display_course_counts(course.course_counts)
+              -else
+                %span Рассрочка 24&nbspмес.
+
+        - if simple_format_course_price(course)
+          .course-item__price
+            %strong= simple_format_course_price(course)
+
+        - economy_value = course.economy_for_several
+        - economy_description = course.economy_description
+        - if economy_value.present? && economy_description
+          .course-item__discount
+            %div
+              %span= format_money(economy_value)
+            %p= economy_description
+
+        %ul.course-item__buttons
+          %li.left
+            = render 'courses_shop/common/sign_on_course_button', course: course
+          %li.right
+            = link_to 'Подробнее', '#', title: course.name.html_safe,
+                                        class: 'button button--base-outline js-hover js-course-link',
+                                        data: { course_id: course.id,
+                                                url: alternative_course_url(course, @parent_speciality),
+                                                size: 'sm' }
+

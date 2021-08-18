@@ -1,0 +1,59 @@
+.grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+  %label.form_el.form_label Автор
+.grid_i.grid_i__grid-1-2>
+  .form_el.js-form_el.form_tx.js-author-container{data: {valid: ''}}
+    = f.text_field :author, class: 'form_el_tag form_tx_tag'
+.grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+  %label.form_el.form_label Название
+.grid_i.grid_i__grid-1-2>
+  .form_el.js-form_el.form_tx.js-name-container{data: {valid: ''}}
+    = f.text_field :name, class: 'form_el_tag form_tx_tag'
+.grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+  %label.form_el.form_label Категория
+.grid_i.grid_i__grid-1-2>
+  .form_el.js-form_el.form_tx.js-book_category_id-container{data: {valid: ''}}
+    = f.text_field :category_name, class: 'form_el_tag form_tx_tag autocomplete_users'
+  .autocomplete_variants
+.grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+  %label.form_el.form_label Описание
+.grid_i.grid_i__grid-1-2>
+  .form_el.js-form_el.form_textarea.js-description-container{data: {valid: ''}}
+    = f.text_area :description, class: 'form_el_tag form_textarea_tag'
+.grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+  %label.form_el.form_label Формат
+.grid_i.grid_i__grid-1-2>
+  .form_el.js-form_el.form_select.form_select__l.js-format
+    = f.select :type, [%w(SCRIBD ScribdBook), %w(PDF PdfBook)], {}, class: 'form_el_tag form_tx_tag', disabled: @book.not_processed?
+
+.grid_i.grid_i__grid-1-1.js-scribd-fields{style: (@book.pdf? && 'display: none;')}>
+  .grid
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      %label.form_el.form_label Код книги
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx.js-code-container{data: {valid: ''}}
+        = f.text_field :code, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      %label.form_el.form_label Пароль
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx.js-code-container{data: {valid: ''}}
+        = f.text_field :secret_password, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      %label.form_el.form_label Обложка
+    .grid_i.grid_i__grid-1-2>
+      .form_el.form_file.js-cover-container{data: {valid: ''}}
+        %p.form_el_inner.form_file_inner{data: {filename: true}}= @book.filename.presence || 'Загрузить'
+        = f.file_field :cover, class: 'js-cover-file-input form_el_tag form_file_tag'
+        = f.hidden_field :cover_cache, class: 'js-cover-cache'
+
+.grid_i.grid_i__grid-1-1.js-pdf-fields{style: (@book.scribd? && 'display: none;')}>
+  .grid
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      %label.form_el.form_label Pdf
+    .grid_i.grid_i__grid-1-2>
+      - if @book.not_processed?
+        .tx-i Идёт обработка pdf-файла...
+      - else
+        .form_el.form_file.js-pdf{data: {valid: ''}}
+          %p.form_el_inner.form_file_inner{data: {filename: true}}= @book.filename.presence || 'Загрузить'
+          = f.file_field :pdf, class: 'js-pdf-file-input form_el_tag form_file_tag'
+          = f.hidden_field :pdf_cache, class: 'js-pdf-cache'

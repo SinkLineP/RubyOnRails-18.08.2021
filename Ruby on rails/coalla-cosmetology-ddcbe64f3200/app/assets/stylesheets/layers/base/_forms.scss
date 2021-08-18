@@ -1,0 +1,190 @@
+//TODO класс для добавления серого фона .add-comments__focus
+
+textarea {resize: none;}
+
+
+
+//****************************************************************************************************
+//
+// .. ELEMENTS
+//
+//****************************************************************************************************
+.form_el {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  @include prefixes(box-sizing, border-box);
+  .grid_i > & {@extend .form_el__block;}
+}
+.form_el__block {
+  display: block;
+  width: 100%;
+}
+  .form_el_tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    @include prefixes(box-sizing, border-box);
+  }
+  .form_el_inner {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+//
+// .. Label
+//
+.form_label__el {
+  position: relative;
+  > .form_el {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    @include prefixes(transform, translateY(-50%));
+  }
+  > .form_el_inner {
+    overflow: visible;
+    white-space: normal;
+  }
+}
+.form_el_pad {
+  padding-right: 55px;
+}
+
+//
+// .. Button
+//
+.form_btn_tag {
+  opacity: 0;             // .. IE9/10 click availability
+  background-color: #fff; // .. IE9/10 click availability
+  font-size: 0;
+  cursor: inherit;
+}
+
+//
+// .. Text, textarea
+//
+.form_tx,
+.form_textarea {min-width: 6rem;}
+  .form_tx_tag,
+  .form_textarea_tag {
+    padding: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .form_textarea_tag-white {
+    background-color: #fff !important;
+  }
+
+  .form_tx_width {
+    width: 100%;
+  }
+
+.form_textarea_border {
+  border: 1px solid #000;
+  height: 4.8rem;
+  width: 100%;
+}
+
+//
+// .. Checkbox, radio
+//
+.form_checkbox[data-checked="true"]::after,
+.form_radio[data-checked="true"]::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  @include prefixes(transform, translate(-50%, -50%));
+}
+  .form_checkbox_tag,
+  .form_radio_tag {
+    z-index: 2;
+    cursor: inherit;
+    opacity: 0;
+  }
+
+//
+// .. File
+//
+
+.form-file > span {
+  cursor: pointer;
+}
+
+.form_file::after {
+  position: absolute;
+  top: 50%;
+  @include prefixes(transform, translateY(-50%));
+}
+  .form_file_tag {
+    z-index: -1;
+    opacity: 0;
+  }
+
+//
+// .. Select
+//
+.form_select::after {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  @include prefixes(transform, translateY(-50%));
+}
+  .form_select_tag {
+    z-index: 2;
+    cursor: inherit;
+    opacity: 0;
+  }
+
+.form_el > .sod_select {
+  vertical-align: middle;
+}
+
+.add-comments{
+  span {
+    margin-top: 4px;
+    display: block;
+  }
+
+  textarea{
+    width: 100% !important;
+    background: #fff !important;
+    padding-top: 0;
+    &.add-comments__focus{
+       background-color: #e6e6e6 !important;
+     }
+  }
+  //.grid{
+  //  display: flex;
+  //  align-items: center;
+  //}
+}
+
+.remove_has_many_label {
+  position: absolute;
+  right: 0;
+  top: 0.25rem;
+  svg {
+    &:hover > path {
+      cursor: pointer;
+      fill: #f61067;
+    }
+  }
+}
+
+.inputs {
+  legend {
+    span {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+  }
+}

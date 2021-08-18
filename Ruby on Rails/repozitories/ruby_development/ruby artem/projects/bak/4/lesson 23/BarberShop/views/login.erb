@@ -1,0 +1,16 @@
+<h1><center>Log In</center></h1>
+
+		<%= @error %>
+		<form action="/login" method="POST">
+			<p>
+				<h3>Login</h3>
+				<input class="border border-success" type="text" name="login" />
+			</p>
+			<p>
+				<h3>Password</h3>
+				<input class="border border-success" type="password" name="password" />
+			</p>
+			<p>
+				<input type="submit" class="btn btn-info" />
+			</p>
+		</form>

@@ -1,0 +1,14 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          = render 'courses_shop/common/user_settings_menu'
+
+          .personal-cabinet__content
+            .personal-cabinet-schedule
+              %ul.personal-cabinet-schedule__list
+                = render partial: 'courses_shop/schedules/schedule_item', collection: @group_subscriptions, as: :group_subscription

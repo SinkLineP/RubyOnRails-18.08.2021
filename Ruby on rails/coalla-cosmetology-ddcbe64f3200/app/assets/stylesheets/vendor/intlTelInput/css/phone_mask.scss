@@ -1,0 +1,31 @@
+.iti {
+  width: 100%;
+  &__flag-container {
+    max-height: 54px;
+    border-right: 1px solid #C5CAD6;
+  }
+
+  &__selected-flag {
+    padding: 0 17px 0 16px;
+    border-right: 1px solid #C5CAD6;
+  }
+
+  &__selected-flag {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.iti--allow-dropdown input, .iti--allow-dropdown input[type=tel] {
+  padding-left: 82px;
+}
+
+.iti__selected-dial-code {
+  display: none;
+}
+
+.admin_body .iti--allow-dropdown .iti__flag-container, .iti--separate-dial-code .iti__flag-container {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}

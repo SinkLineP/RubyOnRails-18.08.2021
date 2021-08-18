@@ -1,0 +1,245 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @group_subscription.student.display_name => edit_admin_student_path(@group_subscription.student), 'сделки' => admin_student_group_subscriptions_path(@group_subscription.student), @group_subscription.group_title.presence => edit_admin_student_group_subscription_path(@group_subscription.student, @group_subscription), 'документы' => '#'}
+      %h3.tx-center ДОКУМЕНТЫ
+      = form_for @group_subscription, url: admin_group_subscription_contract_path(@group_subscription), method: :put, html: {class: 'form js-form form__admin', autocomplete: 'off', id: 'subscription_contract_form'} do |f|
+        .admin_header
+          - if @subscription_contract.generated?
+            = link_to "Скачать #{@subscription_contract.contract? ? 'договор' : 'справку'}", download_admin_generated_document_path(@subscription_contract), class: 'a_under'
+            |
+            = link_to "Отправить #{@subscription_contract.contract? ? 'договор' : 'справку'}", send_contract_admin_group_subscription_contract_path(@group_subscription), class: 'a_under', method: :post
+          - if @subscription_contract.try(:user_file).present?
+            |
+            = link_to 'Копия', admin_private_file_path(file: @subscription_contract.user_file.url), target: '_blank', class: 'a_under'
+        .admin_body
+          .admin_settings_change
+            = f.fields_for :subscription_contract, @subscription_contract do |contract_fields|
+              .mt-1
+                %label.form_el.form_label Номер договора:
+                .form_el.js-form_el.form_tx
+                  = contract_fields.text_field :number, class: 'form_el_tag form_tx_tag'
+              .mt-1
+                %label.form_el.form_label Дата договора:
+                .form_el.js-form_el.form_tx
+                  = contract_fields.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@subscription_contract.created_on), readonly: true
+              - if @group_subscription.contract_with_appendix?
+                .mt-1
+                  %label.form_el.form_label Дата подписания приложения №1:
+                  .form_el.js-form_el.form_tx
+                    = f.text_field :appendix_signed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:appendix_signed_on) || Date.today), readonly: true
+              .mt-1
+                .form_el.js-form_el.form_file{data: {placeholder: "#{ @subscription_contract.user_filename || 'Загрузить копию'}"}}
+                  %p.form_el_inner.js-form_el_inner.form_file_inner
+                  %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                  = contract_fields.hidden_field :user_file_cache, data: {file_cache: true}
+            - if @group_subscription.generate_payer_agreement?
+              .mt-1.tx-s.tx-700.header_blocks_settings
+                Информация о плательщике
+              .mt-1
+                %label.form_el.form_label Дата подписания ДС:
+                .form_el.js-form_el.form_tx
+                  = f.text_field :payer_agreement_signed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:payer_agreement_signed_on) || Date.today), readonly: true
+              = f.fields_for :payment_requisite, @group_subscription.payment_requisite || PaymentRequisite.new do |payment_requisite_fields|
+                .mt-1
+                  %label.form_el.form_label Должность:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :position, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Должность (в род.падеже):
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :position_genitive, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Действует на основании:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_area :based, class: 'form_el_tag form_tx_tag', placeholder: 'Устава'
+                .mt-1
+                  %label.form_el.form_label  ФИО должностного лица:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :position_name, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Плательщик:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :name, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label ИНН:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :inn, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label КПП:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :kpp, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Адрес плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :address, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Юридический адрес плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :legal_address, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Р/с плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :account, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label БИК плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :bik, class: 'form_el_tag form_tx_tag js-bic'
+                .mt-1
+                  %label.form_el.form_label Банк плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :bank, class: 'form_el_tag form_tx_tag js-bank'
+                .mt-1
+                  %label.form_el.form_label К/с плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :correspondent_account, class: 'form_el_tag form_tx_tag js-ca'
+                .mt-1
+                  %label.form_el.form_label Телефон плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :phone, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Эл. почта плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :email, class: 'form_el_tag form_tx_tag'
+              = f.fields_for :payer_agreement, @payer_agreement do |payer_agreement|
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ @payer_agreement.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = payer_agreement.hidden_field :user_file_cache, data: {file_cache: true}
+            - if @group_subscription.generate_practice_agreement?
+              .mt-1.tx-s.tx-700.header_blocks_settings
+                Дополнительное соглашение о практике
+                - if @practice_agreement.generated?
+                  |
+                  = link_to 'Скачать', download_admin_generated_document_path(@practice_agreement), class: 'a_under'
+                - if @practice_agreement.try(:user_file).present?
+                  |
+                  = link_to 'Копия', admin_private_file_path(file: @practice_agreement.user_file.url), target: '_blank', class: 'a_under'
+              .mt-1
+                %label.form_el.form_label Дата подписания ДС:
+                .form_el.js-form_el.form_tx
+                  = f.text_field :practice_agreement_signed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:practice_agreement_signed_on) || Date.today), readonly: true
+              = f.fields_for :practice_agreement, @practice_agreement do |practice_agreement|
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ @practice_agreement.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = practice_agreement.hidden_field :user_file_cache, data: {file_cache: true}
+            - if @group_subscription.generate_vacation_order?
+              .mt-1.tx-s.tx-700.header_blocks_settings
+                Приказ об академическом отпуске
+                - if @vacation_order.generated?
+                  |
+                  = link_to 'Скачать', download_admin_generated_document_path(@vacation_order), class: 'a_under'
+                - if @vacation_order.try(:user_file).present?
+                  |
+                  = link_to 'Копия', admin_private_file_path(file: @vacation_order.user_file.url), target: '_blank', class: 'a_under'
+              = f.fields_for :vacation_order, @vacation_order do |vacation_order|
+                .mt-1
+                  %label.form_el.form_label Номер приказа:
+                  .form_el.js-form_el.form_tx
+                    = vacation_order.text_field :number, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Дата приказа:
+                  .form_el.js-form_el.form_tx
+                    = vacation_order.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@vacation_order.created_on), readonly: true
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ @vacation_order.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = vacation_order.hidden_field :user_file_cache, data: {file_cache: true}
+            = f.fields_for :change_group_orders, @group_subscription.change_group_orders do |group_order|
+              - change_group_order = group_order.object
+              - group_transfer = change_group_order.item
+              - if change_group_order
+                .mt-1.tx-s.tx-700.header_blocks_settings
+                  Приказ о переводе в другую группу
+                  - if change_group_order.generated?
+                    |
+                    = link_to 'Скачать', download_admin_generated_document_path(change_group_order), class: 'a_under'
+                  - if change_group_order.try(:user_file).present?
+                    |
+                    = link_to 'Копия', admin_private_file_path(file: change_group_order.user_file.url), target: '_blank', class: 'a_under'
+                = group_order.hidden_field :id
+                .mt-1
+                  %label.form_el.form_label Номер приказа:
+                  .form_el.js-form_el.form_tx
+                    = group_order.text_field :number, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Дата приказа:
+                  .form_el.js-form_el.form_tx
+                    = group_order.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(change_group_order.created_on), readonly: true
+                %p
+                  = "Из группы #{group_transfer.old_group.try(:title).to_s} в группу #{group_transfer.new_group.try(:title).to_s}"
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ change_group_order.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = group_order.hidden_field :user_file_cache, data: {file_cache: true}
+            .mt-1.tx-s.tx-700.header_blocks_settings
+              Анкета
+              - if @questionnaire.generated?
+                |
+                = link_to 'Скачать', download_admin_generated_document_path(@questionnaire), class: 'a_under'
+              - if @questionnaire.try(:user_file).present?
+                |
+                = link_to 'Копия', admin_private_file_path(file: @questionnaire.user_file.url), target: '_blank', class: 'a_under'
+              = f.fields_for :questionnaire, @questionnaire do |questionnaire|
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ @questionnaire.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = questionnaire.hidden_field :user_file_cache, data: {file_cache: true}
+
+
+            = f.fields_for :expulsions do |expulsion_fields|
+              .mt-5.mb-2.pb-1.tx-s.tx-700.header_blocks_settings
+                Приказ об отчислении
+                - expulsion = expulsion_fields.object
+                - expulsion_order = expulsion.expulsion_order
+                - if expulsion_order.try(:generated?)
+                  %p= link_to expulsion_order.try(:file_name), download_admin_generated_document_path(expulsion_order), class: 'a_under'
+              = expulsion_fields.fields_for :expulsion_order, expulsion_order, include_id: false do |expulsion_order_fields|
+                .mt-1
+                  %label.form_el.form_label Номер приказа:
+                  .form_el.js-form_el.form_tx
+                    = expulsion_order_fields.text_field :number, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Дата приказа:
+                  .form_el.js-form_el.form_tx
+                    = expulsion_order_fields.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(expulsion_order.created_on), readonly: true
+              .mt-1
+                %label.form_el.form_label Дата отчисления:
+                .form_el.js-form_el.form_tx
+                  = expulsion_fields.text_field :expelled_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(expulsion_fields.object.expelled_on), readonly: true
+
+              .mt-1.header_blocks_settings
+                .tx-s.tx-700 Основание
+              .mt-1
+                %label.form_el.form_label.form_label__el
+                  .form_el.js-form_el.form_checkbox
+                    = expulsion_fields.check_box :personal, class: 'form_el_tag form_checkbox_tag'
+                  %p.form_el_inner.form_label_inner Личные заявления обучающихся
+              .mt-1
+                %label.form_el.form_label.form_label__el
+                  .form_el.js-form_el.form_checkbox
+                    = expulsion_fields.check_box :non_attendance, class: 'form_el_tag form_checkbox_tag'
+                  %p.form_el_inner.form_label_inner Непосещение занятий
+
+            .mt-1.tx-s.tx-700.header_blocks_settings
+              Листы отработок
+            = render 'admin/subscription_contracts/working_off_lists'
+
+          .grid.mt-2
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @group_subscription.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/subscription_contract'

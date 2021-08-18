@@ -1,0 +1,48 @@
+{
+  "response": {
+    "contacts": [
+      {
+        "id": 72595229,
+        "name": "Макарова Екатерина Игоревна",
+        "responsible_user_id": 1786506,
+        "date_create": 1487023896,
+        "last_modified": 1510783931,
+        "created_user_id": 367294,
+        "modified_user_id": 367294,
+        "custom_fields": {
+          "0": {
+            "id": "1641411",
+            "name": "Телефон",
+            "values": {
+              "0": {
+                "value": "+79104950985",
+                "enum": "3816491"
+              }
+            },
+            "code": "PHONE"
+          },
+          "1": {
+            "id": "1641413",
+            "name": "Email",
+            "values": {
+              "0": {
+                "value": "dyagileva-1992@mail.ru",
+                "enum": "3816499"
+              }
+            },
+            "code": "EMAIL"
+          },
+          "2": {
+            "id": "1766553",
+            "name": "main",
+            "values": {
+              "0": {
+                "value": "1"
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

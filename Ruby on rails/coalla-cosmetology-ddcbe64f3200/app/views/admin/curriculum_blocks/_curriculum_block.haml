@@ -1,0 +1,11 @@
+.grid_i.grid_i__grid-4-9>
+  = link_to curriculum_block.title, edit_admin_curriculum_block_path(curriculum_block)
+.grid_i.grid_i__grid-3-9>
+  - if curriculum_block.courses.any?
+    %ul.courses-list.courses-list--vertical
+      = render collection: curriculum_block.courses, partial: 'admin/common/course'
+.grid_i.grid_i__grid-2-9.tx-center>
+  = link_to edit_admin_curriculum_block_path(curriculum_block) do
+    .icon_edit &#9998;
+  = link_to admin_curriculum_block_path(curriculum_block), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

@@ -1,0 +1,111 @@
+.page.page--sections
+  %section.page-section
+    // If basket is empty
+    -#.container
+      %header.page__header
+        .h2.page__title В&nbsp;корзине пусто
+        = render 'layouts/courses_shop/components/education_group_select'
+
+    .container
+      %header.page__header
+        .h2.page__title Моя корзина
+
+      %form.basket(action='#')
+        .basket__inner
+          %ul.basket__list
+            %li.basket__item.js-basket-item
+              .basket__item-checkbox.checkbox-input(data-size='lg')
+                %input.js-basket-item-toggle(type='checkbox' checked)
+                %span
+
+              %article.course-item.js-course-item(data-selected='true')
+                = link_to '#course-item-1', class: 'course-item__image js-hover' do
+                  = image_tag 'https://placehold.it/260x260?text=∴', alt: ''
+                .course-item__content
+                  %ul.course-meta
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                      %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                      %span пн-пт, с&nbsp;10:00 до&nbsp;15:00
+                  .h4.course-item__title
+                    = link_to 'Врач-косметолог (Косметология)', '#course-item-1', class: 'js-hover'
+                  .course-item__price
+                    %b 22&nbsp;150&nbsp;руб.
+                    %p Полная оплата курса
+                  %ul.course-item__actions
+                    %li
+                      = link_to 'Изменить', '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+                    %li
+                      = link_to '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'icon' do
+                        %svg.icon(role='img' data-size='18')
+                          %use(xlink:href='/assets/courses_shop/icons.svg#trash')
+
+            %li.basket__item.js-basket-item
+              .basket__item-checkbox.checkbox-input(data-size='lg')
+                %input.js-basket-item-toggle(type='checkbox')
+                %span
+
+              %article.course-item.js-course-item(data-selected='false')
+                = link_to '#course-item-2', class: 'course-item__image has-promotion-flag js-hover', 'data-promotion-caption' => '-40%' do
+                  = image_tag 'https://placehold.it/260x260?text=∴', alt: ''
+                .course-item__content
+                  %ul.course-meta
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                      %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                      %span пн-пт, с&nbsp;10:00 до&nbsp;15:00
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#calculator')
+                      %span 61&nbsp;490&nbsp;руб. полная стоимость
+                  .h4.course-item__title
+                    = link_to 'Сестринская косметология', '#course-item-2', class: 'js-hover'
+                  .course-item__price
+                    %b 13&nbsp;167&nbsp;руб./мес
+                    %p Первый взнос
+                  %ul.course-item__actions
+                    %li
+                      = link_to 'Изменить', '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+                    %li
+                      = link_to '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'icon' do
+                        %svg.icon(role='img' data-size='18')
+                          %use(xlink:href='/assets/courses_shop/icons.svg#trash')
+
+          .basket__checkout
+            .basket__checkout-promocode
+              .text-input.text-input--verify
+                %input(type='text' placeholder='Промо-код')
+                = link_to '#' do
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')
+
+            .basket__checkout-overview
+              %div.dl
+                %div.dt 2&nbsp;курса
+                %div.dd 14&nbsp;170&nbsp;руб.
+              %div.dl
+                %div.dt Скидка &laquo;Один ребенок&raquo;
+                %div.dd -5%
+              %div.dl
+                %div.dt Скидка за&nbsp;раннее бронирование
+                %div.dd -10%
+              %div.dl
+                %div.dt Скидка в&nbsp;день рождения
+                %div.dd -10%
+              %div.dl.is-discount
+                %div.dt Вы сэкономили
+                %div.dd 2&nbsp;834&nbsp;руб.
+              %div.dl.is-total
+                %div.dt К&nbsp;оплате
+                %div.dd 11&nbsp;336&nbsp;руб.
+
+            .basket__checkout-submit
+              %button.button.button--base-fill(type='submit' data-size='lg') Оплатить

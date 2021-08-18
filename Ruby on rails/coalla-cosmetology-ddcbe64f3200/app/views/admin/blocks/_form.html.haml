@@ -1,0 +1,61 @@
+= render 'admin/breadcrumbs', crumbs: {'блоки' => admin_blocks_path, (@block.name.presence || 'новый блок') => '#'}
+.tx-center
+  %h3= @block.name.presence || 'НОВЫЙ БЛОК'
+  - if @block.course
+    = link_to @block.course.name, edit_admin_course_path(@block.course), class: 'a_under tx-xxs'
+= form_for [:admin, @block], html: {class: 'form js-form form__blocks', autocomplete: 'off', data: {block_id: @block.id}} do |f|
+
+  .admin_header
+    - if @block.attribute_present?(:course_id)
+      = f.hidden_field :course_id
+    %label.form_el.form_label Заголовок:
+    .form_el.js-form_el.form_tx
+      = f.text_field :name, class: 'form_el_tag form_tx_tag'
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Блок включен
+  .admin_body.mt-2
+    .mb-4
+      .grid
+        .grid_i.grid_i__grid-1-6>
+          %p.nowrap.tx-700 Участвует в курсах:
+        .grid_i.grid_i__grid-5-6>
+          - if @block.courses.any?
+            = render collection: @block.courses, partial: 'admin/common/course'
+
+    #lectures-header.course_blocks.js-lecture-list.mb-3
+      .course_block.course_block__add.js-lecture-add>
+        .course_block_inner
+          .icon_add> +
+          Добавить лекцию
+
+    .grid.mt-5
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'button', class: 'form_el_tag form_btn_tag', id: 'save'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner ПРЕВЬЮ
+          = button_tag type: 'button', class: 'form_el_tag form_btn_tag', id: 'preview'
+
+= render 'admin/blocks/templates/lecture_header'
+= render 'admin/blocks/templates/lecture_body'
+= render 'admin/blocks/templates/material_thumb'
+= render 'admin/blocks/templates/material_form'
+= render 'admin/blocks/templates/download'
+= render 'admin/blocks/templates/pdf'
+
+= render 'admin/blocks/templates/tasks/calculation'
+= render 'admin/blocks/templates/tasks/connection'
+= render 'admin/blocks/templates/tasks/essay'
+= render 'admin/blocks/templates/tasks/file'
+= render 'admin/blocks/templates/tasks/test'
+= render 'admin/blocks/templates/tasks/test/question'
+= render 'admin/blocks/templates/tasks/test/answer'
+= render 'admin/blocks/templates/tasks/test/question_thumb'
+= render 'admin/blocks/templates/tasks/text'
+
+= content_for :js do
+  = javascript_include_tag 'admin/edit_blocks'

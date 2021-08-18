@@ -1,0 +1,23 @@
+= render 'admin/breadcrumbs', crumbs: {'вопрос-ответ' => admin_faq_index_path, 'вопрос' => '#'}
+%h3.tx-center= 'ВОПРОС'
+= form_for [:admin, @faq], url: @faq.new_record? ? admin_faq_index_path : admin_faq_path(@faq), html: {id: 'faq_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        = f.label :question, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 18rem;'}
+          = f.text_area :question, class: 'form_el_tag form_textarea_tag', style: 'height: 18rem;'
+      .mt-1
+        = f.label :answer, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 18rem;'}
+          = f.text_area :answer, class: 'form_el_tag form_textarea_tag', style: 'height: 18rem;'
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @faq.errors

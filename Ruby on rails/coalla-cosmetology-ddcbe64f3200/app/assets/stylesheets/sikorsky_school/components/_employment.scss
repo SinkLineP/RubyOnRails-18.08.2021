@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.employment {
+    padding: 1rem;
+    text-align: center;
+
+    @include mq(md) {
+        padding: 1.25rem;
+    }
+
+    p {
+        font-size: 2rem;
+        line-height: 2.4rem;
+
+        &:not(:last-child) {
+            margin-bottom: 1.25rem;
+        }
+    }
+
+    a {
+        display: block;
+        padding: .5rem 1rem .7rem;
+        border: 2px solid #fff;
+        font-size: 2rem;
+        font-weight: $font-weight-solid;
+        text-align: center;
+
+        &:hover {
+            border-color: rgba(#fff, $opacity-base);
+        }
+    }
+}

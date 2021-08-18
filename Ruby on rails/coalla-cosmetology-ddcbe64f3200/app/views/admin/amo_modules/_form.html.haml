@@ -1,0 +1,32 @@
+= render 'admin/breadcrumbs', crumbs: {'модули' => admin_amo_modules_path, (@amo_module.title.presence || 'новый модуль') => '#'}
+%h3.tx-center= @amo_module.title.presence || 'НОВЫЙ МОДУЛЬ'
+= form_for [:admin, @amo_module], html: {id: 'amo_module_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .tx-s.tx-700 Курсы
+    .course_blocks.js-courses-list
+      = render collection: @amo_module.courses, partial: 'course', locals: {f: f}
+    %div
+      %label.form_el.form_label Поиск:
+      .form_el.js-form_el.form_tx
+        = text_field_tag :course_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-courses'
+    .autocomplete_variants.js-courses-variants
+
+    .grid
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+  - content_for :js do
+    %script#course_template{type: 'text/template'}
+      .course_block>
+        .icon_del.js-remove-course X
+        .course_block_inner
+          = link_to '', 'data', class: 'a_under', data: {edit_course_link: true}
+          = hidden_field_tag 'amo_module[course_ids][]', nil, data: {course_id: true}
+
+= render 'admin/errors', errors: @amo_module.errors

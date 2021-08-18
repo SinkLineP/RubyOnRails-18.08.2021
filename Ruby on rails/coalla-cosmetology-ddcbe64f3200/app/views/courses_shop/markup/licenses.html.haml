@@ -1,0 +1,31 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Наши лицензии
+
+      .licenses-items
+        %p.licenses-items__caption Медицинская лицензия, выданная правительством Москвы.
+        .licenses-items__list.js-licenses-items-slider.js-images-gallery
+          .licenses-items__item
+            %figure.license-item
+              = link_to 'https://placehold.it/518x740/ff0000/ffffff?text=∴', target: '_blank' do
+                = image_tag 'https://placehold.it/259x370/ff0000/ffffff?text=∴', alt: ''
+          .licenses-items__item
+            %figure.license-item
+              = link_to 'https://placehold.it/518x740/0000ff/ffffff?text=∴', target: '_blank' do
+                = image_tag 'https://placehold.it/259x370/0000ff/ffffff?text=∴', alt: ''
+          .licenses-items__item
+            %figure.license-item
+              = link_to 'https://placehold.it/518x740/00ff00/ffffff?text=∴', target: '_blank' do
+                = image_tag 'https://placehold.it/259x370/00ff00/ffffff?text=∴', alt: ''
+
+      .licenses-items
+        %p.licenses-items__caption Образовательная лицензия.
+        .licenses-items__list.js-licenses-items-slider.js-images-gallery
+          - 1.upto(5) do
+            .licenses-items__item
+              %figure.license-item
+                %figure.license-item
+                  = link_to 'https://placehold.it/518x740?text=∴', target: '_blank' do
+                    = image_tag 'https://placehold.it/259x370?text=∴', alt: ''

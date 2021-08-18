@@ -1,0 +1,32 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'мои студенты' => '#'}
+      %h3.tx-center МОИ СТУДЕНТЫ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+
+        .admin_body.table.table_base-color
+          = render 'admin/students/search_form', url: admin_my_students_path
+          .table_head
+            .grid.grid__collapse
+              .grid_i.grid_i__grid-2-6>
+                - if params[:per_page].present?
+                  %a.a_under.modal{href: admin_my_students_path} Постраничный вывод
+                - else
+                  %a.a_under.modal{href: admin_my_students_path(per_page: 1000000)} Весь список
+              .grid_i.grid_i__grid-2-6>
+                %p
+                  %span Показать 
+                  %a.a_under{:href => admin_my_students_path}> новых
+                  %span ,
+                  %a.a_under{:href => admin_my_students_path(ghost: true)} всех
+              .grid_i.grid_i__grid-1-6.grid_i__prefix-1-6>
+                %p.tx-right
+                  последний логин
+          .grid.grid__collapse
+            = render collection: @students, partial: 'student'
+      = will_paginate @students, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

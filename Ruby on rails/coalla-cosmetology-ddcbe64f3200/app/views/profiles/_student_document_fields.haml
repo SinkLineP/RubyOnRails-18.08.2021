@@ -1,0 +1,22 @@
+- student_document = f.object
+.grid.js-student_document{data: {student_document: student_document.try(:id) || f.index}}
+  - unless student_document.new_record?
+    = f.hidden_field :id
+  = f.hidden_field :_destroy, data: {destroy: true}
+  .grid_i.grid_i__grid-1-4.js-student-document-type>
+    = f.select_wrapped :document_type, StudentDocument.document_type.options, 'Выберите документ'
+
+  .grid_i.grid_i__grid-1-4.js-title-blocks{style: !student_document.other_document? && 'display: none;'}>
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag js-student-document-title'
+
+  .grid_i.js-file-block{class: student_document.other_document? ? 'grid_i__grid-2-4' : 'grid_i__grid-3-4'}>
+    .form_el.js-form_el.form-file{data: {placeholder: "#{student_document.filename || 'Загрузить документ'}"}}
+      %p.form_el_inner.js-form_el_inner.form_file_inner
+      %input.form_el_tag.form_file_tag.js-student-document-file{:type => 'file'}
+      = f.hidden_field :file_cache, data: {document_cache: true}
+  .grid_i.grid_i__grid-1-12.mb-4>
+    %span.a_under.js-remove-student-document удалить
+  .grid_i.grid_i__grid-1-12.mb-4>
+    - if student_document.try(:file).present?
+      = link_to 'скачать', admin_private_file_url(file: student_document.file.try(:url)), target: '_blank', class: 'a_under'

@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= advantage.title
+    = hidden_field_tag 'course[advantage_ids][]', advantage.id, data: {block_id: true}

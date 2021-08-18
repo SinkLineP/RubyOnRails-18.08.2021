@@ -1,0 +1,13 @@
+.content
+  .hcrumbs
+    = link_to 'главная', root_path
+    - crumbs.each_with_index do |el, index|
+      - name, path = el
+      - if index < crumbs.size - 1
+        = link_to name, path
+      - else
+        %span= name
+
+- if shop_dependent_controller?
+  .shop-select
+    = select_tag :shop, options_for_select(Shop.ordered.map{|f| [f.title, f.id]}, current_shop.try(:id)), class: 'js-shop-select form_el_tag form_select_tag selectordie'

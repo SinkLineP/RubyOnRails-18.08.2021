@@ -1,0 +1,79 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          .personal-cabinet__tabs
+            %select.select2.js-select2
+              %option Мои курсы
+              %option Расписание
+              %option(selected) Документы
+              %option Настройки
+
+            %ul
+              %li
+                = link_to 'Мои курсы', courses_shop_markup_personal_cabinet_courses_path
+              %li
+                = link_to 'Расписание', courses_shop_markup_personal_cabinet_schedule_path
+              %li
+                = link_to 'Документы', courses_shop_markup_personal_cabinet_documents_path, class: 'is-active'
+              %li
+                = link_to 'Настройки', courses_shop_markup_personal_cabinet_settings_path
+
+          .personal-cabinet__content
+            .personal-cabinet-documents
+              .personal-cabinet-documents__add
+                = link_to '#popup-add-document', class: 'button button--action-outline', 'data-size' => 'lg', 'data-type' => 'text', 'data-mfp-type' => 'inline' do
+                  %svg.icon(role='img' data-size='34')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#add')
+                  %span Добавить<span class='is-lg'> документ</span>
+
+              %ul.personal-cabinet-documents__list
+                %li.personal-cabinet-documents__item
+                  .document-item
+                    %svg.document-item__icon.icon(role='img' data-size='42')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#picture')
+                    .document-item__info
+                      %p.document-item__title Паспорт
+                  .personal-cabinet-documents__actions
+                    %ul
+                      %li
+                        = link_to 'Скачать', '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+                      %li
+                        = link_to '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'icon' do
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#trash')
+
+                %li.personal-cabinet-documents__item
+                  .document-item
+                    %svg.document-item__icon.icon(role='img' data-size='42')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#picture')
+                    .document-item__info
+                      %p.document-item__title Медкнижка
+                  .personal-cabinet-documents__actions
+                    %ul
+                      %li
+                        = link_to 'Скачать', '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+                      %li
+                        = link_to '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'icon' do
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#trash')
+
+                %li.personal-cabinet-documents__item
+                  .document-item
+                    %svg.document-item__icon.icon(role='img' data-size='42')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#picture')
+                    .document-item__info
+                      %p.document-item__title Изображение
+                      %p.document-item__caption Текст комментария пользователя
+                  .personal-cabinet-documents__actions
+                    %ul
+                      %li
+                        = link_to 'Скачать', '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+                      %li
+                        = link_to '#', class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'icon' do
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#trash')

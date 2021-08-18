@@ -1,0 +1,26 @@
+%main#main.main{role: 'main'}
+  %section.test_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.header
+        .grid.grid__collapse
+          = render 'tasks/additional/attempt'
+          .grid_i.grid_i__grid-4-6>
+            %h1= @task.display_name
+            .mb-2.tx-i= @lecture.description
+            - if @task.test?
+              - if @task.final
+                - best_result = current_user.best_result_for_lecture(@task.lecture)
+                - if best_result.present?
+                  .tx Ваш лучший результат: #{best_result.mark} из&nbsp;#{best_result.max_mark}
+              .tx.js-questions-counter Вы ответили на 0 из #{@task.items_count.to_i} #{Russian.p(@task.items_count.to_i, 'вопрос', 'вопросов', 'вопросов')}, осталось - #{@task.items_count.to_i}
+            - if @task.file? && @previous_result
+              = render 'tasks/additional/file_notification'
+          = render 'tasks/additional/timer'
+      = form_for @result, as: :result, url: task_results_path(@task), html: {class: 'form test_form js-form'}, builder: CustomFormBuilder do |f|
+        = f.base_errors
+        = hidden_field_tag :course_id, @course.id
+        = hidden_field_tag :activity_id, @user_activity.id
+        = render "tasks/#{@task.type_name.downcase}", f: f
+- content_for :js do
+  = javascript_include_tag 'errors'
+  = javascript_include_tag 'user_activity'

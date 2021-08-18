@@ -1,0 +1,71 @@
+{
+  "response": {
+    "leads": [
+      {
+        "id": "44457232",
+        "name": "МлМС-ОД-2",
+        "last_modified": 1510867065,
+        "status_id": "142",
+        "pipeline_id": 279892,
+        "price": "100",
+        "responsible_user_id": "367294",
+        "tags": [
+          {
+            "id": "1",
+            "name": "ИК"
+          }
+        ],
+        "date_create": 1510867063,
+        "account_id": "8391781",
+        "created_user_id": "367294",
+        "custom_fields": [
+          {
+            "id": "1760643",
+            "name": "education_form_id",
+            "values": {
+              "0": {
+                "value": "2"
+              }
+            }
+          },
+          {
+            "id": "1760641",
+            "name": "group_id",
+            "values": {
+              "0": {
+                "value": "553"
+              }
+            }
+          },
+          {
+            "id": "1779746",
+            "name": "roistat",
+            "values": {
+              "0": {
+                "value": "29624"
+              }
+            }
+          },
+          {
+            "id": "1760645",
+            "name": "group_price_id",
+            "values": {
+              "0": {
+                "value": "7"
+              }
+            }
+          },
+          {
+            "id": "1760647",
+            "name": "discount_id",
+            "values": {
+              "0": {
+                "value": "5"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Сейчас идут акции
+
+      .promotions-cards
+        %ul.promotions-cards__list
+          %li.promotions-cards__card
+            %article.promotion-card
+              .promotion-card__inner
+                = link_to '#promotion-card-1', class: 'promotion-card__image js-hover' do
+                  = image_tag 'https://placehold.it/350x220?text=∴', alt: ''
+                .h4.promotion-card__title
+                  = link_to 'Скидка -12% на все курсы на День России', '#promotion-card-1', class: 'js-hover'
+                %p.promotion-card__caption Только 12&nbsp;июня в&nbsp;день России получи скидку&nbsp;12% на&nbsp;любой курс при оплате онлайн. Промо-код Russia.
+                %footer.promotion-card__participate
+                  = link_to 'Участвовать', '#promotion-card-1', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+
+          - 1.upto(2) do
+            %li.promotions-cards__card
+              %article.promotion-card
+                .promotion-card__inner
+                  = link_to '#promotion-card-2', class: 'promotion-card__image js-hover' do
+                    = image_tag 'https://placehold.it/350x220?text=∴', alt: ''
+                  .h4.promotion-card__title
+                    = link_to 'Sed sed quam nec arcu cursus dignissim vitae bibendum metus', '#promotion-card-2', class: 'js-hover'
+                  %p.promotion-card__caption Praesent maximus pharetra tempor. Fusce id&nbsp;mi&nbsp;eget mauris eleifend suscipit.
+                  %footer.promotion-card__participate
+                    = link_to 'Участвовать', '#promotion-card-2', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+
+            %li.promotions-cards__card
+              %article.promotion-card
+                .promotion-card__inner
+                  = link_to '#promotion-card-3', class: 'promotion-card__image js-hover' do
+                    = image_tag 'https://placehold.it/350x220?text=∴', alt: ''
+                  .h4.promotion-card__title
+                    = link_to 'Специальные цены для мам!', '#promotion-card-3', class: 'js-hover'
+                  %p.promotion-card__caption 1&nbsp;ребенок &minus;5%, 2&nbsp;ребенка &minus;7%, 3&nbsp;и&nbsp;более детей &minus;10%
+                  %footer.promotion-card__participate
+                    = link_to 'Участвовать', '#promotion-card-3', class: 'button button--base-outline js-hover', 'data-size' => 'sm'

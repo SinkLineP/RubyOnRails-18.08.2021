@@ -1,0 +1,45 @@
+= render 'admin/breadcrumbs', crumbs: {'баннеры' => admin_banners_path, (@banner.description.presence || 'новый баннер') => '#'}
+%h3.tx-center= @banner.description.presence || 'НОВЫЙ БАННЕР'
+= form_for [:admin, @banner], html: {id: 'banner_form', class: 'form js-form form__admin', autocomplete: 'off', id: 'banner_form'} do |f|
+
+  .admin_header
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Активен
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Тип баннера:
+        = f.select :type_banner , Banner.type_banner.options, {}, class: 'form_el_tag form_select_tag selectordie js-type-banner-select', data: {size: 5}
+      .mt-1
+        %label.form_el.form_label Текст баннера:
+        .form_el.js-form_el.form_textarea.schedule_textarea.js-description-container{data: {valid: ''}}
+          = f.text_area :description, class: 'form_el_tag form_textarea_tag'
+      .mt-1
+        %label.form_el.form_label Текст баннера для мобилы:
+        .form_el.js-form_el.form_textarea.schedule_textarea.js-description-container{data: {valid: ''}}
+          = f.text_area :mobile_text, class: 'form_el_tag form_textarea_tag'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :image, size: '800x100', uploader: BannerImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :mobile_image, size: '600x900', uploader: BannerMobileImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt-2.js-banner{style: @banner.type_banner.registration? && 'display: none;'}
+        %label.form_el.form_label Название кнопки:
+        .form_el.js-form_el.form_tx
+          = f.text_field :btn_title, class: 'form_el_tag form_tx_tag'
+      .mt-2.js-banner{style: @banner.type_banner.registration? && 'display: none;'}
+        %label.form_el.form_label Ссылка:
+        .form_el.js-form_el.form_tx
+          = f.text_field :link_call , class: 'form_el_tag form_tx_tag'
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @banner.errors
+
+- content_for :js do
+  - javascript_include_tag 'admin/history_events'
+

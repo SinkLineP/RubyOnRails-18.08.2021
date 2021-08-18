@@ -1,0 +1,34 @@
+<h1>Edit Article</h1>
+
+<%= form_for :article, url: article_path(@article), method: :put do |f| %>
+	<p>
+		
+		<%= f.label :title %><br>
+		<%= f.text_field :title, :class => 'form-control' %>
+	</p>
+	<p>
+		
+		<%= f.label :text %><br>
+		<!--<%= f.hidden_field :text, id: :article_text %>
+		<trix-editor input="article_text"></trix-editor>-->
+		<%= f.text_area :text, rows: 5, cols: 25, :class => "tinymce" %>
+	</p>
+	<p>
+		
+		
+		<%= image_tag @article.picture.url, width: '400' if @article.picture? %><br>
+		
+	</p>
+	<p>
+		
+		
+		<%= f.file_field :picture %>
+	</p>
+	<p>
+		
+		<%= f.submit "Сохранить", :class => 'btn btn-primary' %>
+    
+  </p>
+	
+<% end %>
+<%= tinymce %>

@@ -1,0 +1,23 @@
+%main#main.library{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers-library
+        .flowers_inner
+          %h1.tx-upper= @book.name
+          %span.tx-i
+            Библиотека:
+            = link_to @book.category.name.mb_chars.downcase, books_path(anchor: "category-id-#{@book.category.id}")
+      .grid
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8
+          %p= simple_format(@book.description)
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8
+          - if @book.scribd?
+            %div#embedded_doc.mt-6
+          - elsif @book.pdf_present?
+            .fotorama{data: {allowfullscreen: 'native', arrows: 'always', nav: 'false'}}
+              - @book.pdf_images.each do |pdf_image|
+                = link_to nil, pdf_image.image_url(:main)
+            %p.tx-center.mt-1 Страница 1 из #{@book.pdf_images.count}
+
+- content_for :js do
+  = javascript_include_tag 'scribd'

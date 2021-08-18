@@ -1,0 +1,19 @@
+.grid_i.grid_i__grid-3-12>
+  %div.table_ellipsis{title: log.email}
+    = log.full_name
+-# .grid_i.grid_i__grid-1-12>
+-#   .tx-center
+-#     = t("logs.#{log.loggerable_type}")
+.grid_i.grid_i__grid-2-12>
+  %p.tx-center
+    = t("logs.actions.#{log.action_type}")
+.grid_i.grid_i__grid-2-12>
+  %p.tx-center
+    = format_date_time_full(log.created_at)
+.grid_i.grid_i__grid-4-12>
+  %p.tx-center
+    = log.description.html_safe
+.grid_i.grid_i__grid-1-12>
+  %p.tx-right
+    = link_to '#', class: 'modal', data: {url: admin_log_path(log)} do
+      .icon_add +

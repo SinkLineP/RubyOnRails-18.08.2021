@@ -1,0 +1,18 @@
+%li.personal-cabinet-documents__item
+  .document-item
+    %svg.document-item__icon.icon(role='img' data-size='42')
+      %use(xlink:href='/assets/courses_shop/icons.svg#picture')
+    .document-item__info
+      %p.document-item__title= document_type_text(document)
+      %p.document-item__caption= document.try(:title)
+  .personal-cabinet-documents__actions
+    %ul
+      - if document.file?
+        - document_type = document.try(:document_type) || 'document_copy'
+        %li
+          = link_to 'Скачать', courses_shop_profile_document_path(document_type: document_type, id: document.id), class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+      - if document.loaded_by_user?
+        %li
+          = link_to courses_shop_profile_document_path(document), method: :delete, data: {confirm: 'Вы действительно хотите удалить файл?'}, class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'icon' do
+            %svg.icon(role='img' data-size='18')
+              %use(xlink:href='/assets/courses_shop/icons.svg#trash')

@@ -1,0 +1,220 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'курсы' => admin_courses_path, @course.name.presence => '#'}
+      %h3.tx-center= @course.name.presence
+      = form_for @course, url: admin_course_content_path, html: {id: 'course_content_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+        .admin_header
+          = f.label :title, class: 'form_el form_label'
+          .form_el.js-form_el.form_tx
+            = f.text_field :title, class: 'form_el_tag form_tx_tag'
+        .admin_body
+          .admin_settings_change
+            .mt-1
+              .form_el.js-form_el
+                = link_to 'Вернуться к редактированию курса', edit_admin_course_path(@course), class: 'a_under'
+            .mt-1
+              = f.label :slug, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :slug, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label 'Мета-тег(title)', class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :tag_title, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label 'Мета-тег(description)', class: 'form_el form_label'
+              .form_el.js-form_el.form_textarea{style: 'height: 24rem; '}
+                = f.text_area :tag_description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+            .mt-1
+              = f.label :badge, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :badge, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :special_offer, class: 'form_el form_label'
+              .form_el.js-form_el.form_checkbox
+                = f.check_box :special_offer, class: 'form_el_tag form_checkbox_tag'
+            - if @course.persisted? && @course.root_speciality
+              .mt-1
+                %label.form_el.form_label Превью
+                .form_el.js-form_el
+                  = link_to @course.title, alternative_course_url(@course, nil, domain: current_shop.try(:domain), subdomain: ''), class: 'a_under', target: '_blank'
+            .mt_1
+              = render 'admin/common/image_loader', f: f, field: :image, size: '370x210', uploader: CourseImageUploader, version: :thumb, placeholder: 'placeholder3.png'
+            .mt_1
+              = render 'admin/common/image_loader', f: f, field: :small_image, size: '200x200', uploader: CourseSmallImageUploader, version: :thumb, placeholder: 'placeholder3.png'
+            .mt-1
+              = f.label :announcement, class: 'form_el form_label'
+              .form_el.js-form_el.form_textarea{style: 'height: 24rem; '}
+                = f.text_area :announcement, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+            .mt-1
+              = f.label :course_counts, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :course_counts, class: 'form_el_tag form_tx_tag', type: 'number', min: '0', step: '1'
+            .mt-1
+              = f.label :practice_hours, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :practice_hours, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :price_per_month, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :price_per_month, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :total_price, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :total_price, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :limitation, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :limitation, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :video, class: 'form_el form_label'
+              .form_el.js-form_el.form_textarea
+                = f.text_area :video, class: 'form_el_tag form_textarea_tag'
+
+            = render 'admin/common/select_video_block', size: 300, f: f
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Направления
+            .course_blocks.js-specialities-list
+              = render collection: @course.specialities, partial: 'speciality', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить направление:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :speciality_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_specialities_path, template: '#speciality_template', append_to: '.js-specialities-list', variants: '#specialities_autocomplete_variants'}
+              .autocomplete_variants#specialities_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Преимущества
+            .course_blocks.js-advantages-list
+              = render collection: @course.advantages, partial: 'advantage', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить преимущество:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :advantage_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_advantages_path, template: '#advantage_template', append_to: '.js-advantages-list', variants: '#advantages_autocomplete_variants'}
+              .autocomplete_variants#advantages_autocomplete_variants
+
+            .mt-1.tx-s.tx-700.header_blocks_settings Раннее бронирование
+            .mt-1
+              = f.label :early_booking, class: 'form_el form_label'
+              .form_el.js-form_el.form_checkbox
+                = f.check_box :early_booking, class: 'form_el_tag form_checkbox_tag'
+            .mt-1
+              = f.label :economy, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :economy, class: 'form_el_tag form_tx_tag'
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Учебный план
+            .course_blocks.js-curriculum-blocks-list
+              = render collection: @course.curriculum_blocks, partial: 'curriculum_block', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить блок:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :curriculum_block_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_curriculum_blocks_path, template: '#curriculum_block_template', append_to: '.js-curriculum-blocks-list', variants: '#curriculum_blocks_autocomplete_variants'}
+              .autocomplete_variants#curriculum_blocks_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Экономия при покупке нескольких курсов
+            .mt-1
+              = f.label :economy_for_several, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :economy_for_several, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :economy_description, class: 'form_el form_label'
+              .form_el.js-form_el.form_textarea{style: 'height: 24rem; '}
+                = f.text_area :economy_description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Отзывы
+            .course_blocks.js-recalls-list
+              = render collection: @course.recalls, partial: 'recall', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить отзыв:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :recall_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_recalls_path, template: '#recall_template', append_to: '.js-recalls-list', variants: '#recalls_autocomplete_variants'}
+              .autocomplete_variants#recalls_autocomplete_variants
+
+            .mt-1.tx-s.tx-700.header_blocks_settings Карьера
+            .mt-1
+              = f.label :job, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :job, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :profit, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :profit, class: 'form_el_tag form_tx_tag'
+            .mt-1.mb-1.form_el.form_label Навыки
+            .course_blocks.js-skills-list
+              = render collection: @course.skills, partial: 'skill', locals: {f: f}
+            .mb-1.mb-2
+              %label.form_el.form_label Добавить навык:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :skill_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_skills_path, template: '#skill_template', append_to: '.js-skills-list', variants: '#skills_autocomplete_variants'}
+              .autocomplete_variants#skills_autocomplete_variants
+            .mt-1.mb-1.form_el.form_label Выпускные документы
+            .course_blocks.js-education-documents-list
+              = render collection: @course.education_documents, partial: 'education_document', locals: {f: f}
+            .mb-1.mb-2
+              %label.form_el.form_label Добавить документ:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :education_document_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_education_documents_path, template: '#education_document_template', append_to: '.js-education-documents-list', variants: '#education_documents_autocomplete_variants'}
+              .autocomplete_variants#education_documents_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Преподаватели
+            .course_blocks.js-instructors-list
+              = render collection: @course.instructors, partial: 'instructor', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить преподавателя:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :instructor_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_instructors_path, template: '#instructor_template', append_to: '.js-instructors-list', variants: '#instructors_autocomplete_variants'}
+              .autocomplete_variants#instructors_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Похожие курсы
+            .course_blocks.js-similars-list
+              = render collection: @course.similars, partial: 'similar', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить курс:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :similar_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_courses_path(shop: true), template: '#similar_template', append_to: '.js-similars-list', variants: '#similars_autocomplete_variants'}
+              .autocomplete_variants#similars_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Конфигуратор
+            .mt-1
+              = f.label :education_period, class: 'form_el form_label'
+              .form_el.js-form_el
+                = f.select :education_period, month_options, {}, class: 'form_el_tag form_select_tag selectordie'
+            .mt-1
+              .grid
+                .grid_i.grid_i__grid-2-8>
+                  = f.label :subject, class: 'form_el form_label'
+                - Course.subject.options.in_groups(2, false).each do |subject|
+                  .grid_i.grid_i__grid-3-8>
+                    - subject.map do |name, value|
+                      %label.form_el.form_label.form_label__el
+                        .form_el.js-form_el.form_checkbox
+                          = check_box_tag 'course[subject][]', value, @course.subject.include?(value), class: 'form_el_tag form_checkbox_tag'
+                        %p.form_el_inner.form_label_inner= name
+            .mt-1
+              = f.label :medical_education, class: 'form_el form_label'
+              .form_el.js-form_el.form_checkbox
+                = f.check_box :medical_education, class: 'form_el_tag form_checkbox_tag'
+            .mt-1
+              = f.label :work_in_cosmetology, class: 'form_el form_label'
+              .form_el.js-form_el.form_checkbox
+                = f.check_box :work_in_cosmetology, class: 'form_el_tag form_checkbox_tag'
+
+            .grid
+              .grid_i.grid_i__grid-1-2>
+                .form_el.js-form_el.form_btn.form_el_block
+                  %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                  = button_tag '', type: 'submit', class: 'form_el_tag form_btn_tag'
+
+            - content_for :js do
+              = javascript_include_tag 'admin/course_content'
+              = render 'admin/common/block_template', item_name: :speciality, object_name: :course
+              = render 'admin/common/block_template', item_name: :curriculum_block, object_name: :course
+              = render 'admin/common/block_template', item_name: :recall, object_name: :course
+              = render 'admin/common/block_template', item_name: :advantage, object_name: :course
+              = render 'admin/common/block_template', item_name: :skill, object_name: :course
+              = render 'admin/common/block_template', item_name: :education_document, object_name: :course
+              = render 'admin/common/block_template', item_name: :instructor, object_name: :course
+              = render 'admin/common/block_template', item_name: :similar, object_name: :course
+
+      = render 'admin/errors', errors: @course.errors

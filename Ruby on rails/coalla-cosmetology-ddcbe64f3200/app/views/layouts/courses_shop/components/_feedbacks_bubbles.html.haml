@@ -1,0 +1,50 @@
+.feedbacks-bubbles
+  .feedbacks-bubbles__list#feedbacks-bubbles-slider
+
+
+    .feedbacks-bubbles__bubble
+      .feedback-bubble
+        .feedback-bubble__inner
+          .feedback-bubble__video-container
+            %a.feedback-bubble__video-block(href='https://youtu.be/Lv4w2k9SaLQ' data-mfp-type="iframe")
+              %img(src='http://img.youtube.com/vi/zDmXNcamE_Q/3.jpg')
+              %svg.icon(role='img' data-color='1')
+                %use(xlink:href='/assets/courses_shop/icons.svg#video')
+
+
+
+
+    .feedbacks-bubbles__bubble
+      .feedback-bubble
+        .feedback-bubble__inner
+          .feedback-bubble__video-container.is-vimeo
+            %a.feedback-bubble__video-block(href='https://vimeo.com/26214518' data-mfp-type="iframe")
+              %img(src='https://i.vimeocdn.com/portrait/11106010_300x300.webp')
+              %svg.icon(role='img' data-color='1')
+                %use(xlink:href='/assets/courses_shop/icons.svg#video')
+
+    .feedbacks-bubbles__bubble
+      .feedback-bubble
+        .feedback-bubble__inner
+          = image_tag 'https://placehold.it/260x260?text=∴', alt: '', class: 'feedback-bubble__photo'
+          .feedback-bubble__content
+            %blockquote.feedback-bubble__quote
+              %p Хорошее отношение к&nbsp;студентам. Прекрасные преподаватели, и&nbsp;возможность выбрать, сочетать с&nbsp;рабочим временем, то&nbsp;есть любой график обучения!!!
+              %footer Светлана Михеева
+
+
+
+    .feedbacks-bubbles__bubble
+      .feedback-bubble
+        .feedback-bubble__inner
+          = image_tag 'https://placehold.it/260x260?text=∴', alt: '', class: 'feedback-bubble__photo'
+          .feedback-bubble__content
+            %blockquote.feedback-bubble__quote
+              %p Хорошее отношение к&nbsp;студентам. Прекрасные преподаватели!
+              %footer Анна Курникова
+  = link_to '#', class: 'feedbacks-bubbles__nav feedbacks-bubbles__nav--prev', id: 'feedbacks-bubbles-slider-prev' do
+    %svg.icon(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+  = link_to '#', class: 'feedbacks-bubbles__nav feedbacks-bubbles__nav--next', id: 'feedbacks-bubbles-slider-next' do
+    %svg.icon(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

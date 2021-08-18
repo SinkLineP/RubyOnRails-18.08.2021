@@ -1,0 +1,7 @@
+.grid_i.grid_i__grid-7-9>
+  = link_to document_section.title, edit_admin_document_section_path(document_section)
+.grid_i.grid_i__grid-2-9.tx-center>
+  = link_to edit_admin_document_section_path(document_section) do
+    .icon_edit &#9998;
+  = link_to admin_document_section_path(document_section), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

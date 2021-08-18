@@ -1,0 +1,87 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          = render 'courses_shop/common/user_settings_menu'
+
+          .personal-cabinet__content
+            .settings-form
+              = semantic_form_for @user, as: :user, remote: true, url: courses_shop_profile_path, builder: Coalla::FormBuilder, html: {class: 'settings-form__form'}, data: {trackable: 'true'} do |f|
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Имя
+                    .settings-form__col
+                      .text-input
+                        = f.text_field :first_name
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Фамилия
+                    .settings-form__col
+                      .text-input
+                        = f.text_field :last_name
+
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Отчество
+                    .settings-form__col
+                      .text-input
+                        = f.text_field :middle_name
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Почта
+                    .settings-form__col
+                      .text-input
+                        = f.email_field :email
+
+                  .settings-form__row
+                    .settings-form__col.has_many
+                      %label.settings-form__label Телефоны
+                    .settings-form__col
+                      - f.has_many :user_phones, btn_add: "Добавить телефон" do |up|
+                        .text-input
+                          = render partial: "courses_shop/common/phone_number", locals: {form: up}
+
+                = render 'courses_shop/profiles/social_binding_block'
+
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Изменение пароля
+                    .settings-form__col
+                      .text-input.text-input--password.js-password
+                        = f.password_field :current_password, class: 'js-password-input', placeholder: 'Текущий пароль'
+                        = link_to '#', class: 'js-password-toggle' do
+                          %svg.icon(role='img' data-size='34')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#eye')
+
+                  .settings-form__row
+                    .settings-form__col
+                    .settings-form__col
+                      .text-input.text-input--password.js-password
+                        = f.password_field :password, class: 'js-password-input', placeholder: 'Новый пароль'
+                        = link_to '#', class: 'js-password-toggle' do
+                          %svg.icon(role='img' data-size='34')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#eye')
+
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Подписка
+                    .settings-form__col.settings-form__col--full
+                      %label.label.label--has-input
+                        %span.checkbox-input
+                          = f.check_box :subscribed_on_blog
+                          %span
+                        Присылать мне уведомления о&nbsp;новых записях в&nbsp;блоге
+
+                .settings-form__submit
+                  .setting-form__submit-inner
+                    %button.button.button--base-fill(type='submit' data-size='lg') Сохранить изменения

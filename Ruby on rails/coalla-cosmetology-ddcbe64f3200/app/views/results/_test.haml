@@ -1,0 +1,29 @@
+.grid
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6.grid_i__suffix-1-6
+    .exercise-results
+      .results_inner
+        .tx-xl
+          Вы набрали
+          %span.tx-700= @result.mark
+          из
+          %span.tx-700= @task.max_mark
+        - if @result.passed?
+          .tx-xl Вы сдали тест!
+          - if course_finished?
+            = render 'results/additional/last_task_message'
+        - else
+          .tx-xl Вы не сдали тест!
+      = render 'results/additional/sharing'
+      - if @result.passed
+        = go_to_next_lecture_link
+      - else
+        = go_back_to_lecture_link
+- if can?(:pass, @task, course: @course)
+  .grid.mt-1
+    .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6.grid_i__suffix-1-6
+      .form_el.js-form_el.form_btn
+        %p.form_el_inner.form_btn_inner ПЕРЕСДАТЬ ТЕСТ
+        = link_to '', course_task_path(@course, @task), class: 'form_el_tag form_btn_tag'
+.mt-4
+  .grid
+    = render collection: @result.result_test_items, partial: 'results/additional/result_test_item'

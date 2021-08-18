@@ -1,0 +1,111 @@
+%section.page-promo-course#page-promo
+  .page-promo-course__background{style: "background-image: url(#{@course.image? ? @course.image_url(:promo) : asset_url('courses_shop/page_promo/page_promo_index.jpg')});"}
+
+  .page-promo-course__breadcrumbs
+    .container
+      %nav
+        %ul{ itemscope: '', itemtype: 'http://schema.org/BreadcrumbList' }
+          %li{ itemscope: '', itemprop: "itemListElement", itemtype: "http://schema.org/ListItem" }
+            = link_to root_path, itemprop: "item" do
+              %span{ itemprop: "name" }= shop_title
+              %meta{ itemprop: "position", content: "1" }
+          - root_speciality = @course.root_speciality
+          - if root_speciality
+            %li{ itemscope: '', itemprop: "itemListElement", itemtype: "http://schema.org/ListItem" }
+              = link_to alternative_speciality_url(root_speciality), itemprop: "item" do
+                %span{ itemprop: "name" }= root_speciality.genitive_form
+                %meta{ itemprop: "position", content: "2" }
+            - sub_speciality = @course.first_sub_speciality
+            %li{ itemscope: '', itemprop: "itemListElement", itemtype: "http://schema.org/ListItem" }
+              = link_to alternative_speciality_url(sub_speciality), itemprop: "item" do
+                %span{ itemprop: "name" }= sub_speciality.display_title
+                %meta{ itemprop: "position", content: "3" }
+            %li{ itemscope: '', itemprop: "itemListElement", itemtype: "http://schema.org/ListItem" }
+              %span{ itemprop: "name" }= @course.title
+              %meta{ itemprop: "position", content: "4" }
+
+  .page-promo-course__inner
+    .container
+      %header.page-promo-course__header
+        %h1.page-promo-course__title= @course.title
+        - if @course.announcement
+          %p.page-promo-course__caption= @course.announcement
+        = render 'layouts/courses_shop/hr_large'
+
+        %script{type: "application/ld+json"}
+          :erb
+            {
+            "@context": "http://schema.org",
+            "@type": "Course",
+            "name": "<%= @course.title %>",
+            "description": "<%= @course.announcement %>",
+            "duration": "PTH<%= @course.hours %>",
+            "video": "<%= @course.video.presence || 'https://vimeo.com/149739326' %>",
+            "offers": {
+              "@type": "Offer",
+              "price": "<%= @course.total_price %>",
+              "priceCurrency": "RUB"
+             },
+            "provider": {
+              "@type": "Organization",
+              "name": "Автономная некоммерческая организация дополнительного профессионального образования
+               «Институт косметологии, эстетической медицины и визажного искусства — Дом Русской Косметики»",
+              "sameAs": "https://www.cosmeticru.com/"
+             }
+            }
+
+      - if [@course.hours, @course.practice_hours, @course.price_per_month, @course.total_price, @course.limitation].any?{|price| price.to_f > 0}
+        .page-promo-course__info
+          - if @course.hours > 0
+            %div.dl
+              %div.dt= display_hours(@course.hours)
+              %div.dd Продолжительность курса
+
+          - if @course.practice_hours > 0
+            %div.dl
+              %div.dt= display_hours(@course.practice_hours.to_i)
+              %div.dd В том числе практики
+
+          - if [@course.price_per_month, @course.total_price].any?{|price| price.to_f > 0}
+            %div.dl
+              - if @course.price_per_month > 0
+                %div.dt #{format_money(@course.price_per_month)}/мес
+                - if @course.total_price > 0
+                  %div.dd
+                    %p= 'Стандартная цена курса'
+                    %p= "#{format_money(@course.total_price)}".html_safe
+                - else
+                  %div.dd Цена за месяц
+              - else
+                %div.dt #{format_money(@course.total_price)}
+                %div.dd Стандартная цена курса
+
+          - if @course.total_price > 10_000
+            %div.dl
+              %div.dt
+                %svg.icon(role='img' data-size='34')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#percent')
+              %div.dd Рассрочка на&nbsp;24&nbsp;месяца без переплат
+
+          - if @course.limitation.present?
+            %div.dl
+              %div.dt
+                %svg.icon(role='img' data-size='34')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#hat')
+              %div.dd= @course.limitation
+
+      %footer.page-promo-course__actions
+        = render 'courses_shop/common/sign_on_course_button', course: @course, title: 'Записаться на&nbsp;курс', size: 'lg'
+
+
+        - uploaded_video = @course.uploaded_video
+        - if uploaded_video
+          - if uploaded_video.jw_script.present?
+            = render 'courses_shop/courses/promo/video_button'
+          - else
+            = render 'courses_shop/courses/promo/video_button', player_options: jw_player_options(uploaded_video)
+        - else
+          = link_to @course.video.presence || 'https://vimeo.com/149739326', target: '_blank', 'data-mfp-type' => 'iframe' do
+            %svg.icon(role='img' data-size='34')
+              %use(xlink:href='/assets/courses_shop/icons.svg#video')
+            Видео о&nbsp;курсе

@@ -1,0 +1,29 @@
+<h1><%= t('article.new_article') %></h1>
+
+<%= form_for :article, url: articles_path do |f| %>
+
+	
+	<p>
+		
+		<%= f.label :title %><br>
+		<%= f.text_field :title, :class => 'form-control' %>
+	</p>
+	<p>
+		
+		<%= f.label :text %><br>
+		<!--<%= f.hidden_field :text, id: :article_text, :class => 'form-control' %>
+		<trix-editor input="article_text"></trix-editor>-->
+		<%= f.text_area :text, rows: 5, cols: 25, :class => "tinymce" %>
+	</p>
+	
+	<p>
+		
+		
+		<%= f.file_field :picture %>
+	</p>
+	<p>
+		
+		<%= f.submit "Опубликовать", :class => 'btn btn-primary' %>
+	</p>
+<% end %>
+<%= tinymce %>

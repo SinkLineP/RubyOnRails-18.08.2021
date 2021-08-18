@@ -1,0 +1,20 @@
+.grid_i.grid_i__grid-4-9>
+  = link_to course.display_name, edit_admin_course_path(course), class: ['point', 'table_ellipsis', ('point__voice' if course.active?)]
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = course.hours
+.grid_i.grid_i__grid-2-9>
+  - if course.students.any?
+    %p.tx-right
+      = link_to 'Рассылка', new_admin_course_notice_path(course), class: 'a_under tx-xs'
+.grid_i.grid_i__grid-1-9>
+  %time{datetime: ''}= format_date(course.updated_at)
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_course_content_path(course), title: 'Контент' do
+      .icon_edit &#9997;
+    = link_to edit_admin_course_path(course), title: 'Редактировать' do
+      .icon_edit &#9998;
+    - if course.unlinked?
+      = link_to admin_course_path(course), title: 'Удалить', method: :delete, data: {confirm: 'Вы уверены?'} do
+        .icon_del X

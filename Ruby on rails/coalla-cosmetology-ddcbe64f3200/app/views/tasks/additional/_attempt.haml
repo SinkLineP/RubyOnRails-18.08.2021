@@ -1,0 +1,8 @@
+- if @task.max_attempts_count.present?
+  .grid_i.grid_i__grid-1-6.pt-2>
+    .test_try
+      .try_points
+        - 1.upto(@task.max_attempts_count) do |attempt|
+          .try_point{class: @result.attempt == attempt && 'loose'}>
+      .test_try-text
+        попытка #{@result.attempt} из #{@task.max_attempts_count}

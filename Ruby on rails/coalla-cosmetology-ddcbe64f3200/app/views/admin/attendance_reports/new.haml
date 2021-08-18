@@ -1,0 +1,38 @@
+.popup.bg-muted
+  .mb-3.tx-center
+    %h5 ПОСЕЩАЕМОСТЬ
+
+  = form_for @report_params, url: admin_attendance_report_path, as: :report_params, remote: true, html: { class: 'form js-form', id: 'attendance_report_form' } do |f|
+    .grid
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Пользователь
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = f.hidden_field :user_id
+          = text_field_tag :user_name, @report_params.user.try(:full_name), class: 'form_el_tag form_tx_tag js-users-autocomplete', placeholder: 'Все'
+        .autocomplete_variants
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Начало
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = f.text_field :begin_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@report_params.begin_on), autocomplete: 'off', readonly: true
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Окончание
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = f.text_field :end_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@report_params.end_on), autocomplete: 'off', readonly: true
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Email
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = f.text_field :email, class: 'form_el_tag form_tx_tag', autocomplete: 'off'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+        .form_el.js-form_el.form_btn
+          %p.form_el_inner.form_btn_inner ОТПРАВИТЬ НА ПОЧТУ
+          %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+
+  .icon_del.arcticmodal-close X
+
+:javascript
+  new AttendanceReportForm()

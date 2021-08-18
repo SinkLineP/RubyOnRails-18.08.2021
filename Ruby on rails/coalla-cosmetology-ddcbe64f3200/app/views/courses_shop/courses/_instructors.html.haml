@@ -1,0 +1,11 @@
+.teachers-items
+  .teachers-items__list#teachers-items-slider
+    = render partial: 'courses_shop/courses/instructor', collection: @instructors
+
+  - if @instructors.count > 1
+    = link_to '#', class: 'teachers-items__nav teachers-items__nav--prev', id: 'teachers-items-slider-prev' do
+      %svg.icon(role='img' data-size='34')
+        %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+    = link_to '#', class: 'teachers-items__nav teachers-items__nav--next', id: 'teachers-items-slider-next' do
+      %svg.icon(role='img' data-size='34')
+        %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

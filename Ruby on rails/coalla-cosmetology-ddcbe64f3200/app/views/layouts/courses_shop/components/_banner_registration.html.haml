@@ -1,0 +1,17 @@
+- if banner.present? && cookies[:banner_showed].blank?
+  .banner.banner--form.js-banner(style="background-image: url(#{banner.image_url(:main)})")
+    = link_to '#', class: 'banner__close js-banner-close js-hide-banner' do
+      %svg.icon(role='img' data-size='18')
+        %use(xlink:href='/assets/courses_shop/icons.svg#close')
+    .container
+      .banner__row
+        .banner__col
+          .h4.banner__title #{banner.description}
+          .banner__action
+            = form_for :user, url: courses_shop_user_registration_path, remote: true, html: {class: 'banner__form js-banner-form'} do |f|
+              = f.hidden_field :banner, value: true
+              .banner__form-item
+                .text-input
+                  = f.email_field :email, placeholder: 'Электронная почта' , class: 'js-error-none'
+              .banner__form-item
+                %input.button.button--base-fill(type='submit' value='Зарегистрироваться' data-size='lg')

@@ -1,0 +1,20 @@
+- home ||= false
+- full_desc = instructor.description if instructor.present?
+- home_desc = instructor.instructor_home.description if instructor.instructor_home.present?
+- description = home ? home_desc : full_desc
+
+.teachers-items__item
+  %article.teacher-card
+    = image_tag transparent_pixel, data: { src: instructor.avatar_url(:middle) ? instructor.avatar_url(:middle) : placeholder_url('120x120') } ,
+                                   width: '120',
+                                   height: '120',
+                                   alt: '',
+                                   class: 'teacher-card__photo lazyload'
+    .h5.teacher-card__name= instructor.full_name
+    - faculties = instructor.faculties.map{|f| "факультет #{f.title}"}
+    - if faculties.any?
+      %p.teacher-card__department= faculties.join(', ').mb_chars.downcase
+    - if description
+      = simple_format(description, class: 'teacher-card__education')
+
+    = render 'layouts/courses_shop/hr_small'

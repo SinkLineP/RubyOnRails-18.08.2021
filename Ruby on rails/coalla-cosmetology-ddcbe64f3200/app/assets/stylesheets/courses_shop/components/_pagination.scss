@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+.pagination {
+  margin-top: 4rem;
+
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  // Button
+  &__button {
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+
+    // Button
+    .button {
+      @include fill-parent;
+    }
+  }
+
+  // Pages
+  &__pages {
+    margin-top: 1.5rem;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+      margin-top: .5rem;
+    }
+
+    ul {
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+      position: relative;
+    }
+
+    li {
+      @include text-sm;
+      font-weight: 700;
+
+      &.is-nav {
+        @include transform(translateY(-47.5%));
+        position: absolute;
+        top: 50%;
+
+        &:first-child {
+          left: -.5rem;
+
+          @include media($breakpoint-lg) {
+            left: -1.5rem;
+          }
+        }
+
+        &:last-child {
+          right: -.5rem;
+
+          @include media($breakpoint-lg) {
+            right: -1.5rem;
+          }
+        }
+      }
+
+      > a,
+      > span {
+        display: block;
+        padding: .5rem;
+
+        @include media($breakpoint-lg) {
+          padding: 1.5rem;
+        }
+      }
+
+      > a {
+        @include hover(color, $color-brand);
+        color: $color-brand-lightest;
+      }
+
+      > span {
+        color: $color-brand;
+      }
+
+      .icon {
+        @include hover(fill, $color-brand, 'a:hover');
+        fill: $color-ui;
+      }
+    }
+  }
+}

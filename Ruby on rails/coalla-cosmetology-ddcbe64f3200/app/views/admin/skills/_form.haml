@@ -1,0 +1,18 @@
+= render 'admin/breadcrumbs', crumbs: {'ключевые навыки' => admin_skills_path, 'ключевой навык' => '#'}
+%h3.tx-center= 'Ключевой навык'
+= form_for [:admin, @skill], html: {class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-2
+        = f.label :name, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 24rem; '}
+          = f.text_area :name, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @skill.errors

@@ -1,0 +1,23 @@
+%main#main.library{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_3
+        .flowers_inner
+          %h1 БИБЛИОТЕКА
+          %ul.tags
+            - @categories.each do |category|
+              - if category.books.any?
+                %li.tags-li
+                  = link_to category.name, '#', data: {scroll: "#category-id-#{category.id}", offset: '100'}
+
+
+      - @categories.each do |category|
+        - if category.books.published.any?
+          .h4.tx-upper.tx-center{id: "category-id-#{category.id}"}= category.name
+          .slider_book-js.js-books-slider
+            - category.books.published.each do |book|
+              .book.js-item
+                = link_to book_path(book) do
+                  = image_tag book.cover.url(:library), class: 'book_img'
+                  .book_name= book.name
+                .book_author= book.author

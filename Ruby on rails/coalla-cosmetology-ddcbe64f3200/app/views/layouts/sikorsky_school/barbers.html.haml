@@ -1,0 +1,13 @@
+- title = 'Курсы барберов'
+- link = courses_shop_barbers_path
+
+!!!
+%html(lang='ru')
+  = render 'layouts/sikorsky_school/head', title: title
+
+  %body
+    = yield
+
+    = render 'layouts/sikorsky_school/components/site_footer', title: title, link: link
+
+    = javascript_include_tag 'sikorsky_school/application'

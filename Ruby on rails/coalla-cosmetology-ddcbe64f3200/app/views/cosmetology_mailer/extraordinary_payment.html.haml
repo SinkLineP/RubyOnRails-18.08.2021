@@ -1,0 +1,19 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Здравствуйте!
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Для платежа:
+    %p{style: 'margin: 0;text-align: left;'}
+      #{@params[:client_email]}, #{@params[:sum]}, #{format_date_time_full(Time.current)}
+    %p{style: 'margin: 0;text-align: left;'}
+      не удалось определить сделку со студентом.
+    %p{style: 'margin: 0;text-align: left;'}
+      В СДО был создан внеплановый платеж.
+    %p{style: 'margin: 0;text-align: left;'}
+      Если необходимо данный платеж отнести к сделке, то следует перейти в СДО в раздел с
+      = link_to 'фактическими платежами', admin_student_payment_logs_url(@student)
+      студента и подкорректировать платеж.

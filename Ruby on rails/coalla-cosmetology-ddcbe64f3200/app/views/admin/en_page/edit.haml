@@ -1,0 +1,24 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      .content
+        = render 'admin/breadcrumbs', crumbs: {'страница на английком' => '#'}
+      %h3.tx-center РЕДАКТИРОВАНИЕ
+      = form_for [:admin, @en_page], html: {class: 'form js-form form__admin'} do |f|
+        .admin_header
+          %label.form_el.form_label Заголовок:
+          .form_el.js-form_el.form_tx
+            = f.text_field :title, class: 'form_el_tag form_tx_tag'
+        .admin_body
+          .mt-3
+            = f.cktext_area :content, placeholder: 'Контент'
+          .grid
+            .grid_i.grid_i__grid-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+- content_for :js do
+  - javascript_include_tag 'admin/ckeditor'

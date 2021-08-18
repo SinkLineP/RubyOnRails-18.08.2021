@@ -1,0 +1,474 @@
+@charset "UTF-8";
+
+// Course
+.course {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+
+    > div.dl {
+      border-top: 1px solid $color-ui;
+      border-bottom: 1px solid $color-ui;
+
+      &:not(:last-child) {
+        margin-bottom: -1px;
+      }
+
+      > div.dt {
+        @include display(flex);
+        @include justify-content(space-between);
+        @include h4;
+        padding: 5rem 0;
+        color: $color-brand;
+
+        > span {
+          @include flex(1);
+        }
+
+        > .icon {
+          margin: .7rem 0 0 2rem;
+          fill: $color-ui;
+
+          @include media($breakpoint-lg) {
+            @include size(3.4rem);
+            margin-top: .2rem;
+          }
+        }
+      }
+
+      .icon {
+        @include hover(fill, $color-brand, 'div.dt:hover');
+      }
+
+      > div.dd {
+        padding-bottom: 6rem;
+      }
+    }
+  }
+}
+
+// Course groups
+.course-groups {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 1);
+    }
+
+    &--accordion {
+      &.is-open {
+        .course-groups__group {
+          display: block;
+        }
+      }
+
+      .course-groups__group {
+        display: none;
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3) {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // Group
+  &__group {
+    border-top: 1px solid $color-ui;
+    border-bottom: 1px solid $color-ui;
+
+    &:not(:last-child) {
+      margin-bottom: -1px;
+    }
+  }
+
+  // All
+  &__all {
+    margin-top: 3rem;
+
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+
+    > .button {
+      @include fill-parent;
+    }
+  }
+
+  &__open-all {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__open-all-button {
+    .mod_no-touchevents & {
+      &:hover {
+        > span {
+          color: $color-base;
+        }
+
+        > .icon {
+          fill: $color-base
+        }
+      }
+    }
+
+    > span {
+      @include text-lg;
+
+      display: block;
+      text-align: center;
+      font-weight: 700;
+      color: $color-brand;
+    }
+
+    > .icon {
+      display: block;
+      margin: 0 auto;
+      width: 2.4rem;
+      height: 2.4rem;
+      fill: $color-brand;
+    }
+  }
+
+
+}
+
+// Course group
+@mixin course-group-highlight {
+  color: $color-base;
+
+  // Radio
+  .course-group__radio {
+    .radio-input > span {
+      background: $color-ui;
+    }
+  }
+
+  // Meta
+  .course-group__meta {
+    li.is-sm {
+      color: $color-error;
+
+      .icon {
+        fill: $color-error;
+      }
+    }
+
+    .icon {
+      fill: $color-base;
+    }
+  }
+}
+
+// Course group
+.course-group {
+  @include display(flex);
+  padding: 2rem 0;
+  color: $color-base-lighter;
+
+  @include media($breakpoint-lg) {
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include transition(color $transition-duration-base);
+    cursor: pointer;
+
+    &:hover {
+      @include course-group-highlight;
+    }
+  }
+
+  &.is-selected {
+    @include course-group-highlight;
+  }
+
+  // Radio
+  &__radio {
+    @include media($breakpoint-lg) {
+      @include flex(2);
+    }
+  }
+
+  // Meta
+  &__meta {
+    @include flex(1);
+    @include text-sm;
+    font-weight: 700;
+
+    @include media($breakpoint-sm) {
+      margin-left: 3rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include flex(14);
+      @include display(flex);
+      @include justify-content(space-around);
+    }
+
+    li {
+      position: relative;
+      padding-left: 2.5rem;
+
+      @include media($breakpoint-lg) {
+        @include flex(1);
+      }
+
+      &:not(:first-child) {
+        @include media($breakpoint-sm) {
+          margin-top: 1rem;
+        }
+
+        @include media($breakpoint-lg) {
+          margin-left: 2rem;
+        }
+      }
+
+      &.is-sm {
+        color: rgba($color-error, .4);
+
+        .icon {
+          fill: rgba($color-error, .4);
+        }
+      }
+
+      .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        fill: $color-base-lighter;
+      }
+    }
+  }
+
+  // Promotion
+  &__promotion {
+    @include media($breakpoint-sm) {
+      display: none !important;
+    }
+
+    @include media($breakpoint-lg) {
+      @include flex(1);
+      text-align: right;
+
+      .icon {
+        fill: $color-error;
+      }
+    }
+  }
+}
+
+// Course curriculum
+.course-curriculum {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 1);
+      counter-reset: list;
+    }
+
+    > div.dl {
+      background: $color-ui;
+      border-radius: $border-radius-lg;
+
+      @include media($breakpoint-lg) {
+        position: relative;
+        margin-left: 7rem;
+
+        &::before,
+        &::after {
+          @include user-select(none);
+          position: absolute;
+        }
+
+        // Triangle
+        &::after {
+          @include triangle(2rem .5rem, $color-ui, left);
+          top: 2.25rem;
+          right: 100%;
+          content: "";
+        }
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+
+        @include media($breakpoint-lg) {
+          margin-bottom: 2rem;
+
+          // Line
+          &::before {
+            @include transform(translateX(-5.3rem));
+            top: 2rem;
+            bottom: -4rem;
+            left: 0;
+            z-index: 1;
+            width: .2rem;
+            background: $color-bg;
+            content: "";
+          }
+        }
+      }
+
+      > div.dt {
+        @include text-lg;
+        padding: 1.5rem 2rem;
+
+        @include media($breakpoint-lg) {
+          position: relative;
+          padding: 2rem 3rem;
+          cursor: pointer;
+
+          &:hover {
+            color: $color-brand;
+          }
+
+          // Number
+          &::before {
+            @include text-sm;
+            @include size(3.6rem);
+            @include transform(translate(-7rem, -50%));
+            position: absolute;
+            top: 3.25rem;
+            left: 0;
+            z-index: 2;
+            background: $color-bg;
+            border-radius: 50%;
+            counter-increment: list;
+            content: counter(list);
+            line-height: 3.6rem;
+            text-align: center;
+          }
+        }
+      }
+
+      > div.dd {
+        padding: 0 2rem 1.5rem;
+
+        @include media($breakpoint-lg) {
+          padding: 0 3rem 2rem;
+        }
+
+        div.dl {
+          @include text-sm;
+
+          &:not(:last-child) {
+            margin-bottom: .75rem;
+          }
+        }
+
+        div.dt {
+          font-weight: 700;
+        }
+
+        div.dd {
+          display: list-item;
+          margin: .75rem 0 0 1.75rem;
+          padding-left: 1.2rem;
+          list-style-type: square;
+        }
+      }
+    }
+  }
+
+  // Documents
+  &__documents {
+    margin-top: 6rem;
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(3, 4);
+      @include grid;
+    }
+
+    > li {
+      @include media($breakpoint-sm) {
+        &:not(:last-child) {
+          margin-bottom: 1.9rem;
+        }
+      }
+
+      @include media($breakpoint-lg) {
+        @include grid-columns(1, 2);
+      }
+    }
+  }
+}
+
+// Course added
+.course-added {
+  text-align: center;
+
+  // Title
+  &__title {
+    margin-bottom: 3rem;
+  }
+
+  &__content {
+    margin-bottom: 2.25rem;
+
+    .icon {
+      margin-bottom: 1.75rem;
+    }
+  }
+
+  &__actions {
+    margin-bottom: 3rem;
+
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+      @include align-items(center);
+    }
+
+    > li {
+      @include media($breakpoint-sm) {
+        &:not(:last-child) {
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      @include media($breakpoint-lg) {
+        @include grid-columns(1, 6);
+      }
+
+      // Button
+      .button {
+        @include fill-parent;
+      }
+    }
+  }
+}

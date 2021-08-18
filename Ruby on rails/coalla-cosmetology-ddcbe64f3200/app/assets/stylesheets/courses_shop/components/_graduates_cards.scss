@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+// Graduates cards
+.graduates-cards {
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+      margin-top: -#{$content-indent-lg};
+    }
+
+    @include media($breakpoint-xxl) {
+      margin-top: -#{$content-indent-xl};
+    }
+  }
+
+  // Card
+  &__card {
+    @include media($breakpoint-sm) {
+      &:not(:last-child) {
+        margin-bottom: $content-indent-sm * 2;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+      margin-top: $content-indent-lg;
+    }
+
+    @include media($breakpoint-xxl) {
+      margin-top: $content-indent-xl;
+    }
+  }
+}
+
+// Graduate card
+.graduate-card {
+  @include text-sm;
+  text-align: center;
+
+  @include media($breakpoint-lg) {
+    padding: 0 3rem;
+  }
+
+  // Photo
+  &__photo {
+    border-radius: $border-radius-lg;
+    vertical-align: top;
+  }
+
+  // Caption
+  &__caption {
+    margin: 2rem 0;
+  }
+
+  // Person
+  &__person {
+    color: $color-base-lighter;
+  }
+}

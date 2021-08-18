@@ -1,0 +1,24 @@
+- actions = %w(consulting partners regional_schools manufacturers_and_dealers mass_media corporate_education recruitment)
+
+%section.page-promo#page-promo
+  .page-promo__breadcrumbs
+    .container
+      %nav
+        %ul
+          %li
+            = link_to shop_title, root_path
+          %li= title
+  .container
+    %header.page-promo__header
+      %h1.page-promo__title= title || 'Для бизнеса'
+      = render 'layouts/courses_shop/hr_large'
+
+  .page-promo__tabs
+    %select.select2.js-select2.js-buiseness-menu
+      - actions.each do |action|
+        %option{value: "/business/#{action}", selected: (action == action_name && 'selected')}= ty(t("business.#{action}"))
+
+    %ul
+      - actions.each do |action|
+        %li
+          = link_to ty(t("business.#{action}")), url_for(action: action), class: action == action_name && 'is-active'

@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+#{$all-text-inputs} {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  outline: 0;
+  vertical-align: top;
+}
+
+// Text input
+.text-input, .iti {
+  display: block;
+  vertical-align: top;
+
+  &[data-validation="invalid"] {
+    &[data-validation-text] {
+      &::after {
+        @include text-sm;
+        display: block;
+        margin-top: .25rem;
+        color: $color-error;
+        content: attr(data-validation-text);
+        text-align: left;
+      }
+    }
+
+    > input {
+      border-color: $color-error;
+    }
+  }
+
+  > input, > .iti input {
+    @include fill-parent;
+    @include transition(all $transition-duration-base);
+    @include text-lg;
+    height: 5.4rem;
+    padding: 0 1.5rem;
+    background: #fff;
+    border: 1px solid $color-base-lightest;
+    border-radius: $border-radius-sm;
+
+    &:focus {
+      border-color: $color-base;
+    }
+
+    &:disabled {
+      background: $color-base-lightest;
+      border-color: transparent;
+      color: $color-base;
+      cursor: no-drop;
+    }
+  }
+  > .iti input {
+    padding-left: 86px;
+  }
+  // Password
+  &--password {
+    position: relative;
+
+    > input {
+      padding-right: 5.4rem;
+    }
+
+    > a {
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+      @include size(5.4rem);
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      &.is-active > .icon {
+        fill: $color-brand;
+      }
+
+      > .icon {
+        fill: $color-brand-lightest;
+      }
+    }
+
+    .icon {
+      @include hover(fill, $color-brand, 'a:hover');
+    }
+  }
+
+  // Datepicker
+  &--datepicker {
+    position: relative;
+
+    > input {
+      padding-right: 4rem;
+      cursor: pointer;
+
+      &:focus + i {
+        @include transform(rotate(180deg));
+      }
+    }
+
+    > i {
+      @include triangle(1rem .6rem, $color-base, down);
+      @include transition(transform $transition-duration-base);
+      @include user-select(none);
+      position: absolute;
+      top: 2.4rem;
+      right: 1.6rem;
+      pointer-events: none;
+    }
+  }
+
+  // Verify
+  &--verify {
+    @include display(flex);
+    position: relative;
+    margin: 4rem 0 0;
+
+    @include media($breakpoint-sm) {
+      display: block;
+      margin: 4rem 0 0;
+    }
+
+    > input {
+      @include flex-grow(3);
+      margin-right: 2rem;
+    }
+
+    > a {
+      @include media($breakpoint-sm) {
+        display: block;
+        margin: 2rem 0 0;
+      }
+
+    }
+
+    &:after {
+      position: absolute;
+      top: -1rem;
+      left: 0;
+      width: 100%;
+      margin-top: 2rem;
+      text-align: center;
+      transform: translateY(-100%);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'мета-теги' => admin_meta_tags_path}
+      %h3.tx-center МЕТА-ТЕГИ
+      .form__admin
+        .admin_header.tx-center
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-8-9>
+                %p Страница
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @site_meta_tags, partial: 'meta_tag', as: :meta_tag
+      = will_paginate @site_meta_tags, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

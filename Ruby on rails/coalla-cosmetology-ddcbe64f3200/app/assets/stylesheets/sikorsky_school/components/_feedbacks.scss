@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+.feedbacks {
+    padding: 2rem map-get($mq-container-indents, "sm") 4rem;
+    background-color: #232323;
+
+    @include mq(md) {
+        padding: 4rem 0 6rem;
+    }
+
+    @include mq(lg) {
+        padding: 6rem 0 8rem;
+    }
+
+    &__row {
+        @include mq(md) {
+            @include grid(x, center);
+        }
+    }
+
+    &__col {
+        @include mq(md) {
+            @include grid-col;
+            @include col-size(10/12);
+        }
+
+        @include mq(lg) {
+            @include col-size(8/12);
+        }
+    }
+
+    &__title {
+        margin-bottom: 2rem;
+        text-align: center;
+
+        @include mq(md) {
+            margin-bottom: 3rem;
+        }
+
+        @include mq(lg) {
+            margin-bottom: 4rem;
+        }
+    }
+
+    &__list {}
+
+    &__item {
+        &:not(:last-child) {
+            margin-bottom: 3rem;
+
+            @include mq(md) {
+                margin-bottom: 4rem;
+            }
+
+            @include mq(lg) {
+                margin-bottom: 5rem;
+            }
+        }
+
+        &:nth-child(even) {
+            .feedback-item {
+                &__photo {
+                    @include mq(md) {
+                        order: 2;
+                        margin-right: 0;
+                        margin-left: map-get($mq-indents, "md");
+                    }
+
+                    @include mq(lg) {
+                        margin-left: map-get($mq-indents, "lg");
+                    }
+                }
+
+                &__content {
+                    @include mq(md) {
+                        order: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.feedback-item {
+    @include mq(md) {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    &__photo {
+        @include mq(sm) {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        @include mq(md) {
+            flex: {
+                grow: 0;
+                shrink: 0;
+            }
+            margin-right: map-get($mq-indents, "md");
+        }
+
+        @include mq(lg) {
+            margin-right: map-get($mq-indents, "lg");
+        }
+
+        img {
+            border-radius: 50%;
+            vertical-align: top;
+
+            @include mq(sm) {
+                @include size(70px);
+
+                margin-right: 1.5rem;
+            }
+        }
+
+        h6, .h6 {
+            @include mq(md) {
+                display: none;
+            }
+        }
+    }
+
+    &__content {
+        @include mq(md) {
+            flex: 1;
+        }
+    }
+
+    &__title {
+        margin-bottom: .5rem;
+
+        @include mq(sm) {
+            display: none;
+        }
+    }
+
+    &__text {
+        @include text-sm;
+
+        color: rgba(#fff, .3);
+    }
+}

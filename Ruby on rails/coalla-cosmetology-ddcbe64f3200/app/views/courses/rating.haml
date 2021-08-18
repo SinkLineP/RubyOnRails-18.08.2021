@@ -1,0 +1,24 @@
+%main#main.main{role: 'main'}
+  %section.index_page.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_4
+        .flowers_inner
+          %p.tx-xl Рейтинг студентов
+          .h2.tx-upper= @course.title
+          .hcrumbs.mb-0
+            = link_to 'Мои курсы', progress_path, class: 'a_under'
+            %span Рейтинг по&nbsp;курсу
+
+      .table.table_base-color.table_rating
+        .table_head
+          .grid
+            .grid_i.grid_i__grid-1-12.tx-center>
+              %p Место
+            .grid_i.grid_i__grid-8-12>
+              %p Фио
+            .grid_i.grid_i__grid-1-12.tx-center>
+              %p Баллы
+            .grid_i.grid_i__grid-2-12.tx-right>
+              %p Дата окончания
+        .table_body
+          = render partial: 'courses/rating_row', collection: @subscriptions, as: :subscription

@@ -1,0 +1,35 @@
+= render 'admin/breadcrumbs', crumbs: {'партнеры' => admin_partners_path, 'партнер' => '#'}
+%h3.tx-center= 'ПАРТНЕРЫ'
+= form_for [:admin, @partner], html: {class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        = f.label :title, class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :title, class: 'form_el_tag form_tx_tag'
+
+      .mt-1
+        = f.label 'Логотип (130x40)', class: 'form_el form_label'
+        .form_el.js-form_el.form_file{data: {placeholder: @partner.image? ? @partner.image.file.filename : 'Загрузить'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+          = f.file_field :image, class: 'form_el_tag form_file_tag'
+
+      .mt-1
+        = f.label :url, class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :url, class: 'form_el_tag form_tx_tag'
+
+      .mt-1
+        = f.label :description, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 24rem;'}
+          = f.text_area :description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @partner.errors

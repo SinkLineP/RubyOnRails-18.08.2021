@@ -1,0 +1,13 @@
+- first_payment = payment_counter == 0
+%li
+  %span= "#{payment_counter + group_subscription.completed_payments.count + 1}."
+  %span= format_date_short(payment.payed_on)
+  %span
+    - if first_payment
+      = format_money(payment.amount - group_subscription.overpaid)
+    - else
+      = format_money(payment.amount)
+
+  %span
+    - if first_payment
+      = link_to 'Оплатить', '#', class: 'button button--base-outline', data: { size: 'sm', profile_course_order: true, url: new_courses_shop_order_path(order: {cart: false}, 'order[group_subscription_ids][]' => group_subscription.id) }

@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+// Site phone
+.site-phone {
+  > a {
+    @include hover(color, $color-brand);
+    color: $color-base;
+  }
+}

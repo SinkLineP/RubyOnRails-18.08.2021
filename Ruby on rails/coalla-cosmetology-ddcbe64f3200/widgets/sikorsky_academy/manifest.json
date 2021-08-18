@@ -1,0 +1,27 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "code": "sikorsky_academy_extensions",
+    "secret_key": "22b5e7a1ea17c9310112bd34e22e1fa969199ff40bad372d0ff0db13d0592ac2",
+    "version": "0.2.6",
+    "interface_version": 2,
+    "init_once": false,
+    "locale": ["ru", "en"],
+    "installation": true
+  },
+  "locations": ["lcard-1", "ccard-1", "settings"],
+  "settings": {
+    "api_key": {
+      "name": "settings.api_key",
+      "type": "text",
+      "required": true
+    },
+    "api_host": {
+      "name": "settings.api_host",
+      "type": "text",
+      "required": true
+    }
+  }
+}

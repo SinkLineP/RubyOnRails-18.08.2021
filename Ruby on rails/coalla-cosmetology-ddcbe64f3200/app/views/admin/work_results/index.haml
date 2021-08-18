@@ -1,0 +1,33 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'результаты занятий' => admin_work_results_path}
+      %h3.tx-center РЕЗУЛЬТАТЫ ЗАНЯТИЙ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_work_result_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить результат
+        .admin_body.table.table_base-color
+          = render 'admin/work_results/search_form'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-2-9>
+                %p группа
+              .grid_i.grid_i__grid-2-9>
+                %p занятие
+              .grid_i.grid_i__grid-1-9.tx-center>
+                %p дата
+              .grid_i.grid_i__grid-2-9.tx-center>
+                %p обновлен
+              .grid_i.grid_i__grid-1-9.tx-center>
+                %p без оценки
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @work_results, partial: 'work_result'
+      = will_paginate @work_results, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

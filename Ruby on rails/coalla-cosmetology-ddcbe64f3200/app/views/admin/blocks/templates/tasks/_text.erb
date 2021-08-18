@@ -1,0 +1,31 @@
+<script type="text/template" id="task-text-template">
+  <div class="grid">
+    <div class="grid_i grid_i__grid-1-1">
+      <div class="mb-3">
+        <h6 class="tx-center">Добавить задачу-вопрос</h6>
+      </div>
+    </div><div class="grid_i grid_i__grid-2-7 grid_i__prefix-5-7">
+    <div>
+      <label class="form_el form_label">всего</label>
+      <div class="form_el js-form_el form_tx">
+        <input class="form_el_tag form_tx_tag js-max-attempts-count" type="text" value="<%%= max_attempts_count %>">
+      </div>
+      <label class="form_el form_label">попыток</label>
+    </div>
+  </div>
+    <div class="grid_i grid_i__grid-1-9">
+      <label class="form_el form_label">Вопрос</label>
+    </div><div class="grid_i grid_i__grid-8-9">
+      <div class="form_el js-form_el form_el__block form_textarea mb-4">
+        <textarea class="form_el_tag form_textarea_tag js-description"><%%= description %></textarea>
+      </div>
+    </div><div class='grid_i grid_i__grid-3-7'>
+    <label class='form_el form_label form_label__el'>
+      <div class='form_el js-form_el form_checkbox'>
+        <input class='form_el_tag form_checkbox_tag js-final-task' type="checkbox" <%% print(final ? 'checked="checked"' : '') %>>
+      </div>
+      <p class='form_el_inner form_label_inner'>Итоговое задание</p>
+    </label>
+  </div>
+  </div>
+</script>

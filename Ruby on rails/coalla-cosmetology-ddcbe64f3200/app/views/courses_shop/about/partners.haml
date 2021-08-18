@@ -1,0 +1,10 @@
+.page.page--promo
+  = render 'courses_shop/about/menu'
+
+  .tab{style: 'display: block;'}
+    .page-section
+      .container
+        .partners-items
+          %ul.partners-items__list#partners_list
+            = render partial: 'courses_shop/business/partner', collection: @partners
+        = pagination_complex(@partners, '#partners_list', false)

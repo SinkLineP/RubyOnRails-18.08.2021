@@ -1,0 +1,11 @@
+- if article.button_text.present? && article.button_link.present?
+  .page-section__button-block
+    - if article.button_type == 'link'
+      = link_to article.button_text, article.button_link, class: 'button button--base-fill', data: {size: 'lg'}
+    - if  article.button_type == 'feedback'
+      = link_to article.button_text, '#feedbacks-widgets-popup-ask', class: 'button button--base-fill js-feedbacks-widgets-popup-open', data: {size: 'lg'}
+    - if  article.button_type == 'course'
+      - if current_user.present?
+        = link_to article.button_text, article.button_link, class: 'button button--base-fill', data: {size: 'lg'}
+      - else
+        = link_to  @article.button_text, '#popup-promo-subscription', class: 'button button--base-fill js-promo-subscription-btn', data: {size: 'lg', 'course-id': 112, type: 'text', 'mfp-type': 'inline', blog: 'y'}

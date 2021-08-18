@@ -1,0 +1,22 @@
+= render 'admin/breadcrumbs', crumbs: {t("#{scope_name}_title").mb_chars.downcase => url_for(action: :index), t("#{scope_name}.#{@lookup.code}") => '#'}
+%h3.tx-center= t("#{scope_name}.#{@lookup.code}")
+= form_for [:admin, @lookup], url: url_for(id: @lookup, action: :update), as: :lookup, html: {id: 'lookup_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      - if @lookup.file_type?
+        .form_el.js-form_el.form_file{data: {placeholder: @lookup.file? ? @lookup.file.file.filename : 'Загрузить файл'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700
+          = f.file_field :file, style: 'display: none;'
+      - if @lookup.string_type?
+        .mt-1
+          %label.form_el.form_label Текст:
+          .form_el.js-form_el.form_tx
+            = f.text_field :value, class: 'form_el_tag form_tx_tag'
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @lookup.errors

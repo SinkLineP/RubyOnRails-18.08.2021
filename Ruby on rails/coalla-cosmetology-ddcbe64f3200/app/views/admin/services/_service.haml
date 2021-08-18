@@ -1,0 +1,7 @@
+.grid_i.grid_i__grid-7-8>
+  %a.modal{data: {url: edit_admin_service_path(service)}}= service.title
+.grid_i.grid_i__grid-1-8.tx-center>
+  = link_to '#', data: {url: edit_admin_service_path(service)}, class: 'modal' do
+    .icon_edit &#9998;
+  = link_to admin_service_path(service), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

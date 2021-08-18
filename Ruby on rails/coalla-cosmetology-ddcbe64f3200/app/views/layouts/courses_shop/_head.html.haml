@@ -1,0 +1,25 @@
+%head
+  - if Rails.env.production?
+    = render 'layouts/courses_shop/scripts/gtm_head'
+    = render 'layouts/courses_shop/scripts/sendpulse_script'
+    
+  %meta(charset='utf-8')
+  %meta(http-equiv='x-ua-compatible' content='ie=edge')
+  %meta(name='viewport' content='width=device-width, initial-scale=1')
+  %meta(name="robots" content="noyaca")
+  = courses_shop_favicon
+  = csrf_meta_tag
+  = display_meta_tags
+  = stylesheet_link_tag 'courses_shop/application', media: 'all'
+  = javascript_include_tag 'courses_shop/vendor/modernizr-custom'
+  = include_gon(init: true)
+  - if current_shop.barbershop?
+    %meta{name: 'yandex-verification', content: 'fe2034e09d087fd4'}
+  - else
+    %meta{name: 'yandex-verification', content: '77e7e79f061cfd02'}
+    %meta{content: "bsLJlBJal4XFU2jy6lNgvq7-4AnwBvcSMpqQ94Yog4E", 
+          name: "google-site-verification"}
+  -# возможность загрузить файл с редиректом
+  - if params[:download_document_id]
+    %meta{'http-equiv' => 'refresh', content: "1;url=#{download_document_courses_shop_profile_courses_path(id: params[:download_document_id], by_order_scope: true)}"}
+

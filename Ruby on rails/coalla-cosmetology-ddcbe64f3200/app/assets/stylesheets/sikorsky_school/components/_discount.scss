@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.discount {
+  text-align: center;
+
+  &__alert {
+    margin: 1.5rem 0;
+  }
+
+  &__form {
+    margin: 1.5rem 0;
+    text-align: left;
+
+    input {
+      display: block;
+      width: 100%;
+      font-size: 1.6rem;
+
+      &:not([type="submit"]) {
+        margin-bottom: 1rem;
+        padding: 1.2rem;
+        background-color: #fff;
+        border: 1px solid #000;
+        color: $color-dark;
+
+        &.is-invalid {
+          border-color: red;
+          color: red;
+        }
+      }
+
+      &[type="submit"] {
+        margin-top: 2rem;
+        padding: 1.3rem 1.2rem;
+        background-color: $color-brand;
+        border-radius: 2rem;
+        cursor: pointer;
+        font-weight: $font-weight-solid;
+        text-transform: uppercase;
+        transition: $transition-base;
+        will-change: transform;
+
+        &:hover {
+          background-color: lighten($color-brand, 3%);
+        }
+      }
+    }
+  }
+
+  &__disclaimer {
+    small {
+      display: block;
+    }
+
+    a {
+      @include link($color-brand);
+    }
+  }
+}

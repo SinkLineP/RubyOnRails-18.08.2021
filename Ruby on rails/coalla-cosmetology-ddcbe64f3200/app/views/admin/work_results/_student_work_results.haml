@@ -1,0 +1,6 @@
+= fields_for @work_result do |f|
+  .mt-2.js-student-work-results
+    .tx-s.tx-700.header_blocks_settings.mb-2 Студенты
+    = f.fields_for :student_work_results, include_id: nil do |student_work_result_fields|
+      .mt-1.nested-fields.add_ctn.add_stage
+        = render 'admin/work_results/student_work_result_fields', f: student_work_result_fields

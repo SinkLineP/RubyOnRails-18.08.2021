@@ -1,0 +1,8 @@
+- work_class = @work.class.base_class
+= fields_for work_class.to_s.downcase, @work do |f|
+  .mt-2.js-exercises{style: @work.with_exercises? ? '' : 'display: none;' }
+    - if @work.with_exercises?
+      .tx-s.tx-700.header_blocks_settings.mb-2 Задания
+      = f.fields_for :exercises, @work.build_exercises, include_id: nil do |exercise_fields|
+        .mt-1.nested-fields.add_ctn.add_stage
+          = render 'admin/works/exercise_fields', f: exercise_fields

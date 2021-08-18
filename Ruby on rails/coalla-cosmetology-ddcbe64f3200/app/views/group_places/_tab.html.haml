@@ -1,0 +1,9 @@
+- title ||= nil
+- scope ||= nil
+- checked ||= nil
+- id ||= "tab-#{index}"
+.tab
+  %input{id: id, checked: checked && "checked", name: 'tab-group', type: 'radio'}
+  %label.tab-title{for: id}= title
+  %section.tab-content
+    = render 'group_places/table', scope: scope

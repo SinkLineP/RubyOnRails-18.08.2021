@@ -1,0 +1,303 @@
+%noindex
+  - if @blog_banner
+    .popup-modal.popup-modal--banner#popup-for-blog-post(data-blog-popup-id= "#{@blog_banner.id}")
+      .popup-banner
+        = image_tag @blog_banner.mobile_image_url(:main), alt: '', class: 'popup-banner__image popup-banner__image--sm'
+        = image_tag @blog_banner.image_url(:main), alt: '', class: 'popup-banner__image popup-banner__image--lg'
+        .popup-banner__content
+          .popup-banner__title= mobile? ? @blog_banner.mobile_text.html_safe : @blog_banner.desktop_text.html_safe
+          .popup-banner__action
+            - if @blog_banner.btn_title.present? && @blog_banner.link.present?
+              = link_to @blog_banner.btn_title, @blog_banner.link + additional_banner_params, class: 'button button--base-fill-alt', data: {size: 'lg'}
+
+  .popup-modal#popup-promo-subscription(data-size='md')
+    .popup-modal__header
+      .h4.popup-modal__title Записаться на&nbsp;курс
+    .popup-modal__inner
+      = form_for PromoSubscription.new, url: courses_shop_promo_subscriptions_path, remote: true, html: {class: "default-form #{current_shop.barbershop? ? 'js-vk-form-fill-started' : ''}", data: {trackable: true}} do |f|
+        = f.hidden_field :course_id, id: 'promo_subscription_course_id'
+        = f.hidden_field :is_blog, id: 'promo_subscription_blog_id'
+        .default-form__inner
+          .default-form__row
+            .text-input
+              = f.email_field :email, placeholder: 'Электронная почта'
+          .default-form__row
+            .text-input
+              = f.telephone_field :phone_number, class: 'form_el_tag form_tx_tag input js-intl-tel'
+          .default-form__row
+            .text-input
+              = f.text_field :last_name, placeholder: 'Представьтесь'
+          .default-form__row
+            %button.button.button--base-outline(type='submit' data-size='lg' data-disable-with='Подождите...') Записаться
+
+      = render 'layouts/courses_shop/popup_modal_close'
+
+  .popup-modal#popup-register(data-size='md')
+    %ul.popup-modal__tabs
+      %li
+        %span Регистрация
+      %li
+        = link_to 'Вход', '#popup-login', 'data-mfp-type' => 'inline'
+
+    .popup-modal__inner
+      %p.popup-modal__text с&nbsp;помощью аккаунта в&nbsp;социальных сетях
+
+      = render 'layouts/courses_shop/auth_social'
+
+      %p.popup-modal__text или
+
+      = form_for ::Student.new, as: :user, namespace: :popup, url: courses_shop_user_registration_path, remote: true, html: {class: 'default-form', data: {trackable: true}} do |f|
+        .default-form__inner
+          .default-form__row
+            .text-input
+              = f.email_field :email, placeholder: 'Электронная почта'
+          .default-form__row
+            .text-input
+              = f.fields_for :user_phones, f.object.user_phones.build do |up|
+                = up.telephone_field :number, class: 'form_el_tag form_tx_tag input js-intl-tel'
+          .default-form__row
+            %label.label.label--has-input
+              %span.checkbox-input
+                = f.check_box :subscribed_on_blog
+                %span
+              Присылать мне уведомления о&nbsp;новых записях в&nbsp;блоге
+          .default-form__row
+            %button.button.button--base-outline(type='submit' data-size='lg' data-disable-with='Подождите...') Зарегистрироваться
+
+      %p.popup-modal__text Нажимая на&nbsp;кнопку &laquo;Зарегистрироваться&raquo;, вы&nbsp;подтверждаете свое согласие с&nbsp;<a href=#{courses_shop_offer_path} target='_blank'>Условиями пользовательского соглашения</a>
+
+      = render 'layouts/courses_shop/popup_modal_close'
+
+
+
+.popup-modal#popup-register-success(data-size='md' data-location= "#{courses_shop_root_path}")
+  %ul.popup-modal__tabs
+    %li
+      = link_to 'Регистрация', '#popup-register', 'data-mfp-type' => 'inline'
+    %li
+      = link_to 'Вход', '#popup-login', 'data-mfp-type' => 'inline'
+
+  .popup-modal__inner
+    .h4.popup-modal__title Поздравляем!<br>Вы&nbsp;успешно зарегистрированы
+
+    %p.popup-modal__text Вам отправлено письмо с&nbsp;автоматически сгенерированным паролем&nbsp;
+
+    = link_to 'Завершить регистрацию', '#', class: 'button button--base-outline js-link-button', 'data-size' => 'lg', onclick: ya_counter_click('EMAILREGISTER')
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+
+
+.popup-modal#popup-register-complete(data-size='md')
+  .popup-modal__inner
+    .h4.popup-modal__title Завершение регистрации
+
+    %p.popup-modal__text Подтвердите данные:
+
+    = form_for registration_user, namespace: :finish_registration, url: courses_shop_user_registration_path, remote: true, html: {class: 'default-form', data: {trackable: true}} do |f|
+      = hidden_field_tag :social, true
+      = f.hidden_field :first_name
+      = f.hidden_field :last_name, value: registration_user.last_name || registration_user.username
+      .default-form__inner
+        .default-form__row
+          .text-input
+            = f.email_field :email, placeholder: 'Электронная почта'
+        .default-form__row
+          %label.label.label--has-input
+            %span.checkbox-input
+              = f.check_box :subscribed_on_blog
+              %span
+            Присылать мне уведомления о&nbsp;новых записях в&nbsp;блоге
+        .default-form__row{style: 'display: none;'}
+          = link_to 'Восстановить пароль?', '#', class: 'js-restore-password', style: 'display: block; text-align: center;'
+        .default-form__row
+          %button.button.button--base-outline(type='submit' data-size='lg' data-disable-with='Подождите...' onclick="#{ya_counter_click('SOCIALREGISTER')}") Готово
+    = render 'layouts/courses_shop/popup_modal_close'
+
+
+%noindex
+  .popup-modal#popup-login(data-size='md')
+    %ul.popup-modal__tabs
+      %li
+        = link_to 'Регистрация', '#popup-register', 'data-mfp-type' => 'inline'
+      %li
+        %span Вход
+
+    .popup-modal__inner
+      %p.popup-modal__text с&nbsp;помощью аккаунта в&nbsp;социальных сетях
+
+      = render 'layouts/courses_shop/auth_social'
+
+      %p.popup-modal__text.js-popup-login-subtext или
+
+      = form_for :user, namespace: :common, url: courses_shop_user_session_path, remote: true, html: {class: 'default-form', data: {trackable: true}} do |f|
+        .default-form__inner
+          .default-form__row
+            .text-input
+              = f.email_field :email, placeholder: 'Электронная почта'
+
+          .default-form__row
+            .text-input.text-input--password.js-password
+              = f.password_field :password, placeholder: 'Пароль', class: 'js-password-input'
+              = link_to '#', class: 'js-password-toggle' do
+                %svg.icon(role='img' data-size='34')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#eye')
+
+          .default-form__row
+            %button.button.button--base-outline(type='submit' data-disable-with='Подождите...' data-size='lg' onclick="#{ya_counter_click('LOGIN')}") Войти
+
+      %p.popup-modal__text
+        = link_to 'Забыли пароль?', '#popup-password', 'data-mfp-type' => 'inline'
+
+      = render 'layouts/courses_shop/popup_modal_close'
+
+
+%noindex
+  .popup-modal#popup-password(data-size='md')
+    %ul.popup-modal__tabs
+      %li
+        = link_to 'Регистрация', '#popup-register', 'data-mfp-type' => 'inline'
+      %li
+        = link_to 'Вход', '#popup-login', 'data-mfp-type' => 'inline'
+
+    .popup-modal__inner
+      .h4.popup-modal__title Восстановление пароля
+
+      %p.popup-modal__text Введите электронную почту указанную при регистрации и&nbsp;мы&nbsp;вышлем новый пароль для восстановления доступа:
+
+      = form_for :user, namespace: :recovery, url: courses_shop_user_password_path, remote: true, html: {class: 'default-form', data: {trackable: true}} do |f|
+        .default-form__inner
+          .default-form__row
+            .text-input
+              = f.email_field :email, placeholder: 'Электронная почта'
+
+          .default-form__row
+            %button.button.button--base-outline(type='submit' data-size='lg' data-disable-with='Подождите...') Выслать инструкцию
+
+      = render 'layouts/courses_shop/popup_modal_close'
+
+
+
+.popup-modal#popup-password-success(data-size='md')
+  %ul.popup-modal__tabs
+    %li
+      = link_to 'Регистрация', '#popup-register', 'data-mfp-type' => 'inline'
+    %li
+      = link_to 'Вход', '#popup-login', 'data-mfp-type' => 'inline'
+
+  .popup-modal__inner
+    .h4.popup-modal__title Восстановление пароля
+
+    %p.popup-modal__text Вам отправлено письмо с новым паролем&nbsp;&mdash; проверьте вашу почту:
+
+    = link_to 'Проверить почту', '#', class: 'button button--base-outline js-link-button js-mail-button', 'data-size' => 'lg'
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+
+
+.popup-modal#popup-consultation-schedule-success(data-size='md')
+  .popup-modal__inner
+    .h4.popup-modal__title Поздравляем!<br>Вы успешно записаны
+
+    %p.popup-modal__text Консультация назначена на&nbsp;16&nbsp;августа (четверг) в&nbsp;12:00, наш менеджер свяжется с&nbsp;вами в&nbsp;самое ближайшее время для уточнения деталей визита.
+
+    = link_to 'Ок', '#', class: 'button button--base-outline', 'data-size' => 'lg', 'data-mfp-action' => 'close'
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+
+
+.popup-modal#popup-faq-success(data-size='md')
+  .popup-modal__inner
+    .h4.popup-modal__title Спасибо!<br>Ваш вопрос очень важен для нас
+
+    %p.popup-modal__text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel quam rutrum, consequat ligula vitae, imperdiet sem.
+
+    = link_to 'Ок', '#', class: 'button button--base-outline', 'data-size' => 'lg', 'data-mfp-action' => 'close'
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+
+
+.popup-modal#popup-add-document(data-size='md')
+  .popup-modal__header
+    %div
+      .h5 Добавить документ
+
+  .popup-modal__inner
+    = form_for :document, url: courses_shop_profile_documents_path(format: :js), remote: true, html: {class: 'default-form', data: {trackable: true, type: :json}} do |f|
+      .default-form__inner
+        .default-form__row
+          .select
+            = select_tag :document_type, options_for_select(load_document_types), class: 'select2 js-select2', data: {placeholder: 'Тип документа'}
+        -#TODO (ve): поправить валидацию file-input
+        .default-form__row
+          .file-input
+            = f.file_field :file, class: 'js-file-input'
+            %span Выберите файл...
+            %svg.icon(role='img' data-size='18')
+              %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')
+
+        .default-form__row
+          .textarea
+            = f.text_area :title, placeholder: 'Комментарий (не обязательно)', rows: 6
+
+        .default-form__row
+          %button.button.button--base-outline(type='submit' data-size='lg') Загрузить
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+.popup-modal#popup-basket-after-payment-overview(data-size='lg')
+  .popup-modal__inner
+    .h4.popup-modal__title Спасибо, что записались на курсы!
+
+    %p.popup-modal__text{data: {popup_title: true}}
+
+    .basket-after-payment-overview
+      %svg.icon(role='img' data-size='66')
+        %use(xlink:href='/assets/courses_shop/icons.svg#warning-stroke')
+      %p{data: {popup_text: true}}
+    - if current_user.try(:phones).present?
+      = link_to 'ОК', '/', class: 'button button--base-fill js-link-ok', 'data-size' => 'lg', onclick: ya_counter_click('ORDER')
+    - else
+      = form_for :user_pay, url: courses_shop_phones_path, html: {class: 'default-form', data: {trackable: true}} do |f|
+        = f.hidden_field :url, class: 'js-url-field'
+        .default-form__inner
+          .default-form__row
+            .text-input
+              = f.telephone_field :number, class: 'form_el_tag form_tx_tag input js-intl-tel'
+          .default-form__row
+            %button.button.button--base-fill(type='submit' data-size='lg' onclick="#{ya_counter_click('ORDER')}") ОК
+    %p.popup-modal__text Если у&nbsp;вас есть вопросы, вы&nbsp;всегда можете нам позвонить +7&nbsp;495 374-64-38
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+.popup-modal#popup-info(data-size='md')
+  .popup-modal__inner
+    .h4.popup-modal__title{data: {popup_title: true}} &nbsp;
+
+    %p.popup-modal__text{data: {popup_text: true}} &nbsp;
+
+    = link_to 'Ок', '#', class: 'button button--base-outline js-link-ok', 'data-size' => 'lg', 'data-mfp-action' => 'close'
+
+    = render 'layouts/courses_shop/popup_modal_close'
+
+
+.popup-modal.popup-modal--jwplayer#popup-jwplayer(data-size='lg')
+  .content.js-content
+    .content__video
+      #jw_player_popup
+        - jw_script = @course.try(:uploaded_video).try(:jw_script)
+        - if jw_script.present?
+          = jw_script.html_safe
+
+.popup-modal#popup-fast-subscription{ data: { size: 'md' } }
+  .popup-modal__inner
+    .h4.popup-modal__title Спасибо!
+
+    %p.popup-modal__text= "Мы обязательно свяжемся с вами. Вы можете сразу записаться в удобную группу и оплатить обучение, не дожидаясь звонка менеджера. Для этого #{link_to 'зарегистрируйтесь', '#', class: 'js-show-registration-popup'}.".html_safe
+
+    = link_to 'Ок', '#', class: 'button button--base-outline js-link-ok js-show-registration-popup', 'data-size' => 'lg'
+
+    = render 'layouts/courses_shop/popup_modal_close'

@@ -1,0 +1,21 @@
+.js-group-info
+  .mt-1
+    %label.form_el.form_label Курс:
+    .form_el.js-form_el.form_tx
+      = f.object.try(:course_name)
+  .mt-1
+    %label.form_el.form_label Дата начала обучения:
+    .form_el.js-form_el.form_tx
+      = f.text_field :begin_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:begin_on)), readonly: true
+  .mt-1
+    %label.form_el.form_label Дата окончания обучения:
+    .form_el.js-form_el.form_tx
+      = f.text_field :end_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:end_on)), readonly: true
+  .mt-1
+    %label.form_el.form_label Время начала обучения:
+    .form_el.js-form_el.form_tx
+      = format_time(f.object.try(:start_time))
+  .mt-1
+    %label.form_el.form_label Время окончания обучения:
+    .form_el.js-form_el.form_tx
+      = format_time(f.object.try(:end_time))

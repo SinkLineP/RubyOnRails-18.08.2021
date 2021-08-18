@@ -1,0 +1,4 @@
+= fields_for @group_subscription do |f|
+  .course_blocks.js-payments
+    = f.fields_for :payments, iclude_id: false do |payment_fields|
+      = render 'admin/group_subscriptions/payment_fields', f: payment_fields

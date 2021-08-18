@@ -1,0 +1,21 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.short_name}!
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 30px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      = 'Теперь для входа в систему дистанционного обучения используйте новую ссылку:'.html_safe
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: center;'}
+      = link_to 'https://sdo.sikorsky.academy', 'https://sdo.sikorsky.academy'
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Логин и пароль сохранились.

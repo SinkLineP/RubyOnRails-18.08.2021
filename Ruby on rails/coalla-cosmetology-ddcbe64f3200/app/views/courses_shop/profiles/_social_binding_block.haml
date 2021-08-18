@@ -1,0 +1,16 @@
+%fieldset.settings-form__group
+  - {facebook: 'Facebook', vkontakte: 'Вконтакте', odnoklassniki: 'Одноклассники'}.each do |social, social_title|
+    - active = current_user.authenticate_through?(social.to_sym)
+    .settings-form__row
+      .settings-form__col
+        %label.settings-form__label= social_title
+      .settings-form__col
+        .social.social--link
+          - if active
+            = link_to courses_shop_social_path(provider: social.to_sym), data: {confirm: 'Вы уверены, что хотите отвязать ваш аккаунт от социальной сети?'}, method: :delete,class: "is-#{social}", 'data-linked' => 'true', 'data-text' => 'Подключен' do
+              %svg.icon(role='img' data-size='26')
+                %use(xlink:href="/assets/courses_shop/icons.svg##{social}")
+          - else
+            = link_to courses_shop_user_omniauth_authorize_path(social.to_sym), class: "is-#{social}", 'data-linked' => 'false', 'data-text' => 'Связать' do
+              %svg.icon(role='img' data-size='26')
+                %use(xlink:href="/assets/courses_shop/icons.svg##{social}")

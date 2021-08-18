@@ -1,0 +1,20 @@
+- exercise = f.object
+- unless exercise.new_record?
+  = f.hidden_field :id
+= f.hidden_field :index
+.grid.grid__collapse
+  .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+    %label.form_el.form_label Задание #{exercise.parent.present? ? "#{exercise.parent.index}.#{exercise.index}" : exercise.index}
+  .grid_i.grid_i__grid-3-6
+    .form_el.js-form_el.form_tx
+      = f.text_field :text, class: 'form_el_tag form_tx_tag'
+  - unless exercise.with_sub_exercises?
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Макс. кол-во баллов
+    .grid_i.grid_i__grid-1-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :max_mark, class: 'form_el_tag form_tx_tag'
+  - else
+    .grid_i.grid_i__grid-1-1.mt-2
+      = f.fields_for :exercises, include_id: false do |exercise_fields|
+        = render 'admin/works/exercise_fields', f: exercise_fields

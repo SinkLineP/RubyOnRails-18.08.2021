@@ -1,0 +1,117 @@
+<!-- banner-starts 
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+
+        <ul class="rsliders" id="slider4">
+            <li>
+              
+            </li>
+            <li>
+              <%= image_pack_tag'media/packs/images/bnr-2.jpg' %>
+            </li>
+            <li>
+              <%= image_pack_tag'media/packs/images/bnr-3.jpg' %>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+</div>
+banner-ends -->
+
+<!-- corousel start -->
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_pack_tag'media/packs/images/bnr-1.jpg', class: "d-block w-100" %>   
+    </div>
+    <div class="carousel-item">
+      <%= image_pack_tag'media/packs/images/bnr-2.jpg', class: "d-block w-100" %>
+    </div>
+    <div class="carousel-item">
+      <%= image_pack_tag'media/packs/images/bnr-3.jpg', class: "d-block w-100" %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!-- corousel end -->
+
+<% if @brands.nil? %>
+  <h2>no brands</h2>
+<% else %>
+
+<!--About-Starts-->
+  <div class="about">
+    <div class="container">
+      <div class="about-top grid-1">
+        <% @brands.each do |i| %>
+          <div class="col-md-4 about-left">
+            <figure class="effect-bubba"> 
+              <%= image_pack_tag 'media/packs/images/'+i.img, class: "img-responsive"%>
+              <figcaption>
+                <h2><%= i.title %></h2>
+                <p><%= i.description %></p>
+              </figcaption>
+            </figure>
+          </div>
+        <% end %>
+        <div class="clearfix"></div>
+      </div> 
+    </div>
+  </div>
+  <!--About-Ends-->
+<% end %>
+
+<% if @hits.nil? %>
+  <h2>no hits</h2>
+<% else %>
+  <!--product-starts-->
+  <div class="product">
+    <div class="container">
+      <div class="product-top">
+        <div class="product-one">
+          <% @hits.hit.each do |hit| %>
+            
+              <div class="col-md-3 product-left">
+                  <div class="product-main simpleCart_shelfItem">
+                      <a href="product/<%=hit.id%>" class="mask" data-turbolinks="false">           
+                          <%= image_pack_tag 'media/packs/images/'+hit.img, alt: "", class: "img-responsive zoom-img" %>    
+                      </a>
+                  
+                  <div class="product-bottom">
+                    <h3><a href="product/<%=hit.id%>" data-turbolinks="false"><%=hit.title%></a></h3>
+                    <p>Explore Now</p>
+                    <h4>
+                        <%= link_to 'cart_items', class: 'add-to-cart-link', data: { id: hit.id } do %>      
+                        <i></i>
+                      <% end %>
+                      <span class="item_price">$ <%= hit.price %></span>
+                      <% if hit.old_price%>
+                        <small><del>$ <%= hit.old_price %></del></small>
+                      <% end %>
+                    </h4>
+                  </div>
+                  <div class="srch">
+                    <span>
+                      - 50 %
+                    </span>
+                  </div>
+                </div>
+              </div>
+            
+          <% end %>                          
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>  
+<!--product-end-->
+<input type="hidden" value="<%= !current_user.nil? ? 88 : 99 %>" id="cart_access" />          

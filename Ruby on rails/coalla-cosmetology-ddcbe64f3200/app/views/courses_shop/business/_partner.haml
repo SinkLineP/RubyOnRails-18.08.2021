@@ -1,0 +1,8 @@
+%li.partners-items__item
+  %figure.partner-item
+    - if partner.image.present?
+      = image_tag partner.image_url(:main), alt: partner.title.html_safe, class: 'partner-item__logo'
+    %figcaption.partner-item__caption
+      .h5.partner-item__title= partner.title.html_safe
+      - if partner.description.present?
+        %p.partner-item__text= partner.description.html_safe

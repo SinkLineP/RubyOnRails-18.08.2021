@@ -1,0 +1,117 @@
+.button7 {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: .8em 1em calc(.8em + 3px);
+  border-radius: 3px;
+  background: rgb(64,199,129);
+  box-shadow: 0 -3px rgb(53,167,110) inset;
+  transition: 0.2s;
+} 
+.button7:hover { background: rgb(53, 167, 110); }
+.button7:active {
+  background: rgb(33,147,90);
+  box-shadow: 0 3px rgb(33,147,90) inset;
+}
+
+
+.tabl {
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid green;
+  }
+
+.order {
+  margin: 0 10px 0 0;
+}
+
+/*------------------------------------------------------------------*/
+
+.zakaz {
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  width: 240px;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 45px;
+  margin: 10px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #524f4e;
+  background: white;
+  box-shadow: 0 8px 15px rgba(0,0,0,.1);
+  transition: .3s;
+}
+.zakaz:hover {
+  background: #2EE59D;
+  box-shadow: 0 15px 20px rgba(46,229,157,.4);
+  color: white;
+  transform: translateY(-7px);
+}
+
+/*--------------------------------------------------------------------*/
+
+
+
+.d2 h3 {text-align: center;}
+.d2 h3:before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 5px);
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-top: 2px solid #BBC9C9;
+  border-bottom: 2px solid #BBC9C9;
+  z-index: -1;
+}
+.d2 span {
+  background: white;
+  padding: 0 20px;
+}
+
+/*------------------------------------------------------------*/
+
+
+.check {
+  background: green;
+  color: white;
+}
+
+.notcheck {
+  background: red;
+  color: white;
+}
+
+/*------------------------------------------------------------------*/
+
+
+.tablcart {
+  background: #6FFCA0;
+}
+
+.tablname {
+  background: #2D8E0F;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

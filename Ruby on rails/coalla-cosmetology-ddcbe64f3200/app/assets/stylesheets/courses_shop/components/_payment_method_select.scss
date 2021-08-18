@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+// Payment method select
+.payment-method-select {
+  margin-bottom: 2rem;
+
+  ul {
+    @include media($breakpoint-sm) {
+      margin: 0 -2rem;
+    }
+  }
+
+  li {
+    border-top: 1px solid $color-ui;
+    border-bottom: 1px solid $color-ui;
+
+    &:not(:first-child) {
+      margin-top: -1px;
+    }
+  }
+
+  label {
+    @include display(flex);
+    min-height: 6rem;
+    padding: 2rem 0;
+
+    @include media($breakpoint-lg) {
+      @include align-items(center);
+      padding: 1rem 0;
+    }
+    
+    &:not(.is-selected) {
+      .payment-method-select__dl {
+        opacity: .4;
+      }
+
+      // Tooltip
+      .tooltip {
+        cursor: default !important;
+
+        &__popup {
+          display: none !important;
+        }
+      }
+
+      // Links
+      a { // Prevent links clicking in unselected items
+        color: $color-brand !important;
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+  }
+
+  // 1. To show .tooltip over .radio-input
+  &__dl {
+    @include flex(1);
+    @include transition(opacity $transition-duration-base);
+    position: relative; // 1
+    z-index: 1;         // 1
+    display: block;
+    margin-left: 3rem;
+    will-change: opacity;
+
+    @include media($breakpoint-lg) {
+      margin-left: 4rem;
+    }
+  }
+
+  &__dt {
+    display: block;
+    font-weight: 700;
+  }
+
+  &__dd {
+    display: block;
+
+    @include media($breakpoint-lg) {
+      @include display(flex);
+      @include justify-content(space-between);
+      @include align-items(center);
+    }
+
+    > span {
+      &:only-child {
+        display: block;
+      }
+
+      &:not(:only-child) {
+        @include media($breakpoint-sm) {
+          display: block;
+        }
+
+        &:nth-child(2) {
+          @include h5;
+
+          @include media($breakpoint-sm) {
+            margin-top: 1rem;
+          }
+
+          @include media($breakpoint-lg) {
+            margin-left: 6rem;
+          }
+        }
+      }
+    }
+
+    // Tooltip
+    .tooltip {
+      color: $color-error;
+
+      &__popup {
+        color: $color-base;
+      }
+    }
+  }
+}

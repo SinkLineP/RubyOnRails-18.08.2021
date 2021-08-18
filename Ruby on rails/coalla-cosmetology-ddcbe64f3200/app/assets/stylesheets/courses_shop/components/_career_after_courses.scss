@@ -1,0 +1,242 @@
+@charset "UTF-8";
+
+.career-after-courses {
+  margin-bottom: -8rem;
+
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // Inner
+  &__inner {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+  }
+
+  // Sheet
+  &__sheets {
+    @include media($breakpoint-lg) {
+      position: relative;
+      z-index: 1;
+
+      &::before,
+      &::after {
+        @include user-select(none);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        content: "";
+      }
+
+      &::before {
+        @include transform(rotate(-14deg));
+        @include transform-origin(0 100%);
+        left: 0;
+        height: 88%;
+      }
+
+      &::after {
+        @include transform(rotate(18deg));
+        @include transform-origin(100% 100%);
+        right: 0;
+        height: 67%
+      }
+    }
+  }
+
+  // Sheet
+  &__sheet {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 2rem 8rem;
+    background: $color-ui;
+
+    @include media($breakpoint-lg) {
+      padding: {
+        right: 11rem;
+        left: 11rem;
+      }
+    }
+
+    @include media($breakpoint-md) {
+      padding: {
+        right: 4rem;
+        left: 4rem;
+      }
+    }
+
+    &::before {
+      @include user-select(none);
+      @include triangle(6rem, #fff $color-bg, down-left);
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 3;
+      content: "";
+    }
+  }
+
+  // Header
+  &__header {
+    position: relative;
+    z-index: 4;
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid $color-base;
+
+    @include media($breakpoint-sm) {
+      text-align: center;
+    }
+
+    @include media($breakpoint-lg) {
+      @include display(flex);
+      @include justify-content(space-between);
+      @include align-items(center);
+    }
+  }
+
+  // Record
+  &__record {
+    @include flex(1);
+    text-align: center;
+
+    @include media($breakpoint-sm) {
+      margin-top: 1rem;
+    }
+
+    @include media($breakpoint-lg) {
+      margin-left: 2rem;
+      text-align: right;
+    }
+  }
+
+  // Name
+  &__name {
+    // h4, no extra styles
+  }
+
+  // Specialty
+  &__specialty {
+    margin-top: 1.5rem;
+  }
+
+  // Income
+  &__income {
+    font-weight: 700;
+  }
+
+  // Content
+  &__content {
+    div.dl:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    div.dt {
+      @include text-sm;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  // Key skills
+  &__key-skills {
+    div.dd {
+      @include text-sm;
+      display: list-item;
+      margin-left: 1.6rem;
+      padding-left: 1.2rem;
+      list-style-type: square;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  // Documents
+  &__documents {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+
+    > div.dd {
+      position: relative;
+    }
+  }
+
+  // Documents list
+  &__documents-list {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    max-width: 119px; // Image + margins width
+    margin: -.5rem;
+
+    @include media($breakpoint-lg) {
+      max-width: 357px; // 3 x images + margins widths
+    }
+
+    &:not(.slick-initialized) {
+      .career-after-courses__documents-item {
+        @include media($breakpoint-sm) {
+          &:nth-child(n+2) {
+            display: none !important;
+          }
+        }
+
+        @include media($breakpoint-lg) {
+          &:nth-child(n+4) {
+            display: none !important;
+          }
+        }
+      }
+
+      // Hiding arrows nav until slider init
+      ~ .career-after-courses__documents-nav {
+        display: none;
+      }
+    }
+  }
+
+  // Documents item
+  &__documents-item {
+    display: block;
+    margin: .5rem;
+    text-align: center;
+
+    > img {
+      display: inline;
+      vertical-align: top;
+    }
+  }
+
+  // Documents nav
+  &__documents-nav {
+    @include transform(translateY(-50%));
+    position: absolute;
+    top: 50%;
+    display: block;
+    padding: 1rem;
+
+    &--prev {
+      left: -3.8rem;
+    }
+
+    &--next {
+      right: -3.8rem;
+    }
+
+    .icon {
+      fill: $color-base-lightest;
+    }
+  }
+
+  .icon {
+    @include hover(fill, $color-base, '.career-after-courses__documents-nav:hover');
+  }
+}

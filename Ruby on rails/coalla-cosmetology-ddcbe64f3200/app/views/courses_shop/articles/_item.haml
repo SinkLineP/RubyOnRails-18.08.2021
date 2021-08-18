@@ -1,0 +1,8 @@
+%li.media-cards__item
+  %article.media-card
+    - url = item.mass_media? ? courses_shop_mass_media_section_path(item) : courses_shop_science_and_drk_path(item)
+    = link_to url, class: 'media-card__inner' do
+      = image_tag item.preview_image, alt: '', class: 'media-card__photo'
+      .media-card__content
+        .h4.media-card__title= item.title
+        %p.media-card__meta= item.preview_announce

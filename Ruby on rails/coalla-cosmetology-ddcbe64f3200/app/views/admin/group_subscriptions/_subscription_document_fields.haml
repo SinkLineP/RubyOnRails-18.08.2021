@@ -1,0 +1,71 @@
+= f.hidden_field :course_id, value: local_assigns.fetch(:course_id, f.object.course_id)
+.mt-1.nested-fields.add_ctn.add_stage
+  .grid.grid-close
+    .grid_i.grid_i__grid-1-9.grid_i__prefix-8-9.tx-right>
+      = link_to_remove_association raw('<div class="icon_del">X</div>'), f
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Выпускной документ
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = f.select :education_document_id, EducationDocument.ordered.map{|el| [el.title, el.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :ready_to_issue, class: 'form_el_tag form_checkbox_tag'
+        %p.form_el_inner.form_label_inner Готово к выдаче
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :issued, class: 'form_el_tag form_checkbox_tag'
+        %p.form_el_inner.form_label_inner Выдано
+    .grid_i.grid_i__grid-1-6.grid_i__prefix-1-10
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :decline_first_name, class: 'form_el_tag form_checkbox_tag'
+        %p.form_el_inner.form_label_inner Скл. Имя
+    .grid_i.grid_i__grid-1-6
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :decline_last_name, class: 'form_el_tag form_checkbox_tag'
+        %p.form_el_inner.form_label_inner Скл. Фамилия
+    .grid_i.grid_i__grid-1-6
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :decline_middle_name, class: 'form_el_tag form_checkbox_tag'
+        %p.form_el_inner.form_label_inner Скл. Отчество
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Дата выдачи
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :issued_at, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.issued_at), readonly: true
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Рег. номер
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :registration_number, class: 'form_el_tag form_tx_tag'
+        = f.hidden_field :generate, class: 'js-generate', value: false
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label № бланка (при наличии)
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :blank_number, class: 'form_el_tag form_tx_tag'
+    - if f.object.document?
+      .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+        %label.form_el.form_label Скачать документ
+      .grid_i.grid_i__grid-3-6
+        .form_el.js-form_el.form_tx
+          = render 'admin/common/download_link', file_path: f.object.document.url, link_name: '(документ)'
+        - if f.object.first_appendix?
+          .form_el.js-form_el.form_tx
+            = render 'admin/common/download_link', file_path: f.object.first_appendix.url, link_name: '(приложение 1)'
+        - if f.object.second_appendix?
+          .form_el.js-form_el.form_tx
+            = render 'admin/common/download_link', file_path: f.object.second_appendix.url, link_name: '(приложение 2)'
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_btn.form_btn__small.generate-document
+        %p.form_el_inner.form_btn_inner Сгенерировать
+        - group_subscription = f.object.group_subscription
+        - has_debts = !group_subscription.new_record? && group_subscription.has_debts?
+        %a.form_el_tag.form_btn_tag{href: '#', class: has_debts ? 'js-has-debts' : 'js-generate-document'}

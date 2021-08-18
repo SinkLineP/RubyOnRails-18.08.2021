@@ -1,0 +1,24 @@
+.grid.grid__collapse
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6.grid_i__suffix-1-6.mt-4.tx-left>
+    %p.description= @task.description
+  .grid_i.grid_i__grid-1-1>
+    .mt-2
+      .form_el.js-form_el.form_el__block.form_textarea
+        = f.text_area_with_validation :answer, style: 'width: 100%; height: 100%;', class: 'js-max_length', data: {maxlength: @task.max_answer_length}
+  .grid_i.grid_i__grid-1-3.grid_i__prefix-1-3>
+    .mt-2
+      .form_el.js-form_el.form_el__block.form_btn
+        %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+        = submit_tag 'save', class: 'form_el_tag form_btn_tag', data: {disable_with: 'Подождите...'}
+  .grid_i.grid_i__grid-1-8.grid_i__prefix-2-10>
+    .mt-2.tx-center.tx-xxs
+      .textarea_counter.js-textarea_counter{class: @result.answer_length_left < 0 ? '__exceeded' : '__normal'}= @result.answer_length_left
+      %span max
+      %span= @task.max_answer_length
+      %span знаков
+  .grid_i.grid_i__grid-1-1>
+    .mt-8
+      = lecture_link
+
+- content_for :js do
+  = javascript_include_tag 'max_length'

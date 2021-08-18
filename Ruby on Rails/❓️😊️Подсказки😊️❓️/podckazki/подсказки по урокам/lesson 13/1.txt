@@ -1,0 +1,74 @@
+﻿loop do 
+	...
+	break
+end
+
+Тоже самое:
+
+while true
+	...
+	break
+end
+========================
+
+def ...(пример say)
+	...
+	return
+end
+=========================
+
+Выход из программы: exit
+
+=========================
+
+Создание хеша.
+
+hash = {}
+
+Тоже самое:
+
+hash = Hash.new
+
+Добавление значения в 'hash':
+
+1.hash ['mike'] = 65
+       	 key    value
+
+1.hash ['jessie'] = 32 
+
+
+2.hash = {'mike' => 65}
+
+3.hash.store ('jessie',32)
+
+Вывод 'hash':
+
+1.puts hash
+
+2.puts hash.inspect
+
+3.puts hash.keys(вывод ключей) или puts hash.keys.inspect
+
+4. puts ahsh.value(вывод значений) или puts hash.value.inspect
+
+5. hash.keys.each do |key|
+		value = hash[key]
+   end
+
+Очистка 'hash':
+
+hash.clear
+
+Создание массива.
+
+Array = []
+
+Тоже самое:
+
+Array = Array.new
+
+==========================
+
+book = book1.merge book2
+
+обеденяет хеши

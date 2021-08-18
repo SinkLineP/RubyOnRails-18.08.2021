@@ -1,0 +1,34 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Мы и&nbsp;СМИ
+
+      .media-cards
+        %ul.media-cards__list
+          - 1.upto(3) do
+            %li.media-cards__item
+              %article.media-card
+                = link_to '#', class: 'media-card__inner' do
+                  = image_tag 'courses_shop/temp/media_photo_1.jpg', alt: '', class: 'media-card__photo'
+                  .media-card__content
+                    .h4.media-card__title Красота перестала быть привилегией молодости
+                    %p.media-card__meta Обзор антивозрастных процедур для ухода за&nbsp;лицом от&nbsp;Анны Сикорской
+
+            %li.media-cards__item
+              %article.media-card
+                = link_to '#', class: 'media-card__inner' do
+                  = image_tag 'https://placehold.it/410x410?text=∴', alt: '', class: 'media-card__photo'
+                  .media-card__content
+                    .h4.media-card__title Профессия: красивая женщина
+                    %p.media-card__meta Мария Комарцова, Rjob
+
+            %li.media-cards__item
+              %article.media-card
+                = link_to '#', class: 'media-card__inner' do
+                  = image_tag 'https://placehold.it/410x410?text=∴', alt: '', class: 'media-card__photo'
+                  .media-card__content
+                    .h4.media-card__title 5&nbsp;способов сэкономить на&nbsp;косметических процедурах
+                    %p.media-card__meta Комментарии Анны Сикорской
+
+      = render 'layouts/courses_shop/components/pagination_complex'

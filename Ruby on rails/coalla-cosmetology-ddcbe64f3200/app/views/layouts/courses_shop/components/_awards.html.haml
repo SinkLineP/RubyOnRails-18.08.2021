@@ -1,0 +1,21 @@
+.awards
+  .awards__list.js-images-gallery#awards-slider
+    - 1.upto(3) do
+      .awards__item
+        .award-item
+          .award-item__inner
+            = link_to placeholder_url('540x740'), target: '_blank', class: 'zoom-in' do
+              = image_tag 'https://placehold.it/270x370?text=∴', alt: ''
+              = render 'layouts/courses_shop/image_zoom_in_icon'
+      .awards__item
+        .award-item
+          .award-item__inner
+            = link_to placeholder_url('600x420'), target: '_blank', class: 'zoom-in' do
+              = image_tag 'https://placehold.it/300x210?text=∴', alt: ''
+              = render 'layouts/courses_shop/image_zoom_in_icon'
+      .awards__item
+        .award-item
+          .award-item__inner
+            = link_to placeholder_url('540x740'), target: '_blank', class: 'zoom-in' do
+              = image_tag 'https://placehold.it/270x370?text=∴', alt: ''
+              = render 'layouts/courses_shop/image_zoom_in_icon'

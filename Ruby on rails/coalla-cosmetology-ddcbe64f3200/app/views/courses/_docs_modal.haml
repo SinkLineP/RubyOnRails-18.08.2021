@@ -1,0 +1,20 @@
+.popup#materials
+  .tx-center
+    .mb-3
+      .h5 СПРАВОЧНЫЕ МАТЕРИАЛЫ
+    - if @course.try(:syllabus_url).present?
+      = link_to 'Учебный план курса', @course.syllabus_url, class: 'material-a', target: '_blank'
+    - if @course.try(:timetable).present?
+      = link_to 'Расписание занятий', @course.timetable, class: 'material-a', target: '_blank'
+
+
+    .dropdown-box
+      - DocumentSection.alphabetical_order.each do |document_section|
+        %div.dl.dropdown
+          %div.dt.dropdown__title
+            %a.js-dropdown-switch(href='#')= document_section.title
+
+          %div.dd.dropdown__content
+            = render collection: document_section.documents.ordered, partial: 'courses/document'
+
+  .icon_del.arcticmodal-close X

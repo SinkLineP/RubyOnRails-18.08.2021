@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Телефон</th>
+      <th scope="col">Адрес</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @zakaz.each do |zakaz| %>
+    <tr>
+      <th scope="row"><%= zakaz.id %></th>
+      <td><%= zakaz.name %></td>
+      <td><%= zakaz.phone %></td>
+      <td><%= zakaz.adress %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+

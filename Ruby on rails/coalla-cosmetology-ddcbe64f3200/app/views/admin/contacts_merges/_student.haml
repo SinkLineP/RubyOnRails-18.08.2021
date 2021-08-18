@@ -1,0 +1,18 @@
+.mt-1.tx-s.tx-700.header_blocks_settings Данные пользователя
+- [ :last_name, :first_name, :middle_name, :phones_string, :email, :emails_string, :birthday, :wear_size, :amocrm_id, :comagic_campaign ].each do |field|
+  = render 'admin/contacts_merges/source_field', student: student, field_name: field
+
+%label.form_el.form_label.form_label__el
+  .form_el.js-form_el.form_checkbox
+    = check_box_tag :field, student.education_level_id, false, data: {source_field: :education_level_id}, class: 'form_el_tag form_checkbox_tag', id: '', disabled: !student.education_level_id
+  %p.form_el_inner.form_label_inner
+    %span #{Student.human_attribute_name(:education_level_id)}:
+    %span.form_label__value= student.education_level.try(:title).try(:truncate, 53)
+
+%label.form_el.form_label.form_label__el
+  .form_el.js-form_el.form_checkbox
+    - passport_fields = %i(passport_series passport_number passport_issued_on passport_organisation passport_address address)
+    = check_box_tag :field, true, false, data: {source_field: :passport_info, group: true, fields_values: student.as_json(only: passport_fields).transform_values(&:to_s).to_json}, class: 'form_el_tag form_checkbox_tag', id: '', disabled: passport_fields.all? { |field| student.send(field).blank? }
+  %p.form_el_inner.form_label_inner
+    %span Паспортные данные:
+    %span.form_label__value= [student.passport_series, student.passport_number].compact.join("\s");

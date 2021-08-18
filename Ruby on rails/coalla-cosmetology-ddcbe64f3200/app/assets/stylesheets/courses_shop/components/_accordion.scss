@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.accordion {
+  > div.dl {
+    > div.dt {
+      cursor: pointer;
+    }
+
+    &[data-state='collapsed'] {
+      > div.dd {
+        display: none;
+      }
+    }
+
+    &[data-state='expanded'] {
+      > div.dt > .icon {
+        @include transform(rotate(180deg));
+      }
+    }
+  }
+}

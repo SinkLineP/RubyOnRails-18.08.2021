@@ -1,0 +1,6 @@
+%li.nav_block{class: "#{block == @block ? 'open current' : ''} #{block_class(block, @course)}"}
+  .block_name
+    = block_name_with_number(@course, block)
+    .tooltip= block_tooltip(block, @course) || 'Блок пройден'
+  %ul.lections_list{style: ('display:none;' if block != @block)}
+    = render collection: block.lectures, partial: 'courses/sidebar/lecture', locals:{ block: block }

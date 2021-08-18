@@ -1,0 +1,58 @@
+<Worksheet ss:Name="План набора">
+  <Table>
+    <Column ss:Width="50"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="50"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+
+    <Row>
+      <Cell ss:MergeAcross="11" ss:StyleID="sCenter"><Data ss:Type="String">План набора</Data></Cell>
+    </Row>
+    <Row>
+      <Cell ss:MergeAcross="11" ss:StyleID="sCenter"><Data ss:Type="String"><%= "#{@begin_at} - #{@end_at}" %></Data></Cell>
+    </Row>
+
+    <Row>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Уч. год</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Группа</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Курс</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Время обучения</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">График обучения</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Срок обучения</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дата первой практики</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">О:План мест</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">О:Факт мест</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ОД:План мест</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ОД:Факт мест</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Окончание практики</Data></Cell>
+    </Row>
+
+    <% @groups.each do |group| %>
+      <Row>
+        <% practices = group.practices %>
+        <% begin_practice_date = practices.map(&:begin_on).sort.first %>
+        <% end_practice_date = practices.map(&:end_on).sort.last %>
+        <Cell><Data ss:Type="String"><%= group.begin_on.try(:strftime, '%Y') %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= group.title %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= group.course.try(:short_name) %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= "#{format_time(group.start_time)} - #{format_time(group.end_time)}" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= group.schedule_type.specific_days? ? group.week_days.map{|day| t(day, scope: 'enumerize.group.week_days')}.join(';') : group.schedule_type_text %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= "#{format_date(group.begin_on)} - #{format_date(group.end_on)}" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= begin_practice_date ? format_date(begin_practice_date) : '' %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= group.academics_place %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= group.academics_count %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= group.distances_place %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= group.distances_count %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= end_practice_date ? format_date(end_practice_date) : '' %></Data></Cell>
+      </Row>
+    <% end %>
+  </Table>
+</Worksheet>

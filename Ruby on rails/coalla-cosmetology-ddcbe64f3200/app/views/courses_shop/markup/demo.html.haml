@@ -1,0 +1,145 @@
+:css
+  .demo h4 {
+    margin-bottom: 2rem;
+  }
+
+  .demo ul {
+    list-style: decimal inside;
+  }
+
+  .demo ul:not(:last-of-type) {
+    margin-bottom: 4rem;
+  }
+
+  .demo li:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+.page
+  .container
+    %section
+      %header.page__header
+        .h2.page__title Демо
+
+      .demo
+        .h4 Тултипы
+        %ul
+          %li.is-lg
+            .tooltip(data-position='top')
+              Тултип сверху: hover
+              .tooltip__popup
+                %article.tooltip__popup-inner
+                  %header
+                    .h5 Доступно раннее бронирование!
+                    = render 'layouts/courses_shop/hr_small'
+                  %p Сэкономь до&nbsp;20&nbsp;000&nbsp;руб.
+          %li.is-lg
+            .tooltip(data-position='bottom')
+              Тултип снизу: hover
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %p Первый взнос&nbsp;&mdash; оплачиваем сейчас, остальные взносы&nbsp;&mdash; потом в&nbsp;рамках срока обучения
+          %li
+            .tooltip.js-tooltip(data-position='top' data-visibility='hidden')
+              Тултип сверху: click
+              .tooltip__popup
+                %article.tooltip__popup-inner
+                  %header
+                    .h5 Доступно раннее бронирование!
+                    = render 'layouts/courses_shop/hr_small'
+                  %p Сэкономь до&nbsp;20&nbsp;000&nbsp;руб.
+          %li
+            .tooltip.js-tooltip(data-position='bottom' data-visibility='hidden')
+              Тултип снизу: click
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %p Первый взнос&nbsp;&mdash; оплачиваем сейчас, остальные взносы&nbsp;&mdash; потом в&nbsp;рамках срока обучения
+
+        .h4 Модальные окна
+        %ul
+          %li
+            = link_to 'Баннер для записей блога', '#popup-for-blog-post', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Содержимое: изображение', 'https://placehold.it/600x450?text=∴', target: '_blank', 'data-mfp-type' => 'image'
+          %li
+            = link_to 'Содержимое: видео', 'https://www.youtube.com/watch?v=xI6i6SAAKI8', target: '_blank', 'data-mfp-type' => 'iframe'
+          %li
+            = link_to 'Регистрация', '#popup-register', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Регистрация: успешно', '#popup-register-success', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Регистрация: завершение', '#popup-register-complete', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Вход', '#popup-login', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Восстановление пароля', '#popup-password', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Восстановление пароля: успешно', '#popup-password-success', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Запись на&nbsp;консультацию: успешно'.html_safe, '#popup-consultation-schedule-success', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Вопрос-ответ: успешно', '#popup-faq-success', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Личный кабинет: добавить документ', '#popup-add-document', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Курс: запись на&nbsp;курс'.html_safe, '#popup-course-entry', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Корзина: выбрать способ оплаты', '#popup-basket-payment-method-select', 'data-mfp-type' => 'inline'
+          %li
+            = link_to 'Корзина: сводная информация после оплаты', '#popup-basket-after-payment-overview', 'data-mfp-type' => 'inline'
+
+
+        .h4 Страницы
+        %ul
+          %li
+            = link_to 'Главная страница', courses_shop_markup_index_path
+          %li
+            = link_to 'Список курсов', courses_shop_markup_courses_path
+          %li
+            = link_to 'Страница курса', courses_shop_markup_course_path
+          %li
+            = link_to 'Курс добавлен в&nbsp;корзину'.html_safe, courses_shop_markup_course_added_path
+          %li
+            = link_to 'Об&nbsp;институте'.html_safe, courses_shop_markup_about_path
+          %li
+            = link_to 'Сведения об&nbsp;образовательной организации'.html_safe, courses_shop_markup_info_path
+          %li
+            = link_to 'Контакты', courses_shop_markup_contacts_path
+          %li
+            = link_to 'Акции', courses_shop_markup_promotions_path
+          %li
+            = link_to 'Лицензии', courses_shop_markup_licenses_path
+          %li
+            = link_to 'Вопрос-ответ', courses_shop_markup_faq_path
+          %li
+            = link_to 'Отзывы выпускников', courses_shop_markup_feedbacks_path
+          %li
+            = link_to 'Личный кабинет: мои курсы', courses_shop_markup_personal_cabinet_courses_path
+          %li
+            = link_to 'Личный кабинет: расписание', courses_shop_markup_personal_cabinet_schedule_path
+          %li
+            = link_to 'Личный кабинет: документы', courses_shop_markup_personal_cabinet_documents_path
+          %li
+            = link_to 'Личный кабинет: настройки', courses_shop_markup_personal_cabinet_settings_path
+          %li
+            = link_to 'Корзина', courses_shop_markup_basket_path
+          %li
+            = link_to 'Мы и&nbsp;СМИ'.html_safe, courses_shop_markup_mass_media_path
+          %li
+            = link_to 'Для бизнеса'.html_safe, courses_shop_markup_for_business_path
+          %li
+            = link_to 'Статьи', courses_shop_markup_articles_path
+          %li
+            = link_to 'Статья', courses_shop_markup_article_path
+          %li
+            = link_to 'Оферта и&nbsp;условия использования'.html_safe, courses_shop_markup_offer_path
+          %li
+            = link_to 'Приглашаем моделей', courses_shop_markup_models_path
+          %li
+            = link_to 'Результаты поиска', courses_shop_markup_search_results_path
+          %li
+            = link_to 'Результаты конфигуратора', courses_shop_markup_configurator_results_path
+          %li
+            = link_to 'Страница ошибки', courses_shop_markup_error_path
+          %li
+            = link_to 'Страница для слабовидящих', courses_shop_markup_disability_path

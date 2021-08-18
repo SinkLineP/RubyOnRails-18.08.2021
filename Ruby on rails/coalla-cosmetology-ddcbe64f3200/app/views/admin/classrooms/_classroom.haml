@@ -1,0 +1,4 @@
+.grid_i.grid_i__grid-4-6>
+  %a.modal{data: {url: edit_admin_classroom_path(classroom)}}= classroom.title
+  = link_to admin_classroom_path(classroom), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

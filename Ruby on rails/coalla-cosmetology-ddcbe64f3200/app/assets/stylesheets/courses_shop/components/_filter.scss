@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.filter {
+  @include display(flex);
+  @include flex-direction(column);
+  @include align-items(center);
+
+  &:not(:first-child) {
+    margin-top: 3.5rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+
+  .hr {
+    margin-bottom: 3.5rem;
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-sm) {
+      text-align: center;
+    }
+
+    @include media($breakpoint-lg) {
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+    }
+  }
+
+  // Item
+  &__item {
+    &:not(:last-child) {
+      @include media($breakpoint-sm) {
+        margin-bottom: 1.5rem;
+      }
+
+      @include media($breakpoint-lg) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

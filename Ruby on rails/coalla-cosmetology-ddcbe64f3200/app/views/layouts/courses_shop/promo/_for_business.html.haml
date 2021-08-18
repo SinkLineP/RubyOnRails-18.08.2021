@@ -1,0 +1,31 @@
+%section.page-promo#page-promo
+  .container
+    %header.page-promo__header
+      %h1.page-promo__title Для бизнеса
+      = render 'layouts/courses_shop/hr_large'
+
+  .page-promo__tabs#tabs
+    %select.select2.js-select2
+      %option(data-href='#consulting') Консалтинг
+      %option(data-href='#partners') Наши партнеры
+      %option(data-href='#regional-schools') Для региональных школ
+      %option(data-href='#manufacturers-and-dealers') Производителям и&nbsp;дилерам
+      %option(data-href='#mass-media') Для СМИ
+      %option(data-href='#corporate-education') Корпоративное обучение
+      %option(data-href='#recruitment') Подбор персонала
+
+    %ul
+      %li
+        = link_to 'Консалтинг', '#consulting'
+      %li
+        = link_to 'Наши партнеры', '#partners'
+      %li
+        = link_to 'Для региональных школ', '#regional-schools'
+      %li
+        = link_to 'Производителям и&nbsp;дилерам'.html_safe, '#manufacturers-and-dealers'
+      %li
+        = link_to 'Для СМИ', '#mass-media'
+      %li
+        = link_to 'Корпоративное обучение', '#corporate-education'
+      %li
+        = link_to 'Подбор персонала', '#recruitment'

@@ -1,0 +1,7 @@
+.partners-logos__logo
+  %a.partner-logo{href: partner.url || '#'}
+    = image_tag transparent_pixel, width: 130,
+                                   height: 40,
+                                   alt: '',
+                                   class: 'partner-logo__logo lazyload',
+                                   data: { src: partner.image.main.url }

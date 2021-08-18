@@ -1,0 +1,124 @@
+.course
+  .course__list.accordion.js-accordion
+    %div.dl(data-state='expanded')
+      %div.dt
+        %span Выберите группу для обучения
+        %svg.icon(role='img' data-size='18')
+          %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+      %div.dd
+        %form.course-groups#course-groups(action='#')
+          %ul.course-groups__list
+            %li.course-groups__group
+              %label.course-group.is-selected.js-course-group
+                %span.course-group__radio
+                  .radio-input(data-size='lg')
+                    %input(type='radio' name='course' checked)
+                    %span
+                %ul.course-group__meta
+                  %li
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                    15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+                  %li
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                    пн-пт, с&nbsp;10:00 до&nbsp;15:00
+                  %li
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                    Осталось 6&nbsp;мест
+                  %li.is-sm
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#warning-fill')
+                    Раннее бронирование
+                %span.course-group__promotion
+                  .tooltip(data-position='top')
+                    %svg.icon(role='img' data-size='34')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#percent')
+                    .tooltip__popup
+                      %article.tooltip__popup-inner
+                        %header
+                          .h5 Доступно раннее бронирование!
+                          = render 'layouts/courses_shop/hr_small'
+                        %p Сэкономь до&nbsp;20&nbsp;000&nbsp;руб./мес
+
+            - 1.upto(7) do
+              %li.course-groups__group
+                %label.course-group.js-course-group
+                  %span.course-group__radio
+                    .radio-input(data-size='lg')
+                      %input(type='radio' name='course')
+                      %span
+                  %ul.course-group__meta
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                      3&nbsp;августа&nbsp;&mdash; 17&nbsp;сентября
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                      2/2, с&nbsp;9:00 до&nbsp;18:00
+                    %li
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                      Осталось 3&nbsp;места
+                  // Leave even empty, needed for flexbox layout
+                  %span.course-group__promotion
+
+          .course-groups__all
+            %button.button.button--base-fill(type='submit' data-size='lg') Записаться на&nbsp;курс
+
+    %div.dl(data-state='collapsed')
+      %div.dt
+        %span Посмотрите учебный план
+        %svg.icon(role='img' data-size='18')
+          %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+      %div.dd
+        .course-curriculum
+          .course-curriculum__list.accordion.js-accordion
+            - 1.upto(3) do
+              %div.dl(data-state='collapsed')
+                %div.dt Общая косметология
+                %div.dd
+                  %div.dl
+                    %div.dt Основы дерматологии
+                    %div.dd Строение и&nbsp;функции кожи
+                    %div.dd Кожные болезни
+
+              %div.dl(data-state='collapsed')
+                %div.dt Профессиональная этика и&nbsp;бизнес в&nbsp;косметологии
+                %div.dd
+                  %div.dl
+                    %div.dt Комплексная диагностика кожи в&nbsp;эстетической косметологии
+                    %div.dd Методы диагностики лица и&nbsp;тела в&nbsp;косметологии
+                    %div.dd Мануальные методы
+                    %div.dd Аппаратные методы
+                    %div.dd Комплексная диагностика
+
+              %div.dl(data-state='collapsed')
+                %div.dt Основы дерматологии
+                %div.dd
+                  %div.dl
+                    %div.dt Основы дерматологии
+                    %div.dd Строение и&nbsp;функции кожи
+                    %div.dd Кожные болезни
+                  %div.dl
+                    %div.dt Комплексная диагностика кожи в&nbsp;эстетической косметологии
+                    %div.dd Методы диагностики лица и&nbsp;тела в&nbsp;косметологии
+                    %div.dd Мануальные методы
+                    %div.dd Аппаратные методы
+                    %div.dd Комплексная диагностика
+
+          %ul.course-curriculum__documents
+            %li
+              = link_to '#', class: 'document-item' do
+                %svg.document-item__icon.icon(role='img' data-size='42')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#document')
+                .document-item__info
+                  %p.document-item__title Скачать полный учебный план в&nbsp;формате PDF
+            %li
+              = link_to '#', class: 'document-item' do
+                %svg.document-item__icon.icon(role='img' data-size='42')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#document')
+                .document-item__info
+                  %p.document-item__title Посмотреть образец договора на&nbsp;обучение

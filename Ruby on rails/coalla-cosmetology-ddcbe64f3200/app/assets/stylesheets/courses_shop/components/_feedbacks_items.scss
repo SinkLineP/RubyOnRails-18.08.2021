@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+// Feedbacks items
+.feedbacks-items {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+
+  // Item
+  &__item {
+    position: relative;
+    padding: 3rem 0;
+
+    &::before,
+    &::after {
+      position: absolute;
+      background: $color-ui;
+      content: "";
+    }
+
+    &:not(:first-child) {
+      margin-top: -1px;
+    }
+
+    &::before,
+    &::after {
+      right: 1rem;
+      left: 1rem;
+      height: 1px;
+
+      @include media($breakpoint-lg) {
+        right: 6.5rem;
+        left: 6.5rem;
+      }
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+  }
+}
+
+// Feedback item
+.feedback-item {
+  @include media($breakpoint-sm) {
+    text-align: center;
+  }
+
+  @include media($breakpoint-lg) {
+    @include grid;
+  }
+
+  // Image
+  &__image {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 4);
+    }
+
+    a {
+      display: inline-block;
+    }
+
+    img {
+      vertical-align: top;
+    }
+  }
+
+  // Quote
+  &__quote {
+    @include media($breakpoint-sm) {
+      margin-top: 2rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(3, 4);
+    }
+
+    > p {
+      @include text-lg;
+
+      &:not(:last-of-type) {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    > footer {
+      @include text-sm;
+      margin-top: 1.5rem;
+      color: $color-base-lighter;
+    }
+  }
+}

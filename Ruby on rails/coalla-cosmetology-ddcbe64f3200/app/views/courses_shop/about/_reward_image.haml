@@ -1,0 +1,6 @@
+.awards__item
+  .award-item
+    .award-item__inner
+      = link_to reward_image.image_url, target: '_blank', class: 'zoom-in' do
+        = image_tag reward_image.image_url(:reward), alt: ''
+        = render 'layouts/courses_shop/image_zoom_in_icon'

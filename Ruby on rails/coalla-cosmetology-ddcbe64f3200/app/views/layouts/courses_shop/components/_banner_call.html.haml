@@ -1,0 +1,11 @@
+- if banner.present? && cookies[:banner_showed].blank?
+  .banner.banner--link.js-banner.js-banner-call(style="background-image: url(#{banner.image_url(:main)})")
+    = link_to '#', class: 'banner__close js-banner-close js-hide-banner' do
+      %svg.icon(role='img' data-size='18')
+        %use(xlink:href='/assets/courses_shop/icons.svg#close')
+    .container
+      .banner__row
+        .banner__col
+          .h4.banner__title #{banner.description}
+          .banner__action
+            = link_to banner.btn_title, banner.link_call + additional_banner_params, class: 'button button--base-fill', 'data-size' => 'lg' , target: '_blank'

@@ -1,0 +1,17 @@
+= search_form_for @q, url: admin_articles_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+  .mt-1
+    .grid
+      .grid_i.grid_i__grid-1-6.tx-right>
+        %label.form_el.form_label Вид:
+      .grid_i.grid_i__grid-1-6>
+        .form_el.js-form_el
+          = f.select :type_eq, options_for_select([['Блог', 'Blog'], ['Мы и СМИ', 'MassMedia'], ['Наука и ДРК', 'ScienceAndDrk']], @q.type_eq), {prompt: 'Все'}, class: 'form_select_tag selectordie js-submit-form', data: {size: 5}
+
+      .grid_i.grid_i__grid-1-6.tx-right>
+        %label.form_el.form_label Опубликовано:
+      .grid_i.grid_i__grid-1-6>
+        .form_el.js-form_el
+          = f.select :published_eq, [%w(Да true), %w(Нет false)] , {include_blank: 'Все'}, class: 'form_select_tag selectordie js-submit-form', data: {size: 5}
+
+- content_for :js do
+  = javascript_include_tag 'admin/filter_groups'

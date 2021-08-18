@@ -1,0 +1,16 @@
+- group_subscription = current_user.group_subscription_for_course(course)
+.h2.p-r
+  - if group_subscription.suspended?
+    = render 'block_modal', subscription: group_subscription
+    %a.modal{data: {modal: 'training_suspended'}}> #{course.name}
+  - elsif can?(:show, course)
+    = link_to course.name, course_path(course)
+  - else
+    = course.name
+  .social_links__h
+    = render 'common/sharing', share_params: {type: :course, course: course.id}
+.course_progress
+  = display_progress(course)
+  .progressbar
+    .progressbar_inner{style: "width: #{display_progress(course)}"}
+= render "progresses/statuses/#{current_user.course_status(course).to_s}", course: course, group_subscription: group_subscription

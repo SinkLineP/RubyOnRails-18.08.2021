@@ -1,0 +1,46 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Здравствуйте!
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 30px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}/
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p=  ty('Спасибо за регистрацию, уверены, что вы не пожалеете, что доверили ваш электронный адрес нам. В благодарность за это, мы дарим вам скидку 3% на любой курс!')
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p=  ty('Ваш промокод для получения скидки:')
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Промо-код: <b>#{@promo_code.code}<b>
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p=  ty('Также вы можете подписаться на рассылку блога ДРК. Каждую неделю мы публикуем исследования и обзоры от нашего аналитического центра, а еще новости института и индустрии красоты. Чтобы не пропустить ничего важного, пожалуйста подтвердите пожалуйста подписку! ')
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p= link_to 'Подтвердить подписку', subscribe_courses_shop_unisender_index_url(email: @user.email), target: '_blank', style: 'display: block; margin: 0 auto; text-decoration: none; padding: 1.8rem;font-size: 1.3rem;line-height: 1.15385;display: inline-block;border-radius: 0.6rem;letter-spacing: .5pt;text-transform: uppercase;border: 0.2rem solid #3734c2;color: #3734c2;'
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p= ty('Надеемся, на длительное и плодотворное сотрудничество!')
+%tr
+  %td{border: '0', style: 'text-align:left; height: 40px'}
+    Ваш логин: <b>#{@user.email}</b>
+%tr
+  %td{border: '0', style: 'text-align:left; height: 40px'}
+    Ваш пароль: <b>#{@password}<b>
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p= 'Дейл Карнеги писал, что &laquo;собственное имя - это самый сладкий звук на земле для любого человека&raquo;.'.html_safe
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p= "Мы с удовольствием будем обращаться к вам по имени, если вы укажите его в своем профиле. Пожалуйста, зайдите в настройки вашего аккаунта и заполните поля с именем и/или фамилией. #{link_to('Перейти в профиль', edit_courses_shop_profile_url)}".html_safe
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p= 'Подписывайтесь на нас в социальных сетях:'
+- {'Youtube' => 'https://www.youtube.com/user/institutdrk',
+   'Facebook' => 'https://www.facebook.com/InstitutDRK/',
+   'Вконтакте' => 'https://vk.com/institutdrk',
+   'Instagram' => 'https://www.instagram.com/institutdrk/'}.each do |key, value|
+  %tr
+    %td{border: '0', style: 'text-align:left;'}
+      %p{style: 'margin: 0; margin-bottom 10px'}= link_to key, value, target: '_blank'

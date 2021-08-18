@@ -1,0 +1,12 @@
+.basket__checkout-overview.js-price-block
+  %div.dl.js-full-price
+    %div.dt= courses_count(order.current_group_subscriptions.count)
+    %div.dd= format_money(order.full_price)
+  = render partial: 'courses_shop/carts/discount', collection: order.discounts, as: :discount
+  .js-discounts
+  %div.dl.is-discount
+    %div.dt Вы сэкономили
+    %div.dd= format_money(order.discount_sum)
+  %div.dl.is-total
+    %div.dt К&nbsp;оплате
+    %div.dd= format_money(order.full_price_with_discount)

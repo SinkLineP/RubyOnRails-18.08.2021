@@ -1,0 +1,35 @@
+= render 'admin/breadcrumbs', crumbs: {'автоматические скидки' => admin_automatic_discounts_path, (@automatic_discount.name.presence || 'новая автоматическая скидка') => '#'}
+%h3.tx-center= @automatic_discount.name.presence || 'НОВАЯ АВТОМАТИЧЕСКАЯ СКИДКА'
+= form_for [:admin, @automatic_discount], html: {id: 'automatic_discount_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :name, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Скидка:
+        .form_el.js-form_el
+          = f.select :discount_id, Discount.ordered.map{|f| [f.title, f.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 10}
+      .mt-1
+        = f.label 'Включена', class: 'form_el form_label'
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :enabled, class: 'form_el_tag form_checkbox_tag'
+      .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Курсы
+      .course_blocks.js-courses-list
+        = render collection: @automatic_discount.courses, partial: 'admin/automatic_discounts/course', locals: {f: f}
+      .mb-1
+        %label.form_el.form_label Добавить курс:
+        .form_el.js-form_el.form_tx
+          = text_field_tag :course_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_courses_path, template: '#course_template', append_to: '.js-courses-list', variants: '#courses_autocomplete_variants'}
+        .autocomplete_variants#courses_autocomplete_variants
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @automatic_discount.errors
+
+- content_for :js do
+  = render 'admin/common/block_template', item_name: :course, object_name: :automatic_discount

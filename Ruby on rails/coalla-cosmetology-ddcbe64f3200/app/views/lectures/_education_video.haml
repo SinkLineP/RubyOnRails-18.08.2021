@@ -1,0 +1,16 @@
+- uploaded_video = @lecture.uploaded_video
+- if uploaded_video
+  .grid_i.grid_i__grid-6-7>
+    .h4 УЧЕБНОЕ ВИДЕО
+  .grid_i.grid_i__grid-1-1>
+    .content__video
+      - jw_script = uploaded_video.jw_script
+      - if jw_script.present?
+        = jw_script.html_safe
+      - else
+        #jw_player{data: {options: jw_player_options(uploaded_video)}}
+- elsif @lecture.video_link.present?
+  .grid_i.grid_i__grid-6-7>
+    .h4 УЧЕБНОЕ ВИДЕО
+  .grid_i.grid_i__grid-1-1>
+    = @lecture.video_link.html_safe

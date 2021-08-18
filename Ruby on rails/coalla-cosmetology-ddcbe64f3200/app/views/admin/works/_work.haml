@@ -1,0 +1,15 @@
+.grid_i.grid_i__grid-3-9.table_ellipsis>
+  = link_to edit_admin_work_path(work) do
+    = work.title
+.grid_i.grid_i__grid-2-9.table_ellipsis>
+  = work.human_name
+.grid_i.grid_i__grid-2-9>
+  - if work.hairdresser_work?
+    = work.hairdresser_form_sheet_text
+  - else
+    = work.form_sheet_text
+.grid_i.grid_i__grid-2-9.tx-right>
+  = link_to admin_work_path(work), method: :delete, data: {confirm: 'Вы уверены?'}  do
+    .icon_del X
+  = link_to edit_admin_work_path(work) do
+    .icon_edit &#9998;

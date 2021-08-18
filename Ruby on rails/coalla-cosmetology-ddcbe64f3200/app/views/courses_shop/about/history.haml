@@ -1,0 +1,25 @@
+.page.page--promo
+  = render 'courses_shop/about/menu'
+
+  .tab{style: 'display: block;'}
+    .page-section
+      .container
+        .content-announce
+          .content-announce__person
+            %article.teacher-card
+              = image_tag file_lookup(:director_photo).file, width: '240', height: '240', alt: '', class: 'teacher-card__photo'
+              .h5.teacher-card__name= lookup(:director_name)
+              %p.teacher-card__department= lookup(:director_position)
+          - if @html.content.present?
+            .content-announce__text
+              = simple_format(ty(@html.content)).html_safe
+    .page-section.page-section--background
+      .container
+        .h3.page-section__title= t("#{current_shop.code}.history")
+        = render 'courses_shop/about/history_slider'
+    .page-section
+      .container
+        .h3.page-section__title Наши награды
+        .awards
+          .awards__list.js-images-gallery#awards-slider
+            = render partial: 'reward_image', collection: @reward_images, as: :reward_image

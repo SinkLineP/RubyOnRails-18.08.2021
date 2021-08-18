@@ -1,0 +1,26 @@
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        %h1.page__title Наши лицензии
+
+      .licenses-items
+        %p.licenses-items__caption Медицинская лицензия, выданная правительством Москвы.
+        .licenses-items__list.js-licenses-items-slider.js-images-gallery
+          - 1.upto(4) do |i|
+            .licenses-items__item
+              %figure.license-item
+                %figure.license-item
+                  = link_to "/medical_license/#{i}.jpg", target: '_blank' do
+                    = image_tag "/medical_license/small_#{i}.jpg", alt: 'Медицинская лицензия, выданная правительством Москвы'
+
+      .licenses-items
+        %p.licenses-items__caption Образовательная лицензия.
+        .licenses-items__list.js-licenses-items-slider.js-images-gallery
+          - 1.upto(4) do |i|
+            .licenses-items__item
+              %figure.license-item
+                %figure.license-item
+                  = link_to "/education_license/#{i}.jpg", target: '_blank' do
+                    = image_tag "/education_license/small_#{i}.jpg", alt: 'Образовательная лицензия'

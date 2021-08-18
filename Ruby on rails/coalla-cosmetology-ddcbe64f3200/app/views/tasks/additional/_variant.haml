@@ -1,0 +1,9 @@
+.drop-i{class: variant.image? && 'drop-i--img'}>
+  - id = Time.now.to_i + variant_counter
+  = hidden_field_tag "result[result_connection_items_attributes][#{id}][column_id]", nil
+  = hidden_field_tag "result[result_connection_items_attributes][#{id}][column_variant_id]", variant.id
+  - if variant.image?
+    = link_to full_image_url(variant.image_url).to_s, target: '_blank' do
+      = image_tag variant.image_url(:main)
+  - else
+    = variant.title

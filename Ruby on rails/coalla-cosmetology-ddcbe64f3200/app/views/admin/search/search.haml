@@ -1,0 +1,20 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      .content
+        - if shop_dependent_controller?
+          .shop-select
+            = select_tag :shop, options_for_select(Shop.ordered.map{|f| [f.title, f.id]}, current_shop.try(:id)), class: 'js-shop-select form_el_tag form_select_tag selectordie'
+        .tx-center
+          %h3 ПОИСК
+        = form_tag admin_search_path, class: 'form js-form form__search', method: :get do
+          .form_el.js-form_el.form_tx
+            %input.form_el_tag.form_tx_tag{type: 'text', name: :search, value: params[:search]}
+          %button.search-link{type: :submit}
+            %span.fa.fa-search
+        .search_results
+          = render partial: 'search_item', collection: @searches, as: :item
+
+          = will_paginate @searches, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

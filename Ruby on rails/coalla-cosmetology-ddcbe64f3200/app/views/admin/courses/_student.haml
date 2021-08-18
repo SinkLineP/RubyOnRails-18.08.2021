@@ -1,0 +1,3 @@
+%li.students_list-li>
+  = link_to edit_admin_student_path(student), title: student.display_name.html_safe do
+    = image_tag avatar_image_url(student, :thumb), class: 'student_avatar', alt: student.display_name.html_safe

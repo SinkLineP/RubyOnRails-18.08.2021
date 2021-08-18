@@ -1,0 +1,21 @@
+.popup.bg-muted
+  .mb-3.tx-center
+    %h5 РЕДАКТИРОВАТЬ КНИГУ
+  = form_for @book, url: [:admin, @book], url: admin_book_path(@book), as: :book, remote: true, authenticity_token: true, html: {class: 'form js-form js-book-form js-edit-book-form'} do |f|
+    .grid
+      = render 'form', f: f
+      .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+        .form_el.js-form_el.form_btn
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = f.button '', class: 'form_el_tag form_btn_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-12>
+        - if !@book.not_processed?
+          .tx-xxs.mt-1
+            = link_to 'Удалить книгу', admin_book_path, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить эту книгу?' }, class: 'a_under'
+  .icon_del.arcticmodal-close X
+
+:coffee
+  (new CatAutocomp).attachToForm '.js-edit-book-form'
+
+  @initCoverUpl()
+  @initPdfUpl()

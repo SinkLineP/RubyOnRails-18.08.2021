@@ -1,0 +1,40 @@
+= render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @student.display_name => edit_admin_student_path(@student), 'заказы' => admin_student_orders_path(@student), (@order.id.presence || 'новый заказ') => '#'}
+%h3.tx-center= @order.id.presence || 'НОВЫЙ ЗАКАЗ'
+%h6.tx-center= "Кол-во сделок: #{@order.group_subscriptions.count}"
+
+= form_for [:admin, @student, @order], html: {id: 'group_subscription_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label № заказа:
+    .form_el.js-form_el.form_tx
+      = f.text_field :id, class: 'form_el_tag form_tx_tag', readonly: true
+    - if !@order.new_record? && @order.order_subscription?
+      = link_to 'Документы', admin_order_contract_path(@order), class: 'a_under tx-right'
+  .admin_body
+    .admin_settings_change
+
+      - if @order.group_subscriptions.count > 1
+        .mt-1.tx-s.tx-700.header_blocks_settings
+          Анкета для нескольких сделок
+          - if @order.multiple_questionnaire.try(:generated?)
+            = link_to 'Скачать', download_admin_generated_document_path(@order.multiple_questionnaire), class: 'a_under'
+
+      .mt-1
+        .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Сделки
+        .course_blocks.js-group-subscription-list
+          = render collection: @order.group_subscriptions, partial: 'group_subscription', locals: {f: f}
+        .mb-1
+          %label.form_el.form_label Добавить сделки:
+          .form_el.js-form_el.form_tx
+            = text_field_tag :group_subscription_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_group_subscriptions_path(student_id: @student.id), template: '#group_subscription_template', append_to: '.js-group-subscription-list', variants: '#group_subscription_autocomplete_variants'}
+          .autocomplete_variants#group_subscription_autocomplete_variants
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+      - content_for :js do
+        = javascript_include_tag 'admin/orders'
+        = render 'admin/common/block_template', item_name: :group_subscription, object_name: :order
+
+= render 'admin/errors', errors: @order.errors

@@ -1,0 +1,29 @@
+<h1> <%= t('contacts.contact_us') %></h1>
+
+<%= form_for :contact, url: contacts_path do |f| %>
+
+	<% if @contact && @contact.errors.any? %>
+	  <ul>
+	    <% @contact.errors.full_messages.each do |msg| %>
+	      <li><%= msg %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+	<p>
+		
+		<%= f.label :email %><br>
+		<%= f.text_field :email, id: :contact_email, :class => 'form-control' %>
+
+	</p>
+	<p>
+		
+		<%= f.label :message %><br>
+		<!--f.hidden_field-->
+		<%= f.text_field :message, id: :contact_message, :class => 'form-control' %>
+		<!--<trix-editor input="contact_message"></trix-editor>-->
+	</p>
+	<p>
+		
+		<%= f.submit 'Отправить сообщение', :class => 'btn btn-primary' %>
+	</p>
+<% end %>

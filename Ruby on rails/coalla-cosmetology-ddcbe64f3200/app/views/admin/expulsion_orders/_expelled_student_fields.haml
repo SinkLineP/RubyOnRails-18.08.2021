@@ -1,0 +1,20 @@
+.mt-1.nested-fields.add_ctn.add_stage
+  - unless f.object.new_record?
+    = f.hidden_field :id
+  .grid.grid-close
+    .grid_i.grid_i__grid-1-9.grid_i__prefix-8-9.tx-right>
+      = link_to_remove_association raw('<div class="icon_del">X</div>'), f
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-1-6.grid_i__prefix-1-10
+      %label.form_el.form_label Студент
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        - if f.object.new_record?
+          = f.select :student_id, @group.active_students_not_module_subscription.ordered.map{|el| [el.full_name, el.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+        - else
+          = f.object.full_name
+    .grid_i.grid_i__grid-1-6.grid_i__prefix-1-10
+      %label.form_el.form_label Часы
+    .grid_i.grid_i__grid-2-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :hours, class: 'form_el_tag form_tx_tag'

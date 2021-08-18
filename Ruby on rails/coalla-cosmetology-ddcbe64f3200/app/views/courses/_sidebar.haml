@@ -1,0 +1,9 @@
+%aside.dashboard_sidebar
+  .avatar.mb-5
+    = avatar_image(current_user)
+    %p
+      = link_to current_user.display_name, edit_profile_path
+
+  - unless @preview_mode
+    %ul.lections_nav
+      = render partial: 'courses/sidebar/block', collection: @course.active_blocks || []

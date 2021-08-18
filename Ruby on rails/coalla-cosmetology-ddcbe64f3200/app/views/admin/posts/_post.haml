@@ -1,0 +1,5 @@
+- grid_class = post_counter == 0 && 'mt-3'
+.grid_i.grid_i__grid-5-6{class: grid_class}>
+  = link_to post.title, edit_admin_post_path(post), class: "point table_ellipsis #{post.published? && 'point__voice'}"
+.grid_i.grid_i__grid-1-6{class: grid_class}>
+  %time{datetime: post.created_at}= format_date(post.created_at)

@@ -1,0 +1,15 @@
+- current_group = group_info.group
+- prices = group_info.prices
+- education_form = group_info.education_form
+%fieldset.default-form__group
+  %legend.default-form__group-title Форма обучения
+  .default-form__row
+    = select_tag 'group_subscription[education_form_id]', education_form_options(current_group, education_form), class: 'select2 js-select2'
+%fieldset.default-form__group
+  %legend.default-form__group-title Вид оплаты
+  .payment-method-select.js-payment-method-select
+    %ul.js-payments
+      = render partial: 'courses_shop/group_subscriptions/payment_item_li',
+                       collection: prices,
+                       as: :group_price,
+                       locals: { selected_price: group_info.selected_price }

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 1.1rem 1rem;
+  background-color: #fff;
+
+  @include mq(md) {
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+  }
+
+  &.is-error {
+    background-color: pink;
+  }
+}

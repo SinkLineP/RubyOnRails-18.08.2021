@@ -1,0 +1,35 @@
+- bg_image ||= 'courses_shop/new_base/banner_bg.jpg'
+- promo_hide ||= false
+
+%section.banner.lazyload(data-bg="#{asset_url(bg_image)}")
+  .banner__inner
+    .container
+      .banner__actions
+        .banner__tel
+          = link_to 'tel:74953746438', class: 'roistat-phone' do
+            %span.roistat-phone +7 (495) 374-64-38
+        .banner__request-a-call
+          = link_to 'Заказать звонок', '#form-popup', class: 'button button--block button--bordered js-popup'
+
+      .banner__content
+        .banner__row
+          .banner__primary
+            %h1.banner__title
+              %span
+                %span Профессия
+              %span
+                %span косметолог
+              %span
+                %span всего за&nbsp;2&nbsp;месяца
+            = link_to 'Хочу учиться', '#promo', class: 'button button--filled banner__action js-scroll-to'
+            %p.banner__caption Не&nbsp;бойтесь приобрести прибыльную профессию и&nbsp;поменять жизнь!
+
+          .banner__gift
+            - unless promo_hide
+              Курс
+              %br
+              %b &laquo;Младшая медицинская сестра&raquo;
+              %br
+              в&nbsp;подарок!
+
+          .banner__certificate Международный сертификат ITEC

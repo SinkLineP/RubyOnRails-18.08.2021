@@ -1,0 +1,31 @@
+.popup.bg-muted
+  .mb-3.tx-center
+    %h5 АНАЛИЗ ЗАТРАТ
+
+  = form_tag admin_charges_report_path, html: {class: 'form js-form'} do
+    .grid
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Начало
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = text_field_tag :begin_on, nil, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(Date.current.beginning_of_month), autocomplete: 'off'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Окончание
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = text_field_tag :end_on, nil, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(Date.current.end_of_month), autocomplete: 'off'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        %label.form_el.form_label Стоимость СМС
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = text_field_tag :sms_price, nil, class: 'form_el_tag form_tx_tag', value: '0.5', autocomplete: 'off'
+      .grid_i.grid_i__grid-1-2.grid_i__prefix-3-10>
+        .form_el.js-form_el.form_btn
+          %p.form_el_inner.form_btn_inner СГЕНЕРИРОВАТЬ
+          %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+    .icon_del.arcticmodal-close X
+
+:javascript
+  $(function(){
+    initDatepicker();
+  });

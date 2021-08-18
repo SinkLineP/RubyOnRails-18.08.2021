@@ -1,0 +1,8 @@
+<script type="text/template" id="task-test-question-thumb-template">
+  <%% var question = this.model %>
+  <span class="tx-700"><%%= question.get('title') %></span>
+  <div class="icon_del js-question-remove-btn">X</div>
+  <div class="icon_edit js-question-edit-btn">✎</div>
+  <div class="add_ctn add_exercise mt-2 mb-2 js-question-edit-form" style="display: none;"></div>
+  <p class="answer">Верный ответ: <%%= question.correctAnswer() %>. Варианты: <%%= question.otherAnswers() %>.</p>
+</script>

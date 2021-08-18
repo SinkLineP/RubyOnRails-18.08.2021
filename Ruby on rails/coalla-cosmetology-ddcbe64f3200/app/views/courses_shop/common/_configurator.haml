@@ -1,0 +1,40 @@
+- configurator = f.object
+.course-select__period
+  %p.course-select__title Я готов уделить учебе:
+
+  .course-period-select
+    = f.select :education_period, month_options, {}, class: 'select2 js-select2', id: 'course-period-selector-select'
+
+  .course-period-selector
+    .course-period-selector__row
+      #course-period-selector-range
+
+.course-select__type
+  %p.course-select__title Хочу изучить:
+
+  .course-type-selector
+    .course-type-selector__row
+      %ul#course-type-selector-list
+        - Course.subject.options.each do |name, value|
+          - selected = configurator.subject ? configurator.subject.include?(value) : false
+          %li
+            = ty(name)
+            = check_box_tag 'c[subject][]', value, selected, id: "c_subject_#{value}"
+
+.course-select__checkboxes
+  %p
+    %label
+      Есть медицинское образование
+      %span.checkbox-input
+        = f.check_box :medical_education
+        %span
+
+  %p
+    %label
+      Работаю в&nbsp;косметологии
+      %span.checkbox-input
+        = f.check_box :work_in_cosmetology
+        %span
+
+.course-select__submit
+  %button.button.button--base-fill(type='submit' data-size='lg') Подобрать <span class='is-lg'>оптимальный </span>курс

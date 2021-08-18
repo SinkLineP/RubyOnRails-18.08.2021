@@ -1,0 +1,167 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, (@student.display_name.presence || 'добавить студента') => '#'}
+      %h3.tx-center= (@student.display_name.presence || 'ДОБАВИТЬ СТУДЕНТА')
+      = semantic_form_for [:admin, @student], as: :user, remote: true, builder: Coalla::FormBuilder, html: {id: 'edit_user_form', class: 'form js-form form__admin'} do |f|
+        .alert{style: 'display: none;'}
+        .admin_header
+          - unless @student.new_record?
+            - if @student.group_subscriptions.with_deleted.any?
+              = link_to 'Достижения', admin_my_student_path(@student), class: 'a_under'
+              |
+            = link_to 'Сделки', admin_student_group_subscriptions_path(@student), class: 'a_under'
+            |
+            = link_to 'Платежи', admin_student_payment_logs_path(@student), class: 'a_under'
+            |
+            = link_to 'Заказы', admin_student_orders_path(@student), class: 'a_under'
+        .admin_body
+          .admin_settings_change
+            .mt-1
+              %label.form_el.form_label Фамилия:
+              .form_el.js-form_el.form_tx
+                = f.text_field :last_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Имя:
+              .form_el.js-form_el.form_tx
+                = f.text_field :first_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Отчество:
+              .form_el.js-form_el.form_tx
+                = f.text_field :middle_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label ФИ на английском:
+              .form_el.js-form_el.form_tx
+                = f.text_field :translit_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.inputs "Телефоны:" do
+                - f.has_many :user_phones, btn_add: "Добавить телефон" do |up|
+                  .mt-1.has_many_item
+                    %label.form_el.form_label
+                    .form_el.js-form_el.form_tx
+                      - up.input :_destroy, as: :boolean, required: false, label: inline_svg_tag("courses_shop/cursor_close.svg",  class: "svg_remove_btn button has_many_remove"), label_class: ['remove_has_many_label'], class: "has_many_remove"
+                      = up.telephone_field :number, as: :string, class: 'form_el_tag form_tx_tag input js-intl-tel'
+              %label.form_el.form_label Email:
+              .form_el.js-form_el.form_tx
+                = f.email_field :email, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Дополнительные email:
+              .form_el.js-form_el.form_tx
+                = f.text_field :emails_string, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Дата рождения:
+              .form_el.js-form_el.form_tx
+                = f.text_field :birthday, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:birthday)), readonly: true
+            .mt-1
+              %label.form_el.form_label Размер одежды/обуви:
+              .form_el.js-form_el.form_tx
+                = f.text_field :wear_size, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label.form_label__el
+                .form_el.js-form_el.form_checkbox
+                  = f.check_box :demo, class: 'form_el_tag form_checkbox_tag'
+                %p.form_el_inner.form_label_inner Демо аккаунт
+            .mt-1
+              %label.form_el.form_label Уровень образования:
+              .form_el.js-form_el
+                = f.select :education_level_id, EducationLevel.ordered.map{|l| [l.title, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+            .mt-2.header_blocks_settings
+              .tx-s.tx-700 Паспортные данные
+            .mt-1
+              %label.form_el.form_label Серия:
+              .form_el.js-form_el.form_tx
+                = f.text_field :passport_series, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Номер:
+              .form_el.js-form_el.form_tx
+                = f.text_field :passport_number, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Дата выдачи:
+              .form_el.js-form_el.form_tx
+                = f.text_field :passport_issued_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:passport_issued_on)), readonly: true
+            .mt-1
+              %label.form_el.form_label Выдан:
+              .form_el.js-form_el.form_tx
+                = f.text_field :passport_organisation, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Адрес регистрации:
+              .form_el.js-form_el.form_tx
+                = f.text_field :passport_address, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Факт. адрес:
+              .form_el.js-form_el.form_tx
+                = f.text_field :address, class: 'form_el_tag form_tx_tag'
+            .mt-2.header_blocks_settings
+              .tx-s.tx-700 AMOcrm
+            .mt-1
+              %label.form_el.form_label ID контакта:
+              .form_el.js-form_el.form_tx
+                = f.text_field :amocrm_id, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              %label.form_el.form_label Ссылка на карточку:
+              - if @student.amocrm_url.present?
+                = link_to @student.amocrm_url, @student.amocrm_url, class: 'a_under', target: '_blank'
+            .mt-1
+              %label.form_el.form_label Рекламный канал:
+              .form_el.js-form_el.form_tx
+                = f.text_field :comagic_campaign, class: 'form_el_tag form_tx_tag', readonly: true
+            .mt-2.header_blocks_settings
+              .tx-s.tx-700 Копии документов об образовании
+            .mt-1.edit_materials
+              .grid
+                = f.fields_for :document_copies do |document_copy_fields|
+                  .grid_i.grid_i__middle.grid_i__grid-1-2>
+                    = render 'admin/students/document_copy_fields', f: document_copy_fields
+                .grid_i.grid_i__middle.grid_i__grid-1-2>
+                  .form_el.js-form_el.form_file
+                    %p.form_el_inner.form_file_inner.a_under
+                    .icon_add +
+                    %span.a_under Загрузить
+                    %input.form_el_tag.form_file_tag.js-document-copy{:type => 'file'}
+            .mt-2.mb-2
+              .tx-s.tx-700.header_blocks_settings.mb-2 Копии документов
+              .course_blocks
+                - @student.student_documents.each_with_index do |student_document, idx|
+                  .course_block{data: {student_document: student_document.id || idx}, class: (idx == 0 && 'course_block__current')}>
+                    = render 'admin/students/student_document', student_document: student_document
+                %a.course_block.course_block__add.js-add-student-document>
+                  .course_block_inner
+                    .icon_add> +
+                    Добавить документ
+                = f.fields_for :student_documents, include_id: false do |student_document_fields|
+                  = render 'admin/students/student_document_fields', f: student_document_fields
+            .mt-2.mb-2
+              .tx-s.tx-700.header_blocks_settings.mb-2 События/примечания
+              = render partial: 'admin/common/note', collection: @student.notes
+            .mt-2.mb-2
+              .tx-s.tx-700.header_blocks_settings.mb-2 Комментарии
+              .course_blocks.js-comment-thread-fields
+                = f.fields_for :comment_threads do |fc|
+                  = render 'comment_thread_fields', f: fc
+              = link_to_add_association f, :comment_threads, class: 'course_block course_block__add', data: {association_insertion_method: 'append', association_insertion_node: '.js-comment-thread-fields'} do
+                .course_block_inner
+                  .icon_add> +
+                  Добавить комментарий
+            .grid
+              .grid_i.grid_i__grid-1-2>
+                .form_el.js-form_el.form_btn.form_el_block
+                  %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                  = button_tag '', type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+            - content_for :js do
+              %script#document_copy_template{type: 'text/template'}
+                = f.fields_for :document_copies, DocumentCopy.new, child_index: '__id__', include_id: false do |document_copy_fields|
+                  .grid_i.grid_i__middle.grid_i__grid-1-2>
+                    = render 'admin/students/document_copy_fields', f: document_copy_fields
+              %script#student_document_template{type: 'text/template'}
+                = f.fields_for :student_documents, StudentDocument.new, child_index: '__id__', include_id: false do |student_document_fields|
+                  = render 'admin/students/student_document_fields', f: student_document_fields
+              %script#student_document_thumb_template{type: 'text/template'}
+                .course_block>
+                  .icon_del.js-remove-student-document X
+                  .course_block_inner
+                    %span
+                    %span
+
+              = javascript_include_tag 'admin/edit_user_from'

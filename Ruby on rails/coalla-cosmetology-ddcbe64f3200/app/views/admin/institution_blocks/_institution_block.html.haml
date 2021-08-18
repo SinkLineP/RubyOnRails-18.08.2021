@@ -1,0 +1,6 @@
+.grid_i.grid_i__grid-8-9>
+  = link_to t("institution_block.#{institution_block.code}"), edit_admin_institution_block_path(institution_block)
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_institution_block_path(institution_block), title: 'Редактировать' do
+      .icon_edit &#9998;

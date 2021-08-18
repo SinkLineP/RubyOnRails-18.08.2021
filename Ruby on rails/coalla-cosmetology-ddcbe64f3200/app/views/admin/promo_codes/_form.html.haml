@@ -1,0 +1,44 @@
+= render 'admin/breadcrumbs', crumbs: {'промокоды' => admin_promo_codes_path, (@promo_code.code.presence || 'новый прокомод') => '#'}
+%h3.tx-center= @promo_code.code.presence || 'НОВЫЙ ПРОМОКОД'
+= form_for [:admin, @promo_code], html: {id: 'promo_code_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Код:
+    .form_el.js-form_el.form_tx
+      = f.text_field :code, class: 'form_el_tag form_tx_tag'
+    = link_to 'Сгенерировать', '#', class: 'a_under tx-right js-generate'
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Скидка:
+        .form_el.js-form_el
+          = f.select :discount_id, Discount.ordered.map{|f| [f.title, f.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 10}
+      .mt-1
+        %label.form_el.form_label Окончание действия:
+        .form_el.js-form_el.form_tx
+          = f.text_field :end_date, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:end_date)), data: {end_date: true}, readonly: true
+      .mt-1
+        = f.label 'Многоразовый', class: 'form_el form_label'
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :reusable, class: 'form_el_tag form_checkbox_tag'
+      .mt-1
+        = f.label 'Погашен', class: 'form_el form_label'
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :extinguished, class: 'form_el_tag form_checkbox_tag'
+      .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Курсы
+      .course_blocks.js-courses-list
+        = render collection: @promo_code.courses, partial: 'admin/promo_codes/course', locals: {f: f}
+      .mb-1
+        %label.form_el.form_label Добавить курс:
+        .form_el.js-form_el.form_tx
+          = text_field_tag :course_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_courses_path, template: '#course_template', append_to: '.js-courses-list', variants: '#courses_autocomplete_variants'}
+        .autocomplete_variants#courses_autocomplete_variants
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @promo_code.errors
+
+- content_for :js do
+  = render 'admin/common/block_template', item_name: :course, object_name: :promo_code

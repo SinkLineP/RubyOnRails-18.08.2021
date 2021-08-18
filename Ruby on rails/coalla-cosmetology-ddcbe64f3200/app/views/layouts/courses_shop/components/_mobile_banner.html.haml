@@ -1,0 +1,17 @@
+- if banner.present? && cookies[:banner_showed].blank?
+  .mobile-banner-fade
+  .mobile-banner
+    .mobile-banner__content-box
+      = image_tag banner.mobile_image_url(:main), alt: 'banner'
+      .mobile-banner__content-fade
+      %article.mobile-banner__article
+        .h3= banner.mobile_text.html_safe
+        - if banner.type_banner.registration?
+          = form_for :user, url: courses_shop_user_registration_path, remote: true, html: {class: 'js-banner-form'} do |f|
+            = f.hidden_field :banner, value: true
+            .mobile-banner__input-block.text-input
+              = f.email_field :email, placeholder: 'Ваш e-mail' , class: 'js-error-none'
+            %button(class="button button--base-fill" data-size="lg" type="submit") Зарегистрироваться
+        - else
+          = link_to banner.btn_title, banner.link_call + additional_banner_params, class: 'button button--base-fill js-mobile-banner-redirect', 'data-size' => 'lg' , target: '_blank'
+      %a.mobile-banner__close.js-banner-close.js-hide-banner#mobile-banner-close(href='#')

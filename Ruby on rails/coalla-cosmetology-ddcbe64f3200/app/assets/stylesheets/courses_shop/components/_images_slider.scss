@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+// Images slider
+.images-slider {
+  @include grid;
+  @include justify-content(center);
+  position: relative;
+
+  // List
+  &__list {
+    @include grid-columns(3, 4);
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+
+    &:not(.slick-initialized) {
+      .images-slider__slide:nth-child(n+2) {
+        display: none !important;
+      }
+
+      // Hiding arrows nav until slider init
+      ~ .images-slider__nav {
+        display: none;
+      }
+    }
+  }
+
+  // Slide
+  &__slide {
+    text-align: center;
+  }
+
+  // Nav
+  &__nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+
+    &--prev {
+      @include transform(translate(-3.4rem, -50%));
+      left: 12.5%;
+    }
+
+    &--next {
+      @include transform(translate(3.4rem, -50%));
+      right: 12.5%;
+    }
+
+    .icon {
+      fill: $color-ui;
+    }
+  }
+
+  .icon {
+    @include hover(fill, $color-base, '.images-slider__nav:hover');
+  }
+
+  // If slider init
+  .slick-slider {
+    z-index: 1;
+  }
+
+  .slick-initialized {
+    // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+    .slick-slide {
+      height: auto;
+
+      img {
+        display: inline;
+      }
+    }
+  }
+}
+
+// Image slide
+.image-slide {
+  @include display(inline-flex);
+  @include justify-content(center);
+  @include align-items(center);
+  height: 185px;
+
+  @include media($breakpoint-lg) {
+    height: 370px;
+  }
+
+  img {
+    max-height: 100%;
+  }
+}

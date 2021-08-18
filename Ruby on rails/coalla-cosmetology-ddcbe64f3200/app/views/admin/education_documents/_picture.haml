@@ -1,0 +1,14 @@
+.material-a
+  - if !f.object.new_record?
+    = f.hidden_field :id
+  - else
+    = f.hidden_field :image_cache, data: {cache: true}
+  = f.hidden_field :_destroy, data: {destroy: true}
+  .grid
+    .grid_i.grid_i__middle.grid_i__grid-1-8>
+      .square_icon
+        %span{data: {extension: true}}= f.object.extension
+        .icon_del.js-remove-picture X
+    .grid_i.grid_i__middle.grid_i__grid-7-8>
+      %span{data: {filename: true}}= f.object.filename
+      = render 'admin/common/download_link', file_path: f.object.file.url if f.object.try(:file).present?

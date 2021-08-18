@@ -1,0 +1,8 @@
+= fields_for @group_subscription do |f|
+  .course_blocks.js-working-off-lists
+    = f.fields_for :working_off_lists do |working_off_list_fields|
+      = render 'admin/subscription_contracts/working_off_list_fields', f: working_off_list_fields
+
+    = link_to_add_association f, :working_off_lists, partial: 'admin/subscription_contracts/working_off_list_fields', class: 'a_under', data: {association_insertion_traversal: 'closest', association_insertion_method: 'append', association_insertion_node: '.js-working-off-lists'} do
+      .icon_add> +
+      Добавить

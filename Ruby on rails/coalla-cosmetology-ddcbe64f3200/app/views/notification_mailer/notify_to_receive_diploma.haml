@@ -1,0 +1,19 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      = ty("Если вы еще не забрали ваши выпускные документы, вам нужно сделать это до: #{format_date(@group_subscription.end_on + 3.months)}")
+      %br
+      = ty('Все не востребованные в течение трех месяцев выпускные документы будут отправлены почтой по адресу, указанному при заключении договора.')
+      %br
+      = ty('Почта доставляет посылки долго, и иногда теряет их, поэтому лучше забрать документы лично.')
+      %br
+      = ty('Вы также можете поручить забрать документы вашим знакомым, но им для получения документов обязательно потребуется письменная доверенность.')

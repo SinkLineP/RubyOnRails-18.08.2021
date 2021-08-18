@@ -1,0 +1,10 @@
+!!!
+%html.no-js{lang: 'ru-RU'}
+  %head
+    %title= page_title
+    = render 'layouts/head'
+
+  %body#page.page.with_sidebar
+    = render 'layouts/admin_header'
+    = yield
+    = render 'layouts/footer'

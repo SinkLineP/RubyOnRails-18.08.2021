@@ -1,0 +1,16 @@
+.grid_i.grid_i__grid-2-6>
+  %a.modal{data: {url: edit_admin_used_time_path(used_time)}}= used_time.date
+.grid_i.grid_i__grid-1-6>
+  = used_time.formatted_time || 'весь день'
+.grid_i.grid_i__grid-2-6.tx-center>
+  - if used_time.consultation
+    = link_to 'консультация', edit_admin_consultation_path(used_time.consultation), class: 'a_under tx-xs'
+.grid_i.grid_i__grid-1-6.tx-right>
+  = link_to '#', class: 'modal', data: {url: edit_admin_used_time_path(used_time)} do
+    .icon_edit &#9998;
+  - if used_time.consultation
+    = link_to admin_consultation_path(used_time.consultation), method: :delete, data: {confirm: 'Вы уверены? Будет также удалена консультация!'} do
+      .icon_del X
+  - else
+    = link_to admin_used_time_path(used_time), method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X

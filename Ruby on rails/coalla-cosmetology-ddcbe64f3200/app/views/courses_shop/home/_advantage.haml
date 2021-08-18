@@ -1,0 +1,14 @@
+%li.advantages__item
+  - unless advantage.url.present?
+    %div.dl.advantage
+      %div.dt.advantage__title
+        %svg.icon.advantage__icon(role='img' data-size='100')
+          %use(xlink:href="/assets/courses_shop/icons.svg##{advantage.code}")
+      %div.dd.advantage__description= ty(advantage.value)
+  - else 
+    %a{href: "#{advantage.url}"}
+      %div.dl.advantage
+        %div.dt.advantage__title
+          %svg.icon.advantage__icon(role='img' data-size='100')
+            %use(xlink:href="/assets/courses_shop/icons.svg##{advantage.code}")
+        %div.dd.advantage__description= ty(advantage.value)

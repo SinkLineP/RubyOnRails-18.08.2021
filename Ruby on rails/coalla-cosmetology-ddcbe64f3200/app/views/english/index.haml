@@ -1,0 +1,12 @@
+%main#main.blog_page{role: 'main'}
+  %section.info_page.post_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_2
+        .flowers_inner
+          .h2.tx-upper
+            = simple_format(@en_page.title.to_s)
+
+      .grid.grid__collapse
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8>
+          .wysiwyg
+            = replace_video_links(@en_page.content)

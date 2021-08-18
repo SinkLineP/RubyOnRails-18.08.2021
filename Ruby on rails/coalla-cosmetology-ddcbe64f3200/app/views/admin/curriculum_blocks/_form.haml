@@ -1,0 +1,38 @@
+= render 'admin/breadcrumbs', crumbs: {'учебный план' => admin_curriculum_blocks_path, (@curriculum_block.title.presence || 'новый блок') => '#'}
+%h3.tx-center= @curriculum_block.title.presence || 'НОВЫЙ БЛОК'
+= form_for [:admin, @curriculum_block], url: @curriculum_block.new_record? ? admin_curriculum_blocks_path : admin_curriculum_block_path(@curriculum_block), html: {id: 'curriculum_block_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+  .admin_body
+    .mb-4
+      .grid
+        .grid_i.grid_i__grid-3-9>
+          %p.nowrap.tx-700 Включен в курсы:
+        .grid_i.grid_i__grid-6-9>
+          - if @curriculum_block.courses.any?
+            = render collection: @curriculum_block.courses, partial: 'admin/common/course'
+    .admin_settings_change
+      .mt-1
+        = f.label :title, class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :title, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        = f.label :content, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 24rem;'}
+          = f.text_area :content, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+      - unless @curriculum_block.new_record?
+        .header_blocks_settings Результат
+        .mt-1
+          - @curriculum_block.items.each do |item|
+            .mt-1{style: 'line-height: 32px;'}
+              %span.tx-major= item.title
+              %ul{style: 'list-style: square inside;'}
+                - item.items.each do |child|
+                  %li= child.title
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @curriculum_block.errors

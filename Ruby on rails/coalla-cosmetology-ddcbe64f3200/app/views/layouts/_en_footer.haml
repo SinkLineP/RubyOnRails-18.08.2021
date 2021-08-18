@@ -1,0 +1,16 @@
+%footer#footer.footer{role: 'contentinfo'}
+  .ctn
+    .footer_inner
+      %ul.footer_logos
+        %li>= image_tag 'en_footer/footer_logo_world_skills_russia.png', width: '100', height: '100', alt: ''
+        %li>= image_tag 'en_footer/footer_logo_worldclass.png', width: '100', height: '100', alt: ''
+        %li>= image_tag 'en_footer/footer_logo_linline.png', width: '100', height: '100', alt: ''
+        -#%li>
+        -#  = link_to 'http://www.itecworld.co.uk/', target: '_blank' do
+        -#    = image_tag 'en_footer/footer_logo_itec.png', width: '100', height: '100', alt: ''
+
+= javascript_include_tag 'application'
+= javascript_include_tag params[:controller] if javascript_exists?(params[:controller])
+= render 'common/alerts'
+- if Rails.env.production?
+  = render 'layouts/metrika'

@@ -1,0 +1,16 @@
+.grid.comment-nested-fields
+  = f.hidden_field :creator_id, value: f.object.creator_id || current_user.id
+  = f.hidden_field :creator_type, value: f.object.creator_type || current_user.class.base_class
+  .grid_i.grid_i__grid-8-9>
+    .add-comments
+      .grid
+        .grid_i.grid_i__grid-1-4>
+          %span= format_date_with_time(f.object.created_at || Time.current)
+        .grid_i.grid_i__grid-3-4>
+          .form_el.js-form_el.form_textarea
+            = f.text_area :body, class: 'form_el_tag form_textarea_tag', readonly: f.object.persisted?
+  .grid_i.grid_i__grid-1-9.tx-right>
+    - if f.object.persisted?
+      = link_to '#', class: 'js-edit-comment-thread' do
+        .icon_edit &#9998;
+    = link_to_remove_association raw('<div class="icon_del">X</div>'), f, data: {wrapper_class: 'comment-nested-fields'}

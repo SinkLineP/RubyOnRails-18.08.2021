@@ -1,0 +1,8 @@
+.progress_info
+  %p Ваши сроки обучения истекли и&nbsp;доступ к&nbsp;курсу закрыт.
+  %p Если вы&nbsp;хотите продлить доступ к&nbsp;курсу, #{link_to 'обратитесь в&nbsp;администрацию Института.'.html_safe, feedback_path(course_id: course.id), class: 'a_under'}
+  %p
+    %a.a_under.modal{data: {modal: course_marks_popup_id(course)}} Посмотреть оценки
+
+  = render 'progresses/rating_block', group_subscription: group_subscription, course: course
+  = render 'common/marks_modal', course: course

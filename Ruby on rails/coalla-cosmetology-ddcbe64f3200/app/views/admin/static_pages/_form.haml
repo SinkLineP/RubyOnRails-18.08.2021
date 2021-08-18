@@ -1,0 +1,38 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'страницы' => admin_static_pages_path, (@static_page.title.presence || 'добавить страницу') => '#'}
+      %h3.tx-center ДОБАВИТЬ СТРАНИЦУ
+      = form_for [:admin, @static_page], html: {class: 'form js-form form__admin'} do |f|
+        .admin_header
+          %label.form_el.form_label Заголовок:
+          .form_el.js-form_el.form_tx
+            = f.text_field :title, class: 'form_el_tag form_tx_tag'
+        .admin_body
+          - unless @static_page.permanent?
+            %div.admin-address
+              %label.form_el.form_label>
+                ЧПУ:
+                %span.admin-address_url #{root_url}
+              .form_el.js-form_el.form_tx.admin-address_input>
+                = f.text_field :slug, class: 'form_el_tag form_tx_tag'
+
+          .form_el.js-form_el.form_el__block
+            = f.cktext_area :content, placeholder: 'Текст страницы'
+
+          .grid
+            .grid_i.grid_i__grid-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                %button.form_el_tag.form_btn_tag{type: 'submit'}
+            .grid_i.grid_i__grid-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small
+                %p.form_el_inner.form_btn_inner ПРЕВЬЮ
+                %button.form_el_tag.form_btn_tag{type: 'submit', name: :preview, value: true, formtarget: '_blank'}
+
+= render 'admin/errors', errors: @static_page.errors
+
+- content_for :js do
+  - javascript_include_tag 'admin/ckeditor'

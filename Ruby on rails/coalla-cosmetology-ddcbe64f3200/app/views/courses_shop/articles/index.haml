@@ -1,0 +1,12 @@
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        %h1.page__title= title_with_page(model.to_s.underscore, params[:page])
+
+      .media-cards
+        %ul.media-cards__list#items_list
+          = render partial: 'courses_shop/articles/item', as: :item, collection: @items
+
+      = pagination_complex(@items, '#items_list')

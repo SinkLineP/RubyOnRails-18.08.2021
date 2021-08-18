@@ -1,0 +1,96 @@
+.mfp-bg {
+  background: $color-base;
+
+  @include media($breakpoint-lg) {
+    background: rgba($color-ui, .4);
+  }
+
+  &.mfp-dark {
+    background: rgba($color-base, .8);
+  }
+}
+
+.mfp-wrap {
+  @include media($breakpoint-lg) {
+    cursor: asset_url("courses_shop/cursor_close.svg"), auto;
+  }
+}
+
+.mfp-container {
+  padding: 0;
+}
+
+// Arrows
+.mfp-arrow-custom {
+  @include size(6rem);
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(center);
+  @include transition(box-shadow $transition-duration-base);
+  @include hover(box-shadow, none);
+  @include transform(translateY(-50%));
+  position: absolute;
+  top: 50%;
+  z-index: 1100;
+  background: $color-bg;
+  border-radius: 50%;
+  box-shadow: 0 1rem 3rem 0 rgba(196, 170, 165, .4);
+  cursor: pointer;
+
+  &--left {
+    @include media($breakpoint-lg) {
+      left: $content-indent-lg;
+    }
+
+    @include media($breakpoint-xxl) {
+      left: $content-indent-xl;
+    }
+  }
+
+  &--right {
+    @include media($breakpoint-lg) {
+      right: $content-indent-lg;
+    }
+
+    @include media($breakpoint-xxl) {
+      right: $content-indent-xl;
+    }
+
+    .icon {
+      @include transform(rotate(180deg));
+    }
+  }
+
+  .icon {
+    fill: $color-brand;
+    pointer-events: none;
+  }
+}
+
+.icon {
+  @include hover(fill, $color-base, '.mfp-arrow-custom:hover');
+}
+
+// Simple fade transition,
+.mfp-fade.mfp-bg {
+  @include transition(all $transition-duration-base);
+  opacity: 0;
+
+}
+.mfp-fade.mfp-bg.mfp-ready {
+  opacity: 1;
+}
+.mfp-fade.mfp-bg.mfp-removing {
+  opacity: 0;
+}
+
+.mfp-fade.mfp-wrap .mfp-content {
+  @include transition(all $transition-duration-base);
+  opacity: 0;
+}
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content {
+  opacity: 1;
+}
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content {
+  opacity: 0;
+}

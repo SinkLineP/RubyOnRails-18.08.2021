@@ -1,0 +1,41 @@
+<script type="text/template" id="task-test-template">
+  <div class="grid"><div class="grid_i grid_i__grid-1-1">
+    <div class="mb-3">
+      <h6 class="tx-center">Добавить тест</h6>
+    </div>
+  </div><div class="grid_i grid_i__grid-3-7">
+    <div>
+      <label class="form_el form_label">Количество вопросов за раз</label>
+      <div class="form_el js-form_el form_tx">
+        <input class="form_el_tag form_tx_tag js-items-count" type="text" value="<%%= items_count %>">
+      </div>
+    </div>
+  </div><div class="grid_i grid_i__grid-2-7">
+    <div>
+      <label class="form_el form_label">за время</label>
+      <div class="form_el js-form_el form_tx">
+        <input class="form_el_tag form_tx_tag js-time-limit" type="text" value="<%%= time_limit %>">
+      </div>
+      <label class="form_el form_label">минут</label>
+    </div>
+  </div><div class="grid_i grid_i__grid-2-7">
+    <div>
+      <label class="form_el form_label">всего</label>
+      <div class="form_el js-form_el form_tx">
+        <input class="form_el_tag form_tx_tag js-max-attempts-count" type="text" value="<%%= max_attempts_count %>">
+      </div>
+      <label class="form_el form_label">попыток</label>
+    </div>
+  </div><div class='grid_i grid_i__grid-3-7'>
+    <label class='form_el form_label form_label__el'>
+      <div class='form_el js-form_el form_checkbox'>
+        <input class='form_el_tag form_checkbox_tag js-final-task' type="checkbox" <%% print(final ? 'checked="checked"' : '') %>>
+      </div>
+      <p class='form_el_inner form_label_inner'>Итоговое задание</p>
+    </label>
+  </div><div class="grid_i grid_i__grid-1-1">
+    <div class="exercise_test_questions js-question-thumbs"></div>
+  </div>
+  <div class="js-current-question"></div>
+  </div>
+</script>

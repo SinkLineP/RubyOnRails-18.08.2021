@@ -1,0 +1,21 @@
+- finished = current_user.try(:material_finished?, material)
+.grid_i.grid_i__grid-1-3>
+  .book{class: finished && 'read'}>
+    .book-tags
+      - if material.required?
+        %span.important обязательно
+      .lection_time
+        %i.fa.fa-clock-o
+        %span= display_minutes(material.time)
+    - if material.pdf? && !@lecture.new_record?
+      = link_to lecture_material_path(@lecture, material, course_id: @course.try(:id)), target: '_blank' do
+        = material_image_tag(material)
+    - else
+      = link_to material.link, target: '_blank' do
+        = material_image_tag(material)
+    .book_status
+      ПРОЧИТАНО
+      - if !finished && !@lecture.new_record?
+        = form_tag mark_as_finished_lecture_material_path(@lecture, material), remote: true, data: {mark_as_finished: true} do
+          = hidden_field_tag :course_id, @course.try(:id)
+    .book_name= material.name

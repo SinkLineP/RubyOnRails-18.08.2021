@@ -1,0 +1,41 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'объединение контактов' => '#'}
+      %h3.tx-center ОБЪЕДИНЕНИЕ КОНТАКТОВ
+      = form_for @contacts_merge, as: :contact, url: admin_contacts_merges_path, html: {class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+        .admin_header
+        .admin_body
+          .admin_settings_change
+            .grid
+              .grid_i.grid_i__grid-1-2>
+                .mt-1.js-autocomplete-input
+                  %label.form_el.form_label Основной контакт:
+                  .form_el.js-form_el.form_tx
+                    = f.hidden_field :main_student_id
+                    = f.text_field :main_student_full_name_with_ids, class: 'form_el_tag form_tx_tag js-student-autocomplete'
+                  .autocomplete_variants
+                .js-student-info
+                  = render 'admin/contacts_merges/student', student: @contacts_merge.main_student || Student.new
+              .grid_i.grid_i__grid-1-2>
+                .mt-1.js-autocomplete-input
+                  %label.form_el.form_label Второй контакт:
+                  .form_el.js-form_el.form_tx
+                    = f.hidden_field :other_student_id
+                    = f.text_field :other_student_full_name_with_ids, class: 'form_el_tag form_tx_tag js-student-autocomplete'
+                  .autocomplete_variants
+                .js-student-info
+                  = render 'admin/contacts_merges/student', student: @contacts_merge.other_student || Student.new
+            .mt-1.tx-s.tx-700.header_blocks_settings Результат
+            = render 'admin/contacts_merges/summary', f: f
+            .grid.mt-2
+              .grid_i.grid_i__grid-1-2>
+                .form_el.js-form_el.form_btn.form_el_block
+                  %p.form_el_inner.form_btn_inner ОБЪЕДИНИТЬ
+                  = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @contacts_merge.errors
+- content_for :js do
+  = javascript_include_tag 'admin/contacts_merges'

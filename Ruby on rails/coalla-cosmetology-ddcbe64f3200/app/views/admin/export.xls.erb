@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+
+  <Styles>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sGreen">
+      <Alignment ss:Horizontal="Left"/>
+      <Interior ss:Color="#18CD2F" ss:Pattern="Solid"/>
+    </Style>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sCenter">
+      <Alignment ss:Horizontal="Center"/>
+    </Style>
+  </Styles>
+
+  <% @certifications.map do |hall, certifications| %>
+    <Worksheet ss:Name="Зал №<%= hall %>">
+      <Table>
+        <Column ss:Width="100"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="100"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="200"/>
+        <Column ss:Width="100"/>
+
+
+        <Row>
+          <Cell ss:MergeAcross="18"><Data ss:Type="String">Информация на  <%= format_time %> </Data></Cell>
+        </Row>
+
+
+        <% certifications.each do |certification| %>
+          <% if certification.users.any? %>
+            <Row>
+              <Cell ss:MergeAcross="18"><Data ss:Type="String"></Data></Cell>
+            </Row>
+
+            <Row>
+              <Cell ss:MergeAcross="18"><Data ss:Type="String"><%= certification.begin_date %>, <%= certification.begin_time %>-<%= certification.end_time %>  "<%= certification.name %>"</Data></Cell>
+            </Row>
+
+
+            <Row>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">ID</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">ФИО</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Email</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Телефон</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Компания</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Страна</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Город</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Роль</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Отрасль предприятия</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Вид деятельности предприятия</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Название должности</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Авторизованный партнер Autodesk</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Участие оплачено</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">ПРОМО</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">ПРОМО-код</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Билет скачан</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дубликат по ФИО и телефону</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дубликат по ФИО и названию компании</Data></Cell>
+              <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дата регистрации</Data></Cell>
+            </Row>
+
+            <% certification.users.each do |user| %>
+              <Row>
+                <Cell><Data ss:Type="Number"><%= user.id %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.full_name %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.email %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.phone %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.company %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.other_country_select? ? user.other_country : user.country.name %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.city %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.role.name %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.sector.present? ? user.sector.name : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.other_sector_select? ? user.other_activity : (user.activity.present? ? user.activity.name : '') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.other_sector_select? ? user.other_appointment : (user.appointment.present? ? user.appointment.name : '') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.partner.present? ? user.partner.name : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.paid? ? 'Да' : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.promo? ? 'Да' : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.code ? user.code.code : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.ticket_downloaded? ? 'Да' : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.phone_not_unique.present? ? ActiveSupport::JSON.decode(user.phone_not_unique).map{|js| js['id']}.join(', ') : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= user.company_not_unique.present? ? ActiveSupport::JSON.decode(user.company_not_unique).map{|js| js['id']}.join(', ') : '' %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= Russian.strftime(user.created_at, '%d.%m.%Y') %></Data></Cell>
+              </Row>
+            <% end %>
+          <% end %>
+        <% end %>
+      </Table>
+    </Worksheet>
+  <% end %>
+
+</Workbook>

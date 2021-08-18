@@ -1,0 +1,10 @@
+.search-item
+  .search-item_result>
+    - if [Course, Post, Block, Post, Student].include?(item.class)
+      = link_to item.search_content, url_for([:edit, :admin, item])
+    - elsif item.is_a?(Book)
+      = link_to item.search_content, admin_books_path(book_id: item.id)
+    - else
+      = item.search_content
+  .search-item_cat>
+    = item.model_name.human

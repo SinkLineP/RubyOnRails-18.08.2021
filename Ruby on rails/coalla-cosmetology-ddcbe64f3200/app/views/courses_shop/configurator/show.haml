@@ -1,0 +1,23 @@
+.page.page--sections
+  .page-section
+    .container
+      %header.page__header
+        .h2.page__title Вам подходит
+
+      = form_for @configurator, url: courses_shop_configurator_url, as: 'c', method: :get, html: {class: 'course-select'} do |f|
+        .course-select__toggle
+          = link_to '#', class: 'button button--action-fill', id: 'course-select-toggle', 'data-size' => 'sm', 'data-type' => 'text' do
+            %span Подобрать
+            %svg.icon(role='img' data-size='18')
+              %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+        .course-select__content#course-select-content
+          = render 'courses_shop/common/configurator', f: f
+
+      .courses-items.courses-items_grid
+        -unless @current_shop.barbershop?
+          %ul.courses-items__list_grid#courses_list_grid
+            = render partial: 'courses_shop/courses/course_li_grid', collection: @courses
+        -else
+          %ul.courses-items__list#courses_list
+            = render partial: 'courses_shop/courses/course_li', collection: @courses
+      = pagination_complex(@courses, '#courses_list', false)

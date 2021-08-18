@@ -1,0 +1,7 @@
+.grid_i.grid_i__grid-3-6>
+  %a.modal{data: {url: edit_admin_practice_basis_path(practice_basis)}}= practice_basis.title
+  - if can?(:destroy, practice_basis)
+    = link_to admin_practice_basis_path(practice_basis), method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X
+.grid_i.grid_i__grid-3-6.tx-center>
+  = practice_basis.address

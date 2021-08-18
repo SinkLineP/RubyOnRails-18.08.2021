@@ -1,0 +1,10 @@
+- result_test_items.each do |result_test_item|
+  %div.mt-2
+    %span.tx-700 Вопрос:
+    %span= result_test_item.question_title
+  %div
+    %span.tx-700 Верный ответ:
+    %span= result_test_item.correct_answer_title
+  %div
+    %span.tx-700 Ответ пользователя:
+    %span= result_test_item.question_answer_title

@@ -1,0 +1,10 @@
+- result_connection_items.group_by{|item| item.column}.each do |column, items|
+  %div.mt-2
+    %span.tx-700 Колонка:
+    %span= column.title
+  %div
+    %span.tx-700 Ответы пользователя:
+    %span= items.map{|item| item.column_variant.title}.join("\s,")
+  %div
+    %span.tx-700 Правильные ответы:
+    %span= column.column_variants.map{|variant| variant.title}.join("\s,")

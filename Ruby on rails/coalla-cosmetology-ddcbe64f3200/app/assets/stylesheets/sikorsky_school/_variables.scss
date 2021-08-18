@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+// Responsive (for example: xs, sm, md, lg, xl)
+$mq-breakpoints: (
+    "sm": 767px,
+    "md": 768px,
+    "lg": 1025px
+);
+
+$mq-indents: (
+    "sm": 2rem,
+    "md": 3rem,
+    "lg": 4rem
+);
+
+$mq-container-widths: (
+    "sm": 100%,
+    "md": 100%,
+    "lg": 1220px
+);
+
+$mq-container-indents: (
+    "sm": map-get($mq-indents, "sm"),
+    "md": map-get($mq-indents, "md"),
+    "lg": map-get($mq-indents, "lg")
+);
+
+$mq-grid-gutters: (
+    "sm": map-get($mq-indents, "sm"),
+    "md": map-get($mq-indents, "md"),
+    "lg": map-get($mq-indents, "lg")
+);
+
+// Not responsive
+$width: 1220px;
+$indent: 2rem;
+
+$container-width: $width;
+$container-indent: $indent;
+
+$grid-gutter: $indent;
+
+// Colors
+$color-brand: #e8632e;
+$color-dark: #1c1c1c;
+
+// Fonts
+$font-family-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-base: "Source Sans Pro", $font-family-default;
+
+$font-weight-base:  300;
+$font-weight-solid: 600;
+
+// Styles
+$opacity-base: .7;
+
+$transition-base: all .2s;

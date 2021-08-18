@@ -1,0 +1,38 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'курсы' => admin_courses_path}
+      %h3.tx-center КУРСЫ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_course_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить курс
+        .admin_body.table
+          = search_form_for @q, url: admin_courses_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+            .mt-1
+              .grid
+                .grid_i.grid_i__grid-1-6.tx-right>
+                  %label.form_el.form_label Название:
+                .grid_i.grid_i__grid-4-6>
+                  .form_el.js-form_el{style: 'min-width: 150px;'}
+                    = f.search_field :name_or_title_or_short_name_cont, placeholder: 'Введите название', style: 'width: 100%;'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-4-9>
+                %p название
+              .grid_i.grid_i__grid-2-9>
+                %p.tx-center
+                  академические часы
+              .grid_i.grid_i__grid-1-9.grid_i__prefix-1-9>
+                %p.tx-center
+                  обновлен
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-center
+                  действия
+          .grid.grid__collapse
+            = render collection: @courses, partial: 'course'
+      = will_paginate @courses, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

@@ -1,0 +1,6 @@
+%li.graduates-cards__card
+  .graduate-card
+    = image_tag graduate.avatar.main, width: '120', height: '120', alt: '', class: 'graduate-card__photo'
+    = simple_format(graduate.description, class: 'graduate-card__caption')
+    - faculties = graduate.faculties.map{|f| "факультет #{f.title}"}
+    = simple_format("#{graduate.name}<br>#{faculties.join(', ').mb_chars.downcase}", class: 'graduate-card__person')

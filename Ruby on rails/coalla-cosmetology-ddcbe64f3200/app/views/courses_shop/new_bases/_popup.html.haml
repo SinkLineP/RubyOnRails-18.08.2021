@@ -1,0 +1,18 @@
+= form_for CallParams.new(call_options), as: :data, url: send_form_data_courses_shop_callbacks_path,
+                                                    html: { id: 'form-popup', class: 'popup mfp-hide' },
+                                                    remote: true, data: { trackable: true } do |f|
+  = f.hidden_field :site, value: request.original_url
+  = f.hidden_field :utm_source
+  = f.hidden_field :utm_medium
+  = f.hidden_field :utm_campaign
+  = f.hidden_field :utm_content
+  = f.hidden_field :utm_term
+  = f.hidden_field :call_me, value: true
+  .popup__title Заказать звонок
+  = f.text_field :name, placeholder: 'Ваше имя*', id: 'popup-form-input', class: 'input'
+  = f.telephone_field :phone, class: 'input js-intl-tel'
+  %button.button.button--filled(type='submit' data-size='lg' name='call_me' data-disable-with='Подождите...') Позвоните мне!
+
+%form#success-popup.popup.mfp-hide(action='#')
+  .popup__title Спасибо!
+  %button(title="Close (Esc)" type="button" class="mfp-close") ×

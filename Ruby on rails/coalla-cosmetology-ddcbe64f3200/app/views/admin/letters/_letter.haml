@@ -1,0 +1,5 @@
+- grid_class = letter_counter == 0 && 'mt-3'
+.grid_i.grid_i__grid-5-6{class: grid_class}>
+  = link_to letter.subject, admin_letter_path(letter), class: "point table_ellipsis #{letter.unread? && 'point__voice'}"
+.grid_i.grid_i__grid-1-6{class: grid_class}>
+  %time{datetime: letter.sent_at}= format_date(letter.sent_at)

@@ -1,0 +1,6 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}= ty('Внимание! Вы должны изучить теорию до начала практических занятий.')
+    %p{style: 'margin: 0;text-align: left;'}= ty('Если к началу практики вы не освоите теорию, вас могут не допустить до практических занятий.')
+    - if local_assigns[:about_new_courses]
+      %p{style: 'margin: 0;text-align: left;'}= "Наши вебинары проходят на платформе Zoom. #{link_to('Вот инструкция, как ей пользоваться.', 'https://docs.google.com/document/d/1pGRGj_iuCGS37Is2YIMNhPVqaR2nwzIdhiSTgyImGLw/edit', target: '_blank')} Ссылку на сам вебинар вы получите за час до начала.".html_safe

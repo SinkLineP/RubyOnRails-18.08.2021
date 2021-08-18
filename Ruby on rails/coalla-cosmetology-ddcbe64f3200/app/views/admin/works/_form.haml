@@ -1,0 +1,63 @@
+= render 'admin/breadcrumbs', crumbs: {'занятия' => admin_works_path, (@work.title.presence || 'новое занятие') => '#'}
+%h3.tx-center= @work.title.presence || 'НОВОЕ ЗАНЯТИЕ'
+= form_for [:admin, @work], url: @work.new_record? ? admin_works_path : admin_work_path(@work), as: :work, html: {id: 'work_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      .mt-2
+        .mb-4
+          .grid
+            .grid_i.grid_i__grid-1-6>
+              %p.nowrap.tx-700 Участвует в курсах:
+            .grid_i.grid_i__grid-5-6{style: 'line-height: 2em;'}>
+              - if @work.course_works.present?
+                = render collection: @work.course_works.map(&:course), partial: 'admin/common/course'
+      .mt-1
+        %label.form_el.form_label Продолжительность в ак. часах:
+        .form_el.js-form_el.form_tx
+          = f.text_field :duration, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Приписка:
+        .form_el.js-form_el.form_tx
+          = f.text_field :appendix, class: 'form_el_tag form_tx_tag'
+
+      - select_html_options = {class: 'form_el_tag form_select_tag selectordie', data: {size: 5}}
+      - select_html_options[:disabled] = true unless @work.new_record?
+
+      .mt-1.js-work-type-select
+        %label.form_el.form_label Тип:
+        .form_el.js-form_el.form_tx
+          = f.select :type, [%w(Экзамен Exam), %w(Зачет Ladder), %w(Практика PracticeWork), ['Выпускная работа', 'FinalWork'], ['Ведомость для парикмахеров', 'HairdresserWork']], {}, select_html_options
+      .mt-1.js-form-sheet{style: @work.ladder? || @work.final_work? || @work.hairdresser_work? ? 'display: none;' : ''}
+        %label.form_el.form_label Вид бланка ведомости:
+        .form_el.js-form_el.form_tx
+          = f.select :form_sheet, Work.form_sheet.options, {}, select_html_options
+
+
+      .mt-1.js-hairdresser-form-sheet{style: @work.hairdresser_work? ? '' : 'display: none;'}
+        %label.form_el.form_label Вид бланка ведомости:
+        .form_el.js-form_el.form_tx
+          = f.select :hairdresser_form_sheet, Work.hairdresser_form_sheet.options, {}, select_html_options
+
+      .mt-1.js-work-criterion{style: @work.exam? || @work.practice_work? ? '' : 'display: none;'}
+        %label.form_el.form_label Критерий оценивания:
+        .form_el.js-form_el.form_tx
+          = f.select :criterion, Work.criterion.options, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+
+      .mt-1.js-work-statement-criterion{style: @work.hairdresser_work? ? '' : 'display: none;'}
+        %label.form_el.form_label Критерий оценивания:
+        .form_el.js-form_el.form_tx
+          = f.select :statement_criterion, Work.statement_criterion.options, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+
+      = render 'admin/works/exercises'
+
+      .grid.mt-2
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @work.errors

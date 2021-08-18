@@ -1,0 +1,8 @@
+%div.js-image-block.mt-3
+  .form_el.js-form_el.form_el__block
+    = image_tag f.object.send("#{field}_url", version) || placeholder, size: size
+  .form_el.js-form_el.form_file
+    = f.hidden_field "#{field}_cache"
+    %p.form_el_inner.form_file_inner.a_under
+      Загрузить #{f.object.class.human_attribute_name(field).mb_chars.downcase}
+    %input.js-add-image-btn.form_el_tag.form_file_tag{type: 'file', name: 'file', data: {uploader: uploader, version: version}}

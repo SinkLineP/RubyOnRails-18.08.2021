@@ -1,0 +1,18 @@
+// All slider images must be equal height: 370px
+.images-slider.js-images-slider
+  .images-slider__list.js-images-gallery.js-images-slider-list
+    - 1.upto(2) do
+      .images-slider__slide
+        = link_to placeholder_url('1000x740'), target: '_blank', class: 'image-slide zoom-in' do
+          = image_tag 'https://placehold.it/500x370?text=∴', alt: ''
+          = render 'layouts/courses_shop/image_zoom_in_icon'
+      .images-slider__slide
+        = link_to placeholder_url('400x740'), target: '_blank', class: 'image-slide zoom-in' do
+          = image_tag 'https://placehold.it/200x370?text=∴', alt: ''
+          = render 'layouts/courses_shop/image_zoom_in_icon'
+  = link_to '#', class: 'images-slider__nav images-slider__nav--prev js-images-slider-prev' do
+    %svg.icon(role='img' data-size='34')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+  = link_to '#', class: 'images-slider__nav images-slider__nav--next js-images-slider-next' do
+    %svg.icon(role='img' data-size='34')
+      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

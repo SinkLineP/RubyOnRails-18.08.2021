@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+.promo {
+  padding: 4rem 0;
+  background: {
+    color: #f6f6f6;
+    image: asset_url("courses_shop/new_base/promo_bg.jpg");
+    position: center top;
+    repeat: repeat-x;
+  }
+
+  @include mq(md) {
+    padding: 6rem 0;
+  }
+
+  @include mq(lg) {
+    padding: 8rem 0;
+  }
+
+  &__row {
+    @include mq(lg) {
+      @include grid(x, center);
+    }
+  }
+
+  &__col {
+    @include mq(lg) {
+      @include grid-col;
+      @include col-size(10/12);
+    }
+  }
+}
+
+.promo-info {
+  @include mq(sm) {
+    text-align: center;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+
+    @include mq(md) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__row {
+    @include mq(md) {
+      @include grid(x, space-between, stretch);
+    }
+  }
+
+  &__col {
+    @include mq(sm) {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(1/2);
+
+      &:nth-child(1) {
+        padding-right: 4rem;
+      }
+    }
+  }
+
+  &__title {
+    color: $color-brand;
+  }
+
+  &__caption {
+    margin-top: 1rem;
+
+    b {
+      text-transform: uppercase;
+    }
+  }
+
+  &__counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 2rem;
+    border: 1px solid $color-base;
+
+    > div {
+      @include mq(md) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      b,
+      span {
+        @include size(6rem);
+        @include font(3.6rem);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: .5rem auto;
+        background-color: $color-brand;
+        border-radius: 50%;
+        color: #fff;
+
+        @include mq(md) {
+          display: inline-flex;
+          margin: 0 1rem;
+        }
+      }
+    }
+  }
+}
+
+.promo-form {
+  padding: 2rem;
+  background-color: $color-base;
+  color: #fff;
+
+  @include mq(md) {
+    padding: 3rem;
+  }
+
+  @include mq(lg) {
+    padding: 4rem;
+  }
+
+  &__title {
+    @include h2;
+
+    @include mq(sm) {
+      text-align: center;
+    }
+  }
+
+  &__caption {
+    font-weight: $font-weight-solid;
+
+    @include mq(sm) {
+      text-align: center;
+    }
+
+    span {
+      color: $color-brand;
+    }
+  }
+
+  &__row {
+    margin-top: 2rem;
+
+    @include mq(md) {
+      @include grid(x, flex-start, center);
+    }
+  }
+
+  &__col {
+    @include mq(sm) {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(1/2);
+    }
+
+    &--no-spam {
+      text-align: center;
+
+      @include mq(sm) {
+        margin-top: 2rem;
+      }
+
+      @include mq(md) {
+        text-align: right;
+      }
+
+      img {
+        vertical-align: top;
+      }
+    }
+  }
+
+  .input {
+    color: $color-base;
+  }
+}

@@ -1,0 +1,58 @@
+.page.page--promo
+  = render 'courses_shop/specialities/specialities'
+
+  .page-section
+    .container
+      .courses-items.courses-items_grid
+        -unless @current_shop.barbershop?
+          %ul.courses-items__list_grid
+            = render partial: 'courses_shop/courses/course_li_grid', collection:  @current_speciality.all_courses
+        -else
+          %ul.courses-items__list
+            = render partial: 'courses_shop/courses/course_li', collection:  @current_speciality.all_courses
+    %script{type: "application/ld+json"}
+      :erb
+        {
+        "@context": "http://schema.org",
+        "@type": "Course",
+        "name": "<%= @current_speciality.title %>",
+        "description": "<%= @current_speciality.announcement %>",
+        "offers": {
+          "@type": "AggregateOffer",
+          "lowPrice": "<%= @current_speciality.all_courses.minimum(:total_price) %>",
+          "highPrice": "<%= @current_speciality.all_courses.maximum(:total_price) %>",
+          "priceCurrency": "RUB",
+          "offerCount": "<%= @current_speciality.all_courses.count %>"
+         },
+        "provider": {
+          "@type": "Organization",
+          "name": "Автономная некоммерческая организация дополнительного профессионального образования
+           «Институт косметологии, эстетической медицины и визажного искусства — Дом Русской Косметики»",
+          "sameAs": "https://www.cosmeticru.com/"
+         }
+        }
+
+  .page-section
+    .container
+      = render 'courses_shop/specialities/announcement'
+
+- if @current_speciality.any_seos_present?
+  %section.page-section.page-section--arrow
+    .container
+      = raw @current_speciality.block1
+      .h2.page-section__title= @current_speciality.header2
+      %br
+      = raw @current_speciality.block2
+      %br
+
+  - unless current_shop.barbershop?
+    %section.page-section.page-section--gradient
+      .container
+        .h3.page-section__title Выберем курс прямо сейчас?
+        = form_for CourseConfigurator.new, url: courses_shop_configurator_url, as: 'c', method: :get, html: {class: 'course-select'} do |f|
+          .course-select__content
+            = render 'courses_shop/common/configurator', f: f
+  .current-course
+
+- content_for :js do
+  = mindbox(:category_view, speciality: @current_speciality)

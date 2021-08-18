@@ -1,0 +1,3 @@
+.advantages
+  %ul.advantages__list
+    = render partial: 'advantage', collection: @course.advantages.limit(3)

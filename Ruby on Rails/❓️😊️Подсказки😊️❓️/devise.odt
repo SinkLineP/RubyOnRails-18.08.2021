@@ -1,0 +1,68 @@
+﻿Depending on your application's configuration some manual setup may be required:
+
+  1. Ensure you have defined default url options in your environments files. Here
+     is an example of default_url_options appropriate for a development environment
+     in config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+     In production, :host should be set to the actual host of your application.
+
+     * Required for all applications. *
+
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
+
+       root to: "home#index"
+     
+     * Not required for API-only Applications *
+
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
+
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+     * Not required for API-only Applications *
+
+  4. You can copy Devise views (for customization) to your app by running:
+
+       rails g devise:views
+       
+     * Not required *
+
+
+В зависимости от конфигурации приложения может потребоваться ручная настройка:
+
+  1. Убедитесь, что в файлах окружения заданы параметры url по умолчанию. Здесь
+     пример параметра default_url_options, подходящего для среды разработки.
+     в config/environments/development.rb:
+
+       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+     В производстве, :host должен быть установлен на фактический host вашего приложения.
+
+     * Требуется для всех заявок. *
+
+  2. Убедитесь, что вы определили root_url в *something* в файле config/routes.rb.
+     Например:
+
+       root to: "home#index"
+     
+     * Не требуется для приложений только с API *
+
+  3. Убедитесь, что у вас есть флэш-сообщения в app/views/layouts/application.html.erb.
+     Например:
+
+       <p class="notice"><%= notice %></p>.
+       <p class="alert"><%= alert %></p>
+
+     * Не требуется для приложений только с API *
+
+  4. Вы можете скопировать представления устройства (для настройки) в ваше приложение, запустив его:
+
+       рельсы g devise:views
+       
+     * Не требуется *
+
+Переведено с помощью www.DeepL.com/Translator (бесплатная версия)

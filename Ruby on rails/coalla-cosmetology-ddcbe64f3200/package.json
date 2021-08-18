@@ -1,0 +1,33 @@
+{
+  "name": "cosmeticru",
+  "version": "1.0.0",
+  "description": "== README",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ve_coalla@bitbucket.org/coalla/cosmeticru.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/coalla/cosmeticru#readme",
+  "devDependencies": {
+    "fontfaceobserver": "^2.0.13",
+    "imagesloaded": "^4.1.1",
+    "jquery.maskedinput": "^1.4.1",
+    "magnific-popup": "^1.1.0",
+    "normalize.css": "^5.0.0",
+    "select2": "^4.0.3",
+    "slick-carousel": "^1.6.0",
+    "social-likes": "^3.1.1",
+    "svg4everybody": "^2.1.0"
+  },
+  "dependencies": {
+    "intl-tel-input": "^17.0.3"
+  }
+}

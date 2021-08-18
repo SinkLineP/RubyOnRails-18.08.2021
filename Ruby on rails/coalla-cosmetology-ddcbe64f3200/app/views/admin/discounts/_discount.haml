@@ -1,0 +1,17 @@
+.grid_i.grid_i__grid-3-6>
+  %a.modal{data: {url: edit_admin_discount_path(discount)}}= discount.title
+  - if discount.cant_destroy?
+    = link_to '#', class: 'js-discount-remove' do
+      .icon_del X
+  - else
+    = link_to admin_discount_path(discount), method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X
+.grid_i.grid_i__grid-1-6.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: discount.archival, disabled: true}
+
+.grid_i.grid_i__grid-1-6.tx-center>
+  = discount_type_text(discount)
+.grid_i.grid_i__grid-1-6.tx-right>
+  = discount.composite? ? '-' : discount.value.to_f

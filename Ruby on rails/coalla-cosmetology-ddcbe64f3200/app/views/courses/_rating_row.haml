@@ -1,0 +1,13 @@
+- row_classes = []
+- row_classes << 'table_row--highlighted' if (1..3).include?(subscription.rating_place)
+- row_classes << 'table_row--self' if subscription.student == current_user
+.table_row{class: row_classes.join(' ')}
+  .grid
+    .grid_i.grid_i__grid-1-12.tx-center>
+      %p= subscription.rating_place
+    .grid_i.grid_i__grid-8-12>
+      %p= subscription.student.full_name
+    .grid_i.grid_i__grid-1-12.tx-center>
+      %p= subscription.rating_score
+    .grid_i.grid_i__grid-2-12.tx-right>
+      %p= format_date_short(subscription.end_on)

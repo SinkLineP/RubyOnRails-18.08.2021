@@ -1,0 +1,4 @@
+.grid_i.grid_i__grid-3-6>
+  %a.modal{data: {url: edit_admin_education_level_path(education_level)}}= education_level.title
+  = link_to admin_education_level_path(education_level), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

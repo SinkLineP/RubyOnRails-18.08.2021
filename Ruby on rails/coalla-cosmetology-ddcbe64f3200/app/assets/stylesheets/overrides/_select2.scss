@@ -1,0 +1,126 @@
+.select2-container {
+  width: 165px !important;
+  &.logs {
+    width: 100% !important;
+  }
+}
+
+.form_el-select2 {
+  > .select2-container {
+    width: 100% !important;
+  }
+}
+
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__rendered {
+  font-size: 17px;
+}
+
+.select2-container--default .select2-selection--single {
+  border: 0;
+}
+
+.select2-results__option {
+  font-size: 17px !important;
+  line-height: 1.4 !important;
+}
+
+.select2-dropdown {
+  border: 0 !important;
+}
+
+.select2-container--default
+  .select2-results__option--highlighted[aria-selected] {
+  background: #b02048 !important;
+}
+
+.select2-container--default .select2-results > .select2-results__options {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem 0.5rem;
+}
+
+.select2-results__option {
+  position: relative;
+
+  &[aria-selected="true"] {
+    font-weight: 700;
+
+    &::before {
+      content: "";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      display: inline-block;
+      color: #808080;
+      height: 9px;
+      width: 10px;
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiP…AuMyw4LjMsMC42bDAsMEM2LjcsMi45LDUuNyw0LjQsNCw2LjciLz4NCjwvZz4NCjwvc3ZnPg0K);
+    }
+  }
+}
+
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__arrow
+  b {
+  border: 0;
+
+  &::after {
+    content: "\25BC";
+    position: absolute;
+    right: 0.2rem;
+    top: -1.8rem;
+    bottom: 0;
+    color: #333;
+    font-size: 1.6rem;
+  }
+}
+
+.select2-container--default.select2-container--open
+  .select2-selection--single
+  .select2-selection__arrow
+  b {
+  &::after {
+    top: 2rem;
+    transform: rotate(180deg);
+  }
+}
+
+.group-autocomplete {
+  .select2-container {
+    width: 265px !important;
+  }
+
+  .select2-container--default
+    .select2-selection--single
+    .select2-selection__rendered {
+    color: #fff;
+  }
+
+  .select2-container--default .select2-selection--single {
+    background: transparent;
+  }
+
+  .select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow
+    b::after {
+    right: -0.8rem;
+    top: -2.5rem;
+    color: #fff;
+  }
+
+  .select2-container--default.select2-container--open
+    .select2-selection--single
+    .select2-selection__arrow
+    b::after {
+    top: 3rem;
+    transform: rotate(180deg);
+  }
+}

@@ -1,0 +1,33 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@user.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %br
+    %p{style: 'margin: 0;text-align: left;'}= ty("Ваш доступ в систему дистанционного обучения Дома Русской Косметики к курсу: ")
+    %br
+    - @expiring_subs.each do |sub|
+      = sub.course.name
+      %br
+    %p{style: 'margin: 0;text-align: left;'}= ty("будет закрыт через две недели.")
+    %br
+    %p{style: 'margin: 0;text-align: left;'}= ty("Если вы хотели повторить какие либо-материалы - самое время это сделать.")
+    %br
+    %p{style: 'margin: 0;text-align: left;'}
+      Кстати, вы можете продлить доступ в систему еще на год, это стоит
+      %br
+      - @expiring_subs.each do |sub|
+        для курса #{sub.course.name}
+        - if sub.course.price.present?
+          всего #{number_to_currency(sub.course.price, unit: '', precision: 0)}.
+        - else
+          недорого.
+    %p{style: 'margin: 0;text-align: left;'}
+      - url = 'http://www.cosmeticru.com/faculty/distantsionnogo-obucheniya/'
+      Продлить доступ можно прямо сейчас, просто #{link_to 'перейдите по ссылке и оставьте заявку.', url}

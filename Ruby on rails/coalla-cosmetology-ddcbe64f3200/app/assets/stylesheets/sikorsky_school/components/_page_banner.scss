@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+.page-banner {
+    position: relative;
+    padding: map-get($mq-indents, "sm") 0;
+    background: {
+        attachment: fixed;
+        color: $color-dark;
+        image: asset_url("sikorsky_school/banner.jpg");
+        position: center top;
+        repeat: no-repeat;
+        size: cover;
+    }
+
+    @include mq(md) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: map-get($mq-indents, "md") 0;
+    }
+
+    @include mq(lg) {
+        padding: map-get($mq-indents, "lg") 0;
+    }
+
+    &::before {
+        @include size(100%);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background: {
+            attachment: fixed;
+            color: transparent;
+            image: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+            position: center top;
+            repeat: no-repeat;
+        }
+
+        content: "";
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        flex: 0 0 100%;
+
+        @include mq(lg) {
+            margin-top: -3rem;
+        }
+    }
+
+    &__header {
+        @include mq(md) {
+            @include grid(x, space-between, baseline);
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__title {
+        @include mq(md) {
+            @include grid-col;
+            @include col-size(1/2);
+
+            order: 1;
+        }
+    }
+
+    &__tel {
+        display: inline-block;
+        font-weight: $font-weight-solid;
+
+        @include mq(sm) {
+            margin-bottom: 1.5rem;
+        }
+
+        @include mq(md) {
+            @include grid-col;
+
+            order: 2;
+        }
+    }
+
+    &__box {
+        padding: 1.5rem 2rem 2rem;
+        background-color: rgba(#000, $opacity-base);
+
+        @include mq(md) {
+            @include col-size(2/3);
+
+            padding: 1.5rem 2.5rem 2rem;
+        }
+
+        @include mq(lg) {
+            @include col-size(1/2);
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+
+        &--discount {
+            @include mq(md) {
+                @include col-size(1/2);
+            }
+
+            @include mq(lg) {
+                @include col-size(1/3);
+            }
+        }
+    }
+
+    &__scroll {
+        position: absolute;
+        left: 50%;
+        bottom: 2rem;
+        z-index: 1;
+        transform: translateX(-50%);
+        display: inline-block;
+
+        @include mq(sm) {
+            display: none;
+        }
+    }
+}

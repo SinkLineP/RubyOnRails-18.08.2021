@@ -1,0 +1,95 @@
+.page.page--sections.page--content
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section.page-section--arrow
+    .container
+      %header.page__header
+        = link_to 'Все записи', all_articles_url(@article), class: 'button button--action-fill', 'data-size' => 'sm', 'data-type' => 'text'
+        %h1.page__title= @article.title
+        %p= format_date_full(@article.created_at)
+        %script{type: "application/ld+json"}
+          :erb
+            {
+            "@context": "http://schema.org",
+            "@type": "Article",
+            "name": "<%= @article.title %>",
+            "sameAs": "<%= current_article_url(@article) %>",
+            "description": "<%= @article.announce %>"
+            }
+
+      .content-announce
+        .content-announce__text
+          %p= @article.announce
+        - if @article.main_image?
+          .content-announce__photo
+            %figure
+              = image_tag @article.main_image.main, alt: ''
+              %figcaption= @article.main_image_title
+              %script{type: "application/ld+json"}
+                :erb
+                  {
+                  "@context": "http://schema.org",
+                  "@type": "ImageObject",
+                  "name": "<%= @article.main_image_title %>",
+                  "contentUrl": "<%= @article.main_image_url %>"
+                  }
+
+      .content-narrow
+        .content.js-content
+          = replace_video_links(@article.content)
+      =render partial: 'courses_shop/articles/button', locals: {article: @article}
+  %section.page-section.page-section--background
+    .container
+      .h4.page-section__title Понравилась статья?<br>Порекомендуйте ее друзьям!
+      = render 'layouts/courses_shop/social_likes', share_params: {title: @article.tag_title, image: image_url(@article.main_image_url), url: current_article_url(@article)}
+
+
+  - if @blogs.try(:any?)
+    %section.page-section
+      .container
+        .h3.page-section__title Другие статьи на тему
+        .media-cards
+          %ul.media-cards__list#blogs_list
+            = render @blogs
+        = pagination_complex(@blogs, '#blogs_list', false)
+
+  - if @special_offers.try(:any?)
+    %section.page-section.page-section--background.page-section--arrow
+      .container
+        .h3.page-section__title Курсы для вас
+        .courses-cards
+          .courses-cards__list#courses-cards-slider
+            = render partial: 'courses_shop/courses/course', collection: @special_offers
+
+
+  - unless current_user.try(:subscribed_on_blog?)
+    .page-section
+      .container
+        = render 'layouts/courses_shop/components/subscription'
+
+- if @blog_banner.present?
+  - content_for :js do
+    :javascript
+      $(function() {
+        var blogPopupIds = $.cookie('blog_popup_ids');
+        if (typeof blogPopupIds === 'undefined')
+                blogPopupIds = [];
+            else
+                blogPopupIds = blogPopupIds.split(',');
+        if(!blogPopupIds.includes("#{@blog_banner.id}")){
+          setTimeout(function() { popups.mfpOpenPopup('#popup-for-blog-post', '#') }, 10000)
+        }
+      });
+- content_for :js do
+  :javascript
+    $(function() {
+      var button_type = "#{@article.button_type}";
+      if (button_type == 'link') {
+        $('.link-type').show();
+      }
+      if (button_type == 'feedback') {
+        $('.feedback').show();
+      }
+      if (button_type == 'course') {
+        $('.course-record').show();
+      }
+    });

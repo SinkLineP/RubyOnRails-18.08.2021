@@ -1,0 +1,101 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'преподаватели' => admin_instructors_path, (@instructor.display_name.presence || 'добавить преподавателя') => '#'}
+      %h3.tx-center= (@instructor.display_name.presence || 'ДОБАВИТЬ ПРЕПОДАВАТЕЛЯ')
+      = form_for [:admin, @instructor], as: :user, html: {id: 'edit_user_form', class: 'form js-form form__admin'} do |f|
+
+        - if @alert
+          .alert= @alert
+        .admin_header
+        .admin_body
+          .admin_settings_change
+            .mt-1
+              = f.label :last_name, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :last_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :first_name, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :first_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :middle_name, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.text_field :middle_name, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :email, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.email_field :email, class: 'form_el_tag form_tx_tag'
+            .mt_1
+              = render 'admin/common/image_loader', f: f, field: :avatar, size: '110x110', uploader: UserAvatarUploader, version: :main, placeholder: 'placeholder3.png'
+            .mt-1
+              = f.label :description, class: 'form_el form_label'
+              .form_el.js-form_el.form_textarea
+                = f.text_area :description, class: 'form_el_tag form_textarea_tag'
+            .mt-1
+              = f.label :email_password, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.password_field :email_password, class: 'form_el_tag form_tx_tag'
+            .mt-1
+              = f.label :password, class: 'form_el form_label'
+              .form_el.js-form_el.form_tx
+                = f.password_field :password, class: 'form_el_tag form_tx_tag'
+              - unless @instructor.new_record?
+                %a.a_under.js-send-new-password{:href => '#'} Выслать новый
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Факультеты
+            .course_blocks.js-faculties-list
+              = render collection: @instructor.faculties, partial: 'faculty', locals: {f: f}
+            .mb-1.mb-2
+              %label.form_el.form_label Добавить факультет:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :faculty_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_faculties_path, template: '#faculty_template', append_to: '.js-faculties-list', variants: '#faculties_autocomplete_variants'}
+              .autocomplete_variants#faculties_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Курсы
+            .course_blocks.js-courses-list
+              = render collection: @instructor.linked_courses, partial: 'linked_course', locals: {f: f}
+            .mb-1
+              %label.form_el.form_label Добавить курс:
+              .form_el.js-form_el.form_tx
+                = text_field_tag :course_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_courses_path(shop: true), template: '#linked_course_template', append_to: '.js-courses-list', variants: '#courses_autocomplete_variants'}
+              .autocomplete_variants#courses_autocomplete_variants
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Группы
+            .mt-1
+              - if @instructor.groups.active.blank?
+                = render 'admin/instructors/group', group: nil
+              - else
+                = render partial: 'admin/instructors/group', collection: @instructor.groups.active.ordered_by_title
+              %a.course_block.course_block__add.js-add-group-btn{:href => '#'}
+                .course_block_inner
+                  .icon_add> +
+                  Добавить группу
+
+            .tx-s.tx-700.mb-1.mt-2 Занятия
+            .course_blocks.js-instructor-works
+              = f.fields_for :instructor_works do |instructor_work_fileds|
+                = render 'instructor_work_fields', f: instructor_work_fileds
+            = link_to_add_association f, :instructor_works, class: 'course_block course_block__add', data: {association_insertion_method: 'append', association_insertion_node: '.js-instructor-works'} do
+              .course_block_inner
+                .icon_add> +
+                Добавить занятие
+
+            .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Главная страница
+            = f.fields_for :instructor_home do |instructor_home_fields|
+              = render 'instructor_home_fields', f: instructor_home_fields
+          .grid
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag '', type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @instructor.errors
+
+- content_for :js do
+  = render 'admin/instructors/group_select_template'
+  = render 'admin/common/block_template', item_name: :faculty, object_name: :user
+  = render 'admin/common/block_template', item_name: :linked_course, object_name: :user
+  = javascript_include_tag 'admin/edit_instructor_form'

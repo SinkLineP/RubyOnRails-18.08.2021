@@ -1,0 +1,8 @@
+.page.page--promo
+  = render 'courses_shop/about/menu'
+
+  .tab{style: 'display: block;'}
+    .page-section
+      .container
+        %ul.images-gallery.js-images-gallery
+          = render partial: 'tour_image', collection: @tour_images, as: :tour_image

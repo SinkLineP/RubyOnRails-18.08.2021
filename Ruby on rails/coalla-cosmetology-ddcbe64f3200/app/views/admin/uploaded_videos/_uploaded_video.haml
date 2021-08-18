@@ -1,0 +1,8 @@
+.grid_i.grid_i__grid-7-9.table_ellipsis>
+  = link_to edit_admin_uploaded_video_path(uploaded_video) do
+    = uploaded_video.title
+.grid_i.grid_i__grid-2-9.tx-right>
+  = link_to admin_uploaded_video_path(uploaded_video), method: :delete, data: {confirm: 'Вы уверены?'}  do
+    .icon_del X
+  = link_to edit_admin_uploaded_video_path(uploaded_video) do
+    .icon_edit &#9998;

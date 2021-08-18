@@ -1,0 +1,20 @@
+.awards
+  .awards__list.js-images-gallery#awards-slider
+    - 1.upto(4) do |i|
+      .awards__item
+        .award-item
+          .award-item__inner
+            = link_to "/education_license/#{i}.jpg", target: '_blank', class: 'zoom-in' do
+              = image_tag transparent_pixel, data: { src: asset_url("/education_license/small_#{i}.jpg") },
+                                             alt: 'Образовательная лицензия',
+                                             class: 'lazyload'
+              = render 'layouts/courses_shop/image_zoom_in_icon'
+    - 1.upto(4) do |i|
+      .awards__item
+        .award-item
+          .award-item__inner
+            = link_to "/medical_license/#{i}.jpg", target: '_blank', class: 'zoom-in' do
+              = image_tag transparent_pixel, data: { src: asset_url("/medical_license/small_#{i}.jpg") },
+                                             alt: 'Медицинская лицензия, выданная правительством Москвы',
+                                             class: 'lazyload'
+              = render 'layouts/courses_shop/image_zoom_in_icon'

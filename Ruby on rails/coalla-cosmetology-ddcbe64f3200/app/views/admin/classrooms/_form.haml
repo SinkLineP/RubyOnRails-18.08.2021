@@ -1,0 +1,24 @@
+= form_for [:admin, @classroom], url: @classroom.new_record? ? url_for(action: :create) : url_for(action: :update, id: @classroom.id), as: :classroom, html: {id: 'classroom_form', class: 'form js-form', remote: true} do |f|
+  .alert{style: 'display: none;'}
+  .grid
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :title, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :title, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :capacity, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :capacity, class: 'form_el_tag form_tx_tag'
+    = f.fields_for :work_classrooms do |work_classroom_fields|
+      = render 'admin/classrooms/work_classroom_fields', f: work_classroom_fields
+    .grid_i.grid_i__grid-1-1.grid_i__prefix-1-10.js-classroom-add>
+      = link_to_add_association 'Добавить занятие', f, :work_classrooms, class: 'a_under tx-xs', data: {association_insertion_method: 'before', association_insertion_traversal: 'parent'}
+    .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+      .form_el.js-form_el.form_btn
+        %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+        %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+  .icon_del.arcticmodal-close X
+
+= javascript_include_tag 'admin/classroom_form'

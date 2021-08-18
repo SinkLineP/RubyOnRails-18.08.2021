@@ -1,0 +1,24 @@
+%meta{charset: 'utf-8'}
+%meta{http: {equiv: 'X-UA-Compatible'}, content: 'IE=edge'}
+%meta{name: 'viewport', content: 'width=1140'}
+%meta{name: 'format-detection', content: 'telephone=no'}
+%meta{name: 'description', content: ''}
+%meta{name: 'keywords', content: ''}
+%meta(name="robots" content="noyaca")
+%link{rel: 'image_src', href: root_url + 'assets/share.jpg'}
+= display_meta_tags
+%link{rel: 'author', href: 'humans.txt'}
+= favicon_link_tag 'favicon.ico'
+%link{rel: 'apple-touch-icon', href: 'apple-touch-icon.png'}
+
+= include_gon
+
+= stylesheet_link_tag    'application', media: 'all'
+= csrf_meta_tags
+- if Rails.env.production?
+  = render 'layouts/talk_me'
+  - if current_user
+    - data = { name: current_user.full_name, phone: current_user.phone }.to_json
+    :javascript
+      TalkMe("setClientInfo", #{data.html_safe});
+

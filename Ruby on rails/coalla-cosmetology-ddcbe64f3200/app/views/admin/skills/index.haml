@@ -1,0 +1,21 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'ключевые навыки' => admin_skills_path}
+      %h3.tx-center Ключевые навыки
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_skill_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить навык
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-5-6>
+                %p Ключевой навык
+          .grid.grid__collapse
+            = render @skills
+      = will_paginate @skills, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

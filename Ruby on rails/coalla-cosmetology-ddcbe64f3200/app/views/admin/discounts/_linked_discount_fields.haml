@@ -1,0 +1,7 @@
+.grid_i.grid_i__grid-7-10.grid_i__prefix-3-10.js-discounts
+  .grid
+    .grid_i.grid_i__grid-5-7>
+      .form_el.js-form_el
+        = f.select :discount_id, Discount.simple.ordered.map{|d| [d.title, d.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+    .grid_i.grid_i__grid-2-7>
+      = link_to_remove_association 'удалить', f, class: 'a_under tx-xs', wrapper_class: 'js-discounts'

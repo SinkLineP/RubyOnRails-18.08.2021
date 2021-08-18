@@ -1,0 +1,24 @@
+= render 'admin/breadcrumbs', crumbs: {'группы вакансий' => admin_vacancy_groups_path, (@vacancy_group.try(:name) || 'новая группа вакансий') => '#'}
+%h3.tx-center= @vacancy_group.try(:name) || 'НОВАЯ ГРУППА ВАКАНСИЙ'
+= form_for [:admin, @vacancy_group], url: @vacancy_group.new_record? ? admin_vacancy_groups_path : admin_vacancy_group_path(@vacancy_group), as: :vacancy_group, html: {id: 'vacancy_group_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :name, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      .mt-1.tx-s.tx-700.header_blocks_settings
+        Вакансии
+      .course_blocks.js-vacancies
+        = f.fields_for :vacancies do |vacancy|
+          = render 'vacancy_fields', f: vacancy
+      = link_to_add_association f, :vacancies, class: 'a_under', data: {association_insertion_method: 'append', association_insertion_node: '.js-vacancies'} do
+        .icon_add> +
+        Добавить
+      .grid.mt-2
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @vacancy_group.errors

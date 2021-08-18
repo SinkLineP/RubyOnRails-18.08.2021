@@ -1,0 +1,71 @@
+- course = group_subscription.course
+- group = group_subscription.group
+- order_contract = group_subscription.last_order.try(:order_contract)
+%li.personal-cabinet-courses__item
+  .personal-cabinet-course.js-personal-cabinet-course
+    .personal-cabinet-course__overview
+      .personal-cabinet-course__state(data-state="#{payment_state(group_subscription.paid_status)}")= payment_state_text(group_subscription.paid_status)
+
+      %ul.course-meta.personal-cabinet-course__meta
+        %li
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+          %span= education_period(group)
+        %li
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+          %span= education_schedule(group)
+        - unless group_subscription.paid_status == 'full_paid'
+          %li
+            %svg.icon(role='img' data-size='18')
+              %use(xlink:href='/assets/courses_shop/icons.svg#calculator')
+            %span= "#{format_money(group_subscription.price)} <span>полная стоимость</span>".html_safe
+
+      - if group_subscription.generated_documents.any? || order_contract.present?
+        %ul.personal-cabinet-course__documents
+          - group_subscription.generated_documents.each do |document|
+            %li
+              = link_to document.file_name, download_document_courses_shop_profile_courses_path(id: document.id)
+          - if order_contract.present?
+            %li
+              = link_to order_contract.file_name, download_admin_generated_document_url(order_contract)
+
+      - if group_subscription.order_contract.present?
+        %ul.personal-cabinet-course__documents
+          - group_subscription.generated_documents.each do |document|
+            %li
+              = link_to document.file_name, download_document_courses_shop_profile_courses_path(id: document.id)
+
+
+    %article.personal-cabinet-course__content
+      .personal-cabinet-course__info
+        .h4.personal-cabinet-course__title
+          = link_to course.name.html_safe, 'http://sdo.sikorsky.academy'
+
+        - if !group_subscription.pending_payment_at? && !group_subscription.paid?
+          .personal-cabinet-course__payment
+            - nearest_payment = group_subscription.pending_payments.first
+            - sum = nearest_payment ? (nearest_payment.amount - group_subscription.overpaid) : group_subscription.debts_sum
+            %p
+              %b= "#{format_money(sum)}/мес".html_safe
+            %p
+              - if nearest_payment
+                = nearest_payment.payed_on >= Date.current ? "Ближайший платеж #{nearest_payment.payed_on ? format_date_short(nearest_payment.payed_on) : '15 февраля'}." : "Вы пропустили платеж #{format_date_full(nearest_payment.payed_on)}"
+              = link_to 'Показать график', '#', class: 'js-personal-cabinet-course-payments-toggle'
+      - if !group_subscription.pending_payment_at? && !group_subscription.paid?
+        .personal-cabinet-course__action
+          = link_to 'Оплатить', '#', class: 'button button--base-fill js-personal-cabinet-course-payments-action', data: {size: 'sm', profile_course_order: true, url: new_courses_shop_order_path(order: {cart: false}, 'order[group_subscription_ids][]' => group_subscription.id) }
+
+    - if !group_subscription.pending_payment_at? && !group_subscription.paid?
+      %ul.personal-cabinet-course__payments.js-personal-cabinet-course-payments-list
+        = render partial: 'completed_payment', collection: group_subscription.completed_payments, as: :payment
+        = render partial: 'pending_payment', collection: group_subscription.pending_payments, as: :payment, locals: {group_subscription: group_subscription}
+        %li.is-muted(data-initial='is-muted')
+          %span
+            %span.checkbox-input(data-size='sm')
+              %input.js-personal-cabinet-course-payments-all#personal-cabinet-course-payments-checkbox-2(type='checkbox')
+              %span
+          %span <label for='personal-cabinet-course-payments-checkbox-2'><span class='is-lg'>Сумма п</span><span class='is-sm'>П</span>олностью</label>
+          %span= format_money(group_subscription.debts_sum)
+          %span
+            = link_to 'Оплатить', '#', class: 'button button--base-fill', data: {size: 'sm', profile_course_order: true, url: new_courses_shop_order_path(order: {cart: false, full: true}, 'order[group_subscription_ids][]' => group_subscription.id) }

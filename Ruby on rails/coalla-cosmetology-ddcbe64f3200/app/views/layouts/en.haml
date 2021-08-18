@@ -1,0 +1,11 @@
+!!!
+%html.no-js{lang: 'ru-RU'}
+  %head
+    %title= @en_page.title
+    = render 'layouts/head'
+
+  %body#page.page
+    = render 'layouts/en_header'
+    = yield
+    = render 'layouts/en_footer'
+    = yield :js

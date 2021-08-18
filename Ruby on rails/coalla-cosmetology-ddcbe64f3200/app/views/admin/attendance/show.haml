@@ -1,0 +1,41 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'посещаемость' => admin_attendance_path}
+      %h3.tx-center ПОСЕЩАЕМОСТЬ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            %a.a_under.modal{data: {url: new_admin_attendance_report_path}}>
+              %span> Отчёт
+        .admin_body.table.table_base-color
+          = search_form_for @q, url: admin_attendance_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+            .mt-1
+              .grid.grid__collapse
+                .grid_i.grid_i__grid-1-12>
+                  %label.form_el.form_label Дата:
+                .grid_i.grid_i__grid-2-6.tx-left>
+                  .form_el.js-form_el.filter_groups
+                    = f.text_field :regdatefull_eq, class: 'form_el_tag form_tx_tag js-datepicker js-submit-form filter_datepicker', value: format_date(@q.regdatefull_eq)
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-3-12>
+                %p Дата и время
+              .grid_i.grid_i__grid-5-12.tx-center>
+                %p Пользователь
+              .grid_i.grid_i__grid-4-12.tx-center>
+                %p Аудитория
+          .grid.grid__collapse
+            = render collection: @events, partial: 'event'
+      = will_paginate @events, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0
+
+- content_for :js do
+  :javascript
+    $(function() {
+      initDatepicker();
+      $('.js-submit-form').change(function() {
+        $(this).closest('form')[0].submit();
+      });
+    });

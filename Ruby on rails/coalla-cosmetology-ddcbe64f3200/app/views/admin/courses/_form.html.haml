@@ -1,0 +1,188 @@
+= render 'admin/breadcrumbs', crumbs: {'курсы' => admin_courses_path, (@course.name.presence || 'новый курс') => '#'}
+%h3.tx-center= @course.name.presence || 'НОВЫЙ КУРС'
+- if @course.persisted?
+  .tx-center
+    = link_to 'Контент', edit_admin_course_content_path(@course), class: 'a_under'
+= form_for [:admin, @course], html: {id: 'course_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+    %label.form_el.form_label Заголовок:
+    .form_el.js-form_el.form_tx
+      = f.text_field :name, class: 'form_el_tag form_tx_tag'
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Курс включен
+  .admin_body
+    .mt-1
+      %label.form_el.form_label Расписание:
+      .form_el.js-form_el.form_tx
+        = f.text_field :timetable, class: 'form_el_tag form_tx_tag'
+    .mt-1
+      %label.form_el.form_label Краткое обозначение:
+      .form_el.js-form_el.form_tx
+        = f.text_field :short_name, class: 'form_el_tag form_tx_tag'
+    .mt-1
+      %label.form_el.form_label Академические часы:
+      .form_el.js-form_el.form_tx
+        = f.text_field :hours, class: 'form_el_tag form_tx_tag'
+    .mt-1
+      %label.form_el.form_label Факультет:
+      .form_el.js-form_el
+        = f.select :faculty_id, Faculty.ordered.map{|f| [f.title, f.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+    .mt-1
+      %label.form_el.form_label Назначение:
+      .form_el.js-form_el
+        = f.select :appointment, Course.appointment.options, {}, class: 'form_el_tag form_select_tag selectordie'
+    .mt-2
+      %label.form_el.form_label Стоимость продления обучения, руб.:
+      .form_el.js-form_el.form_tx
+        = f.text_field :price, class: 'form_el_tag form_tx_tag'
+    .mt-2
+      %label.form_el.form_label Стоимость дистанционной теории, руб.:
+      .form_el.js-form_el.form_tx
+        = f.text_field :remote_price, class: 'form_el_tag form_tx_tag'
+    .mt-2
+      %label.form_el.form_label Себестоимость, руб.:
+      .form_el.js-form_el.form_tx
+        = f.text_field :cost, class: 'form_el_tag form_tx_tag'
+    .mt-2
+      %label.form_el.form_label Внешний url:
+      .form_el.js-form_el.form_tx
+        = f.text_field :external_url, class: 'form_el_tag form_tx_tag'
+    .mt-2
+      %label.form_el.form_label Заголовок диплома:
+      .form_el.js-form_el.form_tx
+        = f.text_field :diplom_title, class: 'form_el_tag form_tx_tag'
+    .mt-2
+      .form_el.js-form_el.form_file{data: {placeholder: @course.syllabus.present? ? @course.syllabus.file.filename : 'Редактировать учебный план курса'}}
+        %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700
+        = f.file_field :syllabus, class: 'form_el_tag form_file_tag'
+        = f.hidden_field :syllabus_cache
+    .mt-1
+      %label.form_el.form_label Тип уведомления:
+      .form_el.js-form_el
+        = f.select :status_notification_name, Course.status_notification_name.options, {}, class: 'form_el_tag form_select_tag selectordie'
+    .mt-1
+      %label.form_el.form_label Модуль:
+      .form_el.js-form_el
+        = f.select :additional_amo_module_id, AmoModule.ordered.map{|f| [f.title, f.id]}, {include_blank: 'не выбран'}, class: 'form_el_tag form_select_tag selectordie js-additional-amo-module', data: {size: 5}
+    .mt-2
+      %label.form_el.form_label С модулем AMO:
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :with_amo_module, class: 'form_el_tag form_checkbox_tag', disabled: @course.additional_amo_module.present?
+    .mt-2
+      %label.form_el.form_label Уведомлять об окончании свободных мест:
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :place_over_notification, class: 'form_el_tag form_checkbox_tag'
+    .mt-2
+      %label.form_el.form_label Требуются документы студента (паспорт и пр.):
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :student_docs_required, class: 'form_el_tag form_checkbox_tag'
+    .mt-1
+      = f.label 'Информация для студента', class: 'form_el form_label'
+      .form_el.js-form_el.form_file{data: {placeholder: @course.notification_audio? ? @course.notification_audio.file.filename : 'Загрузить'}}
+        %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+        = f.file_field :notification_audio, class: 'form_el_tag form_file_tag'
+    .mt-1
+      = f.label 'Голосовое меню', class: 'form_el form_label'
+      .form_el.js-form_el.form_file{data: {placeholder: @course.ivr_audio? ? @course.ivr_audio.file.filename : 'Загрузить'}}
+        %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+        = f.file_field :ivr_audio, class: 'form_el_tag form_file_tag'
+
+    .tx-s.tx-700 Блоки
+    .course_blocks.js-blocks-list
+      = render collection: @course.blocks, partial: 'block', locals: {f: f}
+      %a.course_block.course_block__add{href: new_admin_block_path(course_id: @course.id)}>
+        .course_block_inner
+          .icon_add> +
+          Добавить блок
+    %div
+      %label.form_el.form_label Поиск:
+      .form_el.js-form_el.form_tx
+        = text_field_tag :block_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks'
+    .autocomplete_variants.js-blocks-variants
+
+    .mt-2.mb-2
+      .tx-s.tx-700 Выпускные документы
+      .course_blocks
+        - @course.course_documents.each_with_index do |course_document, idx|
+          .course_block{data: {course_document: course_document.id || idx}, class: (idx == 0 && 'course_block__current')}>
+            = render 'course_document', course_document: course_document, idx: idx
+        %a.course_block.course_block__add.js-add-course-document>
+          .course_block_inner
+            .icon_add> +
+            Добавить документ
+        = f.fields_for :course_documents, include_id: false do |course_document_fields|
+          = render 'course_document_fields', f: course_document_fields
+
+    .mt-2.mb-2
+      .tx-s.tx-700 Занятия
+      .course_blocks.js-course-works
+        - @course.course_works.each_with_index do |course_work, idx|
+          .course_block{data: {course_work: course_work.id || idx}, class: (idx == 0 && 'course_block__current')}>
+            = render 'course_work', course_work: course_work, idx: idx
+        %a.course_block.course_block__add.js-add-course-work>
+          .course_block_inner
+            .icon_add> +
+            Добавить занятие
+        = f.fields_for :course_works, include_id: false do |course_work_fields|
+          = render 'course_work_fields', f: course_work_fields
+
+    - if @course.active_students.present?
+      .mt-2
+        .tx-s.tx-700 Студенты
+        - @course.active_students.each do |group, students|
+          .tx-s= link_to group.title, edit_admin_group_path(group)
+          %ul.students_list
+            = render collection: students, partial: 'admin/courses/student'
+
+    - if @course.graduates.present?
+      .tx-s.tx-700 Выпускники
+      - @course.graduates.each do |group, students|
+        .tx-s= group.title
+        %ul.students_list
+          = render collection: students, partial: 'admin/courses/student'
+    
+    .mt-2.mb-2
+      .tx-s.tx-700 SEO блоки
+      %ul
+        = f.fields_for :course_seos do |seo_form|
+          %li
+            = seo_form.text_field :place, readonly: true
+            %br
+            = seo_form.text_area :content, placeholder: "SEO content here", style: "width: 75rem; border: 1px solid black; #{seo_form.object.place == "header2" ? "height: 4rem;" : "height: 24rem;"}"
+
+    .grid
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner ПРЕВЬЮ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'preview', formtarget: '_blank'
+
+  - content_for :js do
+    %script#course_document_template{type: 'text/template'}
+      = f.fields_for :course_documents, CourseDocument.new, child_index: '__id__', include_id: false do |course_document_fields|
+        = render 'course_document_fields', f: course_document_fields
+    %script#course_document_thumb_template{type: 'text/template'}
+      .course_block>
+        .icon_del.js-remove-course-document X
+        .course_block_inner
+    %script#course_work_template{type: 'text/template'}
+      = f.fields_for :course_works, CourseWork.new, child_index: '__id__', include_id: false do |course_work_fields|
+        = render 'course_work_fields', f: course_work_fields
+    %script#course_work_thumb_template{type: 'text/template'}
+      .course_block>
+        .icon_del.js-remove-course-work X
+        .course_block_inner
+    %script#block_template{type: 'text/template'}
+      .course_block>
+        .icon_del.js-remove-block X
+        .course_block_inner
+          = link_to '', 'data', class: 'a_under', data: {edit_block_link: true}
+          = hidden_field_tag 'course[block_ids][]', nil, data: {block_id: true}
+ 
+= render 'admin/errors', errors: @course.errors

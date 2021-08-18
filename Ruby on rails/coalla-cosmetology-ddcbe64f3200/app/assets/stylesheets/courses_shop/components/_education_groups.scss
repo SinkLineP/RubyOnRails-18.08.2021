@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+// Education groups
+.education-groups {
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+  }
+
+  // Group
+  &__group {
+    position: relative;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 4);
+    }
+
+    &::before,
+    &::after {
+      @include user-select(none);
+      position: absolute;
+      background: $color-ui;
+      content: "";
+    }
+
+    @include media($breakpoint-sm) {
+      &:first-child::before,
+      &::after {
+        right: 3rem;
+        left: 3rem;
+        height: 1px;
+      }
+
+      &::after {
+        bottom: 0;
+      }
+
+      &:first-child::before {
+        top: 0;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      &:not(:last-child)::after {
+        top: 3rem;
+        right: 0;
+        bottom: 3rem;
+        width: 1px;
+      }
+    }
+  }
+}
+
+// Education group
+.education-group {
+  // Title
+  &__title {
+    @include media($breakpoint-sm) {
+      @include display(flex);
+      @include align-items(center);
+      @include user-select(none);
+      padding: 3rem 0;
+      cursor: pointer;
+    }
+
+    @include media($breakpoint-lg) {
+      margin-bottom: 2.5rem;
+    }
+
+    .hr {
+      @include media($breakpoint-sm) {
+        display: none !important;
+      }
+    }
+  }
+
+  // Icon
+  &__icon {
+    @include media($breakpoint-sm) {
+      margin-right: $content-indent-sm;
+
+      &.icon { // Increasing specifity
+        @include size(2.2rem);
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  // Name
+  &__name {
+    @include h5;
+
+    @include media($breakpoint-sm) {
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    @include media($breakpoint-lg) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  // Toggle
+  &__toggle {
+    fill: $color-brand;
+
+    @include media($breakpoint-lg) {
+      display: none !important;
+    }
+  }
+
+  // Description
+  &__description {
+    padding: {
+      right: 3rem;
+      left: 3rem;
+    }
+
+    @include media($breakpoint-sm) {
+      display: none;
+      padding-bottom: 3rem;
+    }
+
+    @include media($breakpoint-lg) {
+      display: block !important; // Rewrite inline style from .slideToggle()
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    a::after {
+      @include text-sm;
+      display: block;
+      color: $color-base;
+      content: attr(data-caption);
+    }
+  }
+}
+
+// Education group select
+.education-group-select {
+  // Hr
+  .hr {
+    display: block;
+    margin: 0 auto 2.5rem;
+    fill: $color-brand;
+  }
+
+  // List
+  div.dl {
+    text-align: center;
+  }
+
+  div.dt {
+    @include text-lg;
+    margin-bottom: 2rem;
+    color: $color-base-light;
+    text-align: center;
+
+    @include media($breakpoint-sm) {
+      display: none !important;
+    }
+  }
+
+  div.dd {
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-xl) {
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+    }
+
+    > .button {
+      @include media($breakpoint-lg) {
+        white-space: nowrap;
+      }
+
+      &:not(:last-of-type) {
+        @include media($breakpoint-sm) {
+          margin-bottom: 1rem;
+        }
+
+        @include media($breakpoint-md) {
+          margin-bottom: 1rem;
+        }
+
+        @include media($breakpoint-xl) {
+          margin-bottom: 0;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

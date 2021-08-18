@@ -1,0 +1,52 @@
+= render 'admin/breadcrumbs', crumbs: {'баннеры для блога' => admin_square_banners_path, (@square_banner.desktop_text.presence || 'новый баннер для блога') => '#'}
+%h3.tx-center= @square_banner.desktop_text.presence || 'НОВЫЙ БАННЕР ДЛЯ БЛОГА'
+= form_for [:admin, @square_banner], html: {id: 'square_banner_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Активен
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Текст баннера:
+        .form_el.js-form_el.form_textarea.schedule_textarea.js-description-container{data: {valid: ''}}
+          = f.text_area :desktop_text, class: 'form_el_tag form_textarea_tag'
+      .mt-1
+        %label.form_el.form_label Текст баннера для мобилы:
+        .form_el.js-form_el.form_textarea.schedule_textarea.js-description-container{data: {valid: ''}}
+          = f.text_area :mobile_text, class: 'form_el_tag form_textarea_tag'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :image, size: '630x630', uploader: SquareBannerImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :mobile_image, size: '240x420', uploader: SquareBannerMobileImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt-2
+        %label.form_el.form_label Название кнопки:
+        .form_el.js-form_el.form_tx
+          = f.text_field :btn_title, class: 'form_el_tag form_tx_tag'
+      .mt-2
+        %label.form_el.form_label Ссылка:
+        .form_el.js-form_el.form_tx
+          = f.text_field :link , class: 'form_el_tag form_tx_tag'
+      - if @square_banner.persisted?
+        .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Статьи блога
+        .course_blocks.js-articles-list
+          = render collection: @square_banner.articles, partial: 'admin/square_banners/article', locals: {f: f}
+        .mb-1.mb-2
+          %label.form_el.form_label Добавить статью:
+          .form_el.js-form_el.form_tx
+            = text_field_tag :article_title, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: blog_list_admin_articles_path, template: '#article_template', append_to: '.js-articles-list', variants: '#articles_autocomplete_variants'}
+          .autocomplete_variants#articles_autocomplete_variants
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @square_banner.errors
+
+- content_for :js do
+  = render 'admin/common/block_template', item_name: :article, object_name: :square_banner
+  = javascript_include_tag 'admin/edit_square_banner_form'
+

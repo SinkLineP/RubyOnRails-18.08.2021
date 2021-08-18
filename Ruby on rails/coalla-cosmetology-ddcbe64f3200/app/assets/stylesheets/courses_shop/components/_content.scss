@@ -1,0 +1,406 @@
+@charset "UTF-8";
+
+// Content announce
+.content-announce {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 3.75rem;
+  }
+
+  &--itec-diploma {
+    @include media($breakpoint-lg) {
+      margin-bottom: -3rem;
+    }
+
+    .content-announce__photo {
+      @include media($breakpoint-lg) {
+        @include grid-columns(2, 3);
+      }
+    }
+  }
+
+  // Person
+  &__person {
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  // Text
+  &__text {
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 3.5rem;
+    }
+
+    > p {
+      @include text-lg;
+      color: $color-base-light;
+
+      &:not(:last-child) {
+        margin-bottom: 2.5rem;
+      }
+
+      > b {
+        color: $color-base;
+
+        > a {
+          @include hover(color, $color-brand);
+          color: $color-base;
+        }
+      }
+    }
+  }
+
+  // Photo
+  &__photo {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 1);
+    }
+
+    > figure {
+      > img {
+        @include fill-parent;
+        vertical-align: top;
+      }
+
+      > figcaption {
+        @include text-sm;
+        margin-top: 1rem;
+        color: $color-base-lighter;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// Content narrow
+.content-narrow {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  > .content {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+}
+
+// Content
+.content {
+  // Blockquote
+  > blockquote {
+    @include grid;
+    @include justify-content(center);
+    @include h5;
+    position: relative;
+    text-align: center;
+
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+
+    > p {
+      @include grid-columns(3, 4);
+    }
+
+    > .icon {
+      @include transform(translateY(-50%));
+      position: absolute;
+      top: 50%;
+
+      &:first-of-type {
+        left: $content-indent-sm / 2;
+
+        @include media($breakpoint-lg) {
+          left: $content-indent-lg / 2;
+        }
+
+        @include media($breakpoint-xxl) {
+          left: $content-indent-xl / 2;
+        }
+      }
+
+      &:last-of-type {
+        right: $content-indent-sm / 2;
+
+        @include media($breakpoint-lg) {
+          right: $content-indent-lg / 2;
+        }
+
+        @include media($breakpoint-xxl) {
+          right: $content-indent-xl / 2;
+        }
+      }
+    }
+  }
+
+  // Figure
+  > figure {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+
+    > img {
+      vertical-align: top;
+    }
+
+    > figcaption {
+      @include text-sm;
+      margin-top: 1rem;
+      color: $color-base-lighter;
+      text-align: center;
+    }
+  }
+
+  // Headings
+  > h3, > h3,
+  > h4, > h4,
+  > h5, > h5,
+  > h6, > h6 {
+    text-align: center;
+  }
+
+  > h3, > h3,
+  > h4, > h4 {
+    &:not(:first-child) {
+      margin-top: 6rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  // Lists
+  > ol,
+  > ul {
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  > ol {
+    @include nested-ordered-lists;
+
+    ol {
+      margin-top: 1rem;
+    }
+
+    li {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    > li {
+      padding-left: 3rem;
+
+      > ol {
+        > li {
+          padding-left: 4rem;
+
+          > ol {
+            > li {
+              padding-left: 5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > ul {
+    list-style: square outside;
+
+    ul {
+      list-style: inherit;
+      margin-top: 1rem;
+      list-style-type: square;
+    }
+
+    li {
+      margin-left: 1.75rem;
+      padding-left: 1.2rem;
+    }
+  }
+
+  // Paragraph
+  > p {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  // Table
+  table {
+    width: 100%;
+
+    &:not(:only-child) {
+      &:not(:first-child) {
+        margin-top: 4rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 4rem;
+      }
+    }
+
+    tr {
+      &:first-child td {
+        padding-top: 3rem;
+      }
+
+      &:not(:first-child) td {
+        padding-top: 1.5rem;
+      }
+
+      &:not(:last-child) td {
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    th,
+    td {
+      vertical-align: top;
+
+      &:not(:first-child) {
+        padding-left: 2rem;
+      }
+
+      &:not(:last-child) {
+        padding-right: 2rem;
+      }
+    }
+
+    th {
+      padding: {
+        top: 3rem;
+        bottom: 3rem;
+      }
+      border-top: 1px solid $color-base;
+      border-bottom: 1px solid $color-base;
+      font-weight: 400;
+      text-align: left;
+    }
+  }
+
+  &__table {
+    overflow-x: auto;
+
+    @include media($breakpoint-lg) {
+      margin: {
+        right: -#{100% / 8 * 2.1}; // Magic numbers
+        left:  -#{100% / 8 * 2.1}; // Magic numbers
+      }
+    }
+
+    @include media($breakpoint-xxl) {
+      margin: {
+        right: -#{100% / 8 * 2.07}; // Magic numbers
+        left:  -#{100% / 8 * 2.07}; // Magic numbers
+      }
+    }
+
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  // Video
+  &__video {
+    position: relative;
+    padding-bottom: 56.25%; // 16:9
+    height: 0;
+
+    &:not(:first-child) {
+      margin-top: 4rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 4rem;
+    }
+
+    > iframe {
+      @include size(100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    > .jwplayer {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+  }
+
+  // Sizes
+  &[data-size="sm"] {
+    @include text-sm;
+
+    > ul {
+      &:not(:first-child) {
+        margin-top: 2rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    > p + ul {
+      margin-top: -1rem !important;
+    }
+  }
+
+  &[data-size="lg"] {
+    @include text-lg;
+    color: $color-base-light;
+  }
+}

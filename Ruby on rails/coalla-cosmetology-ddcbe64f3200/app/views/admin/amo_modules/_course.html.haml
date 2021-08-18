@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-course X
+  .course_block_inner
+    = link_to course.name, edit_admin_course_path(course), class: 'a_under'
+    = hidden_field_tag 'amo_module[course_ids][]', course.id, data: {course_id: true}

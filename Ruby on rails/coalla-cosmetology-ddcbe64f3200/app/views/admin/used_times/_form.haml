@@ -1,0 +1,21 @@
+= form_for [:admin, @used_time], url: @used_time.new_record? ? url_for(action: :create) : url_for(action: :update, id: @used_time.id), as: :used_time, html: {id: 'used_time_form', class: 'form js-form', remote: true} do |f|
+  .alert{style: 'display: none;'}
+  .grid
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :date, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :date, class: 'form_el_tag form_tx_tag js-datepicker js-used-date', value: format_date(@used_time.date)
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :time, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      - select_options = time_select_options(@used_time)
+      .form_el.js-form_el.form_tx
+        = f.select :time, select_options, {selected: @used_time.formatted_time, include_blank: @used_time.new_record? && 'Выберите дату'}, class: 'form_el_tag form_select_tag selectordie js-used-time'
+    .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+      .form_el.js-form_el.form_btn
+        %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+        %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+  .icon_del.arcticmodal-close X
+
+= javascript_include_tag 'admin/used_time_form'

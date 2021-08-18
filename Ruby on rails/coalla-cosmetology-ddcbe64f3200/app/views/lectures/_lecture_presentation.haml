@@ -1,0 +1,13 @@
+- if @lecture.pdf_images.present?
+  .grid_i.grid_i__grid-6-7>
+    .h4 ЛЕКЦИЯ
+  .grid_i.grid_i__grid-1-1>
+    .fotorama{data: {allowfullscreen: 'native', arrows: 'always', nav: 'false'}}
+      - @lecture.pdf_images.each do |pdf_image|
+        = link_to nil, pdf_image.image_url(:main)
+    %p.tx-center.mt-1 Страница 1 из #{@lecture.pdf_images.count}
+- elsif @lecture.lecture_link.present?
+  .grid_i.grid_i__grid-6-7>
+    .h4 ЛЕКЦИЯ
+  .grid_i.grid_i__grid-1-1>
+    = @lecture.lecture_link.html_safe

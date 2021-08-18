@@ -1,0 +1,12 @@
+%li.lections-li{class: lecture_class(lecture, @course)}
+  .tooltip= lecture_tooltip(lecture, @course) || 'Лекция пройдена'
+  - if lecture == @lecture || (current_user.try(:lecture_status, lecture, @course) == :unavailable && !current_user.try(:demo?))
+    %span= lecture.description
+  - else
+    = link_to lecture.description, course_lecture_path(@course, lecture, preview: params[:preview])
+  - if lecture.read_before_practice?
+    .repeat-icon
+      .tooltip(data-position='top') Нужно прочитать к практике
+  - if lecture.video?
+    .video-icon
+      .tooltip(data-position='right') Есть видео материаллы

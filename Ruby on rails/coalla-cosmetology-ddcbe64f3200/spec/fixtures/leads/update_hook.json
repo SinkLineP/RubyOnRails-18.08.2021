@@ -1,0 +1,90 @@
+{
+  "leads": {
+    "update": {
+      "0": {
+        "id": "44457232",
+        "name": "МлМС-ОД-2",
+        "status_id": "142",
+        "old_status_id": "11990269",
+        "price": "",
+        "responsible_user_id": "367294",
+        "last_modified": "1510867065",
+        "modified_user_id": "367294",
+        "created_user_id": "367294",
+        "date_create": "1510867063",
+        "pipeline_id": "279892",
+        "account_id": "8391781",
+        "tags": {
+          "0": {
+            "id": "1",
+            "name": "ИК"
+          }
+        },
+        "custom_fields": {
+          "0": {
+            "id": "1760643",
+            "name": "education_form_id",
+            "values": {
+              "0": {
+                "value": "2"
+              }
+            }
+          },
+          "1": {
+            "id": "1760641",
+            "name": "group_id",
+            "values": {
+              "0": {
+                "value": "553"
+              }
+            }
+          },
+          "2": {
+            "id": "1779746",
+            "name": "roistat",
+            "values": {
+              "0": {
+                "value": "29624"
+              }
+            }
+          },
+          "3": {
+            "id": "1760645",
+            "name": "group_price_id",
+            "values": {
+              "0": {
+                "value": "7"
+              }
+            }
+          },
+          "4": {
+            "id": "1760647",
+            "name": "discount_id",
+            "values": {
+              "0": {
+                "value": "5"
+              }
+            }
+          },
+          "5": {
+            "id": "1781856",
+            "name": "amo_module_id",
+            "values": {
+              "0": {
+                "value": 1
+              }
+            }
+          },
+          "6": {
+            "id": "1802266",
+            "name": "Тип сделки",
+            "values": {
+              "value": "Первичная",
+              "enum": null
+            }
+          }
+        }
+      }
+    }
+  }
+}

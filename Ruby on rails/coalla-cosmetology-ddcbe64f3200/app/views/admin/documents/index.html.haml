@@ -1,0 +1,27 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'документы' => '#'}
+      %h3.tx-center ДОКУМЕНТЫ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_document_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить документ
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-2-9>
+                %p Раздел
+              .grid_i.grid_i__grid-5-9>
+                %p Файл
+              .grid_i.grid_i__grid-1-9>
+                %p Дата
+              .grid_i.grid_i__grid-1-9.tx-center>
+                %p Действия
+          .grid.grid__collapse
+            = render collection: @documents, partial: 'document'
+      = will_paginate @documents, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

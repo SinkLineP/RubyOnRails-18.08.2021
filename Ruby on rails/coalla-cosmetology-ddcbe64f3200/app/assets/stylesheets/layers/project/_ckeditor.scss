@@ -1,0 +1,97 @@
+.cke_chrome {
+  margin-bottom: 2rem !important;
+  border: 0 !important;
+  background: #fff !important;
+}
+
+.cke_top {
+  border-top: 1px solid $border-color !important;
+  border-bottom: 1px solid $border-color !important;
+  padding: 5px 0 !important;
+  background: #fff !important;
+}
+
+.cke_bottom {
+  padding: 0 2rem 2rem 2rem !important;
+}
+
+.cke_toolgroup {
+  padding: 0 !important;
+  border: 1px solid $border-color !important;
+}
+
+.cke_toolbar_break {display: none !important;}
+
+.cke_button {
+  padding: 4px 5px !important;
+}
+
+.cke_button_disabled:active,
+.cke_button_disabled:focus,
+.cke_button_disabled:hover {
+  background-color: #fff !important;
+}
+
+.cke_button_off:active,
+.cke_button_off:focus,
+.cke_button_off:hover {
+  background-color: $muted-color !important;
+}
+
+.cke_button_on { background-color: $content-link-color-hover !important; }
+
+.cke_button_label {color: $major-color !important;}
+
+.cke_combo_text {color: $major-color !important;}
+
+.cke_contents {border: 0 !important;}
+
+.cke_path_item,
+.cke_path_item,
+.cke_path_item {
+  color: $major-color !important;
+}
+
+.cke_bottom {background: #fff !important;}
+
+.cke_path_item:active,
+.cke_path_item:focus,
+.cke_path_item:hover {
+  background-color: $border-color !important;
+  color: $base-color !important;
+}
+
+// .. Dialog
+
+.cke_dialog_body {border: 1px solid $border-color !important;}
+.cke_dialog_title,
+.cke_dialog_body,
+.cke_dialog_footer {
+  background-color: #f5f8fa !important;
+}
+
+.cke_dialog_title {border-bottom: 0 !important;}
+
+.cke_dialog_contents {border-top: 1px solid $border-color !important;}
+
+.cke_dialog_page_contents .cke_dialog_ui_button {
+  border: 1px solid $major-color !important;
+  background-color: $major-color !important;
+  color: #fff !important;
+}
+
+.cke_dialog_ui_button_cancel {
+  border: 1px solid $border-color !important;
+  background-color: #fff !important;
+  color: $base-color !important;
+}
+
+.cke_dialog_ui_button_ok {
+  border: 1px solid $major-color !important;
+  background-color: $major-color !important;
+  color: #fff !important;
+}
+
+.cke_dialog_ui_input_select {line-height: 20px !important;}
+
+.cke_pasteframe {border: 1px solid $border-color !important;}

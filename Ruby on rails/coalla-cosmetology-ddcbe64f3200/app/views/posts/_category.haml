@@ -1,0 +1,6 @@
+- active = (category == @category)
+%li.tags-li{class: active && 'active'}
+ - if active
+  %span= category.title
+ - else
+  = link_to category.title, blog_category_path(category)

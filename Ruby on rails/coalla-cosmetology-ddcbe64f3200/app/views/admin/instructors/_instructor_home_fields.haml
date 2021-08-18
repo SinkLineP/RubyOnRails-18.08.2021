@@ -1,0 +1,9 @@
+.mt-1
+  = f.label 'Отображать на главной', class: 'form_el form_label'
+  .form_el.js-form_el.form_checkbox
+    = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+.mt-1
+  = f.label "Описание", class: 'form_el form_label'
+  .form_el.js-form_el.form_textarea.home_slider.home_slider
+    = f.text_area :description, class: 'form_el_tag form_textarea_tag', id: 'home_teacher_description', rows: 5
+    = f.hidden_field :rows_count, id: 'home_desctiprion_length'

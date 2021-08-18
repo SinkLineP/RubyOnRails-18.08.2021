@@ -1,0 +1,17 @@
+.page.page--promo
+  = render 'courses_shop/about/menu'
+
+  .tab{style: 'display: block;'}
+    .page-section
+      .container
+        .content-announce.content-announce--itec-diploma
+          - if @html.description.present?
+            .content-announce__text
+              = simple_format(ty(@html.description)).html_safe
+          .content-announce__photo
+            %figure
+              = image_tag image_url('courses_shop/itec_dimloma.jpg'), alt: 'ITEC'
+        - if @html.content.present?
+          .content-narrow
+            .content.js-content
+              = replace_video_links(@html.content)

@@ -1,0 +1,13 @@
+%header#header.header-top{role: 'banner'}
+  .ctn.header_inner
+    = link_to '', root_path, class: 'header_logo'
+    %nav.header_nav
+      = link_to 'ПРОФИЛЬ', edit_profile_path, class: "nav-a #{'active' if current_page?(edit_profile_path)}"
+      - if current_user.can_sign_in?
+        = link_to 'ДОСТИЖЕНИЯ', progress_path, class: "nav-a #{'active' if current_page?(progress_path)}"
+      = link_to 'ВАКАНСИИ', vacancies_path, class: "nav-a #{'active' if current_page?(vacancies_path)}"
+      = link_to 'БИБЛИОТЕКА', books_path, class: "nav-a #{'active' if controller_name == 'books'}"
+      = link_to 'ФИДБЭК', feedback_path, class: "nav-a #{'active' if controller_name == 'feedback_questions'}"
+      = link_to 'БЛОГ', blog_path, class: "nav-a #{'active' if controller_name == 'posts'}"
+      = link_to 'ДИПЛОМЫ', document_verification_path, class: "nav-a #{'active' if controller_name == 'document_verifications'}"
+      = link_to 'ВЫХОД', destroy_user_session_path, class: 'nav-a js-sign-out', method: :delete

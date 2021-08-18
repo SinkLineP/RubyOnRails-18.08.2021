@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MyBlogs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+    <%= render 'include/top_header' %>
+
+
+
+    <br />
+    <br />
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+
+
+    <%= yield %>
+
+
+</body>
+
+</html>

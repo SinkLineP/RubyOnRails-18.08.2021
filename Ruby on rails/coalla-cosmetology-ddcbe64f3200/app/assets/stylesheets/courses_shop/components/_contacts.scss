@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+.contacts {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // Inner
+  &__inner {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+
+  // Item
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 8rem;
+    }
+  }
+}
+
+// Contacts overview
+.contacts-overview {
+  text-align: center;
+
+  .hr {
+    margin: 3rem 0;
+  }
+
+  // Contacts
+  &__contacts {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(space-between);
+    }
+
+    > div.dl {
+      @include media($breakpoint-sm) {
+        &:not(:last-child) {
+          margin-bottom: 2rem;
+        }
+      }
+
+      @include media($breakpoint-lg) {
+        &:nth-child(1),
+        &:nth-child(3) {
+          @include grid-columns(1, 4);
+        }
+        &:nth-child(2) {
+          @include grid-columns(1, 3);
+        }
+      }
+
+      > div.dt {
+        .icon {
+          @include media($breakpoint-sm) {
+            @include size(2.2rem); // 1/3 of 66 initial size
+          }
+        }
+      }
+
+      > div.dd {
+        @include h5;
+        margin-top: 1rem;
+
+        a {
+          @include hover(color, $color-brand);
+          color: $color-base;
+        }
+      }
+    }
+  }
+
+  // Text
+  &__text {
+    @include text-sm;
+  }
+}
+
+// Contacts routes
+.contacts-routes {
+  // Title
+  &__title {
+    margin-bottom: 3.5rem;
+    text-align: center;
+  }
+
+  // Accordion
+  &__accordion {
+    > div.dl {
+      border-top: 1px solid $color-ui;
+      border-bottom: 1px solid $color-ui;
+
+      &:not(:last-child) {
+        margin-bottom: -1px;
+      }
+
+      > div.dt {
+        @include display(flex);
+        @include justify-content(space-between);
+        @include h5;
+        padding: 3rem 0;
+
+        > span {
+          @include flex(1);
+        }
+
+        > .icon {
+          margin: 0.5rem 0 0 2rem;
+          fill: $color-brand;
+        }
+      }
+
+      .icon {
+        @include hover(fill, $color-base, "div.dt:hover");
+      }
+
+      > div.dd {
+        > .way {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          @include media($breakpoint-sm) {
+            flex-direction: column;
+          }
+          > p.desc {
+            text-align: justify;
+            font-size: 1.3rem;
+            @include media($breakpoint-lg) {
+              @include size(75% auto);
+              padding-right: 2%;
+            }
+            @include media($breakpoint-sm) {
+              @include size(100% auto);
+              padding-right: 0;
+            }
+          }
+          > .photo {
+            @include size(25% auto);
+            @include media($breakpoint-sm) {
+              @include size(100% auto);
+            }
+          }
+        }
+        @include text-lg;
+        margin-bottom: 3rem;
+        color: $color-base-light;
+
+        > p:not(:last-child) {
+          margin-bottom: 2.5rem;
+        }
+      }
+    }
+  }
+
+  // Map
+  &__map {
+    flex: 1 auto;
+    margin-top: 3rem;
+    @include media($breakpoint-sm) {
+      display: none !important;
+    }
+
+    @include media($breakpoint-lg) {
+      @include size(100% 53rem);
+    }
+  }
+}

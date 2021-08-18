@@ -1,0 +1,11 @@
+- pages = local_assigns.fetch(:pages, true)
+- if pages || items.next_page
+  %nav.pagination#pagination-complex
+    - if items.next_page
+      .pagination__button
+        = link_to url_for(params.merge(page: items.next_page)), class: 'button button--action-outline', data: {size: 'lg', type: 'text', ajax_pagination: true, append_to: append_to} do
+          %svg.icon(role='img' data-size='34')
+            %use(xlink:href='/assets/courses_shop/icons.svg#refresh')
+          %span Показать ещё
+    - if pages
+      = will_paginate items, renderer: CoursesShopLinkRenderer, inner_window: 2, outer_window: 0

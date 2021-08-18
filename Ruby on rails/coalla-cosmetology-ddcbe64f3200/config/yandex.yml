@@ -1,0 +1,23 @@
+development:
+  token: AQAAAAAZBEXlAAOMGOv7-FAGfU3ShHENzbk0GE4
+  login: cosmeticru-mn@yandex.ru
+  locale: ru
+  verbose: true
+
+staging:
+  token: AQAAAAAZBEXlAAOMGOv7-FAGfU3ShHENzbk0GE4
+  login: cosmeticru-mn@yandex.ru
+  locale: ru
+  verbose: true
+
+production:
+  token: AQAAAAAZBEXlAAOMGOv7-FAGfU3ShHENzbk0GE4
+  login: cosmeticru-mn@yandex.ru
+  locale: ru
+  verbose: true
+
+test:
+  token: AQAAAAAZBEXlAAOMGOv7-FAGfU3ShHENzbk0GE4
+  login: cosmeticru-mn@yandex.ru
+  locale: ru
+  verbose: true

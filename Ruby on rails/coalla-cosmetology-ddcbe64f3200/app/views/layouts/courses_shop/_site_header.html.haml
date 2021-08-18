@@ -1,0 +1,113 @@
+%header.site-header#site-header
+  .container
+    %nav.site-header__nav
+      %ul
+        %li.is-md
+          = link_to '#', id: 'mobile-menu-open' do
+            %svg.icon(role='img' data-size='34')
+              %use(xlink:href='/assets/courses_shop/icons.svg#menu')
+        %li.is-xl.is-dropdown
+          // Must stay before link for .site-header__nav-dropdown:hover + a
+          .site-header__nav-dropdown
+            %ul
+              - root_specialities.each do |speciality|
+                %li
+                  = link_to alternative_speciality_url(speciality), class: (@parent_speciality == speciality && 'is-active') do
+                    %svg.icon(role='img' data-size='22')>
+                      %use(xlink:href="/assets/courses_shop/icons.svg##{speciality.icon}")
+                    = ty(speciality.title)
+                  - if current_shop.cosmetic? && speciality.children.visible.any?
+                    %span.arrow
+                      %svg.icon(role='img' data-size='18')
+                        %use(xlink:href='/assets/courses_shop/icons.svg#chevron-up')
+                    %ul
+                      = render partial: 'courses_shop/home/speciality', locals: {speciality: speciality, sub_menu: true}
+              - if current_shop.barbershop?
+                %li
+                  = link_to 'https://www.cosmeticru.com/' do
+                    %svg.icon(role='img' data-size='22')>
+                      %use(xlink:href="/assets/courses_shop/icons.svg#mirror") 
+                    Курсы косметологов
+          = link_to 'Курсы', 'javascript:void(0);'
+        %li.is-xl
+          = link_to 'Акции', courses_shop_promotions_path
+        %li.is-xl
+          = link_to 'Контакты', courses_shop_contacts_path
+        %li.is-xl
+          = link_to 'Лицензии', courses_shop_license_path
+        %li.is-xl
+          = link_to 'Магазин', 'https://shop.cosmeticru.com/', target: '_blank'
+
+      .site-header__phone.is-xl
+        %ul.list-inline
+          %li
+            %svg.icon(role='img' data-size='24')
+              %use(xlink:href='/assets/courses_shop/icons.svg#phone')
+            - if current_shop.barbershop?
+              = link_to 'tel:74951911571', class: 'roistat-phone', rel: 'nofollow' do
+                %span.roistat-phone +7&nbsp;495 191-15-71
+            - else
+              = link_to 'tel:74952560382', class: 'roistat-phone', rel: 'nofollow' do
+                %span.roistat-phone +7&nbsp;495 256-03-82
+          %li
+            %span
+              ПН-ВС, с 9 до 21
+          %li
+            %svg.icon(role='img' data-size='24')
+              %use(xlink:href='/assets/courses_shop/icons.svg#instagram')
+            = link_to 'Instagram', lookup(:instagram_link), target: '_blank', title: 'Instagram', onclick: ya_counter_click('INSTAGRAM')
+
+    .site-header__logo
+      = link_to courses_shop_root_path do
+        = render 'layouts/courses_shop/site_logo'
+      %p.site-phone#site-phone
+        - if current_shop.barbershop?
+          = link_to 'tel:74951911571', class: 'roistat-phone', rel: 'nofollow' do
+            %span.roistat-phone +7&nbsp;495 191-15-71
+        - else
+          = link_to 'tel:74952560382', class: 'roistat-phone', rel: 'nofollow' do
+            %span.roistat-phone +7&nbsp;495 256-03-82
+
+    .site-header__actions
+      %ul
+        - if user_signed_in? && current_user.student?
+          -#// Basket icon or number of items in basket
+          %li.is-sm
+            = link_to '#', class: 'button button--action-outline', id: 'mobile-user-nav-open', 'data-size' => 'sm', 'data-type' => 'icon' do
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#basket')
+        - else
+          %li.is-sm
+            = link_to '#popup-login', class: 'button button--action-outline', 'data-size' => 'sm', 'data-type' => 'icon', 'data-mfp-type' => 'inline' do
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#lock')
+
+        - if user_signed_in? && current_user.student?
+          %li.is-sm
+            = link_to current_user.created_subscriptions_count.to_s, courses_shop_cart_path, class: 'button button--action-outline', 'data-size' => 'sm', 'data-type' => 'icon'
+
+        - if user_signed_in? && current_user.student?
+          %li.is-lg.is-dropdown
+            -#// Must stay before link for .site-header__nav-dropdown:hover + a
+            .site-header__actions-dropdown
+              = render 'layouts/courses_shop/components/user_nav'
+            = link_to 'javascript:void(0);' do
+              %b= current_user.courses_shop_name
+        - else
+          %li.is-lg
+            = link_to 'Вход', '#popup-login', class: 'button button--action-outline', 'data-size' => 'sm', 'data-type' => 'text', 'data-mfp-type' => 'inline'
+
+        - if user_signed_in? && current_user.student?
+          %li.is-lg
+            = link_to current_user.created_subscriptions_count.to_s, courses_shop_cart_path, class: 'button button--action-outline', 'data-size' => 'sm', 'data-type' => 'icon'
+
+        %li.site-header__search__block.is-xsm
+          .site-header__search
+            = form_tag courses_shop_search_url, id: 'site-search-form', method: :get do
+              = text_field_tag :q, params[:q], id: 'site-search-input'
+
+            = link_to '#', class: 'button button--action-outline', id: 'site-search-toggle', 'data-size' => 'sm', 'data-type' => 'icon', 'data-action' => 'open' do
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#search')
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#close')

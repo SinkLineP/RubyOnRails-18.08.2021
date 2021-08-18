@@ -1,0 +1,21 @@
+.group-list__item{id: group.id}
+  %div.dl.grid
+    %div.dt.grid_i.grid_i__grid-1-8> Группа:
+    %div.dd.grid_i.grid_i__grid-7-8> #{group.name}
+  %div.dl.grid
+    %div.dt.grid_i.grid_i__grid-1-8> Студенты:
+    %div.dd.grid_i.grid_i__grid-7-8>
+      .grid
+        - group.active_students.by_alphabet.in_groups_of(3, false).each do |group|
+          - group.each do |student|
+            .grid_i.grid_i__grid-1-3>
+              %label.form_el.form_label.form_label__el
+                .form_el.js-form_el.form_checkbox
+                  = check_box_tag 'notice[notice_emails][]', student.email, true, class: 'form_el_tag form_checkbox_tag'
+                %p.form_el_inner.form_label_inner
+                  = student.name_with_email
+
+:javascript
+  $(function() {
+    $('.group-list__item##{group.id}').customForm();
+  })

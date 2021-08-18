@@ -1,0 +1,11 @@
+.grid_i.grid_i__grid-2-12>= format_date(payment_log.payed_on)
+.grid_i.grid_i__grid-1-12>= payment_log.amount
+.grid_i.grid_i__grid-2-12.tx-center>= payment_log.payment_type_text
+.grid_i.grid_i__grid-2-12.tx-right>= payment_log.appointment_text
+.grid_i.grid_i__grid-2-12.tx-right>= payment_log.group ? link_to(payment_log.group_title, edit_admin_group_path(payment_log.group)) : payment_log.group_title
+.grid_i.grid_i__grid-2-12.tx-center>= payment_log.reason_for_payment
+.grid_i.grid_i__grid-1-12.tx-right>
+  = link_to edit_admin_student_payment_log_path(@student, payment_log) do
+    .icon_edit &#9998;
+  = link_to admin_student_payment_log_path(@student, payment_log), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить платеж? Это действие отменить нельзя.'} do
+    .icon_del X

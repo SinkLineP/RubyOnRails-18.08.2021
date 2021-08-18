@@ -1,0 +1,3 @@
+- if @result.passed?
+  .social_links__test
+    = render 'common/sharing', share_params: {type: :task, task: @task.id, course: @course.id}

@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+// Default form
+.default-form {
+  @include media($breakpoint-sm) {
+    margin: {
+      right: $content-indent-sm;
+      left: $content-indent-sm;
+    }
+  }
+
+  &__inner {
+
+    &--nights-mode-active {
+
+      .default-form__row--nights-mode {
+        display: block;
+      }
+    }
+  }
+
+  // Group
+  &__group {
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  // Legend
+  &__group-title {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  // Row
+  &__row {
+    &:not(:last-child) {
+      margin-bottom: .7rem;
+    }
+
+    &--nights-mode {
+      display: none; // .default-form__inner--nights-mode - display: block
+    }
+  }
+
+  // Cols
+  &__cols {
+    &:not(:last-child) {
+      margin-bottom: .7rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid;
+    }
+
+  }
+
+  &__col {
+    &:not(:last-child) {
+      margin-bottom: .7rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+  }
+
+  // Button
+  .button {
+    @include fill-parent;
+  }
+
+  // Text
+  &__text {
+    text-align: center;
+
+    &:not(:first-child) {
+      margin-top: 2.5rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
+  }
+}
+
+// Feedback form
+.feedback-form {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // Form
+  &__form {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+    }
+  }
+}
+
+// Settings form
+.settings-form {
+  // Form
+  &__form {
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include flex-direction(column);
+      @include align-items(center);
+    }
+  }
+
+  // Group
+  &__group {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 1);
+    }
+
+    &::after {
+      position: absolute;
+      right: 1rem;
+      bottom: 0;
+      left: 1rem;
+      height: 1px;
+      background: $color-ui;
+      content: "";
+
+      @include media($breakpoint-lg) {
+        right: 6.5rem;
+        left: 6.5rem;
+      }
+    }
+  }
+
+  // Row
+  &__row {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include align-items(center);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+
+      @include media($breakpoint-lg) {
+        margin-bottom: .7rem;
+      }
+    }
+  }
+
+  // Col
+  &__col {
+    &.has_many {
+      align-self: flex-start;
+      margin-top: 2.75rem;
+    }
+
+    @include media($breakpoint-sm) {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      &:nth-child(1) {
+        @include grid-columns(1, 4);
+      }
+
+      &:nth-child(2) {
+        @include grid-columns(1, 2);
+      }
+
+      &--full:nth-child(2) {
+        @include grid-columns(3, 4);
+      }
+    }
+  }
+
+  // Label
+  &__label {
+    display: block;
+
+    @include media($breakpoint-lg) {
+      text-align: right;
+    }
+  }
+
+  // Submit
+  &__submit {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+
+    // Button
+    .button {
+      @include fill-parent;
+    }
+  }
+}
+
+.has_many_fields {
+  ol, ul {
+    list-style: none;
+    padding: 0;
+    position: relative;
+
+    .remove_has_many_label {
+      position: absolute;
+      right: -5rem;
+      top: 50%;
+      margin-top: -1.5rem;
+
+      input[type="checkbox"] {
+        opacity: 0;
+        -webkit-border-radius: 0;
+        -webkit-appearance: none; 
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        svg > path {
+          fill: #f61067;
+        }
+      }
+    }
+  }
+}
+
+.has_many_container {
+  .button {
+    &.has_many_add {
+      display: block;
+      text-align: center;
+      .icon_add {
+        display: inline-block;
+        width: 1.9rem;
+        height: 1.9rem;
+        margin-right: .5rem;
+        background-color: #302eba;
+        text-align: center;
+        color: #fff;
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+        border-radius: 50%;
+      }
+      &:hover {
+        color: #302eba;
+        > .icon_add {
+          color: #ba3c5f;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+// Label
+.label {
+  display: block;
+
+  &--has-input {
+    @include text-lg;
+    position: relative;
+    padding-left: 7rem;
+
+    @include media($breakpoint-lg) {
+      padding-left: 4rem;
+    }
+
+    .checkbox-input,
+    .radio-input {
+      position: absolute;
+      top: .5rem;
+      left: 0;
+
+      @include media($breakpoint-lg) {
+        top: .3rem;
+      }
+    }
+  }
+}

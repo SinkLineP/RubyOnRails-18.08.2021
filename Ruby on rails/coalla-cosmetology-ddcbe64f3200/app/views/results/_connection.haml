@@ -1,0 +1,20 @@
+.grid
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .exercise-results
+      .results_inner
+        .tx-xl
+          Правильных ответов:
+          %span.tx-700= @result.correct_answers_count
+          из
+          %span.tx-700= @task.column_variants.count
+        - if @result.passed?
+          .tx-xl Вы сдали тест!
+          - if course_finished?
+            = render 'results/additional/last_task_message'
+        - else
+          .tx-xl Вы не сдали тест!
+      = render 'results/additional/sharing'
+      - if @result.passed
+        = go_to_next_lecture_link
+      - else
+        = go_back_to_lecture_link

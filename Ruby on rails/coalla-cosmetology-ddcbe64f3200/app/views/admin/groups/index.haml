@@ -1,0 +1,38 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'группы' => admin_groups_path}
+      %h3.tx-center ГРУППЫ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_group_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить группу
+            &nbsp;|&nbsp;
+            = link_to admin_modules_report_path, class: 'a_under', method: :post do
+              %span> Модули
+        .admin_body.table.table_base-color
+          = render 'search_form'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-4-12>
+                %p название
+              .grid_i.grid_i__grid-2-12.tx-center>
+                %p сроки обучения
+              .grid_i.grid_i__grid-1-12>
+                %p Активна
+              .grid_i.grid_i__grid-1-12>
+                %p Фейк-группа
+              .grid_i.grid_i__grid-1-12>
+                %p П/Ф оч. формы об.
+              .grid_i.grid_i__grid-1-12>
+                %p П/Ф о-д. формы об.
+              .grid_i.grid_i__grid-2-13>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @groups, partial: 'group'
+      = will_paginate @groups, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

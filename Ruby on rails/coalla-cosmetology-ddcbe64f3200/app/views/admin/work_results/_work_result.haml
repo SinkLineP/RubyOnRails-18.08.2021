@@ -1,0 +1,19 @@
+.grid_i.grid_i__grid-2-9.table_ellipsis>
+  = link_to edit_admin_work_result_path(work_result) do
+    = work_result.group_title
+.grid_i.grid_i__grid-2-9.table_ellipsis>
+  = work_result.work_title
+.grid_i.grid_i__grid-1-9.period_time>
+  = format_date(work_result.marked_on)
+.grid_i.grid_i__grid-2-9.period_time>
+  = format_date(work_result.updated_at)
+.grid_i.grid_i__grid-1-9.table_ellipsis>
+  - if work_result.without_results?
+    %form.form.js-form.tx-center
+      .form_el.js-form_el.form_checkbox.mt-1.mb-1
+        %input.form_el_tag.form_checkbox_tag.js-block{type: 'checkbox', checked: true, disabled: true}
+.grid_i.grid_i__grid-1-9.tx-right>
+  = link_to admin_work_result_path(work_result), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X
+  = link_to edit_admin_work_result_path(work_result) do
+    .icon_edit &#9998;

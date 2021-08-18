@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+.tiles {
+    @include mq(md) {
+        position: relative;
+        height: 1024px;
+    }
+
+    @include mq(lg) {
+        height: 927px;
+    }
+
+    &__item {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            bottom: -1px;
+            left: -1px;
+            background: {
+                position: center;
+                repeat: no-repeat;
+                size: cover;
+            }
+            content: "";
+        }
+
+        @include mq(sm) {
+            min-height: 26rem;
+        }
+
+        @include mq(md) {
+            position: absolute;
+        }
+
+        &:nth-child(1) {
+            @include mq(md) {
+                @include size(40%, 27%);
+
+                top: 0;
+                left: 0;
+            }
+
+            @include mq(lg) {
+                @include size(20%, 30%);
+
+                top: 0;
+                left: 0;
+            }
+        }
+
+        &:nth-child(2) {
+            @include mq(md) {
+                @include size(40%, 27%);
+
+                top: 27%;
+                left: 0;
+            }
+
+            @include mq(lg) {
+                @include size(20%, 30%);
+
+                top: 30%;
+                left: 0;
+            }
+        }
+
+        &:nth-child(3) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: {
+                color: $color-brand;
+                image: none;
+            }
+
+            &::before {
+                display: none;
+            }
+
+            @include mq(md) {
+                @include size(40%, 27%);
+
+                top: 33%;
+                left: 40%;
+            }
+
+            @include mq(lg) {
+                @include size(25%, 30%);
+
+                top: 0;
+                left: 60%;
+            }
+        }
+
+        &:nth-child(4) {
+            @include mq(md) {
+                @include size(60%, 33%);
+
+                top: 0;
+                left: 40%;
+            }
+
+            @include mq(lg) {
+                @include size(40%, 60%);
+
+                top: 0;
+                left: 20%;
+            }
+        }
+
+        &:nth-child(5) {
+            @include mq(sm) {
+                display: none;
+            }
+
+            @include mq(md) {
+                @include size(20%, 27%);
+
+                top: 33%;
+                left: 80%;
+            }
+
+            @include mq(lg) {
+                @include size(15%, 30%);
+
+                top: 0;
+                left: 85%;
+            }
+        }
+
+        &:nth-child(6) {
+            @include mq(md) {
+                @include size(60%, 21%);
+
+                top: 60%;
+                left: 40%;
+            }
+
+            @include mq(lg) {
+                @include size(40%, 40%);
+
+                top: 30%;
+                left: 60%;
+            }
+        }
+
+        &:nth-child(7) {
+            @include mq(md) {
+                @include size(50%, 19%);
+
+                top: 81%;
+                left: 50%;
+            }
+
+            @include mq(lg) {
+                @include size(60%, 40%);
+
+                top: 60%;
+                left: 0;
+            }
+        }
+
+        &:nth-child(8) {
+            @include mq(sm) {
+                display: none;
+            }
+
+            @include mq(md) {
+                @include size(40%, 27%);
+
+                top: 54%;
+                left: 0;
+            }
+
+            @include mq(lg) {
+                @include size(20%, 30%);
+
+                top: 70%;
+                left: 60%;
+            }
+        }
+
+        &:nth-child(9) {
+            @include mq(sm) {
+                display: none;
+            }
+
+            @include mq(md) {
+                @include size(50%, 19%);
+
+                top: 81%;
+                left: 0;
+            }
+
+            @include mq(lg) {
+                @include size(20%, 30%);
+
+                top: 70%;
+                left: 80%;
+            }
+        }
+    }
+}

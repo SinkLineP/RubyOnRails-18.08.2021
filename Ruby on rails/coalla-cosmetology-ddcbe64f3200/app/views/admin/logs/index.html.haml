@@ -1,0 +1,114 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'логи' => admin_logs_path}
+      %h3.tx-center ДЕЙСТВИЯ АДМИНИСТРАТОРОВ / МЕНЕДЖЕРОВ
+      .form__admin
+        .admin_body.table
+          .grid
+            .grid_i.grid_i__grid-1-4
+              .tx-left.tx-700
+                ПЕРИОД:
+            .grid_i.grid_i__grid-1-4
+              .form_el.js-form_el.form_tx
+                %label.form_el.form_label C
+                = text_field_tag :begin_at, nil, class: 'js-datepicker begin_at', value: @begin_at, autocomplete: 'off' 
+            .grid_i.grid_i__grid-1-4
+              .form_el.js-form_el.form_tx
+                %label.form_el.form_label По
+                = text_field_tag :end_at, nil, class: 'js-datepicker end_at', value: @end_at, autocomplete: 'off'
+            .grid_i.grid_i__grid-4-4
+              .tx-left.tx-700
+                АДМИН / МЕНЕДЖЕР:
+              %select.js-logs-multiple.editors{name: "editor"}
+                - @editors.each do |editor|
+                  %option{value: editor[:id]}= editor[:label]
+            .grid_i.grid_i__grid-4-4
+              .tx-left.tx-700
+                ДЕЙСТВИЯ:
+              %select.js-logs-multiple.actions{multiple: "multiple", name: "actions[]"}
+                %option{value: "0"} Обновление
+                %option{value: "1"} Добавление
+                %option{value: "2"} Объединение
+                %option{value: "3"} Удаление
+          -# = search_form_for @q, url: admin_courses_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+          -#   .mt-1
+          -#     .grid
+          -#       .grid_i.grid_i__grid-1-6.tx-right>
+          -#         %label.form_el.form_label Название:
+          -#       .grid_i.grid_i__grid-4-6>
+          -#         .form_el.js-form_el{style: 'min-width: 150px;'}
+          -#           = f.search_field :name_or_title_or_short_name_cont, placeholder: 'Введите название', style: 'width: 100%;'
+          .table_head{style: "font-size: 12px;"}
+            .grid
+              .grid_i.grid_i__grid-3-12>
+                %p АДМИН / МЕНЕДЖЕР
+              -# .grid_i.grid_i__grid-1-12>
+              -#   %p.tx-center
+              -#     Сущность
+              .grid_i.grid_i__grid-2-12>
+                %p.tx-center
+                  Действие
+              .grid_i.grid_i__grid-2-12>
+                %p.tx-center
+                  Дата
+              .grid_i.grid_i__grid-5-12>
+                %p.tx-center
+                  Подробности
+          .grid.grid__collapse.log--block
+            = render partial: 'admin/logs/logs'
+
+:javascript
+  var waitForJQuery = setInterval(function () {
+    if (typeof $ != 'undefined') {
+      $(function(){
+        initDatepicker();
+        $('.js-logs-multiple').select2({
+          minimumResultsForSearch: Infinity
+        });
+        $('.js-logs-multiple.editors').select2({
+          minimumResultsForSearch: 1
+        });
+        $('.js-logs-multiple').parent().find('.select2-container').addClass('logs');
+        $('.js-logs-multiple.actions').val(#{@actions}).trigger('change');
+        $('.js-logs-multiple.editors').val(#{@editor}).trigger('change');
+        function setParams() {
+          var actionsKeyArray = $(".js-logs-multiple.actions").select2("data");
+          var parameterString = "?";
+          for(var i=0 ; i < actionsKeyArray.length ; i++){
+            var selectedOption = actionsKeyArray[i];
+            if(i > 0){
+              parameterString += "&";
+            }
+            parameterString += "actions[]=" + selectedOption.id;
+          }
+          parameterString +=  "&begin_at="+ $('.js-datepicker.begin_at').datepicker({ dateFormat: 'dd.MM.yyyy' }).val();
+          parameterString +=  "&end_at="+ $('.js-datepicker.end_at').datepicker({ dateFormat: 'dd.MM.yyyy' }).val();
+          parameterString +=  "&editor="+ $(".js-logs-multiple.editors").find(':selected').val();
+          console.log(parameterString)
+          return parameterString
+        }
+
+        function getData(data){
+          $contentBlock = $('.grid.grid__collapse.log--block');
+          window.history.pushState( {} , '', data)
+          $.get('/logs' + data).done(function(response) {
+            var $content = $(response.logs);
+            $contentBlock.html($content);
+          });
+        }
+
+        $('.js-logs-multiple').change(function(){
+          getData(setParams());
+        });
+        $('.js-datepicker').change(function(){
+          getData(setParams());
+        });
+      });
+      clearInterval(waitForJQuery);
+
+
+    }
+  }, 10);

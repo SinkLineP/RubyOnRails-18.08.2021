@@ -1,0 +1,74 @@
+.page.page--promo
+  = render 'layouts/courses_shop/promo/index'
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title= t("#{current_shop.code}.review")
+      %p= link_to 'Все отзывы', courses_shop_recalls_path
+      = render 'layouts/courses_shop/components/feedbacks'
+
+  %section.page-section.page-section--gradient
+    .container.home_about_university
+      .h3.page-section__title= t("#{current_shop.code}.about")
+      .video
+        =render 'video_block'
+        .description= raw(@about) if @about
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title Наши преимущества
+      .advantages
+        %ul.advantages__list
+          = render collection: @our_advantages, partial: 'courses_shop/home/advantage', as: :advantage
+
+  - if @instructors.any?
+    %section.page-section.page-section--gradient
+      .container
+        .h3.page-section__title Наши преподаватели
+        = render 'instructors'
+
+  - if !current_shop.barbershop? && !show_configurator_on_main?
+    %section.page-section.page-section--gradient
+      .container
+        .h3.page-section__title Выберем курс прямо сейчас?
+        = form_for CourseConfigurator.new, url: courses_shop_configurator_url, as: 'c', method: :get, html: {class: 'course-select'} do |f|
+          .course-select__content
+            = render 'courses_shop/common/configurator', f: f
+
+  - if @blogs.any?
+    %section.page-section.page-section--gradient
+      .container
+        .h3.page-section__title= "Полезная информация для #{ current_shop.barbershop? ? 'парикмахеров' : 'косметологов' }"
+        .media-cards
+          .media-cards__list#special-offers-slider
+            = render partial: 'courses_shop/blogs/blog', collection: @blogs
+  
+  %section.page-section
+    .container
+      = render 'layouts/courses_shop/components/subscription'
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title Все направления обучения
+      .education-groups
+        %ul.education-groups__list
+          = render collection: root_specialities.first(4), partial: 'courses_shop/home/speciality'
+
+  %section
+    .container
+      .h3.page-section__title Наши лицензии
+      = render 'home_license'
+
+  %section.page-section
+    .container
+      = render 'layouts/courses_shop/components/partners'
+
+.page-next.page-next--primary.js-page-next#page-promo-scroll
+  = render 'layouts/courses_shop/page_next'
+
+- if params[:continue_registration]
+  - content_for :js do
+    :javascript
+      $(function() {
+         popups.mfpOpenPopup("#popup-register-complete", '');
+      });

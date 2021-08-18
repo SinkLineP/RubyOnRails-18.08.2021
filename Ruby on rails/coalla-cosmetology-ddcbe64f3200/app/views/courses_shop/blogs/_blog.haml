@@ -1,0 +1,25 @@
+.media-cards__item
+  %article.media-card
+    = link_to courses_shop_blog_path(blog), class: 'media-card__inner' do
+      = image_tag transparent_pixel, data: { src: blog.preview_image.main.url },
+                                     alt: '',
+                                     class: 'media-card__photo lazyload'
+      %script{type: "application/ld+json"}
+        :erb
+          {
+          "@context": "http://schema.org",
+          "@type": "ImageObject",
+          "name": "<%= blog.title %>",
+          "contentUrl": "<%= root_url.chop + blog.preview_image.main.url %>"
+          }
+      .media-card__content
+        .h4.media-card__title= blog.title
+        %p.media-card__meta= format_date_full(blog.created_at)
+        %script{type: "application/ld+json"}
+          :erb
+            {
+            "@context": "http://schema.org",
+            "@type": "Article",
+            "name": "<%= blog.title %>",
+            "sameAs": "<%= root_url.chop + courses_shop_blog_path(blog) %>"
+            }

@@ -1,0 +1,40 @@
+.grid.grid__collapse
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .mt-4
+      %p.description= @task.description
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .mt-5
+      .file_step.file_step-1.current
+        .grid
+          .grid_i.grid_i__grid-1-1
+            .tx-center
+              .form_el.js-form_el.form_file
+                %p.form_el_inner.js-form_el_inner.form_file_inner ВЫБРАТЬ ФАЙЛЫ ДЛЯ ЗАГРУЗКИ
+                %input.form_el_tag.form_file_tag.js-file-upload-first-step{type: 'file', multiple: '', data: {task_id: @task.id}}
+      .file_step.file_step-2
+        .grid
+          .grid_i.grid_i__grid-1-1
+            .tx-center Загружаем...
+      .file_step.file_step-3
+        .grid
+          .grid_i.grid_i__grid-1-2>
+            .form_el.js-form_el.form_file.form_file__more
+              %p.form_el_inner.js-form_el_inner.form_file_inner ДОБАВИТЬ ФАЙЛЫ
+              %input.form_el_tag.form_file_tag.js-file-upload-second-step{type: 'file', multiple: '', data: {task_id: @task.id}}
+          .grid_i.grid_i__grid-1-2>
+            .form_el.js-form_el.form_btn
+              %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+              = submit_tag 'save', class: 'form_el_tag form_btn_tag', disable: true, data: {disable_with: 'Подождите...'}
+          .grid_i.grid_i__grid-1-2>
+            .loaded_files
+  .grid_i.grid_i__grid-1-1>
+    .mt-8
+      = lecture_link
+
+- content_for :js do
+  = javascript_include_tag 'file_task'
+
+  %script#task-file-template{type: 'text'}
+    .loaded_files-i
+      = hidden_field_tag '[result][result_file_items_attributes][__id__][file_cache]', nil
+      .icon_del X

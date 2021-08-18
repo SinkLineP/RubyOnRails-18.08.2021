@@ -1,0 +1,136 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @student.display_name => edit_admin_student_path(@student), 'заказы' => admin_student_orders_path(@student), @order.id => edit_admin_student_order_path(@order.user, @order) , 'документы' => '#'}
+      %h3.tx-center ДОКУМЕНТЫ
+      = form_for @group_subscription, url: admin_order_contract_path(@order), method: :put, html: {class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+        .admin_header
+          - if @order_contract.generated?
+            = link_to 'Скачать договор', download_admin_generated_document_path(@order_contract), class: 'a_under'
+            |
+            = link_to 'Отправить договор', send_contract_admin_order_contract_path(@order), class: 'a_under', method: :post
+          - if @order_contract.try(:user_file).present?
+            |
+            = link_to 'Копия', admin_private_file_path(file: @order_contract.user_file.url), target: '_blank', class: 'a_under'
+        .admin_body
+          .admin_settings_change
+            = f.fields_for :order_contract, @order_contract do |contract_fields|
+              .mt-1
+                %label.form_el.form_label Номер договора:
+                .form_el.js-form_el.form_tx
+                  = contract_fields.text_field :number, class: 'form_el_tag form_tx_tag'
+              .mt-1
+                %label.form_el.form_label Дата договора:
+                .form_el.js-form_el.form_tx
+                  = contract_fields.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@order_contract.created_on), readonly: true
+              .mt-1
+                %label.form_el.form_label Дата подписания приложения:
+                .form_el.js-form_el.form_tx
+                  = f.text_field :appendix_signed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:appendix_signed_on) || Date.today), readonly: true
+            - if @group_subscription.generate_payer_agreement?
+              .mt-1.tx-s.tx-700.header_blocks_settings
+                Информация о плательщике
+              .mt-1
+                %label.form_el.form_label Дата подписания ДС:
+                .form_el.js-form_el.form_tx
+                  = f.text_field :payer_agreement_signed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:payer_agreement_signed_on) || Date.today), readonly: true
+              = f.fields_for :payment_requisite, @group_subscription.payment_requisite || PaymentRequisite.new do |payment_requisite_fields|
+                .mt-1
+                  %label.form_el.form_label Должность:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :position, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Должность (в род.падеже):
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :position_genitive, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Действует на основании:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_area :based, class: 'form_el_tag form_tx_tag', placeholder: 'Устава'
+                .mt-1
+                  %label.form_el.form_label  ФИО должностного лица:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :position_name, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Плательщик:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :name, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label ИНН:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :inn, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label КПП:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :kpp, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Адрес плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :address, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Юридический адрес плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :legal_address, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Р/с плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :account, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label БИК плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :bik, class: 'form_el_tag form_tx_tag js-bic'
+                .mt-1
+                  %label.form_el.form_label Банк плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :bank, class: 'form_el_tag form_tx_tag js-bank'
+                .mt-1
+                  %label.form_el.form_label К/с плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :correspondent_account, class: 'form_el_tag form_tx_tag js-ca'
+                .mt-1
+                  %label.form_el.form_label Телефон плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :phone, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Эл. почта плательщика:
+                  .form_el.js-form_el.form_tx
+                    = payment_requisite_fields.text_field :email, class: 'form_el_tag form_tx_tag'
+              = f.fields_for :payer_agreement, @payer_agreement do |payer_agreement|
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ @payer_agreement.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = payer_agreement.hidden_field :user_file_cache, data: {file_cache: true}
+            - if @group_subscription.generate_vacation_order?
+              .mt-1.tx-s.tx-700.header_blocks_settings
+                Приказ об академическом отпуске
+                - if @vacation_order.generated?
+                  |
+                  = link_to 'Скачать', download_admin_generated_document_path(@vacation_order), class: 'a_under'
+                - if @vacation_order.try(:user_file).present?
+                  |
+                  = link_to 'Копия', admin_private_file_path(file: @vacation_order.user_file.url), target: '_blank', class: 'a_under'
+              = f.fields_for :vacation_order, @vacation_order do |vacation_order|
+                .mt-1
+                  %label.form_el.form_label Номер приказа:
+                  .form_el.js-form_el.form_tx
+                    = vacation_order.text_field :number, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Дата приказа:
+                  .form_el.js-form_el.form_tx
+                    = vacation_order.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@vacation_order.created_on), readonly: true
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ @vacation_order.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = vacation_order.hidden_field :user_file_cache, data: {file_cache: true}
+          .grid.mt-2
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+- content_for :js do
+  = javascript_include_tag 'admin/subscription_contract'

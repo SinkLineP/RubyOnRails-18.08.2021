@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.services-table {
+  @include media($breakpoint-sm) {
+    thead,
+    tfoot {
+      display: none;
+    }
+
+    tr,
+    td {
+      display: block;
+    }
+
+    tr:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+
+    td {
+      padding: 0 !important;
+
+      &:last-child {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  // Thead
+  thead {
+    th:last-child {
+      text-align: right;
+    }
+  }
+
+  // Tbody
+  tbody {
+    td:last-child {
+      @include h5;
+
+      @include media($breakpoint-lg) {
+        text-align: right;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  // Tfoot
+  tfoot {
+    td {
+      text-align: center;
+
+      .hr {
+        margin-top: 3rem;
+      }
+    }
+  }
+}

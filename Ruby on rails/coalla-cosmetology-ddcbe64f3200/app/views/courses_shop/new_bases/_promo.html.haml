@@ -1,0 +1,50 @@
+- promo_hide ||= false
+
+%section.promo#promo
+  .container
+    .promo__row
+      .promo__col
+        - unless promo_hide
+          .promo-info
+            .promo-info__row
+              .promo-info__col
+                .h2.promo-info__title Акция
+                %p.promo-info__caption= promo_caption.html_safe
+              .promo-info__col
+                .promo-info__counter
+                  %div Спешите! Осталось всего <b>9</b> мест
+
+        = form_for CallParams.new(call_options), as: :data, url: send_form_data_courses_shop_callbacks_path,
+                                                            html: { class: 'promo-form' },
+                                                            remote: true, data: { trackable: true } do |f|
+          = f.hidden_field :site, value: request.original_url
+          = f.hidden_field :utm_source
+          = f.hidden_field :utm_medium
+          = f.hidden_field :utm_campaign
+          = f.hidden_field :utm_content
+          = f.hidden_field :utm_term
+          .promo-form__title Заполните форму
+          %p.promo-form__caption чтобы записаться на&nbsp;обучение и&nbsp;получить курс <span>в&nbsp;подарок</span>
+
+          .promo-form__row
+            .promo-form__col
+              = f.text_field :name, placeholder: 'Ваше имя*', id: 'popup-form-input', class: 'input'
+            .promo-form__col
+              = f.telephone_field :phone, class: 'input js-intl-tel'
+
+          .promo-form__row
+            .promo-form__col
+              %label.label.label--checkbox
+                %span.checkbox
+                  %input.checkbox__tag.js-agree-checkbox(type='checkbox')
+                  %span.checkbox__box
+                Согласен на обработку личных данных
+
+          .promo-form__row
+            .promo-form__col
+              %button.button.button--block.button--filled(type='submit' data-size='lg' name='call_me' data-disable-with='Подождите...' disabled='disabled') Получить курс в подарок
+            .promo-form__col.promo-form__col--no-spam
+              = image_tag transparent_pixel, size: '150x53',
+                                             alt: 'No spam',
+                                             class: 'lazyload',
+                                             data: { src: asset_url('courses_shop/new_base/no_spam.svg') }

@@ -1,0 +1,69 @@
+.popup_ctn
+  .popup.marks_popup{id: course_marks_popup_id(course)}
+    .tx-center.mb-3
+      .h5 ПОРТФОЛИО
+    .grid.grid__collapse
+      - last_lecture = current_user.try(:last_marked_lecture_for_course, course)
+      - if last_lecture
+        - last_block = last_lecture.block
+        - course.active_blocks.each_with_index do |block, index|
+          .grid_i.grid_i__grid-1-2>
+            .tx-700 #{index+1}. #{block.name}
+          .grid_i.grid_i__grid-1-2>
+
+          - block.lectures.each do |lecture|
+            .grid_i.grid_i__grid-5-9>
+              .lection_name= lecture.description
+            .grid_i.grid_i__grid-3-9>
+              .tx-right
+                - result = current_user.result_for_lecture(lecture)
+                - next if result.blank?
+                - if result.status.on_mark?
+                  %span.tx-xxs.tx-voice.tx-700 #{result_name(result)} на проверке
+                  %span.square_icon.bg-base.mark> &nbsp;
+                - elsif result.status.time_expired?
+                  %span.tx-xxs.tx-voice.tx-700 #{result_name(result)}, время истекло
+                  %span.square_icon.bg-base.mark> &nbsp;
+                - elsif result.status.marked?
+                  - if result.passed?
+                    %span.tx-xxs #{result_name(result)}
+                    %span.square_icon.bg-base.mark>= result.mark || '&nbsp;'.html_safe
+                  - else
+                    %span.tx-xxs.tx-voice.tx-700 #{result_name(result)}
+                    %span.square_icon.bg-base.mark>= result.mark || '&nbsp;'.html_safe
+            - if result.comment.present?
+              .grid_i.grid_i__grid-1-9>
+                .tooltip{title: result.comment}
+                  .icon_tooltip &#033;
+                  %span.tooltiptext= result.comment
+
+            - break if lecture == last_lecture
+
+          - break if block == last_block
+
+      - if current_user.student?
+        - group_subscription = current_user.group_subscription_for_course(course)
+
+        - if group_subscription.try(:old_group).present? && current_user.student_work_results_for_group(group_subscription.old_group).any?
+          .grid_i.grid_i__grid-1-1.mt-1>
+            .tx-700 Занятия c группой #{group_subscription.old_group.title}
+
+          - current_user.student_work_results_for_group(group_subscription.old_group).each do |student_work_result|
+            .grid_i.grid_i__grid-5-9>
+              .lection_name= student_work_result.work_title
+            .grid_i.grid_i__grid-3-9>
+              .tx-right
+                %span.square_icon.bg-base.mark>= student_work_result.display_total_mark || '&nbsp;'.html_safe
+
+        - if group_subscription && current_user.student_work_results_for_group(group_subscription.group).any?
+          .grid_i.grid_i__grid-1-1.mt-1>
+            .tx-700 Занятия
+
+          - current_user.student_work_results_for_group(group_subscription.group).each do |student_work_result|
+            .grid_i.grid_i__grid-5-9>
+              .lection_name= student_work_result.work_title
+            .grid_i.grid_i__grid-3-9>
+              .tx-right
+                %span.square_icon.bg-base.mark>= student_work_result.display_total_mark || '&nbsp;'.html_safe
+
+    .icon_del.arcticmodal-close X

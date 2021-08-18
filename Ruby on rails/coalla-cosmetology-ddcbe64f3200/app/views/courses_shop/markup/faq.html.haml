@@ -1,0 +1,32 @@
+.page.page--sections
+  %section.page-section.page-section--arrow
+    .container
+      %header.page__header
+        .h2.page__title Вопрос-ответ
+
+      .faq-accordion
+        .faq-accordion__list.accordion.js-accordion
+          - 1.upto(4) do
+            = render 'layouts/courses_shop/components/faq_accordion_content'
+
+  %section.page-section.page-section--background
+    .container
+      .h4.page-section__title Не нашли ответ?<br>Задайте свой вопрос:
+
+      .feedback-form
+        %form.feedback-form__form.default-form(action='#')
+          .default-form__inner
+            .default-form__row
+              .text-input
+                %input(type='text' placeholder='Представьтесь')
+
+            .default-form__row
+              .text-input
+                %input(type='email' placeholder='Электронная почта')
+
+            .default-form__row
+              .textarea
+                %textarea(rows='6' placeholder='Текст вопроса')
+
+            .default-form__row
+              %button.button.button--base-fill(type='submit' data-size='lg') Отправить

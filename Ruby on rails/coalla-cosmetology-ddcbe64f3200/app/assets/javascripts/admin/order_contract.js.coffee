@@ -1,0 +1,3 @@
+initDatepicker()
+initBankAutocomplete()
+initFileUpload()

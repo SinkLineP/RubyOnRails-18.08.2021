@@ -1,0 +1,10 @@
+%main#main.library{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_3
+        .flowers_inner
+          %h1
+            = @vacancy.name.truncate(43)
+      %p= @vacancy.name
+      %p
+        = simple_format(@vacancy.content)

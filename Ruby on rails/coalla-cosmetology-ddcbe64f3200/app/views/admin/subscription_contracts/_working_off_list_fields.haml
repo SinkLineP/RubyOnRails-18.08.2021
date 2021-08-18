@@ -1,0 +1,71 @@
+.mt-1.nested-fields.add_ctn.add_stage
+  .grid.grid-close
+    .grid_i.grid_i__grid-1-9.grid_i__prefix-8-9.tx-right>
+      = link_to_remove_association raw('<div class="icon_del">X</div>'), f
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Кол-во часов
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :hours, class: 'form_el_tag form_tx_tag'
+
+
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Индивидуально/в группе:
+
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = f.select :variant, WorkingOffList.variant.options, {}, class: 'form_el_tag form_select_tag selectordie'
+
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Название занятия
+
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        .select-subscription-contract
+          = f.select :work_id, options_for_select(Work.order_by_title.map{|w| [w.title, w.id]}, f.object.work_id), {prompt: 'Выберите занятие'}, class: 'js-course-select2'
+
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Преподаватель
+
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        .select-subscription-contract
+          = f.select :instructor_id, options_from_collection_for_select(Instructor.alphabetical_order, :id, :full_name, f.object.instructor_id), {include_blank: 'Не назначен'}, {class: 'js-course-select2'}
+
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Оплата
+
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = f.select :working_off_type, WorkingOffList.working_off_type.options, {}, class: 'form_el_tag form_select_tag selectordie'
+
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Экзамен
+    .grid_i.grid_i__grid-3-6
+      %div
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :exam, class: 'form_el_tag form_checkbox_tag'
+
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Дата отработки
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :processed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.processed_on), readonly: true
+
+    - if f.object.working_off_sheet
+      .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+        %label.form_el.form_label Скачать документ
+      .grid_i.grid_i__grid-3-6
+        .form_el.js-form_el.form_tx
+          = render 'admin/common/download_link', file_path: f.object.working_off_sheet.path, link_name: 'документ'
+          &nbsp
+          &nbsp
+          &nbsp
+          - if f.object.try(:user_file).present?
+            = link_to 'копия', admin_private_file_path(file: f.object.user_file.url), target: '_blank', class: 'a_under'
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      .form_el.js-form_el.form_file{data: {placeholder: "Загрузить копию"}}
+        %p.form_el_inner.js-form_el_inner.form_file_inner
+        %input.form_el_tag.form_file_tag.js-user-file{type: 'file'}
+        = f.hidden_field :user_file_cache, data: {file_cache: true}

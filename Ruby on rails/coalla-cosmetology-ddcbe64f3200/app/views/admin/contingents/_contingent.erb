@@ -1,0 +1,115 @@
+<Worksheet ss:Name="Студенты">
+  <Table>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="150"/>
+    <Column ss:Width="150"/>
+    <Column ss:Width="150"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="50"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="50"/>
+    <Column ss:Width="50"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="50"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="80"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="100"/>
+    <Column ss:Width="160"/>
+    <Column ss:Width="160"/>
+    <Column ss:Width="200"/>
+    <Column ss:Width="200"/>
+    <Column ss:Width="200"/>
+
+    <Row>
+      <Cell ss:MergeAcross="24" ss:StyleID="sCenter"><Data ss:Type="String">Контингент</Data></Cell>
+    </Row>
+    <Row>
+      <Cell ss:MergeAcross="24" ss:StyleID="sCenter"><Data ss:Type="String"><%= "#{@begin_at} - #{@end_at}" %></Data></Cell>
+    </Row>
+
+    <Row>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ФИО</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ID в СДО</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ID пользователя</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Телефон</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Эл. почта</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дата рождения</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Образование</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Адрес регистрации</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Факт. адрес</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Паспортные данные</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ФИ на англ.</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Размер одежды/обуви</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Курс</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Уч. группа</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Уч. год</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Форма обуч.</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Модуль по выбору</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дата нач. обуч.</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дата ок. обуч.</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Даты практики</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">ITEC</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Дата договора</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">№ договора</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Сумма договора</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Сформированы выпускные документы</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Приказ о зачислении</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Приказ об отчислении</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Приказ об академическом отпуске</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Приказ о переводе в другую группу</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Справки</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Документы готовы к выдаче</Data></Cell>
+      <Cell ss:StyleID="sGreen"><Data ss:Type="String">Документы выданы</Data></Cell>
+    </Row>
+
+    <% @contingents.each do |gs| %>
+        <Row>
+          <% student = gs.student || Student.new %>
+          <% subscription_documents = gs.subscription_documents %>
+          <% documents = subscription_documents.map{|sub_document| {number: sub_document.registration_number, title: sub_document.document_title, issued_at: sub_document.issued_at} if sub_document.issued_at}.reject(&:blank?) %>
+          <Cell><Data ss:Type="String"><%= student.full_name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.try(:id) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.try(:amocrm_id).to_s %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.phones.compact.join(';') %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= [student.email, student.emails].flatten.compact.join(';') %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.birthday %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.education_level.try(:title) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.passport_address %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.address %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= "#{student.passport_series} #{student.passport_number}" %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.translit_name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= student.wear_size %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.course.try(:short_name) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.group.try(:title) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.begin_on.try(:strftime, '%Y') %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.education_form.try(:short_title) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.amo_module.try(:title) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= format_date(gs.begin_on) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= format_date(gs.end_on) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.group.practices.map{|practice| "#{practice.formatted_start_time}-#{practice.formatted_end_time} #{practice.begin_on == practice.end_on ? format_date(practice.begin_on) : format_date(practice.begin_on) + '-' + format_date(practice.end_on)}"}.join(";\s") %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.group.try(:itec) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= format_date(gs.subscription_contract.try(:created_on)) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.subscription_contract.try(:number) %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= gs.price %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= documents.map{|attrs| "#{attrs[:title]} (#{attrs[:number]}, #{format_date(attrs[:issued_at])})"}.join(';') %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.group.try(:addition_order).try(:number) %></Data></Cell>
+          <% expulsion_order = gs.group.expelled_students.detect{|e| e.student_id == student.id }.try(:expulsion_order) %>
+          <Cell><Data ss:Type="String"><%= expulsion_order.try(:number) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.vacation_order.try(:number) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= change_group_text(gs) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= gs.education_certificate.try(:number) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subscription_documents.ready.map{|doc| doc.document_title}.join(',') %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= subscription_documents.where(issued: true).map{|doc| doc.document_title}.join(',') %></Data></Cell>
+        </Row>
+    <% end %>
+  </Table>
+</Worksheet>

@@ -1,0 +1,3 @@
+= render collection: @logs, partial: 'logs_list', as: :log
+
+= will_paginate @logs, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

@@ -1,0 +1,9 @@
+%script#select-template{type: 'text/template'}
+  .mt-1.js-group
+    .grid
+      .grid_i.grid_i__grid-3-6>
+        = group_select(@groups)
+      .grid_i.grid_i__grid-2-6>
+        %span
+      .grid_i.grid_i__grid-1-6.tx-center>
+        = link_to 'Удалить', '#', class: 'a_under js-remove-group'

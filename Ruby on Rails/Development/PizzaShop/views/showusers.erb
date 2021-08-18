@@ -1,0 +1,29 @@
+<h1><center>Записавшиеся</center></h1>
+<table class="table table-bordered">
+	<thead>
+	  <tr>
+	  	<th style="background-color: green; color: white;">#</th>
+	    <th style="background-color: green; color: white;"> Имя  </th>
+	    <th style="background-color: green; color: white;"> Телефон </th>
+	    <th style="background-color: green; color: white;"> Дата и время</th>
+	    <th style="background-color: green; color: white;"> Парикмахер  </th>
+	    <th style="background-color: green; color: white;"> Цвет краски  </th>
+	  </tr>
+	</thead>  
+
+<tbody>
+	<% @results.each do |line| %>
+
+	  <tr>
+	  	<td style="background-color: #6507e0; color: white;"><%= line['id'] %></td>
+	    <td style="background-color: #ebbf49;"><%= line['username'] %></td>
+	    <td style="background-color: #ebf75e;"><%= line['phone'] %></td>
+	    <td style="background-color: #f7ce5e;"><%= line['datestamp'] %></td>
+	    <td style="background-color: #ebf75e;"><%= line['barber'] %></td>
+	    <td style="background-color: <%= line['color']%>"><%= line['color'] %></td>
+	  </tr>
+
+	<% end %>
+</tbody>
+
+</table>

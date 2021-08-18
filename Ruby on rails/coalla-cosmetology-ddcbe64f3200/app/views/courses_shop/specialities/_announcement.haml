@@ -1,0 +1,5 @@
+- if @current_speciality.announcement.present?
+  .text
+    .container
+      .text__content
+        = simple_format(ty(@current_speciality.announcement))

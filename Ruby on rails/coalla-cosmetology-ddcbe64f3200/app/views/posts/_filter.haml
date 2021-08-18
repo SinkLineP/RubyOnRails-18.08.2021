@@ -1,0 +1,15 @@
+-# vl: не получилось заюзать link_to из-за ёбаного >
+%a.like_button{href: url_for({filter: 'popular'}), class: active_button_class('popular')}> ПОПУЛЯРНЫЕ
+%a.like_button{href: url_for({filter: 'newest'}), class: active_button_class('newest')}> НОВЫЕ
+= form_tag nil, class: 'form js-form sort_select', method: :get do
+  .form_el.js-form_el.form_select.like_button{class: active_select_class }
+    %p.form_el_inner.js-form_el_inner.form_select_inner
+    = select_tag :filter, month_select_options, class: 'form_el_tag form_select_tag js-month-select'
+
+- content_for :js do
+  :javascript
+    $(function(){
+      $('.js-month-select').change(function() {
+        window.location.assign( $(this).closest('form').attr('action') + '/' + $(this).val());
+      });
+    });

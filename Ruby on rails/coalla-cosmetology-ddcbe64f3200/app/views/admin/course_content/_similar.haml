@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= similar.name
+    = hidden_field_tag 'course[similar_ids][]', similar.id, data: {block_id: true}

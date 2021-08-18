@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.document-item {
+  @include display(flex);
+  @include align-items(center);
+
+  // Icon
+  &__icon {
+    margin: 0 -.5rem;
+  }
+
+  // Info
+  &__info {
+    @include flex(1);
+    margin-left: 1.9rem;
+  }
+
+  // Title
+  &__title {
+
+  }
+
+  // Caption
+  &__caption {
+    @include text-sm;
+    margin-top: .3rem;
+    color: $color-base-lighter;
+  }
+}

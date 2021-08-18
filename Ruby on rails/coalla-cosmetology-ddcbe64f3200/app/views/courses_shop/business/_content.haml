@@ -1,0 +1,11 @@
+- if @html.present?
+  .page-section
+    .container
+      .content-announce
+        - if @html.description.present?
+          .content-announce__text
+            = simple_format(ty(@html.description)).html_safe
+        - if @html.content.present?
+          .content-narrow
+            .content.js-content
+              = replace_video_links(@html.content)

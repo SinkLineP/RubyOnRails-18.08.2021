@@ -1,0 +1,12 @@
+%main#main.library{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers-library
+        .flowers_inner
+          %h1.tx-upper= @material.name
+      .grid
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8
+          .fotorama{data: {allowfullscreen: 'native', arrows: 'always', nav: 'false'}}
+            - @material.pdf_images.each do |pdf_image|
+              = link_to nil, pdf_image.image_url(:main)
+          %p.tx-center.mt-1 Страница 1 из #{@material.pdf_images.count}

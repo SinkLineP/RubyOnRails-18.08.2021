@@ -1,0 +1,30 @@
+.mt-1.nested-fields.add_ctn.add_stage
+  .grid.grid-close
+    .grid_i.grid_i__grid-1-9.grid_i__prefix-8-9.tx-right>
+      = link_to_remove_association raw('<div class="icon_del">X</div>'), f
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-4-10.grid_i__prefix-1-10>
+      %label.form_el.form_label Название
+    .grid_i.grid_i__grid-5-10>
+      .form_el.js-form_el.form_el_pad
+        = f.text_field :name, class: 'form_tx form_tx_width'
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-4-10.grid_i__prefix-1-10>
+      %label.form_el.form_label
+        Тип контента
+    .grid_i.grid_i__grid-5-10>
+      .form_el.js-form_el
+        = f.select :content_type, Vacancy.content_type.options, {}, class: 'form_el_tag form_select_tag selectordie js-content-type-select', data: {size: 5}
+  .grid.grid__collapse.js-content-block{style:  "display: #{f.object.pdf? ? 'none' : 'block'}"}
+    .grid_i.grid_i__grid-4-10.grid_i__prefix-1-10>
+      %label.form_el.form_label
+        Контент
+    .grid_i.grid_i__grid-5-10>
+      .form_el.js-form_el.form_textarea.js-description-container{data: {valid: ''}}
+        = f.text_area :content, class: 'form_el_tag form_textarea_tag form_textarea_tag-white'
+  .grid.grid__collapse.js-file-block{style:  "display: #{f.object.pdf? ? 'block' : 'none'}"}
+    .grid_i.grid_i__grid-4-10.grid_i__prefix-1-10>
+      .form_el.js-form_el.form_file>
+        %p.form_el_inner.js-form_el_inner.form_file_inner= f.object.file.try(:file).try(:filename) || 'Загрузить pdf'
+        %input.form_el_tag.form_file_tag.js-pdf-file-input{:type => 'file'}
+        = f.hidden_field :file_cache, data: {file_cache: true}

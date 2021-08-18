@@ -1,0 +1,164 @@
+= render 'admin/breadcrumbs', crumbs: {'группы' => admin_groups_path, (@group.name.presence || 'новая группа') => '#'}
+%h3.tx-center= @group.name.presence || 'НОВАЯ ГРУППА'
+= form_for [:admin, @group], html: {id: 'group_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Заголовок:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Активна
+    - unless @group.new_record?
+      &nbsp;|&nbsp;
+      %a.a_under.tx-right.modal{data: { url: new_admin_group_attendance_report_path(@group) }}
+        %span> Посещаемость
+  .admin_body
+    .admin_settings_change
+      - unless @group.new_record?
+        .mt-1
+          %label.form_el.form_label Документы:
+          .form_el.js-form_el
+            = link_to 'пр. о зачислении', admin_group_addition_order_path(@group), class: 'a_under'
+            |
+            = link_to 'пр. об отчислении', admin_group_expulsion_order_path(@group), class: 'a_under'
+            |
+            = link_to 'реестры выпускных документов', admin_group_final_work_registry_path(@group), class: 'a_under'
+            %br
+              = link_to 'журналы посещаемости', admin_group_attendance_log_path(@group), class: 'a_under'
+              |
+              = link_to 'список группы', admin_group_group_list_path(@group), class: 'a_under'
+              - if @group.active?
+                |
+                = link_to 'результаты занятий', admin_work_results_path(q: {group_id_eq: @group.id}), class: 'a_under', target: '_blank'
+      .mt-1
+        %label.form_el.form_label Курс:
+        - need_course_select = @group.new_record? || @group.course.try(:active?)
+        .form_el.form_el-select.js-form_el{class: need_course_select && 'form_tx'}
+          - if need_course_select
+            - html_options = {class: 'js-course-select2'}
+            - html_options[:disabled] = true if @group.students.any?
+            = f.select :course_id, options_from_collection_for_select(Course.active.alphabetical_order_display_name, :id, :display_name, @group.course_id), {}, html_options
+          - else
+            = @group.course.name
+
+      .mt-1
+        %label.form_el.form_label Преподаватель:
+        .form_el.form_el-select.js-form_el{class: 'form_tx'}
+          = f.select :instructor_id, options_from_collection_for_select(Instructor.alphabetical_order, :id, :full_name, @group.instructor_id), {include_blank: 'Не назначен'}, {class: 'js-course-select2'}
+      .mt-1
+        %label.form_el.form_label Ссылка на вебинар
+        .form_el.js-form_el.form_tx
+          = f.text_field :webinar_link, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Фейк-группа:
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :fake, class: 'form_el_tag form_checkbox_tag'
+      .mt-1
+        %label.form_el.form_label Дата начала обучения:
+        .form_el.js-form_el.form_tx
+          = f.text_field :begin_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@group.begin_on), readonly: true
+      .mt-1
+        %label.form_el.form_label Дата окончания обучения:
+        .form_el.js-form_el.form_tx
+          = f.text_field :end_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@group.end_on), readonly: true
+      .mt-1
+        %label.form_el.form_label Время начала занятий:
+        .form_el.js-form_el.form_tx
+          = f.text_field :start_time, class: 'form_el_tag form_tx_tag js-timepicker', value: @group.formatted_start_time
+      .mt-1
+        %label.form_el.form_label Время окончания занятий:
+        .form_el.js-form_el.form_tx
+          = f.text_field :end_time, class: 'form_el_tag form_tx_tag js-timepicker', value: @group.formatted_end_time
+      .mt-1
+        %label.form_el.form_label Дата первого занятия (оч. форма):
+        .form_el.js-form_el.form_tx
+          = f.text_field :academic_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@group.academic_on)
+      .mt-1
+        .grid
+          .grid_i.grid_i__grid-2-8>
+            %p.form_el_inner.form_label_inner График обучения:
+          .grid_i.grid_i__grid-3-8>
+            %label.form_el.form_label.form_label__el
+              .form_el.js-form_el.form_radio
+                = f.radio_button :schedule_type, :specific_days, class: 'form_el_tag form_radio_tag js-show-week_days'
+              %p.form_el_inner.form_label_inner Конкретные дни
+          .grid_i.grid_i__grid-3-8>
+            %label.form_el.form_label.form_label__el
+              .form_el.js-form_el.form_radio
+                = f.radio_button :schedule_type, :shift_work, class: 'form_el_tag form_radio_tag js-hide-week_days'
+              %p.form_el_inner.form_label_inner Сменный график
+      .mt-1#week_days{style: ('display: none;' if @group.schedule_type.shift_work?)}
+        .grid
+          .grid_i.grid_i__grid-2-8>
+            %p.form_el_inner.form_label_inner Дни недели:
+          - Group.week_days.options.in_groups(2, false).each_with_index do |group, idx|
+            .grid_i.grid_i__grid-3-8>
+              - group.map do |name, value|
+                %label.form_el.form_label.form_label__el
+                  .form_el.js-form_el.form_checkbox
+                    = check_box_tag 'group[week_days][]', value, @group.week_days.include?(value), class: 'form_el_tag form_checkbox_tag'
+                  %p.form_el_inner.form_label_inner= name
+
+      .mt-1#shift_work_on{style: ('display: none;' if @group.schedule_type.specific_days?)}
+        %label.form_el.form_label Первый учебный день:
+        .form_el.js-form_el.form_tx
+          = f.text_field :shift_work_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@group.shift_work_on), readonly: true
+      .mt-1
+        %label.form_el.form_label График обучения:
+        .form_el.js-form_el.form_textarea.schedule_textarea.js-description-container{data: {valid: ''}}
+          = f.text_area :schedule_description, class: 'form_el_tag form_textarea_tag'
+      .mt-1
+        %label.form_el.form_label Дата ITEC:
+        .form_el.js-form_el.form_tx
+          = f.text_field :itec, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@group.itec), readonly: true
+      .mt-1
+        %label.form_el.form_label Кол-во мест для оч. формы:
+        .form_el.js-form_el.form_tx
+          = f.text_field :academics_place, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Кол-во мест для оч.д. формы:
+        .form_el.js-form_el.form_tx
+          = f.text_field :distances_place, class: 'form_el_tag form_tx_tag'
+
+      .mt-1
+        %label.form_el.form_label  Адрес практики:
+        .form_el.js-form_el.form_tx
+          = f.text_field :practice_address, class: 'form_el_tag form_tx_tag'
+
+      .tx-s.tx-700.mb-1.mt-2 Даты практики и время
+      .course_blocks.js-practice-fields
+        = f.fields_for :practices do |fp|
+          = render 'practice_fields', f: fp
+      = link_to_add_association f, :practices, class: 'course_block course_block__add', data: {association_insertion_method: 'append', association_insertion_node: '.js-practice-fields'} do
+        .course_block_inner
+          .icon_add> +
+          Добавить блок
+
+      .tx-s.tx-700.mb-1.mt-2 Стоимость обучения для группы
+      .course_blocks.js-practice-price-fields
+        = f.fields_for :prices do |fp|
+          = render 'price_fields', f: fp
+      = link_to_add_association f, :prices, class: 'course_block course_block__add', data: {association_insertion_method: 'append', association_insertion_node: '.js-practice-price-fields'} do
+        .course_block_inner
+          .icon_add> +
+          Добавить блок
+
+      - students = @group.students.joins(:group_subscriptions).merge(GroupSubscription.not_expelled.actual).uniq.by_alphabet
+      - if students.any?
+        .tx-s.tx-700 Студенты
+        %ul.students_list
+          = render collection: students, partial: 'admin/courses/student'
+
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @group.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/groups'
+  = javascript_include_tag 'admin/filter_groups'
+  = javascript_include_tag 'admin/attendance'

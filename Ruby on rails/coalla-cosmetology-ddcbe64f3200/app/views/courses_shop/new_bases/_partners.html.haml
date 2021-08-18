@@ -1,0 +1,14 @@
+%section.partners
+  .container
+    .partners__row
+      .partners__col
+        .h4.partners__title Партнеры
+
+        .partners__slider.partners-slider#partners-slider
+          - @partners.each do |partner|
+            .partners-slider__slide
+              = link_to '#' do
+                = image_tag transparent_pixel, size: '130x40',
+                                               alt: '',
+                                               class: 'lazyload',
+                                               data: { src: partner.image.main }

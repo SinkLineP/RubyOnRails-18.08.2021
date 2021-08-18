@@ -1,0 +1,19 @@
+.feedbacks-cards__card
+  .feedback-card
+    .feedback-card__inner
+      .feedback-card__image
+        - if recall.uploaded_video
+          = link_to '#popup-jwplayer', 'data-mfp-type' => 'jwplayer', 'data-player-options' => jw_player_options(recall.uploaded_video), class: 'zoom-in' do
+            = image_tag recall.uploaded_video.preview_image.url(:recall), alt: ''
+            = render 'layouts/courses_shop/video_zoom_in_icon'
+        - elsif recall.video_link?
+          = link_to youtube?(recall.video_link) ? youtube_popup_video_url(recall.video_link) : recall.video_link, target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'iframe' do
+            = image_tag recall.video_image? ? recall.video_image_url(:thumb) : placeholder_url('350x200'), alt: ''
+            = render 'layouts/courses_shop/video_zoom_in_icon'
+        - else
+          = link_to recall.file? ? recall.file_url(:main) : placeholder_url('600x450'), target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+            = image_tag recall.file? ? recall.file_url(:thumb) : placeholder_url('350x200'), alt: ''
+            = render 'layouts/courses_shop/image_zoom_in_icon'
+      %blockquote.feedback-card__quote
+        = simple_format(recall.message)
+        %footer= recall.author_name

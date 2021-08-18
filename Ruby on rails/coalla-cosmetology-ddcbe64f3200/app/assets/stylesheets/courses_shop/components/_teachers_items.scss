@@ -1,0 +1,122 @@
+// Teachers items
+.teachers-items {
+  position: relative;
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+    @include align-items(stretch);
+  }
+
+  &__list {
+    @include media($breakpoint-lg) {
+      max-width: 870px;
+      padding-right: 0;
+      padding-left: 0;
+    }
+    @include media($breakpoint-sm) {
+      margin: auto;
+      max-width: 290px;
+    }
+    &.slick-slider {
+      .slick-track {
+        .slick-slide {
+          @include display(flex);
+          @include flex-wrap(nowrap);
+          @include align-items(stretch);
+          @include justify-content(center);
+        }
+      }
+    }
+    &:not(.slick-initialized) {
+      .teachers-items__item:nth-child(n+2) {
+        display: none !important;
+      }
+
+      // Hiding arrows nav until slider init
+      ~ .teachers-items__nav {
+        display: none;
+      }
+    }
+  }
+
+  // Item
+  &__item {
+    max-width: 290px;
+    width: 100%;  
+    margin: 0 auto;
+    align-self: stretch;
+    @include media($breakpoint-sm) {
+      margin: { // Same as .courses-cards__card
+        right: .75rem;
+        left: .75rem;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+      padding: {
+        right: 1rem!important;
+        left: 1rem!important;
+      }
+    }
+  }
+
+  // Nav
+  &__nav {
+    position: absolute;
+    top: 12rem;
+    z-index: 2;
+
+    @include media($breakpoint-sm) {
+      @include transform(translate(0, -50%));
+    }
+
+    &--prev {
+      @include media($breakpoint-sm) {
+        left: 0;
+      }
+
+      @include media($breakpoint-lg) {
+        @include transform(translate(-100%, -15%));
+        left: 15%;
+        margin-left: -10%;
+      }
+    }
+
+    &--next {
+      @include media($breakpoint-sm) {
+        right: 0;
+      }
+
+      @include media($breakpoint-lg) {
+        @include transform(translate(100%, -15%));
+        right: 15%;
+        margin-right: -10%;
+      }
+    }
+
+    .icon {
+      fill: $color-ui;
+    }
+  }
+
+  .icon {
+    @include hover(fill, $color-base, '.teachers-cards__nav:hover');
+  }
+
+  // If slider init
+  .slick-slider {
+    z-index: 1;
+  }
+
+  .slick-initialized {
+    // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+    .slick-slide {
+      height: auto;
+
+      img {
+        display: inline;
+      }
+    }
+  }
+}

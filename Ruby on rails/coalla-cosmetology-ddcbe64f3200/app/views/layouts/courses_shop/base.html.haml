@@ -1,0 +1,61 @@
+!!!
+%html(lang='ru')
+  = render 'layouts/courses_shop/head'
+
+  %body{class: @body_class}
+    .preloader
+      = image_tag 'spinner.gif'
+    - if Rails.env.production?
+      = render 'layouts/courses_shop/scripts/gtm_body'
+      = render 'layouts/courses_shop/scripts/roistat'
+      = render 'layouts/courses_shop/scripts/yandex_metric'
+
+    = render 'layouts/courses_shop/mobile_menu'
+    = render 'layouts/courses_shop/mobile_user_nav'
+    = render 'layouts/courses_shop/site_header'
+
+    %main#main
+      = yield
+
+    = render 'layouts/courses_shop/site_footer'
+
+    - unless @preview_from_admin
+      = render 'layouts/courses_shop/components/banner'
+
+    = render 'layouts/courses_shop/popups_modal'
+
+    = render 'layouts/courses_shop/feedbacks_widgets'
+
+    = render 'layouts/cookie_warning'
+
+    = javascript_include_tag 'courses_shop/application'
+    - if Rails.env.production?
+      = render 'layouts/courses_shop/scripts/pop_mechanic'
+      = render 'layouts/courses_shop/scripts/mindbox'
+    - mindbox_data = session.delete(:mindbox)
+    - if mindbox_data
+      :javascript
+        mindboxWrapper.operation(#{mindbox_data.html_safe});
+    - fb_event = session.delete(:fb_event)
+    - if fb_event && current_shop.barbershop?
+      :javascript
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({event: '#{fb_event}'});
+        console.log('fb_event: ', '#{fb_event}');
+    = yield :js
+    :javascript
+      (function(d, w, k) {
+        w.introvert_callback = function() {
+          try {
+            w.II = new IntrovertIntegration(k);
+          } catch (e) {console.log(e)}
+        };
+
+        var n = d.getElementsByTagName("script")[0],
+          e = d.createElement("script");
+
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "https://api.yadrocrm.ru/js/cache/"+ k +".js";
+        n.parentNode.insertBefore(e, n);
+      })(document, window, '6fd152e0');

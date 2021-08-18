@@ -1,0 +1,11 @@
+%div.dl(data-state='collapsed')
+  %div.dt= curriculum_block.title
+  %div.dd
+    %div.dl
+      - if curriculum_block.content.blank?
+        %em= t('accordeon_blank_description')
+      - else
+        - curriculum_block.items.each do |block_item|
+          %div.dt= block_item.title
+          - block_item.items.each do |item|
+            %div.dd= item.title

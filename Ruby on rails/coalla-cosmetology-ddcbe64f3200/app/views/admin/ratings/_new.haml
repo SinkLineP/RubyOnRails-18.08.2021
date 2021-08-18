@@ -1,0 +1,29 @@
+.popup_ctn
+  .popup.bg-muted#new_rating
+    .mb-3.tx-center
+      ОТЧЕТ ПО РЕЙТИНГУ
+    .mb-3.tx-center
+      Укажите период, в который должна попадать дата окончания обучения по курсу
+    = form_tag admin_ratings_path(format: :xls), html: {class: 'form js-form', remote: true} do
+      .grid
+        .grid_i.grid_i__grid-2-5.grid_i__prefix-1-10>
+          %label.form_el.form_label Дата начала
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_tx{data: {valid: ''}}
+            = text_field_tag :begin_on, nil, class: 'form_el_tag form_tx_tag js-datepicker js-used-date', value: format_date(Date.current.beginning_of_year)
+        .grid_i.grid_i__grid-2-5.grid_i__prefix-1-10>
+          %label.form_el.form_label Дата окончания
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_tx{data: {valid: ''}}
+            = text_field_tag :end_on, nil, class: 'form_el_tag form_tx_tag js-datepicker js-used-date', value: format_date(Date.current.end_of_year)
+        .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+          .form_el.js-form_el.form_btn
+            %p.form_el_inner.form_btn_inner СГЕНЕРИРОВАТЬ
+            %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+    .icon_del.arcticmodal-close X
+
+- content_for :js do
+  :javascript
+    $(function(){
+      initDatepicker();
+    });

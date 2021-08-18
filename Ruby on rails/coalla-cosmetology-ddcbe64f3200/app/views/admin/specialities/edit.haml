@@ -1,0 +1,79 @@
+.popup.bg-muted
+  .mb-3.tx-center
+    %h5 РЕДАКТИРОВАНИЕ НАПРАВЛЕНИЯ
+  = form_for [:admin, @speciality], html: {id: 'speciality_form', class: 'form js-form', remote: true} do |f|
+
+    .grid
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :title, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el
+          .tx-s= @speciality.display_title
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :slug, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = f.text_field :slug, class: 'form_el_tag form_tx_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :meta_title, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :meta_title, class: 'form_el_tag form_textarea_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :meta_description, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :meta_description, class: 'form_el_tag form_textarea_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :meta_og_title, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :meta_og_title, class: 'form_el_tag form_textarea_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :meta_og_description, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :meta_og_description, class: 'form_el_tag form_textarea_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :announcement, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :announcement, class: 'form_el_tag form_textarea_tag'
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :page_title, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_tx
+          = f.text_field :page_title, class: 'form_el_tag form_tx_tag'
+
+      .tx-s.tx-700 SEO блоки
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :block1, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :block1, class: 'form_el_tag form_textarea_tag'
+
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :header2, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :header2, class: 'form_el_tag form_textarea_tag'
+
+      .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+        = f.label :block2, class: 'form_el form_label'
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :block2, class: 'form_el_tag form_textarea_tag'
+
+      - unless @speciality.root?
+        .grid_i.grid_i__grid-1-2.grid_i__prefix-1-10>
+          %label.form_el.form_label.form_label__el
+            .form_el.js-form_el.form_checkbox
+              = f.check_box :show_on_site, class: 'form_el_tag form_checkbox_tag'
+            %p.form_el_inner.form_label_inner= 'Отображать на сайте'
+      .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+        .form_el.js-form_el.form_btn
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+    .icon_del.arcticmodal-close X
+
+= javascript_include_tag 'admin/speciality_form'

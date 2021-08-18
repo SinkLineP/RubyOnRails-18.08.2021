@@ -1,0 +1,34 @@
+- course = @group_subscription.course
+- group = @group_subscription.group
+.page.page--sections.page--course-added
+  .page-section
+    .container
+      %article.course-added
+        .h4.course-added__title Курс добавлен в&nbsp;корзину
+        .course-added__content
+          %svg.icon(role='img' data-size='66')
+            %use(xlink:href='/assets/courses_shop/icons.svg#mirror')
+          %p
+            = "&laquo;#{course.name}&raquo;".html_safe
+            %br
+            #{education_period(group)} (#{education_schedule(group)})
+        %ul.course-added__actions
+          - parent_specialty = course.specialities.first.try(:parent)
+          - if parent_specialty
+            %li
+              = link_to 'Другие курсы', alternative_speciality_url(parent_specialty), class: 'button button--base-outline', 'data-size' => 'lg'
+          %li
+            = link_to 'К&nbsp;оплате'.html_safe, courses_shop_cart_path, class: 'button button--base-fill', 'data-size' => 'lg'
+        = render 'layouts/courses_shop/hr_small'
+
+  - if @similars.present?
+    %section.page-section
+      .container
+        %header.page__header
+          .h3.page__title С&nbsp;этим курсом также покупают:
+
+        .courses-items
+          %ul.courses-items__list#similar_courses_list
+            = render partial: 'courses_shop/courses/course_li', collection: @similars
+
+        = pagination_complex(@similars, '#similar_courses_list', false)

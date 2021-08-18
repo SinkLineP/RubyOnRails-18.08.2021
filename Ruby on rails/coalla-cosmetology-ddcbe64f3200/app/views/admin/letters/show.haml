@@ -1,0 +1,34 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      .content
+        = render 'admin/breadcrumbs', crumbs: {'письма' => admin_letters_path, @letter.subject => '#'}
+      %h3.tx-center= @letter.subject.mb_chars.upcase
+      .form.js-form.form__admin
+        .admin_header
+          %label.form_el.form_label Отправитель:
+          .form_el.js-form_el.form_tx= link_to @letter.student.display_name, admin_my_student_path(@letter.student), class: 'a_under'
+        .admin_body
+          .msg.mb-2.mt-1
+            = Sanitize.fragment(@letter.body.to_s, Sanitize::Config::RELAXED).html_safe
+          - if @letter.attachments.present?
+            .admin-attachments
+              .grid
+                - @letter.attachments.each do |attachment|
+                  .grid_i.grid_i__grid-1-2.grid_i__suffix-1-2
+                    = link_to attachment.item_url, class: 'material-a', target: '_blank' do
+                      .grid
+                        .grid_i.grid_i__middle.grid_i__grid-1-8>
+                          %span.square_icon= attachment.item.file.extension.upcase
+                        .grid_i.grid_i__middle.grid_i__grid-7-8>
+                          = attachment.item.file.filename
+          .admin_footer
+            .grid
+              .grid_i.grid_i__grid-1-4>
+                .form_el.js-form_el.form_btn.form_btn__small
+                  %p.form_el_inner.form_btn_inner ОТВЕТИТЬ
+                  = button_tag type: 'button', class: 'form_el_tag form_btn_tag', onClick: "location.href=\'#{reply_admin_letter_path(@letter)}\';"
+              .grid_i.grid_i__grid-1-2.grid_i__prefix-1-4.tx-right>
+                = link_to 'Перейти к другим письмам', admin_letters_path, class: 'a_under'

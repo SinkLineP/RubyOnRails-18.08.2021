@@ -1,0 +1,17 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'наши услуги' => '#'}
+      %h3.tx-center Наши услуги
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            %a.a_under.modal{data: {url: new_admin_service_path}}>
+              %span.icon-add> +
+              Добавить услугу
+        .admin_body.table.table_base-color
+          .grid.grid__collapse
+            = render collection: @services, partial: 'admin/services/service'
+      = will_paginate @services, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

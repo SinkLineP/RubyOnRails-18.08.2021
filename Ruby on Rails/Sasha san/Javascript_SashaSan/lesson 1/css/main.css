@@ -1,0 +1,17 @@
+body {
+  background-image: url("../images/main.jpg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.main {
+  margin: 0 auto;
+}
+
+.main h1 {
+  text-align: center;
+  color: white;
+  margin-top: -5px;
+}

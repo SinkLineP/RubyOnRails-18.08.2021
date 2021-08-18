@@ -1,0 +1,120 @@
+= render 'admin/breadcrumbs', crumbs: {'статьи' => admin_articles_path, (@article.title.presence || 'новая статья') => '#'}
+%h3.tx-center= @article.title.presence || "Новая статья #{t("#{@article.type}")}"
+- if @article.persisted?
+  .tx-center
+    = link_to 'Запустить рассылку', notify_admin_article_path(@article), class: 'a_under js-article-notify', remote: true, method: :post
+= form_for @article, url: @article.new_record? ?  url_for(action: :create) : url_for(action: :update, id: @article.id), as: :article, html: {id: 'article_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+    %label.form_el.form_label Заголовок:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+      = f.hidden_field :type
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :published, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Опубликовано
+  .admin_body
+    .admin_settings_change
+      - unless @article.new_record?
+        = link_to 'Предварительный просмотр', admin_article_path(@article)
+      - if @article.blog?
+        .mt-1
+          %label.form_el.form_label.form_label__el
+            .form_el.js-form_el.form_checkbox
+              = f.check_box :for_main, class: 'form_el_tag form_checkbox_tag'
+            %p.form_el_inner.form_label_inner= 'Отображать на главной'
+      - unless @article.new_record?
+        .mt-1
+          %label.form_el.form_label ЧПУ:
+          .form_el.js-form_el.form_tx
+            = f.text_field :slug, class: 'form_el_tag form_tx_tag'
+      - unless @article.blog?
+        .mt-1
+          %label.form_el.form_label Текст-анонс на превью:
+          .form_el.js-form_el.form_tx
+            = f.text_field :preview_announce, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Анонс:
+        .form_el.js-form_el.form_textarea
+          = f.text_area :announce, class: 'form_el_tag form_textarea_tag'
+      %div.js-image-block.mt-3
+        .form_el.js-form_el.form_el__block
+          = image_tag f.object.send('main_image_url', :main) || 'article_1310.png', size: '720x480', class: 'js-uploaded-image'
+        .form_el.js-form_el.form_file.form_el__block
+          = f.hidden_field :main_image_cache
+          %p.form_el_inner.form_file_inner.a_under
+            Загрузить #{f.object.class.human_attribute_name(:main_image).mb_chars.downcase}
+          %input.js-add-image-btn.form_el_tag.form_file_tag{type: 'file', name: 'file', data: {uploader: ArticleMainImageUploader, version: :main}}
+          = hidden_field_tag 'article[remove_main_image]', 0
+        = link_to 'Удалить главное фото', '#', class: 'js-remove-main-image', style: 'margin-left: .75rem;'
+      .mt-1
+        %label.form_el.form_label Подпись к главному фото:
+        .form_el.js-form_el.form_tx
+          = f.text_field :main_image_title, class: 'form_el_tag form_tx_tag'
+      = render 'admin/common/image_loader', f: f, field: :preview_image, size: '417x417', uploader: ArticlePreviewImageUploader, version: :main, placeholder: 'article_417.png'
+      .mt-1
+        = f.label 'Название кнопки', class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :button_text, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        = f.label 'Тип кнопки', class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.select :button_type, [['Ссылка', 'link'],
+          ['Обратная связь', 'feedback'],
+          ['Запись на курс', 'course']],
+          class: 'form_el_tag form_tx_tag'
+      .mt-1
+        = f.label 'Ссылка для кнопки', class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :button_link, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        = f.label 'Мета-тег(title)', class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :tag_title, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        = f.label 'Мета-тег(description)', class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 24rem; '}
+          = f.text_area :tag_description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+      = f.cktext_area :content, placeholder: 'Текст'
+
+      - if @article.blog?
+        .tx-s.tx-700.mb-1.mt-2 Категории
+        .course_blocks.js-category-fields
+          = f.fields_for :blog_categories do |fp|
+            = render 'blog_category_fields', f: fp
+        = link_to_add_association f, :blog_categories, class: 'course_block course_block__add', data: {association_insertion_method: 'append', association_insertion_node: '.js-category-fields'} do
+          .course_block_inner
+            .icon_add> +
+            Добавить категорию
+
+        .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Похожие блоги
+        .course_blocks.js-similars-list
+          = render collection: @article.similars, partial: 'similar', locals: {f: f}
+        .mb-1
+          %label.form_el.form_label Добавить блог:
+          .form_el.js-form_el.form_tx
+            = text_field_tag :similar_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_articles_path(shop: true, type: 'Blog'), template: '#similars_template', append_to: '.js-similars-list', variants: '#similars_autocomplete_variants'}
+          .autocomplete_variants#similars_autocomplete_variants
+
+        .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Курсы
+        .course_blocks.js-courses-list
+          = render collection: @article.courses, partial: 'course', locals: {f: f}
+        .mb-1
+          %label.form_el.form_label Добавить курс:
+          .form_el.js-form_el.form_tx
+            = text_field_tag :course_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_courses_path(shop: true), template: '#courses_template', append_to: '.js-courses-list', variants: '#courses_autocomplete_variants'}
+          .autocomplete_variants#courses_autocomplete_variants
+
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @article.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/ckeditor'
+  = render 'admin/common/block_template', item_name: :similars, object_name: :article
+  = render 'admin/common/block_template', item_name: :courses, object_name: :article

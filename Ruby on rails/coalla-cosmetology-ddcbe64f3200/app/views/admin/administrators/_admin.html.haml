@@ -1,0 +1,6 @@
+.grid_i.grid_i__grid-5-6{class: admin_counter > 0 ? '' : 'mt-3'}>
+  = link_to admin.display_name, '#', class: 'modal', data: {url: edit_admin_administrator_path(admin)}
+  = link_to admin_administrator_path(admin), method: :delete do
+    .icon_del X
+.grid_i.grid_i__grid-1-6{class: admin_counter > 0 ? '' : 'mt-3'}>
+  %time{datetime: ''}= format_date(admin.last_sign_in_at)

@@ -1,0 +1,57 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      .content
+        = render 'admin/breadcrumbs', crumbs: {'курсы' => admin_courses_path, 'рассылка' => '#'}
+        %h3.tx-center #{@course.name.mb_chars.upcase} - РАССЫЛКА
+        = form_for [:admin, @notice], url: admin_course_notices_path(@course), html: {class: 'form js-form form__admin'} do |f|
+          .admin_body
+            .mt-2.header_blocks_settings
+              .tx-s.tx-700 Прикрепляемые файлы
+            .mt-1.edit_materials
+              .grid
+                = f.fields_for :notice_attachments do |notice_attachment|
+                  .grid_i.grid_i__middle.grid_i__grid-1-2>
+                    = render 'admin/students/document_copy_fields', f: notice_attachment
+                .grid_i.grid_i__middle.grid_i__grid-1-2>
+                  .form_el.js-form_el.form_file
+                    %p.form_el_inner.form_file_inner.a_under
+                    .icon_add +
+                    %span.a_under(style='font-size: 1.4rem;') Загрузить
+                    %input.form_el_tag.form_file_tag.js-attach-file{:type => 'file'}
+            .grid
+              - if @notice.notice_groups.present?
+                = f.hidden_field :groups_tokens, value: @notice.notice_groups.map(&:group_id).join(', ')
+                = hidden_field_tag :group_id, params[:group_id]
+              - else
+                .grid_i.grid_i__grid-1-1>
+                  %label.form_el.form_label Группы:
+                  .token-input{data: error_data_attributes(f,:notice_groups)}
+                    = f.text_field :groups_tokens, data: {multi_field: true,
+                                                   source: search_admin_groups_path(course_id: @course.id),
+                                                   pre: @notice.groups_json(:title),
+                                                   show_all_on_focus: true,
+                                                   use_cache: true}
+                  = errors_text f, :notice_groups
+              .grid_i.grid_i__grid-1-1.results>
+                .group-list
+                  = render collection: @notice.notice_groups.map(&:group), partial: 'admin/course_notices/group'
+
+              .grid_i.grid_i__grid-1-1>
+                .form_el.js-form_el.form_el__block.form_textarea{data: error_data_attributes(f,:message)}
+                  = f.text_area :message, placeholder: 'Текст', rows: 4, class: 'form_el_tag form_textarea_tag'
+                = errors_text f, :message
+            .grid
+              .grid_i.grid_i__grid-1-4>
+                .form_el.js-form_el.form_btn.form_btn__small
+                  %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+                  = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+            - content_for :js do
+              %script#notice_attachment_template{type: 'text/template'}
+                = f.fields_for :notice_attachments, NoticeAttachment.new, child_index: '__id__', include_id: false do |notice_attachment_fields|
+                  .grid_i.grid_i__middle.grid_i__grid-1-2>
+                    = render 'admin/students/document_copy_fields', f: notice_attachment_fields
+              = javascript_include_tag 'admin/notice_form'

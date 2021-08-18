@@ -1,0 +1,10 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      - if params[:copy_blocks]
+        = render 'form_with_blocks'
+      - else
+        = render 'form'
+= render 'admin/errors', errors: @block.errors

@@ -1,0 +1,14 @@
+%footer.footer
+  .container
+    .footer__row
+      .footer__caption Обучение косметологов с&nbsp;нуля до&nbsp;профессионала<br>открыты группы на&nbsp; 2019&nbsp;г.
+
+      .footer__request-a-call
+        = link_to 'Заказать звонок', '#form-popup', class: 'button button--block button--bordered js-popup'
+
+      .footer__info
+        %p
+          Институт &laquo;Дом Русской Косметики&raquo;
+          %br
+          Обучение косметологии, массажу, менеджменту
+        %p= link_to 'Политика конфиденциальности', courses_shop_privacy_policy_path, rel: 'nofollow', target: '_blank'

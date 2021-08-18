@@ -1,0 +1,15 @@
+current directory: /home/sinkline/chat/rails-chat-tutorial/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+/home/sinkline/.rvm/rubies/ruby-2.6.2/bin/ruby -I /home/sinkline/.rvm/rubies/ruby-2.6.2/lib/ruby/site_ruby/2.6.0 -r ./siteconf20191017-21818-6rd54o.rb extconf.rb
+creating Makefile
+
+current directory: /home/sinkline/chat/rails-chat-tutorial/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" clean
+
+current directory: /home/sinkline/chat/rails-chat-tutorial/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR="
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /home/sinkline/chat/rails-chat-tutorial/vendor/bundle/ruby/2.6.0/gems/bindex-0.8.1/ext/skiptrace
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20191017-21818-17db5mg/skiptrace/internal

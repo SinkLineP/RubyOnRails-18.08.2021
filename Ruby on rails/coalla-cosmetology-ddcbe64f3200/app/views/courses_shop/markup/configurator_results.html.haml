@@ -1,0 +1,18 @@
+.page.page--sections
+  .page-section
+    .container
+      %header.page__header
+        .h2.page__title Вам подходит
+
+      %form.course-select(action='#')
+        .course-select__toggle
+          = link_to '#', class: 'button button--action-fill', id: 'course-select-toggle', 'data-size' => 'sm', 'data-type' => 'text' do
+            %span Подобрать
+            %svg.icon(role='img' data-size='18')
+              %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+        .course-select__content#course-select-content
+          = render 'layouts/courses_shop/components/course_select_content'
+
+      = render 'layouts/courses_shop/components/courses_items'
+
+      = render 'layouts/courses_shop/components/pagination_simple'

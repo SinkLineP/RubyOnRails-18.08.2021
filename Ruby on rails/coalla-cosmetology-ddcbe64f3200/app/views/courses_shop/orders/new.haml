@@ -1,0 +1,59 @@
+.popup-modal#popup-basket-payment-method-select(data-size='lg')
+  .popup-modal__header
+    %div
+      .h5 Выберите способ оплаты
+      %p= "#{courses_count(@order.current_group_subscriptions.count)}/ #{format_money(@order.full_price_with_discount)}".html_safe
+
+  .popup-modal__inner
+    = form_for @order, url: courses_shop_orders_path, remote: true, html: {class: 'default-form', data: {trackable: true}} do |f|
+      - @order.group_subscriptions.each do |subscription|
+        = hidden_field_tag 'order[group_subscription_ids][]', subscription.id
+      = f.hidden_field :cart
+      = f.hidden_field :full
+      = f.hidden_field :promo_code_id
+      .default-form__inner
+        .default-form__row
+          .payment-method-select.js-payment-method-select
+            %ul
+              %li
+                %label.is-selected.js-payment-method-select-item
+                  %span.radio-input
+                    = f.radio_button :payment_type, :bank
+                    %span
+                  %span.payment-method-select__dl
+                    %span.payment-method-select__dt Банковской картой
+                    %span.payment-method-select__dd
+                      %span Оплата происходит мгновенно, место в&nbsp;выбранной группе сразу закрепляется за&nbsp;вами (без комиссии)
+              - if [110900, 9871].include?(current_user.id) || Rails.env.development?
+                %li
+                  %label.is-selected.js-payment-method-select-item
+                    %span.radio-input
+                      = f.radio_button :payment_type, :bank_tkb
+                      %span
+                    %span.payment-method-select__dl
+                      %span.payment-method-select__dt Банковской картой TKB TEST
+                      %span.payment-method-select__dd
+                        %span Оплата происходит мгновенно, место в&nbsp;выбранной группе сразу закрепляется за&nbsp;вами (без комиссии)
+              %li
+                %label.js-payment-method-select-item
+                  %span.radio-input
+                    = f.radio_button :payment_type, :cash
+                    %span
+                  %span.payment-method-select__dl
+                    %span.payment-method-select__dt Наличными в&nbsp;офисе
+                    %span.payment-method-select__dd
+                      %span По&nbsp;адресу: Москва, Б. Татарская ул.&nbsp;, д.&nbsp;35 с.&nbsp;3., пн&mdash;вс с&nbsp;9:00 до&nbsp;21:00, кроме праздничных дней (без комиссии)
+              %li
+                %label.js-payment-method-select-item
+                  %span.radio-input
+                    = f.radio_button :payment_type, :receipt
+                    %span
+                  %span.payment-method-select__dl
+                    %span.payment-method-select__dt Квитанция для банка
+                    %span.payment-method-select__dd
+                      %span В&nbsp;отделении любого банка (комиссия&nbsp;&mdash; 1,5&ndash;3%)
+
+        .default-form__row
+          %button.button.button--base-outline.js-payment-type-select(type='submit' data-size='lg') Выбрать и&nbsp;продолжить
+
+    = render 'layouts/courses_shop/popup_modal_close'

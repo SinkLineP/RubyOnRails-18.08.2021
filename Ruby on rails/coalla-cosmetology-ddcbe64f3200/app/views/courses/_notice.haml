@@ -1,0 +1,4 @@
+.alert.mb-1
+  %p= notice.message.try(:html_safe)
+  = link_to notice_path(notice), method: :delete, remote: true, data: {disable_with: '...', delete_notice: true}, class: 'alert__close' do
+    %i.fa.fa-times

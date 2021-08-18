@@ -1,0 +1,94 @@
+= render 'admin/breadcrumbs', crumbs: {'отзывы' => admin_recalls_path, 'отзыв' => '#'}
+%h3.tx-center= 'ОТЗЫВЫ'
+= form_for [:admin, @recall], html: {id: 'recall_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+  .admin_body
+    .mb-4
+      .grid
+        .grid_i.grid_i__grid-3-9>
+          %p.nowrap.tx-700 Включен в курсы:
+        .grid_i.grid_i__grid-6-9>
+          - if @recall.courses.any?
+            = render collection: @recall.courses, partial: 'admin/common/course'
+    .admin_settings_change
+      .mt-2
+        = f.label :message, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 18rem;'}
+          = f.text_area :message, class: 'form_el_tag form_textarea_tag', style: 'height: 18rem;'
+
+      .mt-1
+        = f.label :author_name, class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :author_name, class: 'form_el_tag form_tx_tag'
+
+      .mt-1
+        = f.label 'Аватар автора (260x260)', class: 'form_el form_label'
+        .form_el.js-form_el.form_file{data: {placeholder: @recall.author_image? ? @recall.author_image.file.filename : 'Загрузить'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+          = f.file_field :author_image, class: 'form_el_tag form_file_tag'
+
+      .mt-1
+        = f.label :file, class: 'form_el form_label'
+        .form_el.js-form_el.form_file{data: {placeholder: @recall.file? ? @recall.file.file.filename : 'Загрузить'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+          = f.file_field :file, class: 'form_el_tag form_file_tag'
+
+      .mt-1
+        = f.label 'Превью для видео-отзыва (415x235): ', class: 'form_el form_label'
+        .form_el.js-form_el.form_file{data: {placeholder: @recall.video_image? ? @recall.video_image.file.filename : 'Загрузить'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+          = f.file_field :video_image, class: 'form_el_tag form_file_tag'
+
+      .mt-2
+        = f.label :video_link, class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = f.text_field :video_link, class: 'form_el_tag form_tx_tag'
+
+      = render 'admin/common/select_video_block', size: 300, f: f
+
+      .mt-1
+        .grid
+          .grid_i.grid_i__grid-2-8>
+            = f.label :directions, class: 'form_el form_label'
+          - current_shop_directions = current_shop.barbershop? ? Recall::BARBERSHOP_DIRECTIONS : Recall::COURSE_SHOP_DIRECTIONS
+          - Recall.directions.options.select{|item| current_shop_directions.include?(item.last.to_sym)}.in_groups(2, false).each do |direction|
+            .grid_i.grid_i__grid-3-8>
+              - direction.map do |name, value|
+                %label.form_el.form_label.form_label__el
+                  .form_el.js-form_el.form_checkbox
+                    = check_box_tag 'recall[directions][]', value, @recall.directions.include?(value), class: 'form_el_tag form_checkbox_tag'
+                  %p.form_el_inner.form_label_inner= name
+
+      .mt-2
+        %label.form_el.form_label.form_label__el
+          .form_el.js-form_el.form_checkbox
+            = f.check_box :show_on_main, class: 'form_el_tag form_checkbox_tag'
+          %p.form_el_inner.form_label_inner Показывать на главной
+
+      .mt-2
+        %label.form_el.form_label.form_label__el
+          .form_el.js-form_el.form_checkbox
+            = f.check_box :lock_on_top, class: 'form_el_tag form_checkbox_tag'
+          %p.form_el_inner.form_label_inner Закрепить наверху
+
+      .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Курсы
+      .course_blocks.js-courses-list
+        = render collection: @recall.courses, partial: 'course', locals: {f: f}
+      .mb-1
+        %label.form_el.form_label Добавить курс:
+        .form_el.js-form_el.form_tx
+          = text_field_tag :course_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_courses_path(shop: true), template: '#course_template', append_to: '.js-courses-list', variants: '#courses_autocomplete_variants'}
+        .autocomplete_variants#courses_autocomplete_variants
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @recall.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/recalls'
+  = render 'admin/common/block_template', item_name: :course, object_name: :recall

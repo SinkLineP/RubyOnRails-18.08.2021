@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+// Checkbox input
+.checkbox-input {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+
+  // Sizes
+  &:not([data-size]) {
+    @include size(4rem);
+
+    @include media($breakpoint-lg) {
+      @include size(2rem);
+    }
+
+    > span {
+      background-size: 2.4rem 2rem;
+
+      @include media($breakpoint-lg) {
+        background-size: 1.2rem 1rem;
+      }
+    }
+  }
+
+  &[data-size="sm"] {
+    @include size(2rem);
+
+    > span {
+      background-size: 1.2rem 1rem;
+    }
+  }
+
+  &[data-size="lg"] {
+    @include size(4rem);
+
+    > span {
+      background-size: 2.4rem 2rem;
+    }
+  }
+
+  // Validation
+  &[data-validation="invalid"] {
+    > span {
+      border-color: $color-error;
+    }
+  }
+
+  // Input
+  > input {
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+
+    &:checked {
+      + span {
+        background: {
+          color: $color-ui;
+          image: asset_url('courses_shop/check.svg');
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: no-drop;
+
+      + span {
+        opacity: .4;
+      }
+    }
+  }
+
+  // Span
+  > span {
+    @include transition(background $transition-duration-base);
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: {
+      color: #fff;
+      position: 50% 50%;
+      repeat: no-repeat;
+
+    }
+    border: .2rem solid $color-ui;
+    border-radius: .4rem;
+  }
+}

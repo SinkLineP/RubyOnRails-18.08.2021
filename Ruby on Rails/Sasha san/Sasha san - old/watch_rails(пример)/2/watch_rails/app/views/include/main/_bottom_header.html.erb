@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="header">
+    <div class="col-md-9 header-left">
+      <div class="top-nav">
+        <ul class="memenu skyblue">
+          <li class="active"><%= link_to "Home", root_path, data: {turbolinks: false} %></li>
+          <% Category.roots.each do |category| %>
+            <% cache category do %>
+              <li class="grid">
+              <%= link_to category.title, "/category/#{category.id}", data: {turbolinks: false}%>
+                <% if category.children.present? %>
+                  <div class="mepanel">
+                    <div class="row">
+                      <div class="col1 me-one">
+                        <%= render 'include/menu/menu', category: category, cached: true %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="col-md-3 header-right">
+      <div class="search-bar">
+        <form action="/search" method="get" autocomplete="off">
+          <input class="example-numbers typeahead" id="categories-basic" name="q" type="text" placeholder="Search..." data-behavior="autocomlete">   
+          <input type="submit" value="">         
+        </form>
+        
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

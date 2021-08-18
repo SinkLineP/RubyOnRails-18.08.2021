@@ -1,0 +1,71 @@
+<h2>Записаться</h2>
+<p>На этой странице вы можете записаться в наш barber shop!</p>
+
+
+<form action = "/visit" method = "POST" role = "form">
+  <div class="form-group">
+    <label>Ваше имя:</label>
+    <input name="username" type="text" class="form-control" placeholder="Введите ваше имя" value="<%=@username%>"  >
+ </div>
+
+
+  <div class="form-group">
+    <label>Ваш телефон:</label>
+    <input  name="phone" type="text" class="form-control" placeholder="Введите ваш номер телефона" value="<%=@phone%>" >
+ </div>
+
+  <div class="form-group">
+    <label>Когда вас ждать?</label>
+    <input id="datetimepicker" name="data_time" type="text" class="form-control" placeholder="Введите время и дату" value="<%=@data_time%>">
+ </div>
+
+
+<div class="form-group">
+    <label>Ваш парикмахер:</label>
+<select  name="barber"  class="form-control">
+
+  
+  <option <%= @barber == 'Dean Winchester' ? 'selected' : '' %> >Dean Winchester</option>
+  <option <%= @barber == 'Sam Winchester' ? 'selected' : '' %>>Sam Winchester</option>
+  <option <%= @barber == 'Castiel' ? 'selected' : '' %>>Castiel</option>
+  <option <%= @barber == 'Crowley' ? 'selected' : '' %>>Crowley</option>
+  <option  <%= @barber == 'Jak' ? 'selected' : '' %>>Jak</option>
+</select>
+ </div>
+
+
+
+<input type='submit' class="btn btn-info"/>
+
+
+<br/>
+
+<div class="form-group">   
+Выберите цвет для покраски:
+<select  id ="color" name="color">
+  <option  value ="#7bd148">Зеленый</option>
+  <option  value = "#5484ed">Жирный синий</option>
+  <option  value = "#a4bdfc">Синий</option>
+  <option  value = "#46d6db">Бирюзовый</option>
+  <option  value = "#7ae7bf">Светло-зелены</option>
+  <option  value = "#51b749">Жирный зеленый </option>
+  <option  value = "#fbd75b">Желтый</option>
+  <option  value = "#ffb878">Orange</option>
+  <option  value = "#ff887c">Красный</option>
+  <option  value = "#dc2127">Жирный красный</option>
+  <option  value = "#dbadff">Фиолетовый</option>
+  <option  value = "#e1e1e1">Серый</option>
+</select>
+
+ </div>
+
+</form>
+<script type="text/javascript">
+
+  $(function(){
+
+    $('#color').simplecolorpicker();
+    $('#datetimepicker').datetimepicker();
+  });ss
+
+</script>

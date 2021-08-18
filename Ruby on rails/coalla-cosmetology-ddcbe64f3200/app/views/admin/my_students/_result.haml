@@ -1,0 +1,31 @@
+.exercise_info.active
+  .exercise_info__text.student_table
+    .grid
+      .grid_i.grid_i__grid-6-7>
+        .tx-700
+          #{display_result_name(result)}
+        %p= result.task.description
+        - if result.answer.present?
+          %div
+            %span.tx-700 Ответ:
+            %span= result.answer
+        - if result.task_answer.present?
+          %div
+            %span.tx-700 Правильный ответ:
+            %span= result.task_answer
+        - if result.try(:result_file_items).present?
+          = render 'admin/my_students/results/result_file_items', result_file_items: result.result_file_items
+        - if result.try(:result_test_items).present?
+          = render 'admin/my_students/results/result_test_items', result_test_items: result.result_test_items
+        - if result.try(:result_connection_items).present?
+          = render 'admin/my_students/results/result_connection_items', result_connection_items: result.result_connection_items
+      .grid_i.grid_i__grid-1-7>
+        .tx-center
+          .tx-700
+            оценка
+          - if result.manual_marking?
+            .form_el.js-form_el.form_tx.form_tx__grade
+              %input.form_el_tag.form_tx_tag.js-mark{type: 'text', value: result.mark.present? ? result.mark :  '', data: {url: admin_my_student_result_path(result.student, result)}}
+          - else
+            .form_el.js-form_el.form_tx
+              %span= result.mark || ''

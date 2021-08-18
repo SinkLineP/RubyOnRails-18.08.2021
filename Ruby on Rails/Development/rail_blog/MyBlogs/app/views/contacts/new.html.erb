@@ -1,0 +1,30 @@
+<div class="container">   
+  <h2><%= t('contacts.contact_us') %></h2>
+
+  <%= simple_form_for :contact, url: contacts_path do |f| %>
+  
+  <p>
+  <% if @contact && @contact.errors.any? %>
+    <ul>
+      <% @contact.errors.full_messages.each do |msg| %>
+        <i><li style="color: red;"><%= msg %></li></i>
+      <% end %>
+    </ul>
+  <% end %>
+  </p>
+
+  
+  <div>
+    <%= f.input :email, :class => 'form-control' %>
+  </div>
+
+  <div>
+    <%= f.input :message, :class => 'form-control' %>
+  </div>
+
+  <p>
+    <%= f.submit 'Send message', :class => 'btn btn-success' %>
+  </p>
+
+  <% end %>
+</div>

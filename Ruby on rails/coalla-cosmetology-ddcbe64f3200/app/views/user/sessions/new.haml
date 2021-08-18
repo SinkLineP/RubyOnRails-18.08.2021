@@ -1,0 +1,35 @@
+%main#main.main{role: 'main'}
+  %section.index_page.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_1
+        .flowers_inner
+          %h1 SIKORSKY
+          %h1 BEAUTY ACADEMY
+        .social_links
+          -#%a.social_links-a{:href => '#', target: '_blank'}
+            %i.fa.fa-twitter
+          %a.social_links-a{:href => 'https://www.facebook.com/groups/125731487480835/?fref=ts', target: '_blank'}
+            %i.fa.fa-facebook
+          %a.social_links-a{:href => 'http://vk.com/club54022779', target: '_blank'}
+            %i.fa.fa-vk
+
+      = form_for @user, as: :user, url: new_user_session_path, html: {autocomplete: 'off', class: 'form js-form pt-2', remote: true} do |f|
+        .grid.tx-center
+          .grid_i.grid_i__grid-1-4>
+            .form_el.js-form_el.form_el__block.form_tx
+              = f.email_field :email, placeholder: 'Эл. почта', class: 'form_el_tag form_tx_tag'
+          .grid_i.grid_i__grid-1-4>
+            .form_el.js-form_el.form_el__block.form_tx
+              = f.password_field :password, placeholder: 'Пароль', class: 'form_el_tag form_tx_tag'
+          .grid_i.grid_i__grid-1-4>
+            .form_el.js-form_el.form_el__block.form_btn
+              %p.form_el_inner.form_btn_inner Войти
+              = f.submit class: 'form_el_tag form_btn_tag'
+          .grid_i.grid_i__grid-3-4>
+            .form_recovery-password
+              = link_to 'Восстановить пароль', '#', class: 'a_under modal', data: {url: new_user_password_path}
+          .grid_i.grid_i__grid-5-6>
+            %p Добро пожаловать в&nbsp;систему дистанционного обучения Дома Русской Косметики.
+
+- content_for :js do
+  = javascript_include_tag 'passwords'

@@ -1,0 +1,30 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'автоматические скидки' => admin_automatic_discounts_path}
+      %h3.tx-center АВТОМАТИЧЕСКИЕ СКИДКИ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_automatic_discount_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить автоматическую скидку
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-3-9>
+                %p Название
+              .grid_i.grid_i__grid-2-9>
+                %p Скидка
+              .grid_i.grid_i__grid-2-9>
+                %p Курсы
+              .grid_i.grid_i__grid-1-9>
+                %p Включена
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @automatic_discounts, partial: 'automatic_discount'
+      = will_paginate @automatic_discounts, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

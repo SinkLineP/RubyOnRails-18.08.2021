@@ -1,0 +1,53 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      .content
+        = render 'admin/breadcrumbs', crumbs: {'блог' => admin_posts_path, (@post.title.presence || 'добавить пост') => '#'}
+      %h3.tx-center= (@post.title.presence || 'ДОБАВИТЬ ПОСТ')
+      = form_for [:admin, @post], html: {class: 'form js-form form__admin js-post-form'} do |f|
+        .admin_header
+          %label.form_el.form_label Заголовок:
+          .form_el.js-form_el.form_tx
+            = f.text_field :title, class: 'form_el_tag form_tx_tag'
+        .admin_body
+          %div
+            %label.form_el.form_label Анонс:
+            .form_el.js-form_el.form_tx
+              = f.text_field :announcement, class: 'form_el_tag form_tx_tag'
+          - if !@post.new_record?
+            %div
+              %label.form_el.form_label ЧПУ:
+              .form_el.js-form_el.form_tx
+                = f.text_field :slug, class: 'form_el_tag form_tx_tag'
+          %div
+            %label.form_el.form_label Категория:
+            .form_el.js-form_el.form_tx
+              = f.text_field :category_title, class: 'form_el_tag form_tx_tag autocomplete_categories'
+          .autocomplete_variants
+          = render 'admin/common/image_loader', f: f, field: :announcement_image, size: '328x217', uploader: PostAnnouncementImageUploader, version: :preview, placeholder: 'post_image.png'
+          = render 'admin/common/image_loader', f: f, field: :inner_image, size: '1024x370', uploader: PostInnerImageUploader, version: :promo, placeholder: 'post_inner_image.png'
+          = f.cktext_area :text, placeholder: 'Текст'
+          = render 'admin/common/image_loader', f: f, field: :slider_image, size: '763x196', uploader: PostSliderImageUploader, version: :preview, placeholder: 'slider_image.png'
+          .grid
+            .grid_i.grid_i__grid-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+            .grid_i.grid_i__grid-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small{disabled: @post.new_record?}
+                %p.form_el_inner.form_btn_inner ПРЕВЬЮ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'preview', onclick: "this.form.target='_blank';return true;"
+            .grid_i.grid_i__grid-1-4.grid_i__prefix-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small
+                - if @post.unpublished?
+                  %p.form_el_inner.form_btn_inner ОПУБЛИКОВАТЬ
+                  = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'publish'
+                - else
+                  %p.form_el_inner.form_btn_inner СНЯТЬ
+                  = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'withdraw'
+= render 'admin/errors', errors: @post.errors
+
+- content_for :js do
+  - javascript_include_tag 'admin/ckeditor'

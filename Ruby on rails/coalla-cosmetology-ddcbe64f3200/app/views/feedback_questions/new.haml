@@ -1,0 +1,21 @@
+%main#main.main{role: 'main'}
+  %section.index_page.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_6
+        .flowers_inner
+          %h1 СООБЩЕНИЕ КУРАТОРУ
+      = form_for @feedback_question, url: feedback_questions_path, as: :feedback_question, builder: CustomFormBuilder, html: {class: 'form js-form'} do |f|
+        = f.hidden_field :course_id
+        = f.hidden_field :student_name
+        = f.hidden_field :groups
+        = f.hidden_field :phone
+
+        .grid.grid__collapse
+          .grid_i.grid_i__grid-2-3.grid_i__prefix-1-6.grid_i__suffix-1-6>
+            = f.select_wrapped :type, feedback_question_type_options, 'Выбрать тему', class: 'js-feedback-type-select selectordie'
+
+        = render 'feedback_questions/default_form', f: f
+        = render 'feedback_questions/absenteeism_form', f: f
+
+- content_for :js do
+  = javascript_include_tag 'errors'

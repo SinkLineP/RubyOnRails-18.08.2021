@@ -1,0 +1,93 @@
+- sufficient_groups_number = @groups.count > 3
+.course
+  .course__list.accordion.js-accordion
+    - if @groups.any?
+      %div.dl(data-state='expanded')
+        %div.dt
+          %span Выберите группу для обучения
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+        %div.dd
+          %form.course-groups#course-groups(action='#')
+            %ul.course-groups__list{class: sufficient_groups_number && 'course-groups__list--accordion js-course-groups-list-accordion'}
+
+              - @groups.each_with_index do |group, idx|
+                %li.course-groups__group
+                  %label.course-group.js-course-group{class: ('is-selected' if idx == 0)}
+                    %span.course-group__radio
+                      .radio-input(data-size='lg')
+                        %input{type: 'radio', name: 'group_id', checked: idx == 0, value: group.id, data: {course_id: @course.id}}
+                        %span
+                    %ul.course-group__meta
+                      %li
+                        %svg.icon(role='img' data-size='18')
+                          %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                        = education_period(group)
+                      %li
+                        %svg.icon(role='img' data-size='18')
+                          %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                        = raw(education_schedule_alt(group))
+                      %li
+                        %svg.icon(role='img' data-size='18')
+                          %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                        = free_places_text(group)
+                      - if group.early_booking?
+                        %li.is-sm
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#warning-fill')
+                          Раннее бронирование
+                    %span.course-group__promotion
+                      // Leave even empty, needed for flexbox layout
+                      - if group.early_booking?
+                        .tooltip(data-position='top')
+                          %svg.icon(role='img' data-size='34')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#percent')
+                          .tooltip__popup
+                            %article.tooltip__popup-inner
+                              %header
+                                .h5 Доступно раннее бронирование!
+                                = render 'layouts/courses_shop/hr_small'
+                              %p Сэкономь до #{format_money(@course.economy)}
+
+            - if sufficient_groups_number
+              .course-groups__all
+                %a.course-groups__open-all-button.js-open-all-groups(href='#')
+                  %span Все группы
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+
+            .course-groups__all
+              = render 'courses_shop/common/sign_on_course_button', course: @course, title: 'Записаться на&nbsp;курс', size: 'lg'
+
+
+    - if @course.curriculum_blocks.any?
+      %div.dl(data-state='expanded')
+        %div.dt
+          %span Посмотрите учебный план
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+        %div.dd
+          .course-curriculum
+            .course-curriculum__list.accordion.js-accordion
+              = render partial: 'curriculum_block', collection: @course.curriculum_blocks
+
+            %ul.course-curriculum__documents
+              - if @course.syllabus?
+                %li
+                  = link_to @course.syllabus_url, class: 'document-item', target: '_blank' do
+                    %svg.document-item__icon.icon(role='img' data-size='42')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#document')
+                    .document-item__info
+                      %p.document-item__title Скачать полный учебный план в&nbsp;формате PDF
+              %li
+                - if ['K-WSR', 'PU-WSR', 'UT-WSR', 'MOBIR-WSR', 'UL-WSR', 'M-WSR', 'WSR-EXPRESS-UT-144', 'WSR-EXPRESS-UL-144',
+                      'WSR-K', 'WSR-PU', 'WSR-UT', 'WSR-MOBIR', 'WSR-UL', 'WSR-M', 'ML-WSR'].include?(@course.short_name)
+                  - dogovor = '/K-PU-WSR-shablon.pdf'
+                - else
+                  - dogovor = '/dogovor.pdf'
+                - dogovor = courses_shop_offer_path if @course.total_price > 0
+                = link_to dogovor, class: 'document-item', target: '_blank' do
+                  %svg.document-item__icon.icon(role='img' data-size='42')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#document')
+                  .document-item__info
+                    %p.document-item__title Посмотреть образец договора на&nbsp;обучение

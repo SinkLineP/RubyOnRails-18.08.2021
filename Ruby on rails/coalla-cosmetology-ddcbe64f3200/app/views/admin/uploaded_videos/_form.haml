@@ -1,0 +1,29 @@
+= render 'admin/breadcrumbs', crumbs: {'видео' => admin_uploaded_videos_path, (@uploaded_video.title.presence || 'новое видео') => '#'}
+%h3.tx-center= @uploaded_video.title.presence || 'НОВОЕ ВИДЕО'
+= form_for [:admin, @uploaded_video], url: @uploaded_video.new_record? ? admin_uploaded_videos_path : admin_uploaded_video_path(@uploaded_video), as: :uploaded_video, html: {id: 'video_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      %br
+      .mt_1
+        %label.form_el.form_label Код из jwplayer:
+        .form_el.js-form_el.form_textarea{style: 'background-color: #e6e6e6; width: 50rem'}
+          = f.text_area :jw_script, class: 'form_el_tag form_tx_tag'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :preview_image, size: '640x360', uploader: UploadedVideoPreviewImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt-1
+        = f.label 'Видеофайл', class: 'form_el form_label'
+        .form_el.js-form_el.form_file{data: {placeholder: @uploaded_video.file? ? @uploaded_video.file.file.filename : 'Загрузить'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+          = f.file_field :file, class: 'form_el_tag form_file_tag'
+
+      .grid.mt-2
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @uploaded_video.errors

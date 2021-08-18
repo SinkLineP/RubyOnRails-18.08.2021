@@ -1,0 +1,69 @@
+
+
+<h2>
+	<%= @article.title %>
+</h2>
+
+<hr>
+
+<p>
+	<%= sanitize @article.text %>
+</p>
+
+<p>
+	<%= image_tag @article.picture.url, width: '400s' if @article.picture? %> 
+</p>
+
+<hr>
+
+<p>
+	Автор: <%= @article.author %>
+</p>
+
+<p>
+	Дата публикации:  <%= @article.created_at%>
+</p>
+<p>
+	<%= link_to 'Все статьи', articles_path(@articles), :class => 'btn btn-info' %> 
+	<% if user_signed_in? %>
+	<% if current_user.username == @article.author %>
+    	<%= link_to 'Редактировать', edit_article_path(@article), :class => 'btn btn-success' %> 
+		<%= link_to 'Удалить', article_path(@article), method: :delete, data: { confirm: 'Вы уверены?'}, :class => 'btn btn-danger' %> 
+
+	<% end %>
+	<% end %>
+</p>
+
+<h3>
+	Оставьте комментарий!
+</h3>
+
+<%= form_for([@article, @article.comments.build]) do |f| %>
+	
+	
+	<p>
+		
+		
+		<%= f.text_area :body, :class => 'form-control' %>
+	</p>
+	<p>
+		
+		<%= f.submit "Оставить комментарий", :class => 'btn btn-primary' %>
+	</p>
+<% end %>
+
+
+
+<% @article.comments.each do |comment| %>
+	<p>
+		<i><%= comment.author %>: прокомнтировал(а)</i>
+	</p>
+	<p>
+		
+		<%= comment.body %>
+	</p>
+	<p>
+		<%= comment.created_at %>
+	</p>
+	<hr>
+<% end %>

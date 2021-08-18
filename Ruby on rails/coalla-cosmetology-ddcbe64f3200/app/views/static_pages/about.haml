@@ -1,0 +1,9 @@
+%main#main.main{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_5
+        .flowers_inner
+          %h1= @static_page.title
+      .grid
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8
+          %p= raw(@static_page.content)

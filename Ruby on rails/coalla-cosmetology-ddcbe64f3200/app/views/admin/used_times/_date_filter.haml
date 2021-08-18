@@ -1,0 +1,17 @@
+= search_form_for @q, url: url_for(action: :index), html: {class: 'form js-form', autocomplete: 'off'} do |f|
+  .mt-1
+    .grid.grid__collapse
+      .grid_i.grid_i__grid-1-12>
+        %label.form_el.form_label Дата:
+      .grid_i.grid_i__grid-2-6.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.text_field :date_eq, class: 'form_el_tag form_tx_tag js-datepicker js-submit-form filter_datepicker', value: format_date(@q.date_eq)
+
+- content_for :js do
+  :javascript
+    $(function() {
+      initDatepicker();
+      $('.js-submit-form').change(function() {
+        $(this).closest('form')[0].submit();
+      });
+    });

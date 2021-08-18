@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= course.name
+    = hidden_field_tag 'automatic_discount[course_ids][]', course.id, data: {block_id: true}

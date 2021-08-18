@@ -1,0 +1,6 @@
+.social-likes {
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(center);
+  font-size: 130%;
+}

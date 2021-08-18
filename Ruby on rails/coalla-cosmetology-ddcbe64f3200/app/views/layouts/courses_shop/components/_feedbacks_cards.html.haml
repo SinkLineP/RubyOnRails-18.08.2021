@@ -1,0 +1,37 @@
+.feedbacks-cards
+  .feedbacks-cards__list#feedbacks-cards-slider
+    .feedbacks-cards__card
+      .feedback-card
+        .feedback-card__inner
+          .feedback-card__image
+            = link_to 'https://placehold.it/600x450?text=∴', target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+              = image_tag 'https://placehold.it/200x150?text=∴', width: '200', height: '150', alt: ''
+              = render 'layouts/courses_shop/image_zoom_in_icon'
+          %blockquote.feedback-card__quote
+            %p Хорошо устроена практика. Преподаватели&nbsp;&mdash; Алексеева, Баронова, Романова, да&nbsp;и&nbsp;остальные, тоже отличные, но&nbsp;вели у&nbsp;нас меньше. Много бумажной работы, не&nbsp;очень нужной. Сам диплом (дипломная работа)&nbsp;&mdash; лишняя трата времени.
+            %footer Бартенева Ольга
+
+    .feedbacks-cards__card
+      .feedback-card
+        .feedback-card__inner
+          .feedback-card__image
+            = link_to 'https://placehold.it/600x450?text=∴', target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+              = image_tag 'https://placehold.it/200x150?text=∴', width: '200', height: '150', alt: ''
+              = render 'layouts/courses_shop/image_zoom_in_icon'
+          %blockquote.feedback-card__quote
+            %p Хвалю! Вы&nbsp;замечательные. Спасибо за&nbsp;дистанционный доступ к&nbsp;библиотеке&nbsp;и, конечно, за&nbsp;педагога! Хотелось&nbsp;бы иметь распечатки массажных движений. Это сэкономило&nbsp;бы много времени и&nbsp;упростило запоминание.
+            %footer Студент Дома Русской Косметики
+
+    .feedbacks-cards__card
+      .feedback-card
+        .feedback-card__inner
+          .feedback-card__image
+            = link_to 'https://www.youtube.com/watch?v=xI6i6SAAKI8', target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'iframe' do
+              = image_tag 'https://placehold.it/200x150?text=∴', width: '200', height: '150', alt: ''
+              = render 'layouts/courses_shop/video_zoom_in_icon'
+          %blockquote.feedback-card__quote
+            %p Сам диплом (дипломная работа)&nbsp;&mdash; лишняя трата времени.
+            %footer Белецкая Екатерина
+
+  .feedbacks-cards__all
+    = link_to 'Все отзывы', '#', class: 'button button--base-outline', 'data-size' => 'lg'

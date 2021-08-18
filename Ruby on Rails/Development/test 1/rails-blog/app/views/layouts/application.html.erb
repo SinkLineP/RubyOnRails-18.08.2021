@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlogLesson34</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link data-require="bootstrap@*" data-semver="4.1.3" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script data-require="bootstrap@*" data-semver="4.1.3" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="/public/main.css" rel="stylesheet">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.sticky.js"></script>
+    <script>    $(window).load(function(){
+      $("#header").sticky({ topSpacing: 0 });
+    });
+ </script>
+  </head>
+
+  <body class='body'>
+     <% if user_signed_in? %>
+     <div class="scrol">
+     <div class="container-fluid">
+     <div class="navback">
+      <div class="navbars-top">
+
+        <div class="row">
+
+          <div class="col-xs-11">
+            <div class="navbar-header">
+              <ul class="nav nav-pills">
+                <li role="presentation" class=""><%= link_to 'Все статьи', articles_path(@articles) %></li>
+                <li role="presentation"><%= link_to 'Новая статья', new_article_path(@article) %></li>
+                <li role="presentation"><%= link_to 'Terms', terms_path %></li>
+                <li role="presentation"><%= link_to 'About', about_path %></li>
+                <li role="presentation"><%= link_to 'Профиль', user_root_path %></li>
+                <li role="presentation"><%= link_to 'Обратная связь', contacts_path %></li>
+
+                <% if current_user[:username] == 'karamalesa' %>
+                  <li role="presentation"><%= link_to 'Админка',  rails_admin_path %> </li>
+                <% end %> 
+
+                <li role="presentation"><%= link_to 'Выйти', destroy_user_session_path, method: :delete %></li>
+              </ul>
+              
+            </div>
+          </div>
+          
+
+          <div class="col-xs-1">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <%= link_to user_root_path, id: "navbar-dropdown", :class => "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
+                  <%= image_tag user_avatar(current_user, 30), :class => "rounded-circle" %>
+                <% end %>
+                <div id="color-link">
+                <div class="dropdown-menu">
+                <% if current_user.admin? %>
+                    <%= link_to "Admin Area", rails_admin_path, :class => "dropdown-item" %>
+                <% end %>
+                  <%= link_to 'Settings', edit_user_registration_path, :class => "dropdown-item" %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "dropdown-item" %>
+                </div>
+                </div>
+              </li>
+            </ul>
+          </div> 
+
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+     
+            
+            
+               
+              
+                  <!--<%= link_to 'Все статьи', articles_path(@articles), :class => 'btn btn-primary' %>
+              
+                 
+                  <%= link_to 'Новая статья', new_article_path(@article), :class => 'btn btn-primary' %>
+                 
+                  <%= link_to 'Terms', terms_path, :class => 'btn btn-primary' %>
+                  <%= link_to 'About', about_path, :class => 'btn btn-primary' %>
+                  <%= link_to 'Профиль', user_root_path, :class => 'btn btn-primary' %>
+                  <% if current_user[:username] == 'karamalesa' %>
+                   <%= link_to 'Админка',  rails_admin_path, :class => 'btn btn-primary' %>
+                  <% end %>-->
+           
+            
+              
+           
+          <% else %>
+          
+            <div class="container"> 
+              <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                      <ul class="nav nav-pills">
+                        <li role="presentation" class=""><%= link_to 'Зарегистрироваться', new_user_registration_path, :class => 'btn btn-warning' %></li>
+                        <li role="presentation"><%= link_to 'Войти', new_user_session_path, :class => 'btn btn-success' %></li>
+                      </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          
+          <% end %>
+          
+           
+           
+         <main role="main" class="container">
+      <div class="row">
+        
+          <div class='col-md-3'>
+            <div class="navbars-border">
+            <div class="navbars">
+              <div>
+              <a href="https://github.com/karamalesa1980">My Github</a>
+              </div>
+             <div>
+                <a href="https://karamalesa.herokuapp.com/">My Heroku</a>
+              </div>
+            <a>New</a>
+            </div>
+            </div>
+
+            
+            
+          </div>
+        
+        <div class="col-md-9">
+
+          <%= yield %>
+
+        </div>
+
+        
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="footer">
+          </div>
+        </div>  
+      </div>
+    </main>
+
+
+      <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+   
+          <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </div>
+  </body>
+</html>

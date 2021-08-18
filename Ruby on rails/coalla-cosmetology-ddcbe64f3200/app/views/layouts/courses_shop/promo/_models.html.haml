@@ -1,0 +1,13 @@
+%section.page-promo-models#page-promo
+  .page-promo-models__background(style='background-image: url("/assets/courses_shop/page_promo/page_promo_models.jpg")')
+  .page-promo-models__inner
+    .container
+      %header.page-promo-models__header
+        %h1.page-promo-models__title Приглашаем моделей
+
+      .page-promo-models__text
+        %p Вы&nbsp;можете записаться на&nbsp;инъекции препарата диспорт к&nbsp;нашим преподавателям. Оплачивается только стоимость препарата. Процедуру проводит преподаватель, обучающиеся наблюдают за&nbsp;его работой.
+
+      .page-promo-models__schedule
+        = render 'layouts/courses_shop/hr_large'
+        = link_to 'Записаться', '#', class: 'button button--base-outline', id: 'scroll-to-models-schedule', 'data-size' => 'lg'

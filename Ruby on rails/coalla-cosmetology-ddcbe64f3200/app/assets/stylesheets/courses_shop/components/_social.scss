@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+.social {
+  a {
+    @include hover(border-color, $color-base);
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    height: 5.4rem;
+    border: .2rem solid;
+    border-radius: $border-radius-sm;
+
+    &.is-facebook {
+      border-color: $color-facebook;
+
+      .icon {
+        fill: $color-facebook;
+      }
+    }
+
+    &.is-vkontakte {
+      border-color: $color-vkontakte;
+
+      .icon {
+        fill: $color-vkontakte;
+      }
+    }
+
+    &.is-odnoklassniki {
+      border-color: $color-odnoklassniki;
+
+      .icon {
+        fill: $color-odnoklassniki;
+      }
+    }
+  }
+
+  .icon {
+    @include hover(fill, $color-base, 'a:hover');
+  }
+
+  /// Auth
+  &--auth {
+    @include display(flex);
+    @include align-items(center);
+
+    li {
+      @include flex(1);
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+
+    a {
+      width: 100%;
+    }
+  }
+
+  // Link
+  &--link {
+    a {
+      position: relative;
+      width: 13rem;
+
+      &[data-linked] {
+        @include hover(border-color color, $color-base $color-base);
+
+        &::after {
+          @include transform(translateY(-50%));
+          position: absolute;
+          top: 50%;
+          left: 100%;
+          padding-left: 2rem;
+          content: attr(data-text);
+        }
+      }
+
+      &[data-linked="false"] {
+        color: $color-brand;
+
+        &.is-facebook {
+          border-color: rgba($color-facebook, .4);
+
+          .icon {
+            fill: rgba($color-facebook, .4);
+          }
+        }
+
+        &.is-vkontakte {
+          border-color: rgba($color-vkontakte, .4);
+
+          .icon {
+            fill: rgba($color-vkontakte, .4);
+          }
+        }
+
+        &.is-odnoklassniki {
+          border-color: rgba($color-odnoklassniki, .4);
+
+          .icon {
+            fill: rgba($color-odnoklassniki, .4);
+          }
+        }
+      }
+
+      &[data-linked="true"] {
+        color: $color-base-light;
+      }
+    }
+
+    .icon {
+      @include hover(fill, $color-base, 'a:hover');
+    }
+  }
+}

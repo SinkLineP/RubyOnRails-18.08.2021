@@ -1,0 +1,17 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'блог' => '#'}
+      %h3.tx-center БЛОГ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_post_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить пост
+        .admin_body.table.table_base-color
+          .grid.grid__collapse
+            = render collection: @posts, partial: 'admin/posts/post'
+      = will_paginate @posts, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

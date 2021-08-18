@@ -1,0 +1,18 @@
+- institution_image = f.object
+.add_ctn.add_document{data: {institution_image: institution_image.try(:id) || f.index}, style: (f.index != 0 && 'display: none;')}
+  - unless institution_image.new_record?
+    = f.hidden_field :id
+  = f.hidden_field :_destroy, data: {destroy: true}
+  .mb-3
+    %h6.tx-center Добавить изображение
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Название
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :name, class: 'form_el_tag form_tx_tag js-institution-image-name'
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Изображение
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = render 'admin/common/image_loader', f: f, field: :image, size: '315x315', uploader: InstitutionImageUploader, version: :main, placeholder: 'placeholder3.png'

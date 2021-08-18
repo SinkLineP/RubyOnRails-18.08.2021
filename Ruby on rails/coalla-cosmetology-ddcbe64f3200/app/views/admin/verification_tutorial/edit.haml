@@ -1,0 +1,29 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      .content
+        = render 'admin/breadcrumbs', crumbs: {'редактирование инструкции' => '#'}
+        %h3.tx-center= 'ИНСТРУКЦИЯ'
+        = form_for [:admin, @tutorial], as: :verification_tutorial, url: admin_verification_tutorial_path, html: {class: 'form js-form form__admin js-post-form'} do |f|
+          .admin_body
+            %div
+              - if @tutorial.pdf_editable
+                .form_el.js-form_el.form_file{data: {placeholder: @tutorial.pdf_filename || 'Загрузить pdf'}}
+                  %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700
+                  = file_field_tag :pdf, class: 'form_el_tag form_file_tag'
+                  = f.hidden_field :pdf_cache, id: 'pdf_cache'
+              - else
+                %span.tx-i Идёт обработка загруженного файла...
+            %div
+              %label.form_el.form_label Код:
+              .form_el.js-form_el.form_tx
+                = f.text_field :value, class: 'form_el_tag form_tx_tag'
+            .grid
+              .grid_i.grid_i__grid-1-4>
+                .form_el.js-form_el.form_btn.form_btn__small
+                  %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                  = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+- content_for :js do
+  = javascript_include_tag 'admin/tutorial'

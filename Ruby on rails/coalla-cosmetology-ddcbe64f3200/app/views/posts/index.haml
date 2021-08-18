@@ -1,0 +1,16 @@
+%main#main.blog_page{role: 'main'}
+  = render 'posts/slider'
+  %section{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      .grid
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8.tx-center>
+          %ul.tags.mt-5
+            = render collection: @categories, partial: 'posts/category'
+        .grid_i.grid_i__grid-1-1.tx-center>
+          = render 'posts/filter'
+        = render collection: @posts.to_a.take(3), partial: 'posts/post'
+      = render 'posts/subscribe'
+      .grid
+        = render collection: @posts.to_a.drop(3), partial: 'posts/post'
+
+  = will_paginate @posts, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

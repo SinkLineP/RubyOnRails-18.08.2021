@@ -1,0 +1,41 @@
+%main#main.main{role: 'main'}
+  %section.index_page.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.graph
+        .graph_inner
+          %h1 ДОСТИЖЕНИЯ
+        .graph_ctn
+        - if current_user.user_total_activity.present?
+          .learning_time
+            %p Вы учитесь уже
+            %p
+              - if total_spent_hours > 0
+                %span.digit__big= total_spent_hours
+                = total_spent_hours_title
+              %span.digit__big= total_spent_minutes
+              = total_spent_minutes_title
+            %p Сегодня: #{today_spent_time_title}
+
+        .learning_tests
+          Вы успешно сдали
+          %p.digit__big= current_user.all_passed_tasks
+          = display_all_passed_tasks
+
+        .social_links
+          = render 'common/sharing', share_params: {type: :progress}
+
+        .activity_graph#activity-graph
+
+    .ctn
+      .tx-center.mt-8
+        = render collection: current_user.available_courses, partial: 'progresses/course'
+
+- content_for :js do
+  = javascript_include_tag 'vendor/d3'
+  = javascript_include_tag 'activity_graph'
+  - if @activity_graph_data.present?
+    :javascript
+      $(function(){
+        var activityGraph = new ActivityGraph('#{@activity_graph_data.to_json.to_s.html_safe}', '.graph');
+        activityGraph.plot();
+      });

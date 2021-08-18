@@ -1,0 +1,24 @@
+%li
+  - selected = selected_price == group_price
+  %label.js-payment-method-select-item{class: selected ? 'is-selected' : ''}
+    %span.radio-input
+      = radio_button_tag 'group_subscription[group_price_id]', group_price.id, selected
+      %span
+    %span.payment-method-select__dl
+      %span.payment-method-select__dd
+        - if group_price.one_time_payment?
+          %span= "Единовременная оплата #{group_price.early_booking? ? 'при раннем бронировании' : ''}"
+          %span= format_money(group_price.amount)
+        - else
+          %span
+            %span.is-sm Рассрочка
+            %span.tooltip.is-lg(data-position='top')
+              Рассрочка
+              %span.tooltip__popup
+                %span.tooltip__popup-inner
+                  %p= tooltip_text(group_price)
+            - if group_price.bank_installment?
+              = "от банка (беспроцентная): первый взнос Институту - #{format_money_nbsp(group_price.payment_amounts.first)}, остальные платежи банку общим размером - #{format_money_nbsp(group_price.payment_amounts.second)}".html_safe
+            - else
+              = "от Института на&nbsp;<span class='is-sm'>#{months_count_text(group_price.payment_amounts.count)}</span><span class='tooltip is-lg' data-position='top'>#{months_count_text(group_price.payment_amounts.count)}<span class='tooltip__popup'><span class='tooltip__popup-inner'><p>#{tooltip_text(group_price)}</p></span></span></span>: первый взнос - #{format_money_nbsp(group_price.payment_amounts.first)}, #{payments_count_text(group_price.payment_amounts.count - 1)} по #{format_money_nbsp(group_price.payment_amounts.second)}".html_safe
+          %span= format_money_nbsp(group_price.amount)

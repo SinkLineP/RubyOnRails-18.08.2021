@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.schedule {
+  // Toggle
+  &__toggle {
+    text-align: center;
+  }
+
+  // Content
+  &__content {
+    margin-top: 4rem;
+
+    &[id="schedule-content"] {
+      display: none;
+      margin-top: 8rem;
+    }
+  }
+
+  // Warning
+  &__warning {
+    margin-bottom: 2.5rem;
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+
+    > p {
+      @include text-sm;
+      color: $color-error;
+      text-align: center;
+
+      @include media($breakpoint-lg) {
+        @include grid-columns(1, 2);
+      }
+    }
+  }
+
+  // Form
+  &__form {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+
+    > form {
+      @include media($breakpoint-lg) {
+        @include grid-columns(1, 3);
+      }
+    }
+  }
+}

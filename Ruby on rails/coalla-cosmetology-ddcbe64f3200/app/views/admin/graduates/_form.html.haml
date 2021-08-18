@@ -1,0 +1,34 @@
+= render 'admin/breadcrumbs', crumbs: {'выпускники' => admin_graduates_path, (@graduate.name.presence || 'новый выпускник') => '#'}
+%h3.tx-center= @graduate.name.presence || 'НОВЫЙ ВЫПУСКНИК'
+= form_for [:admin, @graduate], html: {id: 'graduate_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+    %label.form_el.form_label ФИО:
+    .form_el.js-form_el.form_tx
+      = f.text_field :name, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Описание:
+        .form_el.js-form_el.form_textarea{data: {valid: ''}, style: 'height: 24rem; '}
+          = f.text_area :description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :avatar, size: '120x120', uploader: GraduateAvatarUploader, version: :main, placeholder: 'placeholder3.png'
+      .mt-1.mb-2.tx-s.tx-700.header_blocks_settings Факультеты
+      .course_blocks.js-faculties-list
+        = render collection: @graduate.faculties, partial: 'admin/instructors/faculty', locals: {f: f}
+      .mb-1.mb-2
+        %label.form_el.form_label Добавить факультет:
+        .form_el.js-form_el.form_tx
+          = text_field_tag :faculty_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_faculties_path, template: '#faculty_template', append_to: '.js-faculties-list', variants: '#faculties_autocomplete_variants'}
+        .autocomplete_variants#faculties_autocomplete_variants
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @graduate.errors
+
+- content_for :js do
+  = render 'admin/common/block_template', item_name: :faculty, object_name: :graduate

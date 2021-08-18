@@ -1,0 +1,32 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'статистика' => admin_indices_path}
+      %h3.tx-center СТАТИСТИКА
+      .form__admin
+        .admin_header.tx-center
+          %a.a_under.modal{data: {url: admin_funnel_path}}>
+            %span> Воронка
+          &nbsp;|&nbsp;
+          %a.a_under.modal{data: {url: admin_charges_report_path}}>
+            %span> Анализ затрат
+        .admin_body.table.table_base-color
+          = render 'admin/indices/search_form'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-4-9>
+                %p кампания
+              .grid_i.grid_i__grid-1-9.tx-right>
+                %p клики
+              .grid_i.grid_i__grid-1-9.tx-right>
+                %p показы
+              .grid_i.grid_i__grid-1-9.tx-right>
+                %p посещения
+              .grid_i.grid_i__grid-1-9.tx-right>
+                %p звонки
+              .grid_i.grid_i__grid-1-9.tx-right>
+                %p расходы
+          .grid.grid__collapse
+            = render collection: @indices, partial: 'campaign_index'

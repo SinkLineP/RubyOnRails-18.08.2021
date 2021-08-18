@@ -1,0 +1,11 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p= ty("Пользователь #{@procedure_request.name} записался на процедуры \"#{@procedure_request.procedure_name}\".")
+
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p= ty("Телефон пользователя: #{@procedure_request.phone}")
+
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %p=  ty("Эл.почта пользователя: #{@procedure_request.email}")

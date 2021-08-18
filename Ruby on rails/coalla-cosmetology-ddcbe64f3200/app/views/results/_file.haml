@@ -1,0 +1,16 @@
+.grid.grid__collapse
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .mt-4
+      .tx-l Ваше задание получено. Вскоре его проверит преподаватель.
+      - if course_finished?
+        = render 'results/additional/last_task_message'
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .mt-2
+      .loaded_files_list
+        = render collection: @result.result_file_items, partial: 'results/additional/loaded_file'
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .mt-2
+      .grid
+        .grid_i.grid_i__grid-1-1
+          .tx-center
+            = go_to_next_lecture_link

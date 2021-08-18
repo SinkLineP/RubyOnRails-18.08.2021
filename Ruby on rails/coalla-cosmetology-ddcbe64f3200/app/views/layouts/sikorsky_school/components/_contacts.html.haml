@@ -1,0 +1,27 @@
+.contacts
+  .contacts__map
+    #map
+    = javascript_include_tag '//api-maps.yandex.ru/2.1/?lang=ru_RU'
+    :javascript
+      function init() {
+        contactsMap1 = new ymaps.Map('map', {
+          center: [55.734534, 37.635868],
+          zoom: 14
+        });
+        contactsMap1.geoObjects.add(new ymaps.Placemark([55.737451,37.635485], {}, {
+          preset: 'islands#redIcon'
+        }));
+      }
+      ymaps.ready(init);
+
+  .contacts__address
+    .h5 Мы&nbsp;на&nbsp;карте
+    %p
+      Адрес: Москва, ул. Большая Татарская, д.&nbsp;35&nbsp;с3
+      %br
+      - if current_shop.barbershop?
+        = link_to 'tel:74951911571', class: 'roistat-phone', rel: 'nofollow' do
+          %span.roistat-phone +7&nbsp;495 191-15-71
+      - else
+        = link_to 'tel:74952560382', class: 'roistat-phone', rel: 'nofollow' do
+          %span.roistat-phone +7&nbsp;495 256-03-82

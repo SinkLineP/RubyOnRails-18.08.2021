@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.info-accordion {
+  @include media($breakpoint-lg) {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+
+    > div.dl {
+      border-top: 1px solid $color-ui;
+      border-bottom: 1px solid $color-ui;
+
+      &:not(:last-child) {
+        margin-bottom: -1px;
+      }
+
+      > div.dt {
+        @include display(flex);
+        @include justify-content(space-between);
+        @include h5;
+        padding: 3rem 0;
+
+        > span {
+          @include flex(1);
+        }
+
+        > .icon {
+          margin: .5rem 0 0 2rem;
+          fill: $color-brand;
+        }
+      }
+
+      .icon {
+        @include hover(fill, $color-base, 'div.dt:hover');
+      }
+
+      > div.dd {
+        margin-bottom: 3rem;
+
+        .images-slider__list,
+        .teachers-items__list {
+          @include media($breakpoint-lg) {
+            @include grid-columns(3, 4);
+          }
+        }
+      }
+    }
+  }
+}

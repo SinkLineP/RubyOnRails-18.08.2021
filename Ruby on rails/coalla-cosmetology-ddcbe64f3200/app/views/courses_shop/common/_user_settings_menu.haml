@@ -1,0 +1,11 @@
+.personal-cabinet__tabs
+  - pages = {'Мои курсы' => courses_shop_profile_courses_path, 'Расписание' => courses_shop_profile_schedule_path,
+     'Документы' => courses_shop_profile_documents_path, 'Настройки' => edit_courses_shop_profile_path}
+  %select.select2.js-select2.js-profile-menu
+    - pages.each do |name, path|
+      %option{value: path, selected: (current_page?(path) && 'selected')}= name
+
+  %ul
+    - pages.each do |name, path|
+      %li
+        = link_to name, path, class: current_page?(path) && 'is-active'

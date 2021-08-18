@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+// Courses cards
+.courses-cards {
+  @include media($breakpoint-lg) {
+    padding: {
+      right: $content-indent-lg;
+      left: $content-indent-lg;
+    }
+  }
+
+  @include media($breakpoint-xxl) {
+    padding: {
+      right: $content-indent-xl;
+      left: $content-indent-xl;
+    }
+  }
+
+  // List
+  &__list {
+    @include display(flex);
+    @include align-items(stretch);
+
+    &:not(.slick-initialized) {
+      .courses-cards__card {
+        @include media($breakpoint-sm) {
+          &:nth-child(n+2) {
+            display: none !important;
+          }
+        }
+
+        @include media($breakpoint-lg) {
+          &:nth-child(n+4) {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Card
+  &__card {
+    @include media($breakpoint-sm) {
+      margin: { // For promotion flag not to cut due to overflow
+        right: .75rem;
+        left: .75rem;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+    }
+  }
+
+  // If slider init
+  .slick-slider {
+    padding-bottom: 4rem;
+
+    .slick-list {
+      @include fill-parent; // For slider items not to collapse if < 3
+
+      @include media($breakpoint-lg) {
+        padding-bottom: 2rem;
+      }
+    }
+
+    .slick-track {
+      @include display(flex);
+      @include align-items(stretch);
+    }
+  }
+
+  .slick-initialized {
+    // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+    .slick-slide {
+      @include display(flex);        // 1
+      @include align-items(stretch); // 1
+      height: auto;
+    }
+
+    .slick-dots {
+      @include transform(translateX(-50%));
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+    }
+  }
+}
+
+// Course card
+// 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+.course-card {
+  @include flex(1);              // 1
+  @include display(flex);        // 1
+  @include align-items(stretch); // 1
+
+  @include media($breakpoint-lg) {
+    &:hover {
+      .course-card__inner {
+        box-shadow: none;
+      }
+
+      .course-card__content {
+        background: $color-ui;
+      }
+
+      .course-card__announce {
+        color: $color-base;
+      }
+
+      .course-card__price {
+        margin-top: 0;
+      }
+
+      .course-card__actions {
+        @include transform(translateY(0));
+      }
+    }
+  }
+
+  // Inner
+  // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+  &__inner {
+    @include flex(1); // 1
+    @include display(flex);
+    @include flex-direction(column);
+    background: #fff;
+    border-radius: 1.6rem !important;
+    overflow-y: hidden;
+
+    @include media($breakpoint-lg) {
+      @include transition(box-shadow $transition-duration-base);
+      box-shadow: $box-shadow-lg;
+    }
+  }
+
+  // Image
+  &__image {
+    @include fill-parent;
+    position: relative;
+    z-index: 1;
+
+    &::after {
+      @include size(100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      background: rgba($color-base, .4);
+      content: "";
+    }
+
+    > img {
+      @include fill-parent;
+      position: relative;
+      z-index: 1;
+      max-width: none;
+      vertical-align: top;
+    }
+  }
+
+  // Content
+  &__content {
+    @include flex(1);
+    @include display(flex);
+    @include flex-direction(column);
+    @include transition(background $transition-duration-base);
+    position: relative;
+    z-index: 2;
+    padding: 2rem 3rem 3rem;
+    background: $color-ui;
+    border-radius: 0 0 1.6rem 1.6rem; // For :hover
+
+    @include media($breakpoint-lg) {
+      background: #fff;
+    }
+  }
+
+  // Meta
+  &__meta {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    padding: 2.75rem 3rem; // For .outerHeight()
+    color: #fff;
+
+    .icon {
+      fill: #fff;
+    }
+  }
+
+  // Title
+  &__title {
+    // h5 defaults
+  }
+
+  // Announce
+  &__announce {
+    @include text-sm;
+    margin: 1.5rem 0;
+    color: $color-base;
+
+    @include media($breakpoint-lg) {
+      @include transition(color $transition-duration-base);
+      color: $color-base-lighter;
+    }
+  }
+
+  // Price
+  &__price {
+    @include text-lg;
+
+    @include media($breakpoint-sm) {
+      margin-bottom: 2.5rem;
+    }
+
+    @include media($breakpoint-lg) {
+      margin-top: auto;
+    }
+  }
+
+  // Actions
+  &__actions {
+    margin-top: auto;
+
+    @include media($breakpoint-lg) {
+      @include transition(transform .1s);
+      @include transform(translateY(7.1rem)); // Button height + bottom padding
+      @include display(flex);
+      @include align-items(center);
+      position: absolute;
+      right: 3rem;
+      bottom: 3rem;
+      left: 3rem;
+      will-change: transform;
+    }
+
+    > li {
+      @include media($breakpoint-sm) {
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+
+      @include media($breakpoint-lg) {
+        @include flex(1);
+
+        &:not(:last-child) {
+          margin-right: 1rem;
+        }
+      }
+
+      // 2 buttons doesn't fit container width
+      @include media($breakpoint-md) {
+        &:first-child {
+          @include flex(0);
+          display: none !important;
+        }
+      }
+
+      .button {
+        @include fill-parent;
+      }
+    }
+  }
+}

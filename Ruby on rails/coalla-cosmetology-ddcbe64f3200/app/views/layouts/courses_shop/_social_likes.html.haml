@@ -1,0 +1,10 @@
+- share_params = local_assigns[:share_params]
+- share_params = {} unless share_params.present?
+- url = share_params[:url] || courses_shop_root_url
+- title = share_params[:title] || 'Дом Русской Косметики'
+- image = share_params[:image] || image_url('share.jpg')
+.social-likes.social-likes_notext.js-social-likes{data: {url: url, title: title, image: image}}
+  .facebook
+  .vkontakte
+  .twitter
+  .odnoklassniki

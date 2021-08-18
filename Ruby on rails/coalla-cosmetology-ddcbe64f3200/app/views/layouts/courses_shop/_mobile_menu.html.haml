@@ -1,0 +1,56 @@
+%nav.mobile-menu#mobile-menu
+  %ul.mobile-menu__list
+    - root_specialities.each do |speciality|
+      %li.mobile-menu__item.main.mobile
+        = link_to ty(speciality.title), alternative_speciality_url(speciality), class: "is-group #{(@parent_speciality == speciality && 'is-active')}"
+        -if [1, 7, 12, 15].include?(speciality.id)
+          %span.arrow
+            %span
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+          %ul
+            = render partial: 'courses_shop/home/speciality', locals: {speciality: speciality, sub_menu: true}
+
+    - if current_shop.barbershop?
+      %li.mobile-menu__item
+        = link_to 'Курсы косметологов', 'https://www.cosmeticru.com/', class: 'is-group'
+    - if current_shop.cosmetic?
+      %li.mobile-menu__item.main.mobile
+        = link_to 'Онлайн курсы', 'https://www.cosmeticru.com/online-kursy', class: 'is-group'
+    %li.mobile-menu__item
+      = link_to 'Акции', courses_shop_promotions_path, class: (current_page?(courses_shop_promotions_path) && 'is-active')
+    %li.mobile-menu__item
+      = link_to 'Контакты', courses_shop_contacts_path, class: (current_page?(courses_shop_contacts_path) && 'is-active')
+    %li.mobile-menu__item
+      = link_to 'Лицензии', courses_shop_license_path, class: (current_page?(courses_shop_license_path) && 'is-active')
+    %li.mobile-menu__item
+      = link_to 'Магазин', 'https://shop.cosmeticru.com/', target: '_blank'
+
+  .mobile-menu__phone
+    .list-default
+      - if current_shop.barbershop?
+        %li
+          = link_to 'tel:74951911571', class: 'roistat-phone', rel: 'nofollow' do
+            %svg.icon(role='img' data-size='24')
+              %use(xlink:href='/assets/courses_shop/icons.svg#phone')
+            %span.roistat-phone +7 495 191-15-71
+      - else
+        %li
+          = link_to 'tel:74952560382', class: 'roistat-phone', rel: 'nofollow' do
+            %svg.icon(role='img' data-size='24')
+              %use(xlink:href='/assets/courses_shop/icons.svg#phone')
+            %span.roistat-phone +7 495 256-03-82
+      %li
+        = link_to lookup(:instagram_link), target: '_blank', title: 'Instagram', onclick: ya_counter_click('INSTAGRAM') do
+          %svg.icon(role='img' data-size='24')
+            %use(xlink:href='/assets/courses_shop/icons.svg#instagram')
+          Instagram
+
+  .mobile-menu__search
+    = form_tag courses_shop_search_url, method: :get do
+      = text_field_tag :q, params[:q]
+
+  .mobile-menu__close
+    = link_to '#', id: 'mobile-menu-close' do
+      %svg.icon(role='img' data-size='34')
+        %use(xlink:href='/assets/courses_shop/icons.svg#close')

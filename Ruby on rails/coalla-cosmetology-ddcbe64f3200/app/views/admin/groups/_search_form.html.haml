@@ -1,0 +1,23 @@
+= search_form_for @q, url: admin_groups_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+  .mt-1
+    .grid
+      .grid_i.grid_i__grid-1-6.tx-right>
+        %label.form_el.form_label Год обучения:
+      .grid_i.grid_i__grid-1-6>
+        .form_el.js-form_el.filter_groups{style: 'min-width: 150px;'}
+          - range = 2014..2030
+          = f.select :year, options_for_select(range.map{|year| [year, year]}, @q.year), {prompt: 'Выберите год'}, class: 'form_select_tag selectordie js-submit-form', data: {size: 5}
+
+      .grid_i.grid_i__grid-1-6.tx-right>
+        %label.form_el.form_label Курс:
+      .grid_i.grid_i__grid-1-6>
+        = f.select :course_id_eq, options_from_collection_for_select(Course.alphabetical_order_display_name, :id, :display_name, @q.course_id_eq), {prompt: 'Выберите курс'}, class: 'js-course-select2 js-submit-form'
+
+      .grid_i.grid_i__grid-1-6.tx-right>
+        %label.form_el.form_label Активна:
+      .grid_i.grid_i__grid-1-6>
+        .form_el.js-form_el.filter_groups
+          = f.select :active_eq, [%w(Активна true), %w(Неактивна false)] , {include_blank: 'Все'}, class: 'form_select_tag selectordie js-submit-form', data: {size: 5}
+
+- content_for :js do
+  = javascript_include_tag 'admin/filter_groups'

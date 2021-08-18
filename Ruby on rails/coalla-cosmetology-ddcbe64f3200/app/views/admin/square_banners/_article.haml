@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= article.title
+    = hidden_field_tag 'square_banner[article_ids][]', article.id, data: {block_id: true}

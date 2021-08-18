@@ -1,0 +1,157 @@
+:css
+  .page-banner {
+    background-image: url(#{asset_url('sikorsky_school/barbers/banner.jpg')})
+  }
+
+%section.page-banner#page-banner
+  .page-banner__inner
+    .container
+      %header.page-banner__header
+        = link_to 'tel:74951911571', class: 'page-banner__tel roistat-phone', rel: 'nofollow' do
+          %span.roistat-phone +7 (495) 191-15-71
+        %h1.page-banner__title Карьера мечты<br> начинается<br> здесь
+      .page-banner__box
+        %p Ищешь свой путь? Бывают такие моменты, когда понимаешь, что надо все поменять глобально. Не&nbsp;надо бояться, иди к&nbsp;этому! Стань барбером!
+
+      .page-banner__box.page-banner__box--discount
+        .discount
+          .h6.discount__title Сделай первый шаг&nbsp;&mdash;<br> запишись на&nbsp;курс
+
+          - call_options = params.permit!.merge({name: current_user.full_name, phone: current_user.phone}) if user_signed_in?
+          = form_for CallParams.new(call_options), as: :data, url: send_form_data_courses_shop_callbacks_path, html: { class: 'discount__form', id: 'discount-form' }, remote: true, data: { trackable: true } do |f|
+            = f.hidden_field :site, value: request.original_url
+            = f.hidden_field :utm_source
+            = f.hidden_field :utm_medium
+            = f.hidden_field :utm_campaign
+            = f.hidden_field :utm_content
+            = f.hidden_field :utm_term
+            - if current_shop.barbershop?
+              = f.hidden_field :validate, value: 'true'
+              = f.text_field :name, placeholder: 'Ваше имя *', autofocus: true
+              = f.telephone_field :phone, class: 'input js-intl-tel'
+            %input(type='submit' value='Хочу быть барбером' name='call_me' data-disable-with='Подождите...')
+
+          %p.discount__disclaimer
+            %small Нажимая на&nbsp;кнопку, вы&nbsp;даете согласие на&nbsp;обработку персональных данных и&nbsp;соглашаетесь c&nbsp;<a href='/privacy_policy'>политикой конфиденциальности</a>
+
+  = link_to '#page-content', class: 'page-banner__scroll js-scroll-to' do
+    = image_tag 'sikorsky_school/scroll.gif', width: '40', alt: ''
+
+
+%main.page-content#page-content
+  .container
+    :css
+      .tiles__item:nth-child(1)::before {
+        background-color: #fff705;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_1.jpg')});
+      }
+      .tiles__item:nth-child(2)::before {
+        background-color: #13ed3e;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_2.jpg')});
+      }
+      .tiles__item:nth-child(4)::before {
+        background-color: #966892;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_4.jpg')});
+      }
+      .tiles__item:nth-child(5)::before {
+        background-color: #fff705;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_5.jpg')});
+      }
+      .tiles__item:nth-child(6)::before {
+        background-color: #bdc400;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_6.jpg')});
+      }
+      .tiles__item:nth-child(7)::before {
+        background-color: #e81919;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_7.jpg')});
+      }
+      .tiles__item:nth-child(8)::before {
+        background-color: #294a8f;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_8.jpg')});
+      }
+      .tiles__item:nth-child(9)::before {
+        background-color: #0edaed;
+        background-image: url(#{asset_url('sikorsky_school/barbers/photo_9.jpg')});
+      }
+
+    .tiles
+      .tiles__item
+      .tiles__item
+
+      .tiles__item
+        .employment
+          %p Барбер&nbsp;&mdash; сдельная чистая работа, где платят здесь и&nbsp;сейчас. Простые и&nbsp;чистые стрижки, актуальная и&nbsp;творческая профессия. Обучись на&nbsp;барбера за&nbsp;месяц и&nbsp;начни зарабатывать.
+          = link_to 'Хочу быть барбером', '#page-banner', class: 'js-scroll-to'
+
+      .tiles__item
+      .tiles__item
+      .tiles__item
+      .tiles__item
+      .tiles__item
+      .tiles__item
+
+
+    %section.reasons
+      .h4.reasons__title Почему стоит учиться на&nbsp;барбера у&nbsp;нас
+
+      %ul.reasons__list
+        %li.reasons__item
+          %article.reason-item
+            .reason-item__icon
+              = image_tag 'sikorsky_school/barbers/reason_icon_1.svg', size: '93x92', alt: ''
+            .reason-item__content
+              .h6.reason-item__title Только практика, только мастерство
+              %p.reason-item__text Вы&nbsp;пришли к&nbsp;нам, чтобы научиться делать крутые стрижки, и&nbsp;мы&nbsp;с&nbsp;первого дня стрижем. Лекции, тетрадочки, нудную теорию&nbsp;&mdash; это все оставьте советским колледжам.
+
+        %li.reasons__item
+          %article.reason-item
+            .reason-item__icon
+              = image_tag 'sikorsky_school/barbers/reason_icon_2.svg', size: '92x92', alt: ''
+            .reason-item__content
+              .h6.reason-item__title Четкие модные мужские стрижки
+              %p.reason-item__text Мы&nbsp;учим тому, что модно, тому, за&nbsp;что клиенты платят: геометричные четкие формы, фэйды, работа с&nbsp;бородой
+
+        %li.reasons__item
+          %article.reason-item
+            .reason-item__icon
+              = image_tag 'sikorsky_school/barbers/reason_icon_3.svg', size: '94x92', alt: ''
+            .reason-item__content
+              .h6.reason-item__title Интенсивно, быстро, с&nbsp;полным погружением
+              %p.reason-item__text Мы&nbsp;знаем, что вам нужна скорость: у&nbsp;вас нет времени сидеть и&nbsp;рассусоливать по&nbsp;полгода, вам нужно получить навык и&nbsp;выйти к&nbsp;клиенту. Поэтому наши курсы быстрые: за&nbsp;несколько недель мы&nbsp;даем вам полную перезагрузку, чтобы вы&nbsp;вышли от&nbsp;нас мастером.
+
+
+    %section.feedbacks
+      .feedbacks__row
+        .feedbacks__col
+          .h4.feedbacks__title Отзывы
+
+          %ul.feedbacks__list
+            %li.feedbacks__item
+              %article.feedback-item
+                .feedback-item__photo
+                  = image_tag 'sikorsky_school/barbers/feedback_photo_1.png', size: '139', alt: 'Сергей Полянский'
+                  .h6 Сергей<br> Полянский
+                .feedback-item__content
+                  .h6.feedback-item__title Сергей Полянский
+                  %p.feedback-item__text Мне тут очень нравится свет, просторные аудитории, хорошо оборудованные места, классные зеркала, классные штуки, все круто. Мне нравится все, что тут сделано&nbsp;&mdash; это классно. Очень прикольно, что есть дистанционное обучение, я&nbsp;могу читать много информации&nbsp;&mdash; все это знать нужно и&nbsp;прочитать это полезно, но&nbsp;есть практическая часть уже непосредственно в&nbsp;школе. Это как было домашнее задание, но&nbsp;если ты&nbsp;не&nbsp;сделал домашнее задание, не&nbsp;допускаешься к&nbsp;индивидуальным занятиям в&nbsp;школе. Прикольно и&nbsp;продуктивно.
+
+            %li.feedbacks__item
+              %article.feedback-item
+                .feedback-item__photo
+                  = image_tag 'sikorsky_school/barbers/feedback_photo_2.png', size: '139', alt: 'Владислав Савинов'
+                  .h6 Владислав<br> Савинов
+                .feedback-item__content
+                  .h6.feedback-item__title Владислав Савинов
+                  %p.feedback-item__text Мне понравилось, что преподаватели действительно смотрят, что и&nbsp;как ты&nbsp;делаешь. Они если видят хоть какую-то ошибку, сразу исправляют, не&nbsp;закрывают на&nbsp;это глаза, не&nbsp;говорят, что ты&nbsp;молодец. Они говорят, как сделать правильно, что не&nbsp;так. Я&nbsp;учился в&nbsp;колледже и&nbsp;когда преподаватель ходит в&nbsp;группе 20&nbsp;человек, он&nbsp;даже теорию не&nbsp;сможет никак объяснить, куда уж&nbsp;ему за&nbsp;всеми ошибками студентов уследить. А&nbsp;тут более индивидуально, шаг за&nbsp;шагом все смотрится, проверяется, контролируется. Мне ещё нравится, что здесь все есть&nbsp;&mdash; стерилизация, всякие расходники и&nbsp;все такое.
+
+            %li.feedbacks__item
+              %article.feedback-item
+                .feedback-item__photo
+                  = image_tag 'sikorsky_school/barbers/feedback_photo_3.png', size: '139', alt: 'Ирина Семенова'
+                  .h6 Ирина<br> Семенова
+                .feedback-item__content
+                  .h6.feedback-item__title Ирина Семенова
+                  %p.feedback-item__text Я&nbsp;в&nbsp;первый раз, в&nbsp;этой профессии&nbsp;&mdash; я&nbsp;осуществила свою мечту. Пафосно так говорить, но&nbsp;это есть на&nbsp;самом деле. И&nbsp;когда я&nbsp;начала&nbsp;&mdash; я&nbsp;думала, что я&nbsp;не&nbsp;справлюсь. Это было столько сомнений, так трудно. Не&nbsp;получается, не&nbsp;держит, палец опух. И&nbsp;я&nbsp;звоню своему сыну: &laquo;Макс!&raquo;, а&nbsp;он&nbsp;мне говорит: &laquo;Мама, ты&nbsp;поставила себе цель, вот и&nbsp;иди к&nbsp;ней&raquo;. И&nbsp;сейчас уже нормально, нормально. Еще учителя Карло, Николай поддерживают&nbsp;&mdash; тут поддержка самое главное, что все получится, все хорошо. У&nbsp;вас аура создалась позитива. Я&nbsp;с&nbsp;удовольствием прихожу!
+
+
+    = render 'layouts/sikorsky_school/components/contacts'

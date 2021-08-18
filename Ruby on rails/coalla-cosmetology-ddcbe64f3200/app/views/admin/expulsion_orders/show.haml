@@ -1,0 +1,87 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'группы' => admin_groups_path, @group.name.presence => edit_admin_group_path(@group), 'приказ об отчислении' => '#'}
+      %h3.tx-center Приказ об отчислении
+      = form_for @group, url: admin_group_expulsion_order_path(@group), method: :put, html: {class: 'form js-form form__admin', autocomplete: 'off', id: :expulsion_order_form} do |f|
+        .admin_header
+          - if @group.expelled_students.any?
+            = link_to 'Возврат денежных средств', refunds_admin_group_expulsion_order_path(format: :xls), class: 'a_under'
+        .admin_body
+          .admin_settings_change
+            = f.fields_for :expulsions, include_id: false do |expulsion_fields|
+
+              - expulsion_order = expulsion_fields.object.expulsion_order || expulsion_fields.object.build_expulsion_order
+              - if @group_expulsion_order.try(:generated?)
+                .mt-2.header_blocks_settings
+                  .tx-s.tx-700
+                    Приказ об отчислении всех студентов группы
+                    |
+                    = link_to 'скачать', download_admin_generated_document_path(@group_expulsion_order), class: 'a_under'
+              .mt-2.header_blocks_settings
+                .tx-s.tx-700
+                  Приказ
+                  - if expulsion_order.generated?
+                    |
+                    = link_to 'скачать', download_admin_generated_document_path(expulsion_order), class: 'a_under'
+                  - if expulsion_order.try(:user_file).present?
+                    |
+                    = link_to 'копия', admin_private_file_path(file: expulsion_order.user_file.url), target: '_blank', class: 'a_under'
+
+              - unless expulsion_fields.object.new_record?
+                = expulsion_fields.hidden_field :id
+
+              = expulsion_fields.fields_for :expulsion_order, expulsion_order, include_id: false do |expulsion_order_fields|
+                - unless expulsion_order.new_record?
+                  = expulsion_order_fields.hidden_field :id
+                .mt-1
+                  %label.form_el.form_label Номер приказа:
+                  .form_el.js-form_el.form_tx
+                    = expulsion_order_fields.text_field :number, class: 'form_el_tag form_tx_tag'
+                .mt-1
+                  %label.form_el.form_label Дата приказа:
+                  .form_el.js-form_el.form_tx
+                    = expulsion_order_fields.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(expulsion_order.created_on), readonly: true
+                .mt-1
+                  .form_el.js-form_el.form_file{data: {placeholder: "#{ expulsion_order.user_filename || 'Загрузить копию'}"}}
+                    %p.form_el_inner.js-form_el_inner.form_file_inner
+                    %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                    = expulsion_order_fields.hidden_field :user_file_cache, data: {file_cache: true}
+
+              .mt-1
+                %label.form_el.form_label Дата отчисления:
+                .form_el.js-form_el.form_tx
+                  = expulsion_fields.text_field :expelled_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(expulsion_fields.object.expelled_on), readonly: true
+
+              .mt-1.header_blocks_settings
+                .tx-s.tx-700 Основание
+              .mt-1
+                %label.form_el.form_label.form_label__el
+                  .form_el.js-form_el.form_checkbox
+                    = expulsion_fields.check_box :personal, class: 'form_el_tag form_checkbox_tag'
+                  %p.form_el_inner.form_label_inner Личные заявления обучающихся
+              .mt-1
+                %label.form_el.form_label.form_label__el
+                  .form_el.js-form_el.form_checkbox
+                    = expulsion_fields.check_box :non_attendance, class: 'form_el_tag form_checkbox_tag'
+                  %p.form_el_inner.form_label_inner Непосещение занятий
+
+              .mt-1.header_blocks_settings
+                .tx-s.tx-700 Студенты
+              .mt-1
+                .course_blocks.js-expelled-students{id: "expelled_students_#{expulsion_fields.index}"}
+                  = expulsion_fields.fields_for :expelled_students, iclude_id: false do |expelled_student_fields|
+                    = render 'expelled_student_fields', f: expelled_student_fields
+                = link_to_add_association expulsion_fields, :expelled_students, class: 'a_under', data: {association_insertion_method: 'append', association_insertion_node: "#expelled_students_#{expulsion_fields.index}"} do
+                  .icon_add> +
+                  Добавить
+          .grid.mt-2
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+- content_for :js do
+  = javascript_include_tag 'admin/subscription_contract'

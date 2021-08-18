@@ -1,0 +1,17 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.first_name}
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Срок обучения по вашему курсу "#{@group_subscription.course_name}"  прошел, но вы не сдали отчет по практике (либо преподаватель оценил его на не проходной балл).
+      %br
+      У вас есть время до #{format_date(@group_subscription.access_expires_on)} для того, чтобы загрузить отчет и исправить недочеты.
+      %br
+      После этой даты доступ к курсу будет закрыт. Если вы не успеете сдать отчет по практике на проверку и закончить курс в указанные сроки, вы будете отчислены и вам придется заново оплачивать и проходить курс.

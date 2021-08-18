@@ -1,0 +1,15 @@
+<div class="container">
+	<h1>Все статьи</h1>
+	<hr>
+	<h3><%= link_to "Новая статья!", new_article_path, :class => 'btn btn-info' %></h3>
+	<hr>
+
+	<% @articles.each do |article| %>
+	  <h3><%= article.title %></h3>
+	  <p><%= article.text %></p>
+	  <p><%= article.created_at %></p>
+	  <p><%= link_to  "Show article", article_path(article), :class => 'btn btn-success' %> |
+	 <%= link_to "Delete article", article_path(article), method: :delete, data: { confirm: 'Действительно удалить?'}, :class => 'btn btn-danger' %></p>
+	  <hr>
+	<% end %>
+</div>

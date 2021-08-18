@@ -1,0 +1,9 @@
+- button_title = local_assigns[:title] || 'Записаться'
+- size = local_assigns[:size] || 'sm'
+- if user_signed_in?
+  - if current_user.any_group_subscription_for_course(course).present?
+    = link_to button_title.html_safe, '#', class: 'button button--base-fill js-already-signed', 'data-size' => size, 'data-course-name' => course.name
+  - else
+    = link_to button_title.html_safe, new_courses_shop_group_subscription_path(course_id: course.id), class: 'button button--base-fill js-sign-on-course-link', data: {size: size, mfp_type: 'ajax', course_id: course.id}
+- else
+  = link_to button_title.html_safe, '#popup-promo-subscription', class: 'button button--base-fill js-promo-subscription-btn', data: { 'course-id': course.id, size: size, type: 'text', 'mfp-type': 'inline' , blog: 'n' }

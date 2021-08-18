@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= linked_course.name
+    = hidden_field_tag 'user[linked_course_ids][]', linked_course.id, data: {block_id: true}

@@ -1,0 +1,14 @@
+.grid_i.grid_i__grid-3-9>
+  = link_to promotion.title, edit_admin_promotion_path(promotion)
+.grid_i.grid_i__grid-4-9>
+  = promotion.announce
+.grid_i.grid_i__grid-1-9.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: promotion.visible?, disabled: true}
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_promotion_path(promotion), title: 'Редактировать' do
+      .icon_edit &#9998;
+    = link_to admin_promotion_path(promotion), title: 'Удалить', method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X

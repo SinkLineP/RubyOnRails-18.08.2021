@@ -1,0 +1,38 @@
+= search_form_for @q, url: admin_work_results_path, html: {class: 'form js-form', autocomplete: 'off'} do |f|
+  .mt-1
+    .grid.grid__collapse
+      .grid_i.grid_i__grid-1-9>
+        %label.form_el.form_label Группа:
+      .grid_i.grid_i__grid-2-9.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.select :group_id_eq, options_from_collection_for_select(Group.active.ordered_by_course_name.uniq, :id, :title, @q.group_id_eq), {include_blank: 'Выберите группу'}, class: 'js-course-select2 js-submit-form'
+      .grid_i.grid_i__grid-1-9>
+        %label.form_el.form_label Занятие:
+      .grid_i.grid_i__grid-2-9.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.select :work_id_eq, options_for_select(Work.order_by_title.map{|w| [w.title, w.id]}, @q.work_id_eq), {include_blank: 'Выберите занятие'}, class: 'js-course-select2 js-submit-form'
+
+      .grid_i.grid_i__grid-1-9>
+        %label.form_el.form_label Тип:
+      .grid_i.grid_i__grid-2-9.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.select :work_type_eq, [%w(Экзамен Exam), %w(Зачет Ladder), %w(Практика PracticeWork), ['Выпускная работа', 'FinalWork']], {include_blank: 'Выберите тип'}, class: 'form_select_tag selectordie js-submit-form', data: {size: 5}
+
+      .grid_i.grid_i__grid-1-9>
+        %label.form_el.form_label Дата:
+      .grid_i.grid_i__grid-2-9.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.text_field :marked_on_eq, class: 'form_el_tag form_tx_tag js-datepicker js-submit-form filter_datepicker', value: format_date(@q.marked_on_eq)
+
+      .grid_i.grid_i__grid-1-9>
+        %label.form_el.form_label Оценка:
+      .grid_i.grid_i__grid-2-9>
+        .form_el.js-form_el.filter_groups
+          = f.select :student_work_results_absent_eq, [['Без оценки', true]], {include_blank: 'Все'}, class: 'form_select_tag selectordie js-submit-form'
+
+- content_for :js do
+  = javascript_include_tag 'admin/filter_groups'
+  :javascript
+    $(function() {
+      initDatepicker();
+    });

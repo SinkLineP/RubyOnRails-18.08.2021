@@ -1,0 +1,12 @@
+.grid_i.grid_i__grid-2-9>
+  = document.try(:document_section).try(:title)
+.grid_i.grid_i__grid-5-9>
+  = link_to document.file_url, target: '_blank' do
+    = document.filename
+.grid_i.grid_i__grid-1-9>
+  %time{datetime: ''}= format_date(document.created_at)
+.grid_i.grid_i__grid-1-9.tx-center>
+  = link_to edit_admin_document_path(document) do
+    .icon_edit &#9998;
+  = link_to admin_document_path(document), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

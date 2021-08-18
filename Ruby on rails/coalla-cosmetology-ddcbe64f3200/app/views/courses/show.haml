@@ -1,0 +1,29 @@
+- preview ||= false
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'courses/sidebar'
+    .grid_i.grid_i__grid-7-9.dashboard_container>
+      .content.dashboard
+        = render 'courses/header'
+        = render 'courses/alert'
+        = render collection: @notices, partial: 'courses/notice'
+        - if @personal_notice.present?
+          = render 'courses/personal_notice', personal_notice: @personal_notice
+        %section.lection.mt-6
+          %header.block-header
+            .grid
+              = render 'courses/block'
+              = render 'lectures/lecture'
+    .popup_ctn
+      = render 'courses/docs_modal'
+    - unless @preview_mode
+      = render 'common/marks_modal', course: @course
+      - if @lecture && @lecture.task.final?
+        = render 'courses/final_task_modal'
+
+- content_for :js do
+  = javascript_include_tag 'materials'
+  = javascript_include_tag 'notices'
+  - unless preview
+    = javascript_include_tag 'user_activity'

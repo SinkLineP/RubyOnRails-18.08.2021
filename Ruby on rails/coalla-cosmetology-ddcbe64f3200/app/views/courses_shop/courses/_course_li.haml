@@ -1,0 +1,43 @@
+- course = local_assigns[:course_li]
+%li.courses-items__item
+  %article.course-item(data-actions-show='hover')
+    = link_to alternative_course_url(course, @parent_speciality), class: "course-item__image js-hover #{promotion_class(course)}", 'data-course_id' =>  course.id, data: promotion_data(course) do
+      = image_tag course_small_image(course), alt: course.title
+    .course-item__content
+      %ul.course-meta
+        - nearest_group = course.nearest_group
+        %li
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+          %span= education_period(nearest_group)
+        %li
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+          %span= education_schedule(nearest_group)
+        %li
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#user')
+          %span= free_places_text(nearest_group)
+      .h4.course-item__title
+        = link_to course.title, alternative_course_url(course, @parent_speciality), class: 'js-hover'
+      - if format_course_price(course)
+        .course-item__price
+          %b= format_course_price(course)
+
+      - economy_value = course.economy_for_several
+      - economy_description = course.economy_description
+      - if economy_value.present? && economy_description
+        .course-item__discount
+          %div
+            %span= format_money(economy_value)
+          %p= economy_description
+
+      %ul.course-item__actions
+        %li
+          = link_to 'Подробнее', '#', title: course.name.html_safe,
+                                      class: 'button button--base-outline js-hover js-course-link',
+                                      data: { course_id: course.id,
+                                              url: alternative_course_url(course, @parent_speciality),
+                                              size: 'sm' }
+        %li
+          = render 'courses_shop/common/sign_on_course_button', course: course

@@ -1,0 +1,6 @@
+.slider-item
+  = image_tag slide.slider_image_url(:slider), alt: slide.title.html_safe
+  .slider_promo
+    %h1.main_content-h
+      = link_to slide.title.mb_chars.upcase, blog_post_path(slide), class: 'a_under'
+    %p.tx-i= slide.announcement

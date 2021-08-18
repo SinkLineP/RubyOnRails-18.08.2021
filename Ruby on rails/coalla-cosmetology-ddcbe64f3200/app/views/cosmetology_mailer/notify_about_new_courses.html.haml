@@ -1,0 +1,46 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@user.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+      %i= 'Вы получили доступ к новым курсам<br>в Доме Русской Косметики.'.html_safe
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 30px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}/
+
+- subscriptions = @subscription.order_not_zero_subscriptions
+- if subscriptions.any?
+  %tr
+    %td{border: '0', style: 'text-align:center;'}
+      %p{style: 'margin: 0;text-align: left;'} Вам открыт доступ к новым курсам:
+  - if subscriptions.count > 1
+    - subscriptions.each do |subscription|
+      = render 'cosmetology_mailer/course', course: subscription.course
+  - else
+    = render 'cosmetology_mailer/course', course: @subscription.course
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}= "Ваши логин и пароль для входа в #{link_to 'систему' , root_url(subdomain: 'sdo'), target: '_blank'} сохраняются.".html_safe
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Ваш логин: #{@user.email}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Ваш пароль: тот, что указан при регистрации (если вы не помните его, воспользуйтесь кнопкой восстановления пароля)
+
+- if subscriptions.any?
+  %tr
+    %td{border: '0', style: 'text-align:center;'}
+      %p{style: 'margin: 0;text-align: left;'} Ваш номер группы:
+  - if subscriptions.count > 1
+    - subscriptions.each do |subscription|
+      = render 'cosmetology_mailer/group', group: subscription.group , course: subscription.course
+  - else
+    = render 'cosmetology_mailer/group', group: @subscription.group , course: @subscription.course
+
+
+
+= render 'student_alert', about_new_courses: true

@@ -1,0 +1,41 @@
+%section.page-promo-course#page-promo
+  .page-promo-course__background(style='background-image: url("/assets/courses_shop/page_promo/page_promo_index.jpg")')
+  .page-promo-course__inner
+    .container
+      %header.page-promo-course__header
+        .h2.page-promo-course__title
+          Косметик Эстетист для всех!
+        %p.page-promo-course__caption Выпускники могут работать косметологом в&nbsp;салонах красоты и&nbsp;кабинетах косметологии по&nbsp;профессии Косметик-эстетист и&nbsp;за&nbsp;рубежом.
+        = render 'layouts/courses_shop/hr_large'
+
+      .page-promo-course__info
+        %div.dl
+          %div.dt 576 час
+          %div.dd Продолжительность курса
+
+        %div.dl
+          %div.dt 334 час
+          %div.dd В том числе практики
+
+        %div.dl
+          %div.dt от&nbsp;11&nbsp;650&nbsp;руб./мес
+          %div.dd Полная стоимость курса&nbsp;&mdash; от&nbsp;69&nbsp;900&nbsp;руб./мес
+
+        %div.dl
+          %div.dt
+            %svg.icon(role='img' data-size='34')
+              %use(xlink:href='/assets/courses_shop/icons.svg#percent')
+          %div.dd Рассрочка на&nbsp;12&nbsp;месяцев без переплат
+
+        %div.dl
+          %div.dt
+            %svg.icon(role='img' data-size='34')
+              %use(xlink:href='/assets/courses_shop/icons.svg#hat')
+          %div.dd Требуется сертификат косметолога
+
+      %footer.page-promo-course__actions
+        = link_to 'Записаться на&nbsp;курс'.html_safe, '#', class: 'button button--base-fill', 'data-size' => 'lg'
+        = link_to 'https://www.youtube.com/watch?v=xI6i6SAAKI8', target: '_blank', 'data-mfp-type' => 'iframe' do
+          %svg.icon(role='img' data-size='34')
+            %use(xlink:href='/assets/courses_shop/icons.svg#video')
+          Видео о&nbsp;курсе

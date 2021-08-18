@@ -1,0 +1,14 @@
+.grid_i.grid_i__grid-2-12.table_ellipsis>
+  = banner.type_banner_text
+.grid_i.grid_i__grid-6-12.table_ellipsis>
+  = banner.description
+.grid_i.grid_i__grid-1-12.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: banner.active?, disabled: true}
+.grid_i.grid_i__grid-3-12.tx-right>
+  - if can?(:destroy, Banner)
+    = link_to admin_banner_path(banner), method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X
+  = link_to edit_admin_banner_path(banner) do
+    .icon_edit &#9998;

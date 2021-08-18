@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.popup {
+  position: relative;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  background-color: $color-base;
+
+  @include mq(md) {
+    width: 42rem;
+    padding: 4rem 3rem;
+  }
+
+  .mfp-close {
+    color: #fff;
+  }
+
+  &__title {
+    @include h2;
+
+    margin-bottom: 2rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  .input {
+    margin-bottom: 1rem;
+  }
+
+  .button {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+  }
+}

@@ -1,0 +1,8 @@
+- if can?(:update, Result)
+  .grid
+    .grid_i.grid_i__grid-5-7>
+      = text_field_tag :comment, result.comment, class: 'form_textarea_border js-result-comment', data: {url: admin_result_comment_path(result)}
+    .grid_i.grid_i__grid-2-7>
+      .form_el.js-form_el.form_el__block.form_btn
+        %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+        %button.form_el_tag.form_btn_tag.js-notify-about-result-comment{data: {url: notify_admin_result_comment_path(result)}}

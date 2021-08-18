@@ -1,0 +1,35 @@
+- order_group_subscriptions = @order.order_group_subscriptions.to_a
+.page.page--sections
+  %section.page-section
+    - if order_group_subscriptions.blank?
+      .container
+        %header.page__header
+          .h2.page__title В&nbsp;корзине пусто
+          = render 'layouts/courses_shop/components/education_group_select'
+    - else
+      .container
+        %header.page__header
+          .h2.page__title Моя корзина
+
+        = form_for @order, url: '#', method: :post, html: { class: 'basket', id: 'new_order'} do |f|
+          = f.hidden_field :cart
+          .basket__inner
+            %ul.basket__list
+              = render partial: 'courses_shop/carts/cart_item', collection: order_group_subscriptions, as: :order_group_subscription, locals: {f: f}
+
+            .basket__checkout
+              .basket__checkout-promocode
+                .text-input.text-input--verify
+                  = f.hidden_field :promo_code_id
+                  = text_field_tag 'promo_code', nil, placeholder: 'Промо-код'
+                  = link_to '#', class: 'button button--base-fill js-promo-code', data: {size: 'lg'} do
+                    Применить
+
+              = render 'courses_shop/carts/price_block', order: @order
+
+              .basket__checkout-submit
+                - course = order_group_subscriptions.first.group_subscription.course
+                - parent_specialty = course.specialities.first.try(:parent)
+                = link_to 'Оплатить онлайн', '#', class: 'button button--base-fill', data: {size: 'lg', new_order: true, force: true }
+                = link_to 'Другие курсы', alternative_speciality_url(parent_specialty), class: 'button button--base-outline', data: {size: 'lg' }
+                = link_to 'Другие способы оплаты', '#', data: {size: 'lg', new_order: true }

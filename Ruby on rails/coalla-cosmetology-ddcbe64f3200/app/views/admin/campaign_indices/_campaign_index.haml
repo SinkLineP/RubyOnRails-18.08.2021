@@ -1,0 +1,13 @@
+.grid_i.grid_i__grid-3-9.table_ellipsis>
+  = campaign_index.campaign.name
+.grid_i.grid_i__grid-2-9.tx-right>
+  = campaign_index.value
+.grid_i.grid_i__grid-2-9.tx-center>
+  = format_date(campaign_index.created_on)
+.grid_i.grid_i__grid-2-9.tx-right>
+  = link_to admin_campaign_index_path(campaign_index), method: :delete, data: {confirm: 'Вы уверены?'}  do
+    .icon_del X
+  = link_to '#', data: {url: edit_admin_campaign_index_path(campaign_index)}, class: 'modal' do
+    .icon_edit &#9998;
+
+= javascript_include_tag 'admin/campaign_index_form'

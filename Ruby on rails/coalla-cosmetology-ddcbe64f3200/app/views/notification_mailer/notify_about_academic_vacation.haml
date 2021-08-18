@@ -1,0 +1,19 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Вам предоставлен академический отпуск до #{format_date(@subscription.vacation_end_on)} в рамках группы #{@subscription.group.title}.
+      %br
+      На время академического отпуска ваш доступ в систему дистанционного обучения заморожен, вы освобождены от посещения очных занятий.
+      %br
+      Обращаем ваше внимание на то, что если у вас есть задолженности по оплате обучения на дату предоставления академического отпуска, вам необходимо погасить их в ближайшее время. В противном случае вы будете отчислены в связи с не оплатой обучения.
+      %br
+      Благодарим вас за обучение, будем рады снова видеть вас в числе наших студентов!

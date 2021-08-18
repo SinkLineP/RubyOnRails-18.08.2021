@@ -1,0 +1,24 @@
+.page.page--promo
+  = render 'courses_shop/business/menu', title: 'Консалтинг в косметологии'
+
+  .tab{style: 'display: block;'}
+    = render 'courses_shop/business/content'
+    .page-section.page-section--background
+      .container
+        .h3.page-section__title Наши услуги
+        .content-narrow
+          .content
+            %table.services-table
+              %thead
+                %tr
+                  %th Наименование услуги
+                  %th Стоимость
+              %tbody
+                - @services.each do |service|
+                  %tr
+                    %td= ty(service.title)
+                    %td #{ty(service.price)}&nbsp;#{units_text(service.units)}
+              %tfoot
+                %tr
+                  %td(colspan='2')
+                    = render 'layouts/courses_shop/hr_small'

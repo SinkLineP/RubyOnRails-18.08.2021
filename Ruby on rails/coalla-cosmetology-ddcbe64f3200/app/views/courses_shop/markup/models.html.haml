@@ -1,0 +1,49 @@
+.page.page--promo.page--models
+  = render 'layouts/courses_shop/promo/models'
+
+  // Promo
+  .page-section
+    .container
+      .content-narrow
+        .content.js-content
+          %p Дом Русской Косметики также приглашает волонтеров на&nbsp;бесплатные процедуры по&nbsp;косметологии, в&nbsp;том числе инъекционные процедуры, перманентный макияж, химические пилинги. Все процедуры выполняют преподаватели и&nbsp;косметологи-стажеры Института. Процедуры проводятся с&nbsp;применением высококачественной косметики ведущих производителей.
+          %p С&nbsp;полным перечнем используемых марок косметики вы&nbsp;можете ознакомиться в&nbsp;разделе <a href='#'>Партнеры</a>.
+
+  .page-section#models-schedule
+    .container
+      .h4.page-section__title Записаться на&nbsp;процедуры
+
+      .schedule
+        .schedule__content
+          .schedule__warning
+            %p Внимание! Модели должны прийти за&nbsp;15&nbsp;минут до&nbsp;начала процедур и&nbsp;строго следовать указаниям администрации Института, преподавателей и&nbsp;косметологов-стажеров. Институт самостоятельно определяет протокол процедуры, список используемых средств.
+
+          .schedule__form
+            %form.default-form(action='#')
+              .default-form__inner
+                .default-form__row
+                  %select.select2.js-select2(data-placeholder='Выберите процедуру')
+                    // Empty first option for placeholder to work
+                    %option &nbsp;
+                    %option Процедура 1
+                    %option Процедура 2
+                    %option Процедура 3
+                    %option Процедура 4
+
+                .default-form__row
+                  .text-input
+                    %input(type='text' placeholder='Имя, Фамилия')
+
+                .default-form__row
+                  .text-input
+                    %input(type='email' placeholder='Электронная почта')
+
+                .default-form__row
+                  .text-input
+                    %input(type='tel' placeholder='Телефон')
+
+                .default-form__row
+                  %button.button.button--base-fill(type='submit' data-size='lg') Записаться
+
+.page-next.page-next--primary.js-page-next#page-promo-scroll
+  = render 'layouts/courses_shop/page_next'

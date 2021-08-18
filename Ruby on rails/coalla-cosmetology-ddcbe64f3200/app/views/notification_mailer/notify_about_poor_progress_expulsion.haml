@@ -1,0 +1,16 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin-bottom: 10px;text-align: left;'}= ty('В связи с академической задолженностью, по дисциплинам:')
+    - @group_subscription.not_passed_lectures.map(&:description).each do |lecture|
+      %p{style: 'margin: 0;text-align: left;'}= ty(lecture)
+    %p{style: 'margin-top: 10px;text-align: left;'}= ty("деканат Института предупреждает Вас (#{@group_subscription.course_name}, #{@group_subscription.group_title}) о предстоящем отчислении из Института с #{format_date_with_quotes(@date + 14.days)}")
+    %p{style: 'margin-top: 10px;text-align: left;'}= ty("Если Вы не согласны с отчислением, то можете в течение 14 дней с момента получения уведомления написать заявление на академический отпуск лично в учебную часть Института или по электронной почте #{mail_to('info@cosmeticru.com')}")

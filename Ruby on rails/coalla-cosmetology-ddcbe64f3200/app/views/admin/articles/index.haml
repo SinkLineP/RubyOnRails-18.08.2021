@@ -1,0 +1,40 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'статьи' => admin_articles_path}
+      %h3.tx-center Блог, Мы и СМИ, Наука и ДРК
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_article_path(type: 'Blog'), class: 'a_under' do
+              %span.icon-add> +
+              Добавить Блог
+            - unless current_shop.barbershop?
+              &nbsp;|&nbsp;
+              = link_to new_admin_article_path(type: 'MassMedia'), class: 'a_under' do
+                %span.icon-add> +
+                Добавить статью Мы и СМИ
+              &nbsp;|&nbsp;
+              = link_to new_admin_article_path(type: 'ScienceAndDrk'), class: 'a_under' do
+                %span.icon-add> +
+                Добавить статью Наука и ДРК
+        .admin_body.table.table_base-color
+          = render 'search_form'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-2-9>
+                %p заголовок
+              .grid_i.grid_i__grid-3-9>
+                %p дата создания
+              .grid_i.grid_i__grid-1-9.tx-center>
+                %p вид
+              .grid_i.grid_i__grid-1-9>
+                %p опубликовано
+              .grid_i.grid_i__grid-2-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @articles, partial: 'article'
+      = will_paginate @articles, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

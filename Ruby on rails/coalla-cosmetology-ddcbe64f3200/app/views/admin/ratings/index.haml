@@ -1,0 +1,29 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'рейтинг' => admin_ratings_path}
+      %h3.tx-center РЕЙТИНГ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            %a.a_under.modal{:data => {modal: 'new_rating'}}
+              Сгенерировать отчет ТОП-3
+        .admin_body.table.table_base-color
+          = render 'search_form'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-1-12.tx-center>
+                %p Место
+              .grid_i.grid_i__grid-7-12.tx-center>
+                %p Фио
+              .grid_i.grid_i__grid-1-12.tx-center>
+                %p Баллы
+              .grid_i.grid_i__grid-3-12.tx-center>
+                %p Дата окончания обучения
+
+          .grid.grid__collapse
+            = render collection: @group_subscriptions, partial: 'rating_row', as: :group_subscription
+
+    = render 'new'

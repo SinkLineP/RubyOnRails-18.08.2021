@@ -1,0 +1,14 @@
+.grid.js-document-copy-block.mt-1
+  - if !f.object.new_record?
+    = f.hidden_field :id
+  - else
+    = f.hidden_field :file_cache, data: {cache: true}
+  = f.hidden_field :_destroy, data: {destroy: true}
+  .grid_i.grid_i__middle.grid_i__grid-1-8>
+    .square_icon
+      %span{data: {extension: true}}= f.object.extension
+      .icon_del.js-remove-document-copy X
+  .grid_i.grid_i__middle.grid_i__grid-7-8>
+    %span{data: {filename: true}}= f.object.filename
+    - if f.object.try(:file).present?
+      = link_to '(скачать)', admin_private_file_url(file: f.object.file.try(:url)), target: '_blank', class: 'a_under'

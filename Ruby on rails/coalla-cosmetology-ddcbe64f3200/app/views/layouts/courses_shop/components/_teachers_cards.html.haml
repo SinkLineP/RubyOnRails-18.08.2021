@@ -1,0 +1,23 @@
+.teachers-cards
+  %ul.teachers-cards__list
+    - 1.upto(2) do
+      %li.teachers-cards__card
+        %article.teacher-card
+          = image_tag 'https://placehold.it/120x120?text=∴', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+          .h5.teacher-card__name Алтухова Татьяна Николаевна
+          %p.teacher-card__department факультет косметологии и&nbsp;эстетической медицины
+          %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело. Квалификация по&nbsp;диплому: врач.
+
+      %li.teachers-cards__card
+        %article.teacher-card
+          = image_tag 'courses_shop/avatar.svg', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+          .h5.teacher-card__name Иванова Марина Вениаминовна
+          %p.teacher-card__department факультет сертификации
+          %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело.
+
+      %li.teachers-cards__card
+        %article.teacher-card
+          = image_tag 'https://placehold.it/120x120?text=∴', width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+          .h5.teacher-card__name Алина Петровна Сидорова
+          %p.teacher-card__department факультет косметологии
+          %p.teacher-card__education Московская медицинская академия&nbsp;им. И.М. Сеченова, дневное отделение, специальность: лечебное дело. Квалификация по&nbsp;диплому: врач. Российская медицинская академия последипломного образования МЗ&nbsp;РФ&nbsp;сертификационные курсы.

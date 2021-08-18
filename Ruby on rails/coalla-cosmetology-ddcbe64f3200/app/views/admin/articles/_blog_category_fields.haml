@@ -1,0 +1,10 @@
+.grid.nested-fields
+  .grid_i.grid_i__grid-8-9>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Категория
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_select.form_select__l.js-format
+          = f.select :category_id, Category.ordered.map{|el| [el.name, el.id]}, {}, class: 'form_el_tag form_tx_tag'
+  .grid_i.grid_i__grid-1-9.tx-right>
+    = link_to_remove_association raw('<div class="icon_del">X</div>'), f

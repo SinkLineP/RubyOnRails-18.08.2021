@@ -1,0 +1,6 @@
+.grid_i.grid_i__grid-8-9>
+  = link_to t("#{scope_name}.#{lookup.code}"), url_for(id: lookup, action: :edit)
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to url_for(id: lookup, action: :edit), title: 'Редактировать' do
+      .icon_edit &#9998;

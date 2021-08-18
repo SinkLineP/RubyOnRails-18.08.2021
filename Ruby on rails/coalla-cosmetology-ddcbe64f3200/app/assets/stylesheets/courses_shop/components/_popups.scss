@@ -1,0 +1,308 @@
+@charset "UTF-8";
+
+// Popup modal
+// 1. Fix for popup content > window height on mobile devices
+.popup-modal {
+  display: none;
+  background: #fff;
+
+  @include media($breakpoint-sm) {
+    max-height: 100vh; // 1
+    overflow-y: auto;  // 1
+  }
+
+  @include media($breakpoint-lg) {
+    margin: 2rem;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 3rem 6rem 0 rgba(196, 170, 165, .6);
+    overflow: hidden;
+
+    &[data-size="md"] {
+      width: 63rem;
+    }
+
+    &[data-size="lg"] {
+      width: 85rem;
+    }
+  }
+
+  // For showing popup only if called
+  .mfp-content & {
+    display: block;
+  }
+
+  // Tabs
+  &__tabs {
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    padding: {
+      right: 2rem;
+      left: 2rem;
+    }
+    background: $color-brand;
+
+    @include media($breakpoint-lg) {
+      padding: {
+        right: 5rem;
+        left: 5rem;
+      }
+    }
+
+    li {
+      @include flex(1);
+    }
+
+    a, span {
+      @include h5;
+      position: relative;
+      display: block;
+      text-align: center;
+      line-height: 10rem;
+      white-space: nowrap;
+
+      &::after {
+        @include size(0 .4rem);
+        @include transition(width $transition-duration-base);
+        @include transform(translateX(-50%));
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        background: #fff;
+        content: "";
+      }
+    }
+
+    a {
+      @include hover(color, #fff);
+      color: rgba(#fff, .4);
+
+      @include media($breakpoint-lg) {
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+
+    span {
+      color: #fff;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  // Header
+  &__header {
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    min-height: 10rem;
+    padding: 2rem $content-indent-sm;
+    background: $color-brand;
+    color: #fff;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      padding: {
+        right: $content-indent-lg;
+        left: $content-indent-lg;
+      }
+    }
+
+    @include media($breakpoint-xxl) {
+      padding: {
+        right: $content-indent-xl;
+        left: $content-indent-xl;
+      }
+    }
+
+    > div {
+      @include fill-parent;
+    }
+  }
+
+  // Inner
+  &__inner {
+    padding: 5rem 4rem 6rem;
+
+    @include media($breakpoint-lg) {
+      padding: {
+        right: 11rem;
+        left: 11rem;
+      }
+    }
+
+    // Auth social, default form
+    .auth-social,
+    .default-form {
+      &:not(:first-child) {
+        margin-top: 2.5rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    // Default form
+    .default-form {
+      @include media($breakpoint-sm) {
+        margin: {
+          right: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  // Title, text
+  &__title,
+  &__text {
+    margin: {
+      right: -1rem;
+      left: -1rem;
+    }
+
+    @include media($breakpoint-lg) {
+      margin: {
+        right: -5rem;
+        left: -5rem;
+      }
+    }
+  }
+
+  // Title
+  &__title {
+    text-align: center;
+
+    &:not(:first-child) {
+      margin-top: 3rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+
+  // Text
+  &__text {
+    text-align: center;
+
+    &:not(:first-child) {
+      margin-top: 2.5rem;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  // Close
+  &__close {
+    margin: 2rem 0 -2rem;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      display: none !important;
+    }
+
+    a {
+      display: inline-block;
+      padding: 2rem;
+    }
+
+    .icon {
+      fill: $color-brand;
+    }
+  }
+
+  // Button
+  a.button {
+    @include fill-parent;
+  }
+
+  &--jwplayer {
+    background: #000;
+
+    @include media($breakpoint-lg) {
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
+
+  &--banner {
+    width: 28rem;
+    margin: 2rem auto;
+    border-radius: 0;
+
+    @include media($breakpoint-lg) {
+      width: 63rem;
+    }
+  }
+}
+
+.popup-banner {
+  position: relative;
+  min-height: 42rem;
+
+  &::before {
+    @include size(100%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(to top, $color-brand, rgba($color-brand, 0));
+    content: "";
+  }
+
+  &__image {
+    vertical-align: top;
+
+    &--sm {
+      @include media($breakpoint-lg) {
+        display: none;
+      }
+    }
+
+    &--lg {
+      @include media($breakpoint-sm) {
+        display: none;
+      }
+    }
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      padding: 3rem;
+    }
+  }
+
+  &__title {
+    @include h4;
+
+    color: #fff;
+  }
+
+  &__action {
+    margin-top: 2rem;
+
+    @include media($breakpoint-lg) {
+      margin-top: 3rem;
+
+      a.button {
+        width: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.grid_i.grid_i__grid-1-9>
+  = link_to promo_code.code, edit_admin_promo_code_path(promo_code)
+.grid_i.grid_i__grid-2-9>
+  = promo_code.discount.title
+.grid_i.grid_i__grid-2-9>
+  = format_date_full(promo_code.end_date)
+.grid_i.grid_i__grid-2-9.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: promo_code.reusable?, disabled: true}
+.grid_i.grid_i__grid-1-9.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: promo_code.extinguished?, disabled: true}
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_promo_code_path(promo_code), title: 'Редактировать' do
+      .icon_edit &#9998;
+    = link_to admin_promo_code_path(promo_code), title: 'Удалить', method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X

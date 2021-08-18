@@ -1,0 +1,29 @@
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        %h1.page__title= title_with_page(:recalls, params[:page])
+
+      .filter
+        %ul.filter__list
+          %li.filter__item
+            .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+              %span= @direction_text || 'Все отзывы'
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %ul
+                    %li= link_to 'Все отзывы', courses_shop_recalls_path
+                    - current_shop_directions = current_shop.barbershop? ? Recall::BARBERSHOP_DIRECTIONS : Recall::COURSE_SHOP_DIRECTIONS
+                    - Recall.directions.options.select{|item| current_shop_directions.include?(item.last.to_sym)}.each do |option|
+                      %li= link_to option.first, courses_shop_recalls_path(direction: option.second)
+
+      .feedbacks-items
+        %ul.feedbacks-items__list#recalls_list
+          = render partial: 'courses_shop/recalls/recall', collection: @recalls, as: :recall
+
+      = pagination_complex(@recalls, '#recalls_list')
+
+      %p.page-section__note <sup>*</sup> Положительный опыт других студентов не&nbsp;гарантирует получения такого&nbsp;же результата для всех учащихся

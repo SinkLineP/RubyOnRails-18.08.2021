@@ -1,0 +1,16 @@
+- subscription = survey_response.group_subscription
+- survey_answer = survey_response.survey_answers.first
+.grid_i.grid_i__grid-1-9>
+  = format_date_st(survey_response.modified_at)
+.grid_i.grid_i__grid-2-9>
+  = link_to subscription.student.display_name, edit_admin_student_path(subscription.student), class: 'a_under'
+.grid_i.grid_i__grid-3-9>
+  = subscription.group_title
+.grid_i.grid_i__grid-1-9>
+  = answer_mark(survey_answer)
+.grid_i.grid_i__grid-1-9>
+  = survey_response.surveymonkey_id
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_student_group_subscription_path(subscription.student, subscription), title: 'Результаты опроса' do
+      .icon_edit &#9998;

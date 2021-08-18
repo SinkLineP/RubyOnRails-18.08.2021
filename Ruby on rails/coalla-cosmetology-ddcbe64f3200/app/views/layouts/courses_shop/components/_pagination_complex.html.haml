@@ -1,0 +1,30 @@
+%nav.pagination
+  .pagination__button
+    = link_to '#', class: 'button button--action-outline', 'data-size' => 'lg', 'data-type' => 'text' do
+      %svg.icon(role='img' data-size='34')
+        %use(xlink:href='/assets/courses_shop/icons.svg#refresh')
+      %span Показать ещё
+  .pagination__pages
+    %ul
+      %li.is-nav
+        %span
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+      %li
+        %span 1
+      %li
+        = link_to '2', '#'
+      %li
+        = link_to '3', '#'
+      %li
+        = link_to '4', '#'
+      %li
+        = link_to '5', '#'
+      %li
+        %span &hellip;
+      %li
+        = link_to '59', '#'
+      %li.is-nav
+        = link_to '#' do
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

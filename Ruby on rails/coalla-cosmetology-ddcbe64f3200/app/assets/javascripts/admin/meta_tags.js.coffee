@@ -1,0 +1,3 @@
+#=require ./images
+$ ->
+  initImageUpload()

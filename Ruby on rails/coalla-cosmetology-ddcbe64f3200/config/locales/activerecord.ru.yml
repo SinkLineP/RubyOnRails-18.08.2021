@@ -1,0 +1,403 @@
+ru:
+  activerecord:
+    errors:
+      messages:
+        has_multiple_subscriptions: Нельзя подписывать студента на одни и теже курсы
+        answer_to_long: превышена длина ответа
+        no_files: Вы должны загрузить хотя бы один файл
+        all_answers_required: Вы должны ответить на все вопросы теста
+        confirmation: пароль и подтверждение не совпадают
+        not_equal_total_amount: не равна полной стоимости
+        not_loaded: не может быть загружено
+        dates_incorrect: некорректны, дата начала не может быть больше даты конца
+
+    models:
+      user: Пользователь
+      student: Студент
+      instructor: Преподаватель
+      administrator: Администратор
+      manager: Менеджер
+      lookup: Тексты
+      post: Блог
+      static_page: Страница
+      course: Курс
+      book: Книга
+      block: Блок
+      essay_task: Cочинение
+      text_task: Текст
+      file_task: Файлы
+      connection_task: Соединение
+      calculation_task: Расчет
+      test_task: Тест
+      lecture: Лекция
+      result: Результат
+      practice: Практика
+      work: Занятие
+      exercise: Задание
+      work_result: Результат
+      exam: Экзамен
+      hairdresser_work: Для парикмахеров
+      practice_work: Практика
+      ladder: Зачет
+      final_work: Выпускная работа
+      vacancy_group:  Группа вакансий
+      vacancy: Вакансия
+      campaign: Компания
+      campaign_index: Расход на компанию
+      faq: FAQ
+      skill: Ключевой навык
+      recall: Отзыв
+      advantage: Преимущество
+      used_time: Занятое время
+      consultation: Заявка на консультацию
+      speciality: Направление
+      partner:  Партнеры
+      service: Наши услуги
+      article: Блог, Мы и СМИ, Наука и ДРК
+      procedure_request: Запись на процедуры
+      graduates: Выпускники
+      document_sections: Разделы документов
+      classroom: Аудитории
+      instructor_vacation: Отпуска
+
+    attributes:
+      administrator:
+        email: Электронная почта
+        password: Пароль
+      lookup:
+        code: Название
+        value: Значение
+      course:
+        name: Заголовок
+        badge: Бейдж
+        active: Включен
+        syllabus: Учебный курс
+        price: Цена обучения
+        external_url: Внешний url
+        diplom_title: Заголовок диплома
+        price: Стоимость продления обучения, руб.
+        remote_price: Стоимость дистанционной теории, руб.
+        slug: ЧПУ
+        title: Заголовок
+        image: Изображение
+        small_image: Превью
+        announcement: Анонс
+        course_counts: Количество занятий
+        practice_hours: В том числе практики, ч.
+        price_per_month: Стоимость в месяц, руб.
+        total_price: Полная стоимость, руб.
+        limitation: Ограничение
+        video: Видео
+        early_booking: Раннее бронирование
+        economy: Размер экономии, руб.
+        job: Должность
+        profit: Доход
+        special_offer: Специальное предложение
+        education_period: Срок обучения
+        subject: Предмет изучения
+        medical_education: Есть мед. образование
+        work_in_cosmetology: Работаю в косметологии
+        economy_for_several: Экономия
+        economy_description: Пояснение экономии
+
+
+      block:
+        name: Заголовок
+        active: Включен
+      user: &user
+        last_name: Фамилия
+        first_name: Имя
+        middle_name: Отчество
+        email: Эл. почта
+        password: Пароль
+        avatar: Аватар
+        description: Описание
+        deleted_at: Контакт удалён
+        phones_array_string: Телефоны
+        phones_string: Телефоны
+        emails_string: Дополнительная эл. почта
+        birthday: Дата рождения
+        wear_size: Размер одежды/обуви
+        amocrm_id: ID в AMOcrm
+        education_level_id: Уровень образования
+        passport_series: Cерия
+        passport_number: Номер
+        passport_issued_on: Дата выдачи
+        passport_organisation: Выдан
+        passport_address: Адрес регистрации
+        address: Факт. адрес
+        comagic_campaign: Рекламный канал
+      instructor:
+        password: Пароль для сайта
+        email_password: Пароль для почты
+        comagic_campaign: Рекламный канал
+      instructor_home:
+        description: Блок Главная страцница -
+      post:
+        title: Заголовок
+        announcement: Аннонс
+        text: Текст
+        announcement_image: Изображение для анонса
+        inner_image: Изображение для внутренней страницы
+        slider_image: Изображение для слайдера
+        category: Категория
+        slug: ЧПУ
+      static_page:
+        title: Заголовок
+        content: Контент
+        slug: ЧПУ
+      group:
+        course_id: Курс
+        course: Курс
+        title: Название
+        begin_on: Дата начала обучения
+        end_on: Дата окончания обучения
+        shift_work_on: Первый учебный день
+        distances_place: План оч. формы об.
+        distances_count: Факт оч. формы об.
+        academics_place: План о-д. формы об.
+        academics_count: Факт о-д. формы об.
+        start_time: Время начала занятий
+        end_time: Время окончания занятий
+        week_days: Дни недели
+      banner:
+        type_banner: Тип баннера
+        description: Текст баннера
+        image: картинка баннера
+        btn_title: Название кнопки
+        link_call: Ссылка
+        active: Активен
+        mobile_image: изображение для мобилы (630x630)
+      square_banner:
+        desktop_text: Текст баннера
+        image: картинка баннера
+        btn_title: Название кнопки
+        link: Ссылка
+        active: Активен
+        mobile_image: изображение для мобилы (240x420)
+      group_subscription:
+        begin_on: Начало
+        end_on: Финал
+        group_id: Группа
+        group: Группа
+        student_id: Студент
+        student: Студент
+        price: Сумма
+        practice: Практика
+        practice_basis_id: База практики
+        practice_basis: База практики
+        payer_type: Оплачивает обучение
+        subscription_documents: Выпускной документ
+        vacation_begin_on: Дата начала академ. отпуска
+        vacation_end_on: Дата окончания академ. отпуска
+        promotion_id: Акция - продажа
+        promotion_source: Акция - источник
+      group/practices:
+        begin_on: Дата начала практики
+        end_on: Дата окончания практики
+        start_time: Время начала практики
+        end_time: Время окончания практики
+        group: Группа
+        correctness_of_dates: Даты практики
+      group/prices:
+        amount: Полная стоимость
+        group: Группа
+        payments_text: Платежи
+        description: Описание поэтапной оплаты
+        education_form: Тип обучения
+        payments_total_amount: Сумма платежей
+      discount:
+        title: Название
+        archival: Архивная
+        type: Тип
+        value: Значение
+      faculty:
+        title: Название
+      education_level:
+        title: Название
+        level: Уровень
+        education_document_name: Название выпускного документа
+      education_document:
+        title: Название
+        description: Примечание
+      magazine_payment_type:
+        title: Название
+      practice_basis:
+        title: Название
+        legal_address: Юр. адрес
+        address: Адрес
+        inn: ИНН
+        kpp: КПП
+        account: Р/c
+        bik: БИК плательщика
+        bank: Банк
+        correspondent_account: К/c
+        phone: Телефон
+        email: E-mail
+        medical_license: Медицинская лицензия
+      payment_log:
+        amount: Сумма
+        payed_on: Дата платежа
+        payment_type: Тип платежа
+        appointment: Вид
+        group_id: Группа
+        comment: Обоснование платежа
+        magazine_payment_type_id: Обоснование платежа
+      subscription_documents:
+        registration_number: Регистрационный номер выпускного документа
+      work:
+        title: Название
+        duration: Продолжительность (в ак. часах)
+      work/exercises:
+        text: Текст задания
+        max_mark: Максимальный балл
+      exercises/exercises:
+        text: Текст задания
+        max_mark: Максимальный балл
+      exercise:
+        text: Текст задания
+        max_mark: Максимальный балл
+      work_result:
+        group_id: Группа
+        work_id: Занятие
+        marked_on: Дата
+        scans: Сканы ведомости
+      student_work_results/exercise_results:
+        mark: Быллы
+      course_works:
+        work_id: Занятие
+        hours: Аудиторные часы
+      comment_threads:
+        body: Комментарий
+      vacancy:
+        content: Контент
+        name: Название
+      vacancy_group:
+        name: Название
+      campaign_index:
+        name: Название
+        campaign_id: Кампания
+        campaign: Кампания
+        created_on: Дата
+        service: Тип
+        value: Значение
+      curriculum_block:
+        title: Заголовок
+        content: Контент
+      faq:
+        question: Вопрос
+        answer: Ответ
+      skill:
+        name: Название
+      recall:
+        file: Скан отзыва
+        video_link: Ссылка на видеоотзыв
+        message: Текст отзыва
+        author_name: Автор
+        author_image: Аватар автора
+        directions: Направления
+        video_image: Превью для видео-отзыва
+      advantage:
+        title: Название
+        icon: Иконка
+      used_time:
+        date: Дата
+        time: Время
+      consultation:
+        date: Дата
+        time: Время
+        course: Курс
+        course_id: Курс
+        name: ФИО
+        email: Электронная почта
+        phone: Телефон
+        comment: Примечание
+        created_at: Дата создания
+      speciality:
+        slug: ЧПУ
+        announcement: Описание
+        meta_title: Метатег Title(шапка сайта)
+        meta_og_title: Метатег OpenGraph Title
+        title: Название
+        meta_description: Метатег Description
+        meta_og_description: Метатег OpenGraph Description
+        page_title: Заголовок h1
+      partner:
+        title: Название
+        image: логотип
+        url: Ссылка
+        description: Описание
+      service:
+        title: Наименование
+        price: Стоимость
+        units: Единицы
+      procedure_request:
+        name: Имя, Фамилия
+        email: Электронная почта
+        phone: Телефон
+        cosmetology_procedure_id: Процедура
+        cosmetology_procedure: Процедура
+      graduate:
+        avatar: Аватар
+      history_event:
+        image: Изображение
+      tour_image:
+        image: Изображение
+      reward_image:
+        image: Изображение
+      article:
+        title: Заголовок
+        content: Контент
+        main_image: Главное фото
+        preview_image: Изображение превью
+        preview_announce: Анонс для превью
+        slug: ЧПУ
+        created_at: Дата создания
+        main_image_title: Подпись под главным фото
+        published: Опубликовано
+        announce: Анонс
+      institution_image:
+        image: Изображение
+      site_meta_tags:
+        image: Изображение
+        og_image: Изображение
+      promotion:
+        image: Изображение
+        code: Код
+      automatic_discount:
+        courses: Курсы
+        name: Название
+      document:
+        document_section: Раздел документов
+        document_section_id: Раздел документов
+        file: Файл
+      document_section:
+        title: Название
+      amo_module:
+        title: Название
+        amo_module_courses: Курсы
+      uploaded_video:
+        title: Название
+        preview_image: Изображение превью
+        file: Видеофайл
+        jw_script: Код из jwplayer
+      working_off_lists:
+        hours: Количество часов
+        processed_on: Дата обработки
+        work: Работа
+        work_id: Работа
+        variant: Индивидуально/в группе
+      classroom:
+        title: Название
+        capacity: Вместимость
+        work_classrooms: Занятия
+      instructor_vacation:
+        instructor_id: Преподаватель
+        begin_on: Дата начала
+        end_on: Дата окончания
+  activemodel:
+    attributes:
+      contacts_merge:
+        <<: *user
+        main_student_id: Основной контакт
+        other_student_id: Второй контакт

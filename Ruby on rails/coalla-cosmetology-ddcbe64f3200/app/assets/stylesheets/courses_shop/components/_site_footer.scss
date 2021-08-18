@@ -1,0 +1,286 @@
+@charset "UTF-8";
+
+// Site footer
+// 1. Properties to hide footer before sticky footer initialization
+.site-footer {
+  @include transition(opacity $transition-duration-base); // 1
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: {
+    top: 4rem;
+    bottom: 4rem;
+  }
+  border-top: 1px solid $color-ui;
+  opacity: 0;           // 1
+  visibility: hidden;   // 1
+  will-change: opacity; // 1
+
+  // Links
+  a {
+    @include hover(color, $color-brand);
+    color: $color-base;
+  }
+
+  // Accessibility
+  &__accessibility {
+    @include media($breakpoint-sm) {
+      @include display(flex);
+      @include justify-content(center);
+    }
+
+    @include media($breakpoint-lg) {
+      position: absolute;
+      top: 4rem;
+      left: $content-indent-lg;
+    }
+
+    @include media($breakpoint-xxl) {
+      left: $content-indent-xl;
+    }
+
+    a {
+      @include display(inline-flex);
+      @include align-items(center);
+      @include font(1.3rem, 1.5rem);
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .icon {
+      @include hover(fill, $color-brand, 'a:hover');
+      margin-right: 1.9rem;
+    }
+  }
+
+  // Nav
+  &__nav {
+    @include media($breakpoint-sm) {
+      margin-top: 3rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+
+    ul {
+      @include text-sm;
+      text-align: center;
+
+      &:not(:last-child) {
+        @include media($breakpoint-sm) {
+          margin-bottom: 1.25rem;
+        }
+      }
+
+      @include media($breakpoint-lg) {
+        @include grid-columns(1, 6);
+      }
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-bottom: 1.25rem;
+      }
+    }
+  }
+
+  // Authentication
+  &__authentication {
+    margin-top: 1.25rem;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+
+    p {
+      @include media($breakpoint-lg) {
+        @include grid-columns(2, 3);
+      }
+    }
+
+    a {
+      @include hover(color, $color-base);
+      @include text-sm;
+      color: $color-brand;
+    }
+  }
+
+  // Logos
+  &__logos {
+      margin: {
+          top: 3rem;
+          bottom: 3rem;
+      }
+
+      ul {
+          @include display(flex);
+          @include flex-wrap(wrap);
+          @include justify-content(center);
+          @include align-items(center);
+          margin: -1rem -2rem;
+      }
+
+      li {
+          margin: 1rem 2rem;
+      }
+
+      img {
+          vertical-align: top;
+      }
+  }
+
+  // Social
+  &__social {
+    @include media($breakpoint-sm) {
+      margin-top: 3rem;
+    }
+
+    @include media($breakpoint-lg) {
+      position: absolute;
+      top: 4rem;
+      right: $content-indent-lg;
+    }
+
+    @include media($breakpoint-xxl) {
+      right: $content-indent-xl;
+    }
+
+    ul {
+      @include display(flex);
+      @include justify-content(center);
+      @include align-items(center);
+      margin: -.75rem;
+    }
+
+    a {
+      display: block;
+      padding: .75rem;
+    }
+
+    .icon {
+      @include hover(fill, $color-brand, 'a:hover');
+    }
+  }
+
+  // Payments
+  &__payments {
+    margin: {
+      top: 3rem;
+      bottom: 3rem;
+    }
+
+    ul {
+      @include display(flex);
+      @include flex-wrap(wrap);
+      @include justify-content(center);
+      @include align-items(center);
+      margin: -.5rem;
+
+      @include media($breakpoint-lg) {
+        margin: -2rem;
+      }
+    }
+
+    li {
+      margin: .5rem;
+
+      @include media($breakpoint-lg) {
+        margin: 2rem;
+      }
+    }
+
+    .icon {
+      fill: $color-base-lightest;
+    }
+  }
+
+  // Copyright
+  &__copyright, &__contacts {
+    margin: {
+      top: 2rem;
+      bottom: 2rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+
+    p {
+      @include text-sm;
+      text-align: center;
+
+      @include media($breakpoint-lg) {
+        @include grid-columns(2, 3);
+      }
+    }
+    a.coalla {
+      color: $color-base-lighter;
+    }
+  }
+
+  // Developer
+  &__developer {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+
+    p {
+      @include text-sm;
+      text-align: center;
+
+      @include media($breakpoint-lg) {
+        @include grid-columns(2, 3);
+      }
+    }
+  }
+}
+
+#return-to-top {
+  position: fixed;
+  bottom: 70px;
+  right: 15px;
+  background: rgba($color-error, .6);
+  width: 50px;
+  height: 50px;
+  display: block;
+  text-decoration: none;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  border-radius: 35px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+#return-to-top svg {
+  color: #fff;
+  fill: #fff;
+  margin: 0;
+  position: relative;
+  left: 16px;
+  top: 13px;
+  font-size: 19px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.mod_no-touchevents #return-to-top:active {
+  background: rgba($color-error, .6);
+}
+.mod_no-touchevents #return-to-top:hover {
+  background: rgba($color-error, 1);
+}

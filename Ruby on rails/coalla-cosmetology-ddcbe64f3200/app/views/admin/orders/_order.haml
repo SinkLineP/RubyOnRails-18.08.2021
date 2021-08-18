@@ -1,0 +1,12 @@
+.grid.grid__collapse
+  .grid_i.grid_i__grid-2-12.table_ellipsis>
+    = link_to order.id, edit_admin_student_order_path(@student, order)
+  .grid_i.grid_i__grid-2-12.table_ellipsis>
+    = order.order_group_subscriptions.count
+  .grid_i.grid_i__grid-5-12.period_time>
+    = format_date_with_time(order.created_at)
+  .grid_i.grid_i__grid-2-12.tx-right>
+    = link_to edit_admin_student_order_path(@student, order) do
+      .icon_edit &#9998;
+    = link_to admin_student_order_path(@student, order), method: :delete, data: {confirm: 'Вы уверены, что хотите удалить сделку? Это действие отменить нельзя.'} do
+      .icon_del X

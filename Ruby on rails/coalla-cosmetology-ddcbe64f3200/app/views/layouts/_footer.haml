@@ -1,0 +1,21 @@
+%footer#footer.footer{role: 'contentinfo'}
+  .ctn
+    .footer_inner
+      .grid.grid__collapse
+        .grid_i.grid_i__grid-1-3>
+          %p &copy;&nbsp;АНО ДПО&nbsp;&laquo;Институт КЭМВИ – ДРК&raquo;, 2015
+        .grid_i.grid_i__grid-1-3>
+          %p
+            Разработка&nbsp;&mdash;&nbsp;
+            = link_to 'Coalla', 'http://coalla.ru', target: '_blank'
+      = link_to 'http://www.itecworld.co.uk/', target: '_blank' do
+        = image_tag 'logo.png', width: '69', height: '100', alt: '', class: 'footer_logo'
+
+= javascript_include_tag 'application'
+= yield :js
+- [params[:controller], params[:controller].gsub('/', '_')].each do |js_name|
+  = javascript_include_tag js_name if javascript_exists?(js_name)
+= javascript_include_tag 'admin/shop'
+= render 'common/alerts'
+- if Rails.env.production?
+  = render 'layouts/yandex_metrika'

@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+.feedbacks-widgets {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 151;
+
+  // Actions
+  &__actions {
+    ul {
+      @include display(flex);
+      @include justify-content(flex-end);
+      @include align-items(flex-end);
+    }
+
+    li {
+      @include size(5rem);
+      position: relative;
+
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+
+    svg.shape {
+      > path {
+        @include hover(fill, $color-error);
+        fill: rgba($color-error, .6);
+        transition: fill $transition-duration-base;
+        will-change: transition;
+      }
+    }
+
+    svg.icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      fill: #fff;
+      pointer-events: none;
+    }
+  }
+
+  // Popup
+  &__popup {
+    z-index: 9999;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+    padding-bottom: 1rem;
+    background: $color-bg;
+    border-radius: $border-radius-lg $border-radius-lg 0 $border-radius-lg;
+    box-shadow: 0 3rem 6rem 0 rgba(196,170,165, .6);
+
+    @include media($breakpoint-sm) {
+      width: calc(100vw - 3rem);
+      max-height: calc(100vh - 3rem);
+    }
+
+    @include media($breakpoint-lg) {
+      width: 41rem;
+    }
+  }
+
+  &__popup-header {
+    @include display(flex);
+    @include align-items(center);
+    position: relative;
+    padding: 1.5rem 3rem;
+    background: $color-error;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    color: #fff;
+
+    > span {
+      @include size(5rem);
+      position: relative;
+      margin-right: 1.5rem;
+      background: $color-ui;
+      border-radius: 50%;
+
+      > svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        fill: $color-error;
+      }
+    }
+
+    > a {
+      @include hover(opacity, 1);
+      @include size(3.6rem);
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      opacity: .4;
+      transition: opacity $transition-duration-base;
+      will-change: opacity;
+
+      > svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        fill: #fff;
+      }
+    }
+  }
+
+  &__popup-content {
+    margin: 0 1rem;
+    padding: 2rem;
+    background: #fff;
+    border-bottom-left-radius: $border-radius-sm;
+    max-height: calc(100vh - 11rem);
+    // overflow-y: auto;
+
+    @include media($breakpoint-lg) {
+      padding: 4rem 2rem;
+    }
+
+    .default-form {
+      @include media($breakpoint-sm) {
+        margin: {
+          right: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+}

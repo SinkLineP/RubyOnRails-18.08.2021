@@ -1,0 +1,12 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %a{href: blog_post_url(@post), target: '_blank', style: 'margin: 0;text-align: left; text-decoration: none; color: #000000'} #{@post.title}
+
+%tr
+  %td{border: '0', style: 'text-align:left;'}
+    %a{href: blog_post_url(@post), target: '_blank', style: 'margin: 0;text-align: left; text-decoration: none; color: #000000'} #{@post.announcement}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %a{href: blog_post_url(@post), target: '_blank'}
+      = image_tag URI.join(root_url, @post.announcement_image_url(:preview)), alt: ''

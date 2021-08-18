@@ -1,0 +1,16 @@
+.popup.bg-muted
+  .mb-3.tx-center
+    %h5 РЕДАКТИРОВАНИЕ ПРЕИМУЩЕСТВА
+  = form_for [:admin, @advantage], url: admin_our_advantage_path(@advantage), as: :advantage, html: {id: 'advantage_form', class: 'form js-form', remote: true} do |f|
+    .grid
+      .grid_i.grid_i__grid-6-10.grid_i__prefix-2-10>
+        .form_el.js-form_el.form_textarea
+          = f.text_area :value, class: 'form_el_tag form_textarea_tag'
+
+      .grid_i.grid_i__grid-6-10.grid_i__prefix-2-10>
+        .form_el.js-form_el.form_btn
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+    .icon_del.arcticmodal-close X
+
+= javascript_include_tag 'admin/advantage_form'

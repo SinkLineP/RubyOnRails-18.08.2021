@@ -1,0 +1,39 @@
+.career-after-courses
+  .career-after-courses__inner
+    .career-after-courses__sheets
+      %article.career-after-courses__sheet
+        %header.career-after-courses__header
+          = image_tag 'courses_shop/avatar.svg', width: '120', height: '120', alt: ''
+
+          .career-after-courses__record
+            .h4.career-after-courses__name Валентина Петрова
+            %p.career-after-courses__specialty врач-косметолог
+            %p.career-after-courses__income доход 98&nbsp;900&nbsp;руб./мес
+
+        .career-after-courses__content
+          %div.dl.career-after-courses__key-skills
+            %div.dt Ключевые навыки
+            %div.dd Комплексный уход за&nbsp;лицом: диагностика, чистки, маски, массажи
+            %div.dd Комплексный уход за&nbsp;телом: лимфодренаж, массаж тела, обертывания
+            %div.dd Аппаратная косметология по&nbsp;лицу и&nbsp;телу
+            %div.dd Химические пилинги
+            %div.dd Восковая депиляция
+            %div.dd Коррекция и&nbsp;окрашивание бровей и&nbsp;ресниц
+            %div.dd Макияж
+            %div.dd Маникюр
+
+          %div.dl.career-after-courses__documents
+            %div.dt После курса вы получите документы
+            %div.dd
+              .career-after-courses__documents-list#career-after-courses-documents-slider
+                - 1.upto(4) do
+                  = link_to placeholder_url('500x367'), target: '_blank', class: 'career-after-courses__documents-item js-career-after-courses-documents-item zoom-in', 'data-mfp-type' => 'image' do
+                    = image_tag placeholder_url('109x80'), width: '109', height: '80', alt: ''
+                    = render 'layouts/courses_shop/image_zoom_in_icon'
+
+              = link_to '#', class: 'career-after-courses__documents-nav career-after-courses__documents-nav--prev', id: 'career-after-courses-documents-slider-prev' do
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+              = link_to '#', class: 'career-after-courses__documents-nav career-after-courses__documents-nav--next', id: 'career-after-courses-documents-slider-next' do
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

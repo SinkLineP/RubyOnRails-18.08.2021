@@ -1,0 +1,5 @@
+.grid_i.grid_i__grid-6-6>
+  %a.modal{data: {url: edit_admin_magazine_payment_type_path(magazine_payment_type)}}= magazine_payment_type.title
+  - if magazine_payment_type.payment_logs.blank?
+    = link_to admin_magazine_payment_type_path(magazine_payment_type), method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X

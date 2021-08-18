@@ -1,0 +1,5 @@
+.attach
+  %span.tx-700 Прикрепленные файлы:
+  - result_file_items.each do |result_file_item|
+    - if result_file_item.file?
+      %a.a_under{:href => result_file_item.file_url, target: '_blank'}= result_file_item.filename

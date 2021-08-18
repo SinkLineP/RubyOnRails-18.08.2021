@@ -1,0 +1,62 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Блог
+
+      = render 'layouts/courses_shop/components/subscription'
+
+      .filter
+        = render 'layouts/courses_shop/hr_small'
+        %ul.filter__list
+          %li.filter__item
+            .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+              %span Все месяцы
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %ul
+                    %li= link_to 'Январь', '#'
+                    %li= link_to 'Февраль', '#'
+                    %li= link_to 'Март', '#'
+                    %li= link_to 'Декабрь', '#'
+          %li.filter__item
+            .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+              %span Все категории
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %ul
+                    %li= link_to 'Категория&nbsp;1'.html_safe, '#'
+                    %li= link_to 'Категория&nbsp;2'.html_safe, '#'
+
+      .media-cards
+        %ul.media-cards__list
+          - 1.upto(3) do
+            %li.media-cards__item
+              %article.media-card
+                = link_to '#', class: 'media-card__inner' do
+                  = image_tag 'courses_shop/temp/media_photo_1.jpg', alt: '', class: 'media-card__photo'
+                  .media-card__content
+                    .h4.media-card__title Дому Русской Косметики&nbsp;&mdash; 27&nbsp;лет!
+                    %p.media-card__meta 30&nbsp;сентября 2016
+
+            %li.media-cards__item
+              %article.media-card
+                = link_to '#', class: 'media-card__inner' do
+                  = image_tag 'https://placehold.it/410x410?text=∴', alt: '', class: 'media-card__photo'
+                  .media-card__content
+                    .h4.media-card__title Салоны за&nbsp;миллион&nbsp;&mdash; окупаются за&nbsp;год
+                    %p.media-card__meta 28&nbsp;сентября 2016
+
+            %li.media-cards__item
+              %article.media-card
+                = link_to '#', class: 'media-card__inner' do
+                  = image_tag 'https://placehold.it/410x410?text=∴', alt: '', class: 'media-card__photo'
+                  .media-card__content
+                    .h4.media-card__title Проректор ДРК вошла в&nbsp;совет по&nbsp;квалификациям при президенте
+                    %p.media-card__meta 28&nbsp;августа 2016
+
+      = render 'layouts/courses_shop/components/pagination_complex'

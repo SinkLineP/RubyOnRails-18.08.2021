@@ -1,0 +1,53 @@
+!!!
+%html
+  %head
+    %meta{charset: 'utf-8', content: 'text/html', 'http-equiv' => 'content-type'}
+    %title
+      Sikorsky Beauty Academy
+  %body{style: "margin: 0; background-color: #f4eeed; font-family: Helvetica, Arial, sans-serif; color: #000; font-size: 20px; line-height: 35px;"}
+    %table{align: 'center', cellpadding: '0', cellspacing: '0', width: '592'}
+      %tr
+        %td{border: '0', height: '241', background: image_url('flowers/delivery_bg.jpg'), style: 'padding: 0 0px 0; text-align: center;'}
+          %img{src: image_url('delivery_logo.jpg'), alt: ''}
+          %h1{style: "margin:0; font-family: 'PT Serif', Helvetica, Arial, sans-serif; font-size: 50px; line-height: 55px; font-weight: 400;"}= "Вам подарок #{@refund} рублей!"
+      %tr
+        %td{border: '0', style: 'border: 4px solid #dbd6d5; border-top: 0;border-collapse:collapse;'}
+          %table{align: 'center', cellpadding: '0', cellspacing: '0', style: 'padding: 50px 55px 45px;', width: '592'}
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} У нас день рождения и мы дарим вам подарок!
+                %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+            %tr
+              %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+                %hr{width: '220', style: 'margin: 0;'}
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  В&nbsp;честь 30-летия Дома Русской Косметики возвращаем вам&nbsp;30% от&nbsp;уже потраченных вами на&nbsp;обучение средств.
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  Вы потратили на обучение #{@payments_sum} руб.
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  Мы возвращаем вам #{@refund} руб.
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  Вы можете потратить #{@refund} руб. на любое дальнейшее обучение косметологии.
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  Воспользоваться кэшбеком можно до 20 июня, после этого он сгорит.
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  Хотите получить бесплатное обучение - #{link_to 'оставьте заявку', 'http://promo.cosmeticru.com/2019-95300/?utm_source=sdo&utm_medium=email&utm_campaign=students', target: '_blank'}
+            %tr
+              %td{border: '0', style: 'text-align:center;'}
+                %p{style: 'margin: 0;text-align: left;'}
+                  Подробные условия акции - на странице акции.
+            %tr
+              %td{border: '0', align: 'right',style: 'padding: 30px 0 0 0;'}
+                %i - Команда Института

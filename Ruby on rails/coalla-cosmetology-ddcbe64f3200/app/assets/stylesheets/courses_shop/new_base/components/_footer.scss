@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+.footer {
+  padding: 4rem 0;
+  background: {
+    color: $color-base;
+    image: asset_url("courses_shop/new_base/footer_bg.jpg");
+    position: center;
+  }
+  color: #fff;
+
+  @include mq(sm) {
+    text-align: center;
+  }
+
+  @include mq(md) {
+    padding: 3rem 0;
+  }
+
+  @include mq(lg) {
+    padding: 2rem 0;
+  }
+
+  a {
+    @include link(#747474);
+  }
+
+  &__row {
+    @include mq(md) {
+      @include grid;
+    }
+  }
+
+  &__caption {
+    @include h5;
+
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(7/12);
+
+      order: 2;
+      margin-top: -.3rem;
+    }
+
+    @include mq(lg) {
+      width: calc(50% - 10.5rem);
+    }
+  }
+
+  &__request-a-call {
+    @include mq(sm) {
+      margin: 2rem 0 4rem;
+    }
+
+    @include mq(md) {
+      @include grid-col;
+
+      order: 3;
+      margin-top: 1.5rem;
+
+      .button {
+        width: 19rem;
+      }
+    }
+
+    @include mq(lg) {
+      margin-top: 0;
+    }
+  }
+
+  &__info {
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(5/12);
+
+      order: 1;
+    }
+
+    @include mq(lg) {
+      width: calc(50% - 10.5rem);
+    }
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+
+        @include mq(md) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

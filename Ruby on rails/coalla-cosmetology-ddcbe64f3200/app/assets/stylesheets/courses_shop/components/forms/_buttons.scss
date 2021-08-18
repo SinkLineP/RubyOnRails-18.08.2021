@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+#{$all-buttons} {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  outline: 0;
+  vertical-align: top;
+}
+
+@mixin button-style {
+  @include transition(all $transition-duration-base);
+  font-weight: 700;
+  text-align: center;
+  vertical-align: top;
+
+  @at-root a#{&} {
+    outline: 0;
+    text-decoration: none !important;
+  }
+}
+
+@mixin button-base-size($border-width: 0) {
+  padding: {
+    right: 2rem - $border-width;
+    left: 2rem - $border-width;
+  }
+
+  &[data-size="sm"] {
+    padding: {
+      top: 1.25rem - $border-width;
+      bottom: 1.25rem - $border-width;
+    }
+  }
+
+  &[data-size="lg"] {
+    padding: {
+      top: 1.95rem - $border-width;
+      bottom: 2rem - $border-width;
+    }
+  }
+}
+
+@mixin button-base-style {
+  @include font(1.3rem, 1.5rem);
+  display: inline-block;
+  border-radius: $border-radius-sm;
+  letter-spacing: .5pt;
+  text-transform: uppercase;
+}
+
+@mixin button-action-size($border-width: 0) {
+  // Size
+  &[data-size="sm"] {
+    @include font(1.3rem, 1.5rem);
+
+    &[data-type="icon"] {
+      @include size(3.6rem);
+    }
+
+    &[data-type="text"] {
+      padding: {
+        top: 1rem - $border-width;
+        bottom: 1.1rem - $border-width;
+      }
+    }
+  }
+
+  &[data-size="lg"] {
+    @include font(1.5rem, 1.7rem);
+
+    &[data-type="icon"] {
+      @include size(6rem);
+    }
+
+    &[data-type="text"] {
+      padding: {
+        top: 1.2rem - $border-width;
+        bottom: 1.4rem - $border-width;
+      }
+
+      .icon {
+        @include transform(translateY(.1rem));
+      }
+    }
+  }
+
+  // Type
+  &[data-type="text"] {
+    padding: {
+      right: #{2rem - $border-width};
+      left: #{2rem - $border-width};
+    }
+
+    // Icon present
+    span + .icon,
+    .icon + span {
+      margin-left: 1.9rem;
+    }
+  }
+}
+
+@mixin button-action-style {
+  @include display(inline-flex);
+  @include justify-content(center);
+  @include align-items(center);
+  border-radius: 1.8rem;
+
+  // Sizes
+  &[data-size="sm"] {
+    border-radius: 1.8rem;
+  }
+
+  &[data-size="lg"] {
+    border-radius: 3rem;
+  }
+
+  .icon {
+    fill: $color-brand;
+  }
+}
+
+// Button
+.button {
+  @include button-style;
+
+  &--base-fill {
+    @include button-base-size;
+    @include button-base-style;
+    @include hover(background color, $color-base #fff);
+    background: $color-brand;
+    color: #fff;
+  }
+
+  &--base-fill-alt {
+    @include button-base-size;
+    @include button-base-style;
+    @include hover(background color, $color-base #fff);
+    background: $color-error;
+    color: #fff;
+  }
+
+  &--base-outline {
+    @include button-base-size(.2rem);
+    @include button-base-style;
+    @include hover(border-color color, $color-base $color-base);
+    border: .2rem solid $color-brand;
+    color: $color-brand;
+  }
+
+  &--base-outline-alt {
+    @include button-base-size(.2rem);
+    @include button-base-style;
+    @include hover(border-color color, $color-base $color-base);
+    border: .2rem solid $color-error;
+    color: $color-error;
+  }
+
+  &--action-fill {
+    @include button-action-size;
+    @include button-action-style;
+    @include hover(background color, $color-bg $color-base);
+    background: $color-ui;
+    color: $color-brand;
+  }
+
+  &--action-outline {
+    @include button-action-size(.2rem);
+    @include button-action-style;
+    @include hover(border-color color, $color-bg $color-base);
+    border: .2rem solid $color-ui;
+    color: $color-brand;
+  }
+
+  &--institute {
+    @include media($breakpoint-sm) {
+      display: block;
+      width: 100%;
+    }
+
+    @include media($breakpoint-lg) {
+      width: 22.5rem;
+    }
+  }
+
+  &--barbershop {
+    @include media($breakpoint-sm) {
+      display: block;
+      width: 100%;
+    }
+
+    @include media($breakpoint-lg) {
+      width: 32rem;
+    }
+  }
+}
+
+.icon {
+  @include hover(fill, $color-base, '.button--action-fill:hover');
+  @include hover(fill, $color-base, '.button--action-outline:hover');
+}

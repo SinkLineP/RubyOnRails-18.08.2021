@@ -1,0 +1,40 @@
+<script type="text/template" id="task-test-question-template">
+  <div class="mb-2 mt-2">
+    <h6 class="tx-center"><%%=for_edit ? "Редактировать вопрос" : "Добавить вопрос" %></h6>
+  </div>
+  <div class="grid grid__collapse">
+    <div class="grid_i grid_i__grid-1-9">
+      <div class="tx-700">
+        <label class="form_el form_label">Вопрос</label>
+      </div>
+    </div><div class="grid_i grid_i__grid-8-9">
+      <div class="form_el js-form_el form_tx">
+        <input class="form_el_tag form_tx_tag js-question-title" type="text" value="<%%= title %>">
+      </div>
+    </div>
+  </div>
+  <div class="js-answer-list"></div>
+  <div class="grid grid__collapse">
+    <div class="grid_i grid_i__grid-2-12 grid_i__prefix-1-12 js-image-upload-btn">
+      <label class="form_el form_label">Картинка</label>
+    </div><div class="grid_i grid_i__grid-3-4">
+      <div class="js-form_el form_el form_file" data-placeholder="<%%= image_name || 'Загрузить' %>">
+        <span class='js-form_el_inner form_el_inner form_file_inner a_under'></span>
+        <input type="file" class="form_el_tag form_file_tag js-image-upload">
+      </div>
+    </div>
+  </div>
+  <div class="grid grid__collapse">
+    <div class="grid_i grid_i__grid-11-12 grid_i__prefix-1-12">
+      <span class="a_under c-p js-add-answer-btn">Добавить вариант</span>
+    </div>
+  </div>
+  <div class="grid grid__collapse">
+    <div class="grid_i grid_i__grid-1-5 grid_i__prefix-2-5">
+      <div class="form_el js-form_el form_btn form_btn__small">
+        <p class="form_el_inner form_btn_inner"><%%= for_edit ? 'СОХРАНИТЬ' : 'ДОБАВИТЬ' %></p>
+        <button class="form_el_tag form_btn_tag <%%= for_edit ? 'js-save-question-changes-btn' : 'js-add-question-btn' %>" type="button"></button>
+      </div>
+    </div>
+  </div>
+</script>

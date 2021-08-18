@@ -1,0 +1,14 @@
+.grid_i.grid_i__grid-4-8>
+  .tx-700
+    %a.modal{href: admin_my_student_path(student)}
+      = student.display_name
+.grid_i.grid_i__grid-2-8>
+  - query = {status: :on_mark}
+  - query[:task_id] = @tasks_ids if @tasks_ids
+  - if student.results.exists?(query)
+    %a.a_under.tx-xs{href: admin_my_student_path(student)} задание на проверку
+.grid_i.grid_i__grid-1-8>
+  - if student.has_lag_for_any_course?(current_user.try(:courses))
+    %a.a_under.tx-xs{href: admin_my_student_path(student)} отстаёт
+.grid_i.grid_i__grid-1-8>
+  %time{datetime: student.last_sign_in_at}= format_date(student.last_sign_in_at)

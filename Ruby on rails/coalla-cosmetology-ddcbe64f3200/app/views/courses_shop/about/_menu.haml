@@ -1,0 +1,25 @@
+- actions = %w(history teachers graduates partners diploma tour)
+
+%section.page-promo#page-promo
+  - title = current_shop.barbershop? ? ty(t("#{current_shop.code}.#{action_name}")) : 'Об институте'
+  .page-promo__breadcrumbs
+    .container
+      %nav
+        %ul
+          %li
+            = link_to shop_title, root_path
+          %li= ty(t("#{current_shop.code}.#{action_name}"))
+  .container
+    %header.page-promo__header
+      %h1.page-promo__title= title
+      = render 'layouts/courses_shop/hr_large'
+
+  .page-promo__tabs
+    %select.select2.js-select2.js-about-menu
+      - actions.each do |action|
+        %option{value: "/about/#{action}", selected: (action == action_name && 'selected')}= ty(t("#{current_shop.code}.#{action}"))
+
+    %ul
+      - actions.each do |action|
+        %li
+          = link_to ty(t("#{current_shop.code}.#{action}")), url_for(action: action), class: action == action_name && 'is-active'

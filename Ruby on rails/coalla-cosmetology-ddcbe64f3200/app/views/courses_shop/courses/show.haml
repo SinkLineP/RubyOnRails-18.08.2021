@@ -1,0 +1,78 @@
+.page.page--promo
+  = render 'courses_shop/courses/promo/course'
+
+  - if @course.advantages.any?
+    .page-section.page-section--background
+      .container
+        = render 'courses_shop/courses/advantages'
+
+  .page-section
+    .container
+      = render 'courses_shop/courses/course_content'
+
+  - if @course.recalls.any?
+    %section.page-section.page-section--gradient
+      .container
+        .h3.page-section__title Отзывы выпускников
+        = render 'courses_shop/courses/recalls'
+
+  %section.page-section.page-section--background
+    .container
+      .h3.page-section__title Ваша карьера после курса
+      = render 'courses_shop/courses/career_after_courses'
+
+  - if @course.instructors.any?
+    %section.page-section.page-section--arrow
+      .container
+        .h3.page-section__title Наши преподаватели
+        = render 'courses_shop/courses/instructors'
+
+  - if @course.course_seos.any?
+    %section.page-section.page-section--arrow
+      .container
+        = raw @course.course_seos.block1.take.content
+        .h2.page-section__title= @course.course_seos.header2.take.content
+        %br
+        = raw @course.course_seos.block2.take.content
+        %br
+
+  %section.page-section.page-section--background
+    .container
+      .h4.page-section__title Понравился курс?<br>Порекомендуйте его друзьям!
+      = render 'layouts/courses_shop/social_likes', share_params: {title: @course.tag_title, image: image_url(@course.image_url(:thumb)), url: alternative_course_url(@course)}
+
+  - if @similars.any?
+    %section.page-section
+      .container
+        .h3.page-section__title Похожие курсы
+        .courses-cards
+          .courses-cards__list#courses-cards-slider
+            = render partial: 'courses_shop/courses/course', collection: @similars
+
+  - if @faqs.any?
+    %section.page-section.page-section--background.page-section--arrow
+      .container
+        .h4.page-section__title Часто задаваемые вопросы
+        .faq-accordion
+          .faq-accordion__list.accordion.js-accordion
+            = render partial: 'courses_shop/faq/item', collection: @faqs.limit(5)
+
+          - if @faqs.count > 5
+            .faq-accordion__all
+              = link_to 'Все вопросы и&nbsp;ответы'.html_safe, courses_shop_faqs_path, class: 'button button--base-outline', 'data-size' => 'lg'
+
+  %section.page-section
+    .container
+      .h4.page-section__title У меня остались вопросы.<br>Хочу поговорить с менеджером!
+      = render 'courses_shop/courses/consultation'
+
+.page-next.page-next--primary.js-page-next#page-promo-scroll
+  = render 'layouts/courses_shop/page_next'
+
+- content_for :js do
+  = mindbox(:product_view, course: @course)
+  = javascript_include_tag 'courses_shop/views/_consultation'
+
+- if Rails.env.production? && @course.slug == 'biodepilacia-online'
+  - content_for :js do
+    %script{charset: "UTF-8", src: "https://hunterpay.com/js/falcon-pay.js?falcon_code=Vsz0d0T9Y_4hSLo"}

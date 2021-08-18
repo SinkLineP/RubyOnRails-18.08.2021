@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.button {
+  display: inline-block;
+  text-align: center;
+  white-space: normal;
+
+  @at-root a#{&} {
+    text-decoration: none;
+  }
+
+  &:disabled {
+    opacity: $opacity-base;
+  }
+
+  &.button--block {
+    @include mq(md) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &.button--filled {
+    @include h3;
+
+    padding: .7rem 3rem .8rem;
+    background-color: $color-brand;
+    color: #fff;
+
+    @include mq(md) {
+      padding: 1.2rem 4rem;
+    }
+
+    &:hover {
+      background-color: rgba($color-brand, $opacity-base);
+    }
+  }
+
+  &.button--bordered {
+    @include text-base;
+
+    padding: .6rem 2.9rem .7rem;
+    background-color: transparent;
+    border: 1px solid $color-brand;
+    color: $color-brand;
+
+    &:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+  }
+}

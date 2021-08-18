@@ -1,0 +1,28 @@
+%section.page-promo#page-promo
+  .container
+    %header.page-promo__header
+      %h1.page-promo__title Косметология
+      = render 'layouts/courses_shop/hr_large'
+
+  .page-promo__tabs
+    %select.select2.js-select2
+      %option(selected) Все курсы
+      %option Медицинская, базовая подготовка
+      %option Эстетическая, базовая подготовка
+      %option Медицинская, повышение квалификации
+      %option Эстетическая, повышение квалификации
+      %option Сертификация
+
+    %ul
+      %li
+        = link_to 'Все курсы косметологии', '#', class: 'is-active'
+      %li
+        = link_to 'Медицинская, базовая подготовка', '#'
+      %li
+        = link_to 'Эстетическая, базовая подготовка', '#'
+      %li
+        = link_to 'Медицинская, повышение квалификации', '#'
+      %li
+        = link_to 'Эстетическая, повышение квалификации', '#'
+      %li
+        = link_to 'Сертификация', '#'

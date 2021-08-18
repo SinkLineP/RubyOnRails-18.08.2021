@@ -1,0 +1,31 @@
+%section.skills
+  .container
+    .skills__row
+      .skills__col
+        .h2.skills__title Ключевые<br> навыки после курса
+
+        %ul.skills__list
+          %li
+            .skill
+              = image_tag transparent_pixel, size: '120',
+                                             alt: 'Ключевой навык 1',
+                                             class: 'lazyload',
+                                             data: { src: asset_url('courses_shop/new_base/skill_1.png') }
+              %p Вы&nbsp;научитесь составлять комплексные программы ухода за&nbsp;лицом и&nbsp;телом для людей с&nbsp;различными проблемами и&nbsp;избавитесь от&nbsp;&laquo;страха первого клиента&raquo;.
+          %li
+            .skill
+              = image_tag transparent_pixel, size: '120',
+                                             alt: 'Ключевой навык 2',
+                                             class: 'lazyload',
+                                             data: { src: asset_url('courses_shop/new_base/skill_2.png') }
+              %p Вы&nbsp;изучите основы профессиональной этики и&nbsp;бизнеса в&nbsp;косметологии, стандарты оказания услуг и&nbsp;законодательство&nbsp;РФ в&nbsp;индустрии красоты.
+          %li
+            .skill
+              = image_tag transparent_pixel, size: '120',
+                                             alt: 'Ключевой навык 3',
+                                             class: 'lazyload',
+                                             data: { src: asset_url('courses_shop/new_base/skill_3.png') }
+              %p Вы&nbsp;получите все основные техники ухода за&nbsp;лицом и&nbsp;телом: диагностика, очищение, маски, разнообразные массажи, аппаратные метода, депиляция, уход за&nbsp;телом и&nbsp;многое другое. После прохождения обучения у&nbsp;нас вы&nbsp;будете готовы сразу&nbsp;же приступить к&nbsp;работе!
+
+        %footer.skills__footer
+          = link_to 'Записаться на курс', '#promo', class: 'button button--filled js-scroll-to'

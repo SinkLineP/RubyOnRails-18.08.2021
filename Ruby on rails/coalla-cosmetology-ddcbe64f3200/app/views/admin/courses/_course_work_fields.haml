@@ -1,0 +1,33 @@
+- course_work = f.object
+.add_ctn.add_document{data: {course_work: course_work.try(:id) || f.index}, style: (f.index != 0 && 'display: none;')}
+  - unless course_work.new_record?
+    = f.hidden_field :id
+  = f.hidden_field :_destroy, data: {destroy: true}
+  .mb-3
+    %h6.tx-center Добавить занятие
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Занятие
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = f.select :work_id, Work.order_by_title.map{|w| [w.title, w.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie js-work', data: {size: 5}
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Лекция
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el
+        = f.select :lecture_id, @course.lectures.map{|el| [el.title, el.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label Аудиторные часы
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :hours, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-2-6.grid_i__prefix-1-10
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :main, class: 'form_el_tag form_checkbox_tag js-absent'
+        %p.form_el_inner.form_label_inner Основное
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label.form_label__el
+        .form_el.js-form_el.form_checkbox
+          = f.check_box :practice, class: 'form_el_tag form_checkbox_tag'
+        %p.form_el_inner.form_label_inner Практика

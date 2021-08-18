@@ -1,0 +1,21 @@
+- video_url = feedback.video_link
+- uploaded_video = feedback.uploaded_video
+.feedbacks-bubbles__bubble
+  .feedback-bubble
+    .feedback-bubble__inner
+      - if uploaded_video
+        .feedback-bubble__video
+          = link_to '#popup-jwplayer', 'data-mfp-type' => 'jwplayer', 'data-player-options' => jw_player_options(uploaded_video) do
+            = image_tag transparent_pixel, class: 'lazyload', data: { src: uploaded_video.preview_image.url(:recall) }
+      - elsif video_url.present?
+        .feedback-bubble__video
+          = link_to youtube?(video_url) ? youtube_popup_video_url(video_url) : video_url, 'data-mfp-type' => 'iframe' do
+            = image_tag transparent_pixel, class: 'lazyload', data: { src: feedback.video_image_url(:thumb) }
+      - else
+        = image_tag transparent_pixel, data: { src: feedback.author_image.main },
+                                       alt: '',
+                                       class: 'feedback-bubble__photo lazyload'
+        .feedback-bubble__content
+          %blockquote.feedback-bubble__quote
+            %p= feedback.message.html_safe
+            %footer= feedback.author_name

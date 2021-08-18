@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.label {
+    &.label--checkbox {
+      position: relative;
+      display: inline-block;
+      padding-left: $checkbox-size * 1.5;
+
+      .checkbox {
+        position: absolute;
+        top: .25em;
+        left: 0;
+      }
+    }
+}

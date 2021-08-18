@@ -1,0 +1,80 @@
+<script type="text/template" id="material-form-template">
+  <div class='add_ctn add_book'>
+    <div class='arrow_tocurrent js-material-arrow'></div>
+    <div class='mb-3'>
+      <h6 class='tx-center'>Добавить материал</h6>
+    </div>
+    <div class='grid grid__collapse'>
+      <div class='grid_i grid_i__grid-1-5 grid_i__prefix-1-6'>
+        <label class='form_el form_label'>Название</label>
+      </div>
+      <div class='grid_i grid_i__grid-3-6'>
+        <div class='form_el js-form_el form_tx'>
+          <input class='form_el_tag form_tx_tag js-field-name' type="text" value="<%%= name %>">
+        </div>
+      </div>
+      <div class='grid_i grid_i__grid-1-5 grid_i__prefix-1-6'>
+        <label class='form_el form_label'>Время на чтение</label>
+      </div>
+      <div class='grid_i grid_i__grid-3-6'>
+        <div>
+          <div class='form_el js-form_el form_tx'>
+            <input class='form_el_tag form_tx_tag js-field-time' type="text" value="<%%= time %>">
+          </div>
+          <label class='form_el form_label'>минут</label>
+        </div>
+      </div>
+      <%% if (type == 'ScribdMaterial') {%>
+          <div class='grid_i grid_i__grid-1-5 grid_i__prefix-1-6'>
+            <label class='form_el form_label'>Ссылка на материал</label>
+          </div>
+          <div class='grid_i grid_i__grid-3-6'>
+            <div class='form_el js-form_el form_tx'>
+              <input class='form_el_tag form_tx_tag js-field-link' type="text" value="<%%= link %>">
+            </div>
+          </div>
+      <%% } %>
+      <div class='grid_i grid_i__grid-4-6 grid_i__prefix-1-6'>
+        <label class='form_el form_label form_label__el'>
+          <div class='form_el js-form_el form_checkbox'>
+            <%% if (required) { %>
+              <input class='form_el_tag form_checkbox_tag js-field-required' type="checkbox" checked="checked">
+            <%% } else { %>
+              <input class='form_el_tag form_checkbox_tag js-field-required' type="checkbox">
+            <%% } %>
+          </div>
+          <p class='form_el_inner form_label_inner'>Обязательно для чтения</p>
+        </label>
+      </div>
+      <%% if (type == 'ScribdMaterial') {%>
+          <div class='grid_i grid_i__grid-4-6 grid_i__prefix-1-6'>
+            <div class='mb-2'>
+              <div class='form_el js-form_el form_file' data-placeholder="<%%= cover_file_name || 'Загрузить обложку' %>">
+                <p class='form_el_inner js-form_el_inner form_file_inner'></p>
+                <input class='form_el_tag form_file_tag' type="file">
+              </div>
+              <label class='form_el form_labe l'>(180x250px)</label>
+            </div>
+          </div>
+      <%% } %>
+      <%% if (type == 'PdfMaterial') {%>
+        <%% if (pdf_editable) {%>
+          <div class='grid_i grid_i__grid-4-6 grid_i__prefix-1-6'>
+            <div class='mb-2'>
+              <div class='form_el js-form_el form_file' data-placeholder="<%%= pdf_filename || 'Загрузить PDF' %>">
+                <p class='form_el_inner js-form_el_inner form_file_inner'></p>
+                <input class='form_el_tag form_file_tag' type="file">
+              </div>
+            </div>
+          </div>
+        <%% } else {%>
+          <div class='grid_i grid_i__grid-4-6 grid_i__prefix-1-6'>
+            <div class='mb-2 tx-i'>
+              Идёт обработка загруженного файла...
+            </div>
+          </div>
+        <%% } %>
+      <%% }%>
+    </div>
+  </div>
+</script>

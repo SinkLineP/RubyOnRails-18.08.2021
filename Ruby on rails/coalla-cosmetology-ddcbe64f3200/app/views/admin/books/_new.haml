@@ -1,0 +1,17 @@
+.popup_ctn
+  .popup.bg-muted#new_book
+    .mb-3.tx-center
+      %h5 ДОБАВИТЬ КНИГУ
+    - @book = ScribdBook.new
+    = form_for @book, url: admin_books_path, remote: true, authenticity_token: true, as: :book, html: {class: 'form js-form js-book-form js-new-book-form'} do |f|
+      .grid
+        = render 'form', f: f
+        .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+          .form_el.js-form_el.form_btn
+            %p.form_el_inner.form_btn_inner ДОБАВИТЬ
+            = f.button '', class: 'form_el_tag form_btn_tag'
+    .icon_del.arcticmodal-close X
+
+- content_for :js do
+  = javascript_include_tag 'admin/cat_autocomp'
+  = javascript_include_tag 'admin/book_forms'

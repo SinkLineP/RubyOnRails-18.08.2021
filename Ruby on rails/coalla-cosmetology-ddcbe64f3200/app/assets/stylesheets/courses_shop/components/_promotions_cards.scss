@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+// Promotion cards
+.promotions-cards {
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include align-items(stretch);
+      margin-top: -#{$content-indent-lg};
+    }
+
+    @include media($breakpoint-xxl) {
+      margin-top: -#{$content-indent-xl};
+    }
+  }
+
+  // Card
+  &__card {
+    position: relative;
+
+    &::before,
+    &::after {
+      position: absolute;
+      background: $color-ui;
+      content: "";
+    }
+
+    @include media($breakpoint-sm) {
+      padding: {
+        top: $content-indent-sm * 1.5;
+        bottom: $content-indent-sm * 1.5;
+      }
+
+      &:not(:first-child) {
+        margin-top: -1px;
+      }
+
+      &::before,
+      &::after {
+        right: 3rem;
+        left: 3rem;
+        height: 1px;
+      }
+
+      &::before {
+        top: 0;
+      }
+
+      &::after {
+        bottom: 0;
+      }
+    }
+
+    // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+      @include display(flex);        // 1
+      @include align-items(stretch); // 1
+      margin-top: $content-indent-lg;
+
+      &:not(:nth-child(3n+1)) {
+        &::before {
+          top: 3rem;
+          left: 0;
+          bottom: 3rem;
+          width: 1px;
+        }
+      }
+    }
+
+    @include media($breakpoint-xxl) {
+      margin-top: $content-indent-xl;
+    }
+  }
+}
+
+// Promotion card
+.promotion-card {
+  margin: {
+    right: $content-indent-sm;
+    left: $content-indent-sm;
+  }
+
+  // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+  @include media($breakpoint-lg) {
+    @include display(flex);        // 1
+    @include align-items(stretch); // 1
+    margin: {
+      right: $content-indent-lg;
+      left: $content-indent-lg;
+    }
+  }
+
+  @include media($breakpoint-xxl) {
+    margin: {
+      right: $content-indent-xl;
+      left: $content-indent-xl;
+    }
+  }
+
+  // Inner
+  &__inner {
+    @include media($breakpoint-lg) {
+      @include display(flex);
+      @include flex-direction(column);
+    }
+  }
+
+  // Image
+  &__image {
+    display: block;
+    padding-bottom: 2rem;
+
+    > img {
+      @include fill-parent;
+      max-width: none;
+      vertical-align: top;
+    }
+  }
+
+  // Title
+  &__title {
+    margin-bottom: 1.25rem;
+  }
+
+  // Caption
+  &__caption {
+    margin-bottom: 2rem;
+  }
+
+  // Participate
+  &__participate {
+    margin-top: auto;
+
+    // Button
+    .button {
+      @include media($breakpoint-sm) {
+        @include fill-parent;
+      }
+    }
+  }
+}

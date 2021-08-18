@@ -1,0 +1,16 @@
+.grid.grid__collapse.js-feedback-form#default_feedback_form{style: @feedback_question.absenteeism? && 'display: none;'}
+  .grid_i.grid_i__grid-2-3.grid_i__prefix-1-6.grid_i__suffix-1-6>
+    .mt-1.mb-1.form_el.js-form_el.form_el__block.form_textarea
+      = f.text_area_with_validation :text, class: 'form_el_tag form_tx_tag', placeholder: 'Ваше сообщение', disabled: @feedback_question.absenteeism?
+  .grid_i.grid_i__grid-1-6>
+    .about_file
+      Вы можете прикрепить файл до 10 МБ
+  .grid_i.grid_i__grid-1-3>
+    .form_el.js-form_el.form_file{data: {placeholder: @feedback_question.filename || 'Выберите файл...'}}
+      %p.form_el_inner.js-form_el_inner.form_file_inner
+      = f.hidden_field :file_cache, disabled: @feedback_question.absenteeism?
+      %input.form_el_tag.form_file_tag.js-feedback-question-file{type: 'file'}
+  .grid_i.grid_i__grid-1-3>
+    .form_el.js-form_el.form_btn
+      %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+      %button.form_el_tag.form_btn_tag{type: 'submit'}

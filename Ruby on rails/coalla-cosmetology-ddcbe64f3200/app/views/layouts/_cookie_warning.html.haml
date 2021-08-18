@@ -1,0 +1,7 @@
+- if current_shop.cosmetic? && cookies[:cookie_warning_showed].blank? && !current_user.try(:privacy_policy_confirmed?)
+  .cookie-warning.js-cookie-warning
+    %p Используя этот сайт, вы соглашаетесь на использование файлов «cookie» для аналитики, рекламы и персонализированного контента.
+    = link_to 'Подробнее', courses_shop_privacy_policy_path, class: 'cookie-warning__read-more'
+    = link_to '#', class: 'cookie-warning__close js-cookie-warning-close' do
+      %svg.icon(role='img' data-size='18')
+        %use(xlink:href='/assets/courses_shop/icons.svg#close')

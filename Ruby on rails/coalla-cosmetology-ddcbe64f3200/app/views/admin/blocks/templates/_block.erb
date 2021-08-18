@@ -1,0 +1,21 @@
+<script type="text/template" id="block-template">
+  <div class="mt-1 nested-fields add_ctn add_stage js-block-nested-fields">
+    <div class="grid">
+      <div class="icon_del js-block-remove" style="float: right;">X</div>
+      <div class="grid_i grid_i__grid-1-12">
+        <label class="form_el form_label">Блок:</label>
+      </div>
+
+      <div class="grid_i grid_i__grid-6-12 tx-left">
+        <div class="form_el js-form_el filter_groups">
+          <div class='form_el form_el-select js-form_el form_tx'>
+            <div class="select2_container" data-lecture data-bg-transparent data-size="400">
+              <%= select_tag 'block[block_ids][]', options_from_collection_for_select(Block.ordered, :id, :display_name), prompt: 'Выберите блок', class: 'js-block-select2' %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</script>

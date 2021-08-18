@@ -1,0 +1,9 @@
+- call_options = params.permit!.merge({name: current_user.full_name, phone: current_user.phone}) if user_signed_in?
+= render 'banner', bg_image: 'courses_shop/new_base/banner_bg_8.jpg'
+= render 'notice'
+= render 'reasons'
+= render 'promo', call_options: call_options, promo_caption: 'Оформитесь на&nbsp;обучение и&nbsp;получите программу <b>&laquo;Младшая медицинская сестра&raquo;</b> в&nbsp;подарок!'
+= render 'feedbacks'
+= render 'skills'
+= render 'footer'
+= render 'popup', call_options: call_options

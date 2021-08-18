@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+.banner {
+  position: relative;
+  margin-bottom: -1px; // Fixed
+  background: {
+    color: $color-base;
+    position: center top;
+    repeat: no-repeat;
+    size: cover;
+  }
+  color: #fff;
+  text-align: center;
+
+  &::before {
+    @include size(100%);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: {
+      color: rgba(#000, 0);
+      position: center top;
+      repeat: no-repeat;
+    }
+
+    content: "";
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    flex-basis: 100%;
+  }
+
+  &__actions {
+    padding: 2rem 0;
+
+    @include mq(md) {
+      @include grid(x, space-between, center);
+    }
+  }
+
+  &__tel {
+    @include h4;
+
+    @include mq(sm) {
+      margin-bottom: 1rem;
+    }
+
+    @include mq(md) {
+      @include grid-col;
+    }
+
+    a {
+      @include link(#fff);
+
+      display: inline-block;
+    }
+  }
+
+  &__request-a-call {
+    @include mq(md) {
+      @include grid-col;
+
+      .button {
+        width: 19rem;
+      }
+    }
+  }
+
+  &__content {
+    padding: 2rem 0 4rem;
+
+    @include mq(md) {
+      padding: 7rem 0 10rem;
+    }
+
+    @include mq(lg) {
+      padding: 12rem 0 16rem;
+    }
+  }
+
+  &__row {
+    @include mq(md) {
+      @include grid(y, center, center);
+    }
+
+    @include mq(lg) {
+      @include grid(x, space-between, center);
+    }
+  }
+
+  &__primary {
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(9/12);
+    }
+
+    @include mq(lg) {
+      @include col-size(6/12);
+
+      order: 2;
+    }
+  }
+
+  &__gift {
+    @include h4;
+
+    margin-top: 4rem;
+
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(4/12);
+    }
+
+    @include mq(lg) {
+      @include col-size(2.5/12);
+
+      order: 1;
+      margin-top: 0;
+    }
+
+    b,
+    span {
+      color: $color-brand;
+    }
+
+    img {
+      display: none;
+
+      @include mq(lg) {
+        display: block;
+        margin: 0 auto 2rem;
+        vertical-align: top;
+      }
+    }
+  }
+
+  &__certificate {
+    @include h4;
+
+    margin-top: 4rem;
+
+    @include mq(md) {
+      @include grid-col;
+      @include col-size(4/12);
+    }
+
+    @include mq(lg) {
+      @include col-size(2.5/12);
+
+      order: 3;
+      margin-top: 0;
+    }
+  }
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+
+    > span {
+      display: block;
+
+      > span {
+        display: inline-block;
+        padding: 0 1rem;
+        background-color: rgba(#000, .3);
+
+        @include mq(md) {
+          padding: 0 2rem;
+        }
+      }
+    }
+  }
+
+  &__action {
+    width: 20rem;
+    margin-top: 1rem;
+
+    @include mq(md) {
+      width: 30rem;
+      margin: 2rem 0;
+    }
+
+    @include mq(lg) {
+      width: 40rem;
+    }
+  }
+
+  &__caption {
+    @include h4;
+
+    @include mq(sm) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+- root_id = speciality.parent.try(:slug)
+- url = edit_admin_speciality_path(id: speciality.slug, root_id: root_id)
+.grid_i{class: speciality.root? ? 'grid_i__grid-5-6' : 'grid_i__grid-9-12 grid_i__prefix-1-12'}>
+  %a.modal{data: {url: url}}= speciality.display_title
+.grid_i.grid_i__grid-1-6.tx-center>
+  = link_to '#', data: {url: url}, class: 'modal' do
+    .icon_edit &#9998;
+- if speciality.root?
+  = render speciality.children
+

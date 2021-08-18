@@ -1,0 +1,13 @@
+.education-group-select.education-group-select--barber
+  = render 'layouts/courses_shop/hr_large'
+
+  - if root_specialities_for_main.any?
+    %div.dl
+      %div.dt Выберите направление обучения:
+      %div.dd
+        - root_specialities_for_main.each do |speciality|
+          = link_to ty(speciality.title), alternative_speciality_url(speciality), class: "button button--base-fill #{button_class_for_shop}", 'data-size' => 'lg'
+        - if current_shop.barbershop?
+          = link_to 'Курсы косметологов', 'https://www.cosmeticru.com/', class: "button button--base-fill #{button_class_for_shop}", 'data-size' => 'lg'
+        - if current_shop.cosmetic?
+          = link_to 'Онлайн курсы', 'https://www.cosmeticru.com/online-kursy', class: "button button--base-fill #{button_class_for_shop}", 'data-size' => 'lg'

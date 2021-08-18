@@ -1,0 +1,16 @@
+.grid_i.grid_i__grid-3-9>
+  = link_to automatic_discount.name, edit_admin_automatic_discount_path(automatic_discount)
+.grid_i.grid_i__grid-2-9>
+  = automatic_discount.discount.title
+.grid_i.grid_i__grid-2-9.tx-center>
+  = automatic_discount.course_names
+.grid_i.grid_i__grid-1-9.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: automatic_discount.enabled?, disabled: true}
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_automatic_discount_path(automatic_discount), title: 'Редактировать' do
+      .icon_edit &#9998;
+    = link_to admin_automatic_discount_path(automatic_discount), title: 'Удалить', method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X

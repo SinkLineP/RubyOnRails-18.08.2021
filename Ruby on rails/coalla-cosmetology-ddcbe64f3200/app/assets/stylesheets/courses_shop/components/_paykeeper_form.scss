@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+.paykeeper-form {
+  @include media($breakpoint-lg) {
+    margin: 0 auto;
+    max-width: 56rem;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+
+    @include media($breakpoint-sm) {
+      display: block;
+    }
+
+    @include media($breakpoint-lg) {
+      @include display(flex);
+    }
+  }
+
+  &__radio {
+    @include display(flex);
+    @include align-items(center);
+
+    @include media($breakpoint-sm) {
+      @include justify-content(center);
+      transform: translateX(-1.5rem);
+    }
+
+    > input {
+      margin-right: 1.5rem;
+
+      &:hover,
+      &:checked {
+        + span {
+          background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d1d1d1), to(#e9e9e9));
+        }
+      }
+    }
+
+    > span {
+      padding: 1rem;
+      display: block;
+      border-radius: .3rem;
+      border: 1px solid #ababab;
+      overflow: hidden;
+
+      > img {
+        vertical-align: top;
+      }
+    }
+  }
+
+  &__label-description {
+    color: gray;
+
+    @include media($breakpoint-sm) {
+      text-align: center;
+    }
+
+    @include media($breakpoint-sm) {
+      margin-top: 1.5rem;
+    }
+
+    @include media($breakpoint-lg) {
+      margin-left: 1.5rem;
+    }
+
+    > h6, > .h6 {
+      @include font(1.4rem,1.8rem);
+      margin-bottom: 2px;
+      color: $color-base
+    }
+
+    p {
+      @include font(1.3rem,1.8rem);
+      margin-bottom: 2px;
+    }
+  }
+
+  &__label-description-footer {
+    @include font(1.1rem,1.8rem);
+    margin-top: .3rem;
+
+    > a {
+      @include hover(color,$color-brand);
+      color: gray
+    }
+  }
+
+  &__button-box {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  &__form-footer-content {
+    @include font(1.1rem,1.8rem);
+    display: block;
+    margin-top: 1rem;
+  }
+
+}

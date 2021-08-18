@@ -1,0 +1,40 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'исторические события' => admin_history_events_path, 'события' => '#'}
+      = form_tag action: :sort, method: :post do
+        .admin_header
+          %label.form_el.form_label Сортировка событий:
+        .admin_body
+          .admin_settings_change
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Название
+              %tbody
+                - @history_events.each do |sortable|
+                  %tr
+                    = hidden_field_tag "history_events[#{sortable.id}]", sortable.id
+                    %td= sortable.title
+          .grid
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+- content_for :js do
+  :javascript
+    $('.admin_settings_change tbody').sortable({
+      axis: 'y',
+      cursor: 'move',
+      helper: function(e, tr) {
+        var $originals = tr.children();
+        var $helper = tr.clone();
+        $helper.children().each(function(index) {
+          $(this).width($originals.eq(index).width())
+        });
+        return $helper;
+      }
+    }).disableSelection();

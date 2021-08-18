@@ -1,0 +1,16 @@
+.user-nav
+  %ul
+    %li
+      = link_to 'Мои курсы', courses_shop_profile_courses_path, class: current_page?(courses_shop_profile_courses_path) ? 'is-active' : ''
+    %li
+      = link_to 'Расписание', courses_shop_profile_schedule_path, class: current_page?(courses_shop_profile_schedule_path) ? 'is-active' : ''
+    %li
+      = link_to 'Документы', courses_shop_profile_documents_path, class: current_page?(courses_shop_profile_documents_path) ? 'is-active' : ''
+    %li
+      = link_to 'Настройки', edit_courses_shop_profile_path, class: current_page?(edit_courses_shop_profile_path) ? 'is-active' : ''
+  %ul
+    %li
+      = link_to 'Дистанционное обучение', 'http://sdo.sikorsky.academy'
+  %ul
+    %li
+      = link_to 'Выход', destroy_courses_shop_user_session_path, method: :delete

@@ -1,0 +1,34 @@
+.activity_graph, .results_graph {
+  min-height: 12rem;
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+  .x.axis path {
+    display: none;
+  }
+
+  .y.axis path {
+    display: none;
+  }
+
+  .axis text {
+    display: none;
+  }
+
+  .tick line {
+    opacity: 0.1;
+  }
+}
+
+.results_tooltip {
+  width: 28rem;
+  background: #ffffff;
+  font-size: 1.4rem;
+  line-height: 22px;
+  position: absolute;
+}

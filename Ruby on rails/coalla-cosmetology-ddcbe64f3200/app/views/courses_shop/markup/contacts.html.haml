@@ -1,0 +1,73 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Контакты
+
+      .contacts
+        .contacts__inner
+          .contacts__item
+            .contacts-overview
+              .contacts-overview__contacts
+                %div.dl
+                  %div.dt
+                    %svg.icon(role='img' data-size='66')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#smartphone')
+                  %div.dd
+                    = link_to '+7&nbsp;495 256-03-82'.html_safe, 'tel:84952560382'
+                %div.dl
+                  %div.dt
+                    %svg.icon(role='img' data-size='66')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#placemark')
+                  %div.dd
+                    = link_to 'Москва, Лялин переулок, дом&nbsp;3, строение&nbsp;3'.html_safe, '#'
+                %div.dl
+                  %div.dt
+                    %svg.icon(role='img' data-size='66')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#mail')
+                  %div.dd
+                    = link_to 'info@cosmeticru.com', 'mailto:info@cosmeticru.com'
+              = render 'layouts/courses_shop/hr_small'
+              %p.contacts-overview__text Автономная некоммерческая организация дополнительного профессионального образования<br>&laquo;Институт косметологии, эстетической медицины и&nbsp;визажного искусства&nbsp;&mdash; Дом Русской Косметики&raquo;
+
+          .contacts__item
+            .contacts-routes
+              .h4.contacts-routes__title Как к&nbsp;нам добраться
+
+              .contacts-routes__accordion.accordion.js-accordion
+                %div.dl(data-state='collapsed')
+                  %div.dt
+                    %span м. Курская
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                  %div.dd
+                    %p Радиальная и&nbsp;кольцевая, выход к&nbsp;ул. Земляной Вал, 10&nbsp;мин. пешком
+                    %p.is-sm
+                      = link_to 'Показать на&nbsp;карте'.html_safe, '#'
+                    .contacts-routes__map#contacts-map-1
+
+                %div.dl(data-state='collapsed')
+                  %div.dt
+                    %span м. Китай-город
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                  %div.dd
+                    %p Выход к&nbsp;ул. Маросейка, 20&nbsp;мин. пешком по&nbsp;ул. Маросейка и&nbsp;Покровка, или троллейбусы 25, 45, маршрутка 325 до&nbsp;остановки Лялин переулок.
+                    %p.is-sm
+                      = link_to 'Показать на&nbsp;карте'.html_safe, '#'
+                    .contacts-routes__map#contacts-map-2
+
+                %div.dl(data-state='collapsed')
+                  %div.dt
+                    %span м. Чистые пруды
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                  %div.dd
+                    %p 20&nbsp;мин. пешком по&nbsp;Чистопрудному бульвару и&nbsp;ул. Покровка.
+                    %p.is-sm
+                      = link_to 'Показать на&nbsp;карте'.html_safe, '#'
+                    .contacts-routes__map#contacts-map-3
+
+= content_for :js do
+  = javascript_include_tag '//api-maps.yandex.ru/2.1/?lang=ru_RU'
+  = javascript_include_tag 'courses_shop/components/_contacts'

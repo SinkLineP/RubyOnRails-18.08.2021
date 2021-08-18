@@ -1,0 +1,20 @@
+<script type="text/template" id="pdf-template">
+  <div class='material-a'>
+    <div class="grid">
+      <div class="grid_i grid_i__middle grid_i__grid-1-8">
+        <span class='square_icon'>
+          <%%= pdf_extension %>
+          <%% if (pdf_editable) { %>
+            <div class='icon_del'>X</div>
+          <%% } %>
+        </span>
+      </div><div class="grid_i grid_i__middle grid_i__grid-7-8">
+        <%% if (pdf_editable) { %>
+            <%%= pdf_filename %>
+        <%% } else {%>
+            <span class="tx-i">Идёт обработка загруженного файла...</span>
+        <%% } %>
+      </div>
+    </div>
+  </div>
+</script>

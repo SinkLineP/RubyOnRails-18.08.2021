@@ -1,0 +1,150 @@
+// OWL Carousel
+
+.owl-stage-outer {
+  width: 100%;
+}
+
+.owl-prev, .owl-next {
+  position: absolute;
+  top: 50%;
+  @include prefixes(transform, translateY(-50%));
+  font-size: 5rem;
+  .slider__book & {
+    top: 7rem;
+  }
+}
+.owl-next {
+  right: 1rem;
+  .slider__book & {
+    right: -3.5rem;
+  }
+}
+.owl-prev {
+  left: 1rem;
+  .slider__book & {
+    left: -3.5rem;
+  }
+}
+
+.owl-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  @include prefixes(transform, translateX(-50%));
+}
+  .owl-dot {
+    width: .7rem;
+    height: .7rem;
+    background: #c1c1c1;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 1rem;
+    &.active, &:hover {
+      background:#202020;
+    }
+  }
+
+
+// Social-links
+
+.social-likes__widget {
+  margin:0 .5rem 0 0;
+  line-height: 3.3rem;
+  border-radius: .3rem;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.social-likes__button {
+  padding: 0 2rem 0 1.5rem;
+}
+.social-likes__icon {
+  position: relative;
+}
+.social-likes__counter {
+  padding: 0 1.7rem;
+}
+
+.ui-helper-hidden-accessible {display: none;}
+
+// SelectOrDie 
+
+.sod_select {
+  width: 100%;
+  height: 4rem;
+  padding: 0 1.2rem;
+  border: none;
+  color: #000;
+  font-size: 1.7rem;
+  line-height: 4rem;
+  font-weight: normal;
+  text-transform: none;
+  outline: 0;
+  outline-offset: 0;
+  cursor: pointer;
+  .sod_list_wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    border: none;
+    color: #000;
+    font-weight: normal;
+    z-index: 1;
+  }
+  .sod_option {
+    position: relative;
+    padding: 0 1.2rem;
+    height: 3.7rem;
+    line-height: 3.7rem;
+    cursor: pointer;
+    &.active {
+      background: $voice-color;
+      color: #fff;
+    }
+  }
+  &.focus {box-shadow: none;}
+  &.open {
+    color: #000;
+    &::after {
+      content: "\25B2";
+    }
+  }
+  &::after {
+    content: "\25BC"; //b2
+    position: absolute;
+    right: 1.2rem;
+    top: 0;
+    bottom: 0;
+    color: $base-color;
+    font-size: 1.6rem;
+  }
+  &::before {content: ""}
+  &[data-valid="false"] {
+    color: red;
+    background-color: fade-out(red, .9);
+  }
+}
+
+.info_page {
+  .sod_select {
+    height: 4rem;
+    padding: 0 1.5rem;
+    font-size: 2.2rem;
+    line-height: 4rem;
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+  }
+}
+
+.filter_groups {
+  .sod_select {
+    line-height: 3.6rem;
+  }
+  .filter_datepicker{
+    font-size: 14px;
+    height: 37px;
+  }
+}

@@ -1,0 +1,10 @@
+.subscription
+  .subscription__inner
+    = form_tag subscribe_courses_shop_unisender_index_path, class: 'subscription__form', remote: true, data: {trackable: true} do
+      .subscription__label
+        %label(for='subscription-email') Подпишитесь<br>на&nbsp;нашу рассылку:
+      .subscription__input
+        .text-input
+          = text_field_tag :email, current_user.try(:email).to_s, id: 'subscription-email'
+      .subscription__submit
+        %button{class: 'button button--base-outline', type: 'submit', data: {size: 'lg'}} Подписаться

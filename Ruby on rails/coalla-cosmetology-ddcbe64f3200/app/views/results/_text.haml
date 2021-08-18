@@ -1,0 +1,9 @@
+.grid
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6>
+    .exercise-results
+      .results_inner
+        .tx-l Ваше задание получено.
+        .tx-l Вскоре его проверит преподаватель.
+        - if course_finished?
+          = render 'results/additional/last_task_message'
+      = go_to_next_lecture_link

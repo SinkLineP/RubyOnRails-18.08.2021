@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+// Responsive (for example: xs, sm, md, lg, xl)
+$mq-breakpoints: (
+  "sm": 767px,
+  "md": 768px,
+  "lg": 1025px
+);
+
+$mq-indents: (
+  "sm": 2rem,
+  "md": 2rem,
+  "lg": 2rem
+);
+
+$mq-container-widths: (
+  "sm": 100%,
+  "md": 100%,
+  "lg": 1220px
+);
+
+$mq-container-indents: (
+  "sm": map-get($mq-indents, "sm"),
+  "md": map-get($mq-indents, "md"),
+  "lg": map-get($mq-indents, "lg")
+);
+
+$mq-grid-gutters: (
+  "sm": map-get($mq-indents, "sm"),
+  "md": map-get($mq-indents, "md"),
+  "lg": map-get($mq-indents, "lg")
+);
+
+// Not responsive
+$width: 1220px;
+$indent: 2rem;
+
+$container-width: $width;
+$container-indent: $indent;
+
+$grid-gutter: $indent;
+
+// Colors
+$color-brand: #ff4d07;
+$color-base: #2a323a;
+
+// Fonts
+$font-family-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-base: "Ubuntu", $font-family-default;
+
+$font-weight-base:  400;
+$font-weight-solid: 700;
+
+// Forms
+$checkbox-size: 1.6rem;
+
+// Opacities
+$opacity-base: .7;
+
+// Transitions
+$transition-base: all .2s;

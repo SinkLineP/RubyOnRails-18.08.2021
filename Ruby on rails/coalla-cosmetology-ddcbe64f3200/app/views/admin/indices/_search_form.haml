@@ -1,0 +1,21 @@
+= search_form_for @q, url: url_for(action: :show), html: {class: 'form js-form', autocomplete: 'off'} do |f|
+  .mt-1
+    .grid.grid__collapse
+      .grid_i.grid_i__grid-1-8>
+        %label.form_el.form_label Cервис:
+      .grid_i.grid_i__grid-3-8.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.select :service_eq, [['CoMagick', :co_magick], ['Yandex.Директ', :yandex], ['Google Adwords', :google], ['SeoPult', :seopult]], {}, class: 'form_select_tag selectordie js-submit-form', data: {size: 5}
+
+      .grid_i.grid_i__grid-1-8>
+        %label.form_el.form_label Дата:
+      .grid_i.grid_i__grid-3-8.tx-left>
+        .form_el.js-form_el.filter_groups
+          = f.text_field :created_on_eq, class: 'form_el_tag form_tx_tag js-datepicker js-submit-form filter_datepicker', value: format_date(@q.created_on_eq)
+
+- content_for :js do
+  = javascript_include_tag 'admin/filter_groups'
+  :javascript
+    $(function() {
+      initDatepicker();
+    });

@@ -1,0 +1,37 @@
+- unless @post.new_record?
+  - set_meta_tags description: @post.announcement, og:{ title: @post.title,
+                                                      decscription: @post.announcement,
+                                                      type: 'article',
+                                                      url: blog_post_url(@post),
+                                                      image: full_image_url(@post.announcement_image_url(:preview)) }
+%main#main.blog_page{role: 'main'}
+  %section.info_page.post_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_2
+        .flowers_inner
+          %h2.tx-upper
+            = simple_format(@post.title)
+          %span.post_info
+            %time{datetime: @post.created_at}= post_date(@post.created_at)
+            - if @post.category.present?
+              = link_to @post.category_title, blog_category_path(@post.category), class: 'post_tag'
+            %span.tx-i
+              #{@post.reading_time}
+              #{Russian.p(@post.reading_time, 'минута', 'минуты', 'минут')}
+              спокойного чтения
+
+      .grid.grid__collapse.promo_slide{style: "background-image:url(#{@post.inner_image_url(:promo)})"}
+        .grid_i.grid_i__grid-1-2>
+          .promo_inner
+            = simple_format(@post.announcement)
+      .grid.grid__collapse
+        .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8>
+          .wysiwyg
+            = replace_video_links(@post.text)
+          .social-likes.mt-4{data:{url: @post.new_record? || blog_post_url(@post) }}
+            .facebook{title: 'Поделиться в facebook'}>
+            .twitter{title: 'Поделиться в twitter'}>
+            .vkontakte{title: 'Поделиться в vkontakte'}>
+
+      = render 'posts/subscribe'
+      = render 'posts/related_post', related_post: @post.related_post

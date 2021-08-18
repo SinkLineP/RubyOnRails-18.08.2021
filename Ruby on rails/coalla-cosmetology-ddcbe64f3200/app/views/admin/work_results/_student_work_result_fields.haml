@@ -1,0 +1,27 @@
+- student_work_result = f.object
+- unless student_work_result.new_record?
+  = f.hidden_field :id
+.grid.grid__collapse
+  .grid_i.grid_i__grid-5-6.grid_i__prefix-1-10
+    = f.hidden_field :student_id
+    %label.form_el.form_label= student_work_result.student_full_name
+  .grid_i.grid_i__grid-5-6.grid_i__prefix-1-10
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :absent, class: 'form_el_tag form_checkbox_tag js-absent'
+      %p.form_el_inner.form_label_inner Отсутствует
+  .grid_i.grid_i__grid-5-6.grid_i__prefix-1-10
+    %p.form_el_inner.form_label_inner Ведомость для пересдачи:
+  - if student_work_result.generated_document
+    .grid_i.grid_i__grid-5-6.grid_i__prefix-1-10
+      =render 'admin/common/download_link', file_path: student_work_result.generated_document.path, link_name: student_work_result.generated_document.file_name || 'скачать ведомость'
+  .grid_i.grid_i__grid-5-6.grid_i__prefix-1-10.js-exercise-results{style: student_work_result.absent? && 'display: none;'}
+    .grid.grid__collapse
+      - if @work_result.ladder?
+        = render 'admin/work_results/student_work_results/ladder', f: f
+      - elsif @work_result.final_work?
+        = render 'admin/work_results/student_work_results/final_work', f: f
+      - elsif @work_result.with_exercises?
+        = render 'admin/work_results/student_work_results/exam_or_practice_with_exercises', f: f
+      - else
+        = render 'admin/work_results/student_work_results/exam_or_practice_simple', f: f

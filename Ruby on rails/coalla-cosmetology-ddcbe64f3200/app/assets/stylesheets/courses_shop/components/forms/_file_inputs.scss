@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+// File input
+.file-input {
+  @include display(flex);
+  @include align-items(center);
+  @include transition(all $transition-duration-base);
+  @include text-lg;
+  position: relative;
+  height: 5.4rem;
+  padding: 0 4.2rem 0 1.5rem;
+  background: #fff;
+  border: 1px solid $color-base-lightest;
+  border-radius: $border-radius-sm;
+  color: $color-base-lighter;
+  vertical-align: top;
+
+  &[data-validation="invalid"] {
+    border-color: $color-error;
+
+    &[data-validation-text] {
+      &::after {
+        @include text-sm;
+        display: block;
+        margin-top: .25rem;
+        color: $color-error;
+        content: attr(data-validation-text);
+        text-align: left;
+      }
+    }
+  }
+
+  > input {
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+
+    &[data-file] + span {
+      color: $color-base;
+    }
+  }
+  
+  > span {
+    @include ellipsis;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  > .icon {
+    @include transform(translateY(-50%));
+    position: absolute;
+    top: 50%;
+    right: 1.2rem;
+    z-index: 2;
+    fill: $color-ui;
+    pointer-events: none;
+  }
+}
+
+.icon {
+  @include hover(fill, $color-brand, '.file-input:hover');
+}

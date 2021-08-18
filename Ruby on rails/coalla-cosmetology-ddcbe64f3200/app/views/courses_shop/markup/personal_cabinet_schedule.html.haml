@@ -1,0 +1,46 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          .personal-cabinet__tabs
+            %select.select2.js-select2
+              %option Мои курсы
+              %option(selected) Расписание
+              %option Документы
+              %option Настройки
+
+            %ul
+              %li
+                = link_to 'Мои курсы', courses_shop_markup_personal_cabinet_courses_path
+              %li
+                = link_to 'Расписание', courses_shop_markup_personal_cabinet_schedule_path, class: 'is-active'
+              %li
+                = link_to 'Документы', courses_shop_markup_personal_cabinet_documents_path
+              %li
+                = link_to 'Настройки', courses_shop_markup_personal_cabinet_settings_path
+
+          .personal-cabinet__content
+            .personal-cabinet-schedule
+              %ul.personal-cabinet-schedule__list
+                %li.personal-cabinet-schedule__item
+                  %article.personal-cabinet-schedule__content
+                    .h4.personal-cabinet-schedule__title 16-МОБиР-16/18-07
+                    %p.personal-cabinet-schedule__caption &laquo;Косметик Эстетист для людей с&nbsp;мед. образованием&raquo;
+
+                %li.personal-cabinet-schedule__item
+                  %article.personal-cabinet-schedule__content
+                    .h4.personal-cabinet-schedule__title 16-МакС-ОД
+                    %p.personal-cabinet-schedule__caption &laquo;Дерматоскопия&raquo;
+                  .personal-cabinet-schedule__actions
+                    = link_to 'Посмотреть', '#', class: 'button button--base-outline', 'data-size' => 'sm'
+
+                %li.personal-cabinet-schedule__item
+                  %article.personal-cabinet-schedule__content
+                    .h4.personal-cabinet-schedule__title 16-Мезо-11-12-07
+                    %p.personal-cabinet-schedule__caption &laquo;Врач-косметолог (Косметология)&raquo;
+                  .personal-cabinet-schedule__actions
+                    = link_to 'Посмотреть', '#', class: 'button button--base-outline', 'data-size' => 'sm'

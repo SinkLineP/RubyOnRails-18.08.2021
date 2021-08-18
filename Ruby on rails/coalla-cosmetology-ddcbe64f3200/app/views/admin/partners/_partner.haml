@@ -1,0 +1,7 @@
+.grid_i.grid_i__grid-8-9>
+  = link_to partner.title, edit_admin_partner_path(partner)
+.grid_i.grid_i__grid-1-9.tx-center>
+  = link_to edit_admin_partner_path(partner) do
+    .icon_edit &#9998;
+  = link_to admin_partner_path(partner), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

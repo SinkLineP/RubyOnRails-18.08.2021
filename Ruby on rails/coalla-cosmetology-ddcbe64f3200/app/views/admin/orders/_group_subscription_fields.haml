@@ -1,0 +1,26 @@
+.grid.nested-fields
+  .grid_i.grid_i__grid-2-7>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700  Направления
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx
+          = text_field_tag :group_name, nil, class: 'form_el_tag form_tx_tag js-autocomplete-blocks', data: {path: list_admin_group_subscriptions_path(user_id: @student.id), template: '#speciality_template', append_to: '.js-specialities-list', variants: '#specialities_autocomplete_variants'}
+          -#.autocomplete_variants#specialities_autocomplete_variants
+  .grid_i.grid_i__grid-2-7>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Дата начала
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx.form_tx_time
+          = f.text_field :begin_on, class: 'form_el_tag form_tx_tag'
+
+  .grid_i.grid_i__grid-2-7>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Дата окончания
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx.form_tx_time
+          = f.text_field :end_on, class: 'form_el_tag form_tx_tag'
+  .grid_i.grid_i__grid-1-7.tx-right>
+    = link_to_remove_association raw('<div class="icon_del">X</div>'), f

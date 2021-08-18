@@ -1,0 +1,4 @@
+- if errors.any?
+  - content_for :js do
+    :javascript
+      alert('#{j(errors.full_messages.join(', '))}')

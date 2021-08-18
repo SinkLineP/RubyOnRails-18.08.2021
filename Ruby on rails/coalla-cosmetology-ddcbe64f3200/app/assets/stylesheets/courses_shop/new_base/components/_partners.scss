@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+.partners {
+  margin: 4rem 0;
+
+  @include mq(md) {
+    margin: 6rem 0;
+  }
+
+  @include mq(lg) {
+    margin: 8rem 0;
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+    text-align: center;
+
+    @include mq(md) {
+      margin-bottom: 3rem;
+    }
+
+    @include mq(lg) {
+      margin-bottom: 4rem;
+    }
+  }
+}
+
+.partners-slider {
+  @media all and (min-width: 768px) {
+    padding: 0 80px;
+  }
+
+  &__slide {
+    vertical-align: top;
+
+    img {
+      margin: 0 auto;
+    }
+  }
+
+  // Slick
+  &:not(.slick-initialized) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .partners-slider__slide {
+      @media all and (max-width: 767px) {
+        &:nth-child(n+3) {
+          display: none;
+        }
+      }
+
+      @media all and (max-width: 1023px) {
+        &:nth-child(n+4) {
+          display: none;
+        }
+      }
+
+      @media all and (max-width: 1279px) {
+        &:nth-child(n+5) {
+          display: none;
+        }
+      }
+
+      @media all and (min-width: 1280px) {
+        &:nth-child(n+6) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .slick-arrow {
+    @include size(4rem);
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    cursor: pointer;
+
+
+    &:hover {
+      > svg > path {
+        fill: $color-brand;
+        stroke: $color-brand;
+      }
+    }
+
+    &.slick-prev {
+      left: 2rem;
+
+      > svg {
+        transform: translate(-53%, -50%);
+      }
+    }
+
+    &.slick-next {
+      right: 2rem;
+
+      > svg {
+        transform: translate(-47%, -50%);
+      }
+    }
+
+    > svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      > path {
+        transition: all .2s;
+      }
+    }
+  }
+
+  .slick-slide,
+  .slick-slide > div {
+    vertical-align: top;
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: .4rem;
+    margin-top: 2rem;
+
+    > li {
+      height: inherit;
+      margin: 0 1px;
+
+      &.slick-active {
+        > button {
+          background-color: $color-base;
+        }
+      }
+
+      > button {
+        @include size(2rem, inherit);
+
+        background-color: #c4c4c4;
+        cursor: pointer;
+        font-size: 0;
+        transition: background-color .2s;
+        vertical-align: top;
+      }
+    }
+  }
+}

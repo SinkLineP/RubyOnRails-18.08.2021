@@ -1,0 +1,34 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'блоки' => admin_blocks_path}
+      %h3.tx-center БЛОКИ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_block_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить блок
+            &nbsp;|&nbsp;
+            = link_to new_admin_block_path(copy_blocks: true), class: 'a_under' do
+              %span.icon-add> +
+              Добавить блок(Собрать из блоков)
+        .admin_body.table.can_select
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-1-3>
+                %p.nowrap
+                  %a.a_under.js-create-course{href: '#'} Создать новый курс из выделеных блоков
+              .grid_i.grid_i__grid-1-3>
+                %p.tx-center
+                  курс
+              .grid_i.grid_i__grid-1-6.grid_i__prefix-1-6>
+                %p.tx-right
+                  создан / обновлен
+          .grid
+            = render collection: @blocks, partial: 'block'
+
+- content_for :js do
+  = javascript_include_tag 'admin/blocks'

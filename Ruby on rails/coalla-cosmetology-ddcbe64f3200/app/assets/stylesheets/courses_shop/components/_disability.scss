@@ -1,0 +1,352 @@
+@charset "UTF-8";
+
+$disability-color-base: #000;
+$disability-color-muted: #d6d6d6;
+
+.disability {
+  @include font(1.6rem, 2.4rem);
+  background: #fff;
+  color: $disability-color-base;
+
+  @include media($breakpoint-sm) {
+    padding-top: 0 !important;
+  }
+
+  @include media($breakpoint-lg) {
+    padding-top: 80px;
+  }
+
+  .container {
+
+
+    @include media($breakpoint-lg) {
+      max-width: 1370px;
+      padding-left: 30px;
+    }
+  }
+
+  a {
+    color: $disability-color-base !important;
+  }
+
+  // Content box
+  &__content-box {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+    }
+  }
+
+  &__content-item {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+
+  // Navigate
+  &__navigate {
+    position: relative;
+    padding: 25px 0;
+    background: $disability-color-muted;
+
+    @include media($breakpoint-lg) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      width: 100%;
+    }
+  }
+
+  &__navigate-grid {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    margin: -5px -15px;
+  }
+
+  &__navigate-item {
+    @include display(flex);
+    @include align-items(center);
+    margin: 4px 15px;
+    white-space: nowrap;
+  }
+
+  &__navigate-title {
+    @include font(18px, 34px);
+    display: inline-block;
+    text-transform: uppercase;
+
+    @at-root #{a} {
+      color: $disability-color-base;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__navigate-title--normal-version {
+    position: relative;
+    display: block;
+    padding-left: 40px;
+
+    &:before {
+      @include size(32px 18px);
+      @include transform(translateY(-50%));
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background: asset_url("courses_shop/disability_ico.png") transparent 0 0 no-repeat;
+      content: "";
+    }
+  }
+
+  // Navigate icons
+  &__navigate-icon-grid {
+    @include display(flex);
+    @include align-items(center);
+    margin-left: 8px;
+  }
+
+  &__navigate-icon-grid-item {
+    padding: 5px 7px;
+    background: #fff;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    color: $disability-color-base;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    text-transform: uppercase;
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+
+    &:hover {
+      background: $disability-color-base;
+      color: #fff;
+    }
+
+    &.is-active {
+      border-color: $disability-color-base;
+    }
+ }
+
+  &__navigate-icon-grid-item--small {
+    font-size: 14px;
+  }
+
+  &__navigate-icon-grid-item--medium {
+    font-size: 16px;
+  }
+
+  &__navigate-icon-grid-item--large {
+    font-size: 18px;
+  }
+
+  &__navigate-icon-grid-item--base {
+    border-color: #fff;
+    background: #fff;
+    color: $disability-color-base;
+  }
+
+  &__navigate-icon-grid-item--inverse {
+    border-color: $disability-color-base;
+    background: $disability-color-base;
+    color: #fff;
+  }
+
+  &__navigate-icon-grid-item--blue {
+    border-color: #330099;
+    background: #330099;
+    color: #fff;
+  }
+
+  // Header
+  &__header {
+
+  }
+
+  &__header-logo {
+    padding: 75px 0;
+    border-bottom: 1px solid $disability-color-muted;
+    text-align: center;
+  }
+
+  // Logo
+  &__logo {
+    @include size(132px 112px);
+    @include transform(scale(1.5));
+    fill: $disability-color-base;
+  }
+
+  // Content
+  &__content {
+    padding: 80px 0;
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+      text-align: center;
+
+      &:not(:first-child) {
+        margin-top: 6rem;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    h1, h2, .h1, .h2 {
+      @include font(3rem, 4rem);
+      text-transform: uppercase;
+    }
+
+    h3, h4, .h3, .h4 {
+      @include font(2.4rem, 3.2rem);
+    }
+
+    h5, h6, .h5, .h6 {
+      font-weight: 700;
+    }
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    ol,
+    ul {
+      list-style-position: outside;
+
+      &:not(:last-child) {
+        margin-bottom: 4rem;
+      }
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+
+    ul {
+      list-style-type: square;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  // Footer
+  &__footer {
+
+  }
+
+  &__footer-content {
+    padding: 3.9rem 0 4rem;
+    border-top: 1px solid $disability-color-muted;
+    text-align: center;
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Theme base
+  &--theme-base {
+    background: #fff;
+    color: $disability-color-base;
+  }
+
+  // Theme inverse
+  &--theme-inverse {
+    background: $disability-color-base;
+    color: #fff;
+
+    .disability__navigate {
+      background: #484848;
+    }
+
+    .disability__logo {
+      fill: #fff;
+
+    }
+
+    a {
+      color: #fff !important;
+    }
+
+    .disability__navigate-title--normal-version {
+      &:before {
+        background: asset_url("courses_shop/disability_ico.png") transparent 50% 50% no-repeat;
+      }
+    }
+
+    .disability__header-logo  {
+      border-bottom-color: #fff;
+    }
+
+    .disability__footer-content  {
+      border-top-color: #fff;
+    }
+  }
+
+  // Theme blue
+  &--theme-blue {
+    background: #9dd1ff;
+    color: #063462;
+
+    .disability__navigate {
+      background: #83bae7;
+    }
+
+    a {
+      color: #063462 !important;
+    }
+
+    .disability__navigate-title--normal-version {
+      &:before {
+        background: asset_url("courses_shop/disability_ico.png") transparent 100% 50% no-repeat;
+      }
+    }
+
+    .disability__logo {
+      fill: #063462;
+    }
+
+    .disability__header-logo  {
+      border-bottom-color: #83bae7;
+    }
+
+    .disability__footer-content  {
+      border-top-color: #83bae7;
+    }
+  }
+
+  // font size
+  &--size-small {
+    font-size: 50%;
+  }
+
+  &--size-base {
+    font-size: 62.5%;
+  }
+
+
+  &--size-large {
+    font-size: 75%;
+  }
+}

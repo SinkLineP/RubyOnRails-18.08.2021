@@ -1,0 +1,33 @@
+<h2>Welcome to Pizza Shop!</h2>
+
+
+
+<div class="container">
+ 	<div class="row">
+	  	<% @products.each do |pizza| %>
+			<div class="col-xs-3 tabl">
+				<img height="150px" width="auto" src="<%= pizza.path_to_photo %>">
+	     		<h1><%= pizza.title %></h1>
+	     		<p><%= pizza.description %></p>
+	     		<h3>Price: <%= pizza.price %>grn.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	     			<button style="margin: 10px 0px 0px 0px; background:#0F9B00;" class="btn btn-success btn-large" onclick="add_to_cart(<%= pizza.id %>)">Купить</button>
+	     		</h3>     
+		    </div>
+	    <%end%>
+  	</div>
+</div>
+
+
+<!-- <script type="text/javascript">
+	$(function () {
+		update_orders_input();
+		update_orders_button();
+	});
+</script>
+ -->
+  <script>
+    $(function() {
+      update_orders_input();
+      update_orders_button();
+    });
+  </script>

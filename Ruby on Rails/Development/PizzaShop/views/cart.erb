@@ -1,0 +1,62 @@
+<h2>Заказанные товары:</h2>
+
+<table class="table">
+  <thead>
+    <tr class="tablname">
+      	<th scope="col">Товар</th>
+	    <th scope="col">Цена</th>
+	    <th scope="col">Количество</th>
+    </tr>
+  </thead>
+  	<% @total_qty = 0 %>
+	<% @total_price = 0 %>
+  <tbody>
+<% @items.each do |item| %>
+  
+	  <tr class="tablcart">
+	    <td><%= item[0].title %></td>
+	    <td><%= item[0].price %> grn.</td>
+	    <td><%= item[1] %></td>
+	  </tr>
+
+
+	<% @total_qty += item[1].to_i %>
+	<% @total_price += item[0].price * @total_qty %>
+
+<% end %>
+    <tr style="background: green; color: white;">
+    <td><strong>Сумма:</strong></td>
+    <td><%= @total_price %> grn.</td>
+    <td><%= @total_qty %></td>
+  </tr>
+  </tbody>
+</table>
+
+<hr>
+<center><h2>Оформить заказ</h2></center>
+
+<div class="row">
+
+<form action="/place_order" method="POST" class="form-inline">
+
+  <input type="hidden" name="order[orders_input]" value="<%= @orders_input %>">
+<div class="col-md-12"> 
+<p>Введите имя:</p>
+  <input class="form-control" type="text" name="order[name]" placeholder="Имя" value="">
+<p>Введите телефон:</p>
+  <input class="form-control" type="text" name="order[phone]" placeholder="Телефон" value="">
+<p>Введите адрес доставки:</p>
+  <input class="form-control" type="text" name="order[adress]" placeholder="Адресс доставки" value="">
+  <p></p>
+</div>
+ <br><br>
+  <div class="col-md-1">
+  <p><button type="submit" value="Заказать" class="btn check">Заказать</button> </p>
+</form>
+</div>
+<div class="col-md-6">
+<form action="/delete_order" method="POST" class="form-inline">
+		<button value="Очистить" onclick="return cancel_order()" class="btn notcheck">Отменить заказ</button>
+</form>
+</div>
+</div>

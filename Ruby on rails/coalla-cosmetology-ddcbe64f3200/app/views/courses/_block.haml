@@ -1,0 +1,14 @@
+- if @block.present?
+  .grid_i.grid_i__grid-5-7.grid_i__prefix-1-7.tx-center>
+    .h5.block_name.block_name--is-center.js-block-name.p-r
+      %span.js-block-name-text
+        = block_name_with_number(@course, @block)
+      .social_links__h.js-social-links>
+        = render 'common/sharing', share_params: {type: :block, block: @block.id, course: @course.try(:id)}
+  -#(vl): описания нет в модели
+  -#%p.tx-i Чему вы научитесь: краткое описание лекции, 1-2 текстовых предложения  о то чему научитесь  вот как-то так Чему вы научитесь: краткое описание лекции, 1-2 текстовых предложения
+  .grid_i.grid_i__grid-1-7.tx-right>
+    .block_time
+      %i.fa.fa-clock-o
+      %span.digit= @block.time
+      #{pluralize_hours(@block.time)}

@@ -1,0 +1,18 @@
+= fields_for @group_subscription do |f|
+  - if @group_subscription.courses.count == 1
+    .course_blocks.js-subscription-documents
+      = f.fields_for :subscription_documents do |document_fields|
+        = render 'admin/group_subscriptions/subscription_document_fields', f: document_fields, course_id: @group_subscription.course.try(:id)
+      = link_to_add_association f, :subscription_documents, render_options: {locals: {course_id: @group_subscription.course.try(:id)}}, partial: 'admin/group_subscriptions/subscription_document_fields', class: 'a_under', data: {association_insertion_traversal: 'closest', association_insertion_method: 'append', association_insertion_node: '.js-subscription-documents'} do
+        .icon_add> +
+        Добавить
+  - else
+    - @group_subscription.courses.each do |course|
+      .mt-1.tx-s.tx-500.header_blocks_settings
+        = course.name
+      .course_blocks.js-subscription-documents
+        = f.fields_for :subscription_documents, @group_subscription.subscription_documents.select { |d| d.course_id == course.id } do |document_fields|
+          = render 'admin/group_subscriptions/subscription_document_fields', f: document_fields, course_id: course.id
+        = link_to_add_association f, :subscription_documents, render_options: {locals: {course_id: course.id}}, partial: 'admin/group_subscriptions/subscription_document_fields', class: 'a_under', data: {association_insertion_traversal: 'closest', association_insertion_method: 'append', association_insertion_node: '.js-subscription-documents'} do
+          .icon_add> +
+          Добавить

@@ -1,0 +1,9 @@
+%tr
+  %td{border: '0',align: 'center'}
+    %p{style: 'margin: 0;text-align: left;'} Группа: #{@group.title}
+%tr
+  %td{border: '0',align: 'center'}
+    %p{style: 'margin: 0;text-align: left;'} Даты практик: #{@group.all_practice_periods_text}
+%tr
+  %td{border: '0',align: 'center'}
+    %p{style: 'margin: 0;text-align: left;'}= link_to 'Ссылка в СДО', edit_admin_group_url(@group), target: '_blank'

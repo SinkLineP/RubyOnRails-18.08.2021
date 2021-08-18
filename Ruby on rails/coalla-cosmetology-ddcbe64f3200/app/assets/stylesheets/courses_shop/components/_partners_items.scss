@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.partners-items {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+
+  // Item
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 6rem;
+    }
+  }
+}
+
+// Partner item
+.partner-item {
+  text-align: center;
+
+  // Logo
+  &__logo {
+    margin-bottom: 3rem;
+    vertical-align: top;
+  }
+
+  // Title
+  &__title {
+    margin-bottom: 1.5rem;
+  }
+
+  // Text
+  &__text {
+    @include text-sm;
+    text-align: left;
+  }
+}

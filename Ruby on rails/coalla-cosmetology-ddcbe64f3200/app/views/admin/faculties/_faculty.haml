@@ -1,0 +1,6 @@
+.grid_i.grid_i__grid-3-6>
+  %a.modal{data: {url: edit_admin_faculty_path(faculty)}}= faculty.title
+  = link_to admin_faculty_path(faculty), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X
+
+= javascript_include_tag 'admin/faculty_form'

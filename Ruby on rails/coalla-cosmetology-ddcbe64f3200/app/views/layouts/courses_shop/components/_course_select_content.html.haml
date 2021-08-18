@@ -1,0 +1,58 @@
+.course-select__period
+  %p.course-select__title Я готов уделить учебе:
+
+  .course-period-select
+    %select.select2.js-select2#course-period-selector-select
+      %option(data-id='0') 1 месяц
+      %option(data-id='1') 2 месяца
+      %option(data-id='2') 3 месяца
+      %option(data-id='3') 4 месяца
+      %option(data-id='4') 5 месяцев
+      %option(data-id='5') 6 месяцев
+      %option(data-id='6') 7 месяцев
+      %option(data-id='7' selected) 8 месяцев
+      %option(data-id='8') 9 месяцев
+      %option(data-id='9') 10 месяцев
+      %option(data-id='10') 11 месяцев
+      %option(data-id='11') 1 год
+
+  .course-period-selector
+    .course-period-selector__row
+      #course-period-selector-range
+
+.course-select__type
+  %p.course-select__title Хочу изучить:
+
+  .course-type-selector
+    .course-type-selector__row
+      %ul#course-type-selector-list
+        %li
+          Уход за&nbsp;телом
+          %input(type='checkbox')
+        %li.is-selected
+          Уход за&nbsp;телом
+          %input(type='checkbox' checked)
+        %li
+          Инъекции
+          %input(type='checkbox')
+        %li
+          Аппаратную косметологию
+          %input(type='checkbox')
+
+.course-select__checkboxes
+  %p
+    %label
+      Есть медицинское образование
+      %span.checkbox-input
+        %input(type='checkbox')
+        %span
+
+  %p
+    %label
+      Работаю в&nbsp;косметологии
+      %span.checkbox-input
+        %input(type='checkbox' checked)
+        %span
+
+.course-select__submit
+  %button.button.button--base-fill(type='submit' data-size='lg') Подобрать <span class='is-lg'>оптимальный </span>курс

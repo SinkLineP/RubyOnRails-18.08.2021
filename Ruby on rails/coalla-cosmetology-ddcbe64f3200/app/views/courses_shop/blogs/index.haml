@@ -1,0 +1,50 @@
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        %h1.page__title= title_with_page(:blogs, params[:page])
+
+      - unless current_user.try(:subscribed_on_blog?)
+        = render 'layouts/courses_shop/components/subscription'
+
+      .filter
+        = render 'layouts/courses_shop/hr_small'
+        %ul.filter__list
+          %li.filter__item
+            .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+              %spa= @current_date ? month_format(@current_date) : 'Все месяцы'
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %ul
+                    %li= link_to 'Все месяцы', courses_shop_blogs_path({blog_category_id: @current_category.try(:id)}.compact)
+                    - @dates.each do |date|
+                      - options = {blog_category_id: @current_category.try(:id), date: date}.compact
+                      %li= link_to month_format(date), courses_shop_blogs_path(options)
+          %li.filter__item
+            .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+              %span= @current_category.try(:name) || 'Все категории'
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %ul
+                    %li= link_to 'Все категории', courses_shop_blogs_path({date: @current_date}.compact)
+                    - @categories.each do |category_item|
+                      - options = {blog_category_id: category_item.second, date: @current_date}.compact
+                      %li= link_to category_item.first, courses_shop_blogs_path(options)
+
+      .media-cards
+        .media-cards__list#blogs_list
+          = render @blogs
+
+      = pagination_complex(@blogs, '#blogs_list')
+
+- if params[:show_popup]
+  - content_for :js do
+    :javascript
+      $(function() {
+         popups.mfpShowInfo('Спасибо за подписку на блог!', 'На ваш e-mail отправлено письмо для подтверждения подписки.', '#popup-info')
+      });

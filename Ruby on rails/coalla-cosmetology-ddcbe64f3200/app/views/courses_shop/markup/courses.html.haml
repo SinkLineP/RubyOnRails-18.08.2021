@@ -1,0 +1,17 @@
+.page.page--promo.page--courses
+  = render 'layouts/courses_shop/promo/courses'
+
+  .page-section
+    .container
+      = render 'layouts/courses_shop/components/courses_items'
+
+  .page-section
+    .container
+      = render 'layouts/courses_shop/components/seo_text'
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title Выберем курс прямо сейчас?
+      %form.course-select(action='#')
+        .course-select__content
+          = render 'layouts/courses_shop/components/course_select_content'

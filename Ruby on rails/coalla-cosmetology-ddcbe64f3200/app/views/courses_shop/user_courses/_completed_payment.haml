@@ -1,0 +1,5 @@
+%li{class: 'is-muted', data: {initial: 'is-muted'}}
+  %span= "#{payment_counter + 1}."
+  %span= format_date_short(payment.payed_on)
+  %span= format_money(payment.amount)
+  %span Оплачен

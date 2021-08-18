@@ -1,0 +1,8 @@
+.grid_i.grid_i__grid-5-6>
+  = link_to skill.name, edit_admin_skill_path(skill)
+
+.grid_i.grid_i__grid-1-6.tx-center>
+  = link_to edit_admin_skill_path(skill) do
+    .icon_edit &#9998;
+  = link_to admin_skill_path(skill), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

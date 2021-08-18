@@ -1,0 +1,25 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {t("#{scope_name}_title").mb_chars.downcase => redirect_url, t("#{scope_name}.#{@html_item.page}") => '#'}
+      %h3.tx-center= t("#{scope_name}.#{@html_item.page}").mb_chars.upcase
+      = form_for [:admin, @html_item], url: url_for(action: :update, id: @html_item.id), html: {class: 'form js-form form__admin'} do |f|
+        .admin_body
+          .form_el.js-form_el.form_textarea{style: 'width: 100%; height: 16rem;'}
+            = f.text_area :description, class: 'form_el_tag form_textarea_tag', style: 'width: 100%; height: 16rem;'
+
+          .form_el.js-form_el.form_el__block
+            = f.cktext_area :content, placeholder: 'Контент'
+
+          .grid
+            .grid_i.grid_i__grid-1-4>
+              .form_el.js-form_el.form_btn.form_btn__small
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                %button.form_el_tag.form_btn_tag{type: 'submit'}
+
+      = render 'admin/errors', errors: @html_item.errors
+
+- content_for :js do
+  - javascript_include_tag 'admin/ckeditor'

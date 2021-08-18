@@ -1,0 +1,21 @@
+.popup_ctn
+  .popup#new_letter
+    .tx-center
+      .mb-3
+        .h5 НОВОЕ ПИСЬМО
+    .mb-3
+      %p Здравствуйте. На&nbsp;ваш e-mail #{current_user.email} отправлено письмо &laquo;#{@new_letter.subject}&raquo; от&nbsp;преподавателя #{@new_letter.instructor.display_name}. Пожалуйста, проверьте почту.
+    .icon_del.arcticmodal-close X
+:javascript
+  $(function(){
+    var modalOptions = {
+            closeOnOverlayClick: false,
+            overlay: {
+                css: {
+                    backgroundColor: '#000',
+                    opacity: .3
+                }
+            }
+        };
+    $('#new_letter').arcticmodal(modalOptions);
+  })

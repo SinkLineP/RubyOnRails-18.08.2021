@@ -1,0 +1,349 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#body">
+    Launch demo modal
+</button>	
+ 
+<!--Modal-->
+
+<div class="modal fade" id="body" tadindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">&times;<span aria-hidden="true"></span></button>       
+        <h4 class="modal-title" id="myModalLabel">Корзина</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default-outline" data-dismiss="modal">Продолжить покупки</button>
+        <a href="cart/index" type="button" class="btn btn-primary">Оформить заказ</a>
+        <button type="button" class="btn btn-danger" onclick="clearCart(); return false;">Очистить корзину</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+<style>
+.modal-open {
+  overflow: hidden;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+       -o-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+       -o-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+.modal-backdrop.fade {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.modal-backdrop.in {
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.modal-header {
+  min-height: 16.42857143px;
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+.modal-header .close {
+  margin-top: -2px;
+}
+.modal-header h4 {
+margin-left: 5px;
+}
+.modal-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+.modal-body {
+  position: relative;
+  padding: 15px;
+}
+.modal-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+.modal-footer .btn + .btn {
+  margin-bottom: 0;
+  margin-left: 5px;
+}
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+.modal-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+}
+</style>
+ 
+<script src="https://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+document.addEventListener("turbolinks:load", function() {
+    $('body').on('click', '.add-to-cart-link', function(e) {
+        e.preventDefault();
+        var product_id = $(this).data('id'),
+            quantity   = $('.quantity input').val() ? $('.quantity input').val() : 1,
+            mod        = $('.vailable select').val(),
+            access     = $('#cart_access').val();
+        
+            if(access == 99){
+                showCartEmpty()
+                return false
+            };
+            
+            $.ajax({
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',
+                    $('meta[name="csrf-token"]').attr('content'))},
+                url: "/cart/cart_items",
+                data: {product_id: product_id, quantity: quantity, mod: mod},
+                type: 'POST',
+                success: function (res) {
+                    showCart(res)
+                },
+                error: function () {
+                    alert('Error! Try later!');
+                },
+
+            });
+    });
+
+    $('#cart .modal-body').on('click', '.del-item', function(){
+        var id = $(this).data('id');
+        $.ajax({
+            beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token',
+                $('meta[name="csrf-token"]').attr('content'))},
+            url: "/cart/cart_items/" + id,
+            data: {id: id},
+            method: 'delete',
+            type: 'POST',
+            success: function (res) {
+                showCart(res)
+            },
+            error: function () {
+                alert('Error!');
+            },
+
+        });
+    });
+
+    function showCart(cart) {
+        if($.trim(cart) === '<td>Cart is Empty</td>'){
+            $('#cart .modal-footer a , #cart .modal-footer .btn-danger').css('display', 'none');    
+        }else{
+            $('#cart .modal-footer a , #cart .modal-footer .btn-danger').css('display', 'inline-block');
+        }
+        $('#cart .modal-body').html(cart); 
+        $('#cart').modal();
+        if($('.cart-sum').text()){
+            $('.simpleCart_total').html($('#cart .cart-sum').text());
+        }else{
+            $('.simpleCart_total').text('Empty Cart');
+        }
+    }
+
+    window.getCart = function () {
+        $.ajax({
+            url: '/cart',
+            type: 'GET',
+            success: function(res) {
+                showCart(res)
+            },
+            error: function () {
+                alert('Error! Try later!');
+            }, 
+        });
+    }
+
+    function showCartEmpty() {
+        var result = {error: 'Please sign in! To view the cart.'}
+        var modal  = $('#cart').modal();
+        $('#cart .modal-footer a, #cart .modal-footer .btn-danger').css('display', 'none');
+        modal.find('.modal-body').html(result.error)
+    }
+
+     window.clearCart = function () {
+        $.ajax({
+            url: '/cart',
+            method: 'delete',
+            type: 'POST',
+            
+            success: function (res) {
+                localStorage.clear()
+                showCart(res)
+            },
+            error: function () {
+                alert('Error!');
+            }, 
+        });
+    }
+
+   
+
+    // // import $ from 'jquery';
+    // // var Bloodhound = require('typeahead.js/dist/bloodhound');
+    // // // import 'typeahead.js/dist/typeahead.bundle';
+    // // // import 'bootstrap-3-typeahead';
+    // // // //     // var products = new Bloodhound({
+    // // // //     //     datumTokenizer: Bloodhound.tokenizers.whitespace,
+    // // // //     //     queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // // // //     //     remote: {
+    // // // //     //         wildcard: '%QUERY%',
+    // // // //     //         url: '/search?query=%QUERY%'        
+    // // // //     //     }
+    // // // //     // });
+    // var products= new Bloodhound({
+    // datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    // queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // remote: {
+    //     url: '/search?query/=%QUERY%',
+    //     wildcard: '%QUERY%',
+    //     cache: false
+    // },
+    // });
+
+
+        
+
+    //     products.initialize();
+
+
+    //     $('#typeahead').on('typeahead',function() {
+    //         // hint: false
+    //         highlight: true
+    //     },{
+    //         name: 'products',
+    //         display: 'title',
+    //         limit: 10,
+    //         source: products
+    //     });
+
+
+
+
+    //     $('#typeahead').bind('typeahead:select', function(ev, suggestion) {
+    //         // console.log(suggestion);
+    //         window.location = '/product/' + encodeURIComponent(suggestion.id);    
+    //     });
+    // // // var Bloodhound = require('typeahead.js/dist/bloodhound');
+    // // // $(document).ready(function(){
+    // // //     // Sonstructs the suggestion engine
+    // // //     var products = new Bloodhound({
+    // // //         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('query'),
+    // // //         queryTokenizer: Bloodhound.tokenizers.whitespace,
+    // // //         // The url points to a json file that contains an array of country names
+    // // //         prefetch: '/search'
+    // // //     });
+        
+    // // //     products.initialize();
+    // // //     // Initializing the typeahead with remote dataset without highlighting
+    // // //     $('#typeahead').on('typeahead', {
+    // // //         name: 'products',
+    // // //         source: products,
+    // // //         limit: 10 /* Specify max number of suggestions to be displayed */
+    // // //     });
+    // // // });
+
+    // // $("#big-search-box").bind("keyup", function() {
+
+    // //     $("#big-search-box").addClass("loading"); // show the spinner
+    // //     var form = $("#live-search-form"); // grab the form wrapping the search bar.
+    
+    // //     var url = "/search/"; // live_search action.   
+    // //     var formData = form.serialize(); // grab the data in the form   
+    // //     $.get(url, formData, function(html) { // perform an AJAX get
+    
+    // //       $("#big-search-box").removeClass("loading"); // hide the spinner
+    
+    // //       $("#live-search-results").html(html); // replace the "results" div with the results
+    
+    // //     });
+    
+       }); 
+</script>

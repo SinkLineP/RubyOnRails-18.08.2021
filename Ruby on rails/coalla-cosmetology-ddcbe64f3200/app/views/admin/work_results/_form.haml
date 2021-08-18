@@ -1,0 +1,72 @@
+= render 'admin/breadcrumbs', crumbs: {'результаты занятий' => admin_work_results_path, (@work_result.group_title.presence || 'новый разультат') => '#'}
+%h3.tx-center= @work_result.group_title.presence || 'НОВЫЙ РЕЗУЛЬТАТ'
+= form_for [:admin, @work_result], url: @work_result.new_record? ? admin_work_results_path : admin_work_result_path(@work_result), html: {id: 'work_result_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  - select_html_options = {class: 'js-course-select2', data: {size: 10}}
+  - select_html_options[:disabled] = !@work_result.new_record?
+  .admin_header.js-group
+    %label.form_el.form_label Группа:
+    .form_el.js-form_el.form_tx.subscription_exclusive.group-autocomplete
+      = f.select :group_id, options_for_select(Group.group_select_scope(@work_result.group), @work_result.group_id), {include_blank: 'не выбрано'}, select_html_options
+  .admin_body
+    .admin_settings_change
+      .mt-1.js-work
+        %label.form_el.form_label Занятие:
+        .form_el.js-form_el.form_tx
+          - course = @work_result.course
+          = f.select :work_id, (course.try(:works).try(:order_by_title) || []).map{|w| [w.title, w.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', disabled: !@work_result.new_record?
+      .mt-1
+        %label.form_el.form_label Дата:
+        .form_el.js-form_el.form_tx
+          = f.text_field :marked_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@work_result.marked_on), readonly: true
+      .mt-2.header_blocks_settings
+        .tx-s.tx-700 Сканы ведомости
+      .mt-1.edit_materials
+        .grid
+          = f.fields_for :scans do |scan_fields|
+            .grid_i.grid_i__middle.grid_i__grid-1-2>
+              = render 'admin/work_results/scan_fields', f: scan_fields
+          .grid_i.grid_i__middle.grid_i__grid-1-2>
+            .form_el.js-form_el.form_file
+              %p.form_el_inner.form_file_inner.a_under
+              .icon_add +
+              %span.a_under Загрузить
+              %input.form_el_tag.form_file_tag.js-scan{:type => 'file'}
+      - if @work_result.generated_document.present?
+        .mt-1
+          %div= render 'admin/common/download_link', file_path: @work_result.generated_document.path, link_name: @work_result.generated_document.file_name || 'скачать ведомость'
+        - if @work_result.generated_document.persisted?
+          .mt-1
+            %div
+              = link_to 'скачать пустую ведомость', download_empty_sheet_admin_generated_document_path(@work_result.generated_document, work_result_id: @work_result.id)
+
+      - work = @work_result.work
+      - if work.try(:criterion) && !work.hairdresser_work?
+        .mt-2.header_blocks_settings
+          .tx-s.tx-700 Критерии
+        .mt-1
+          %div= render 'admin/common/download_link', file_path: "/lib/documents/templates/#{work.criterion}.pdf", link_name: 'скачать критерий'
+
+      - if work.try(:statement_criterion) && work.hairdresser_work? && !work.statement_criterion_not_selected?
+        .mt-2.header_blocks_settings
+          .tx-s.tx-700 Критерии
+        .mt-1
+          %div= render 'admin/common/download_link', file_path: "/lib/documents/templates/#{work.statement_criterion}.pdf", link_name: 'скачать критерий'
+
+      = render 'admin/work_results/student_work_results'
+
+      .grid.mt-2
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+      - content_for :js do
+        %script#scan_template{type: 'text/template'}
+          = f.fields_for :scans, Scan.new, child_index: '__id__', include_id: false do |scan_fields|
+            .grid_i.grid_i__middle.grid_i__grid-1-2>
+              = render 'admin/work_results/scan_fields', f: scan_fields
+
+= render 'admin/errors', errors: @work_result.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/filter_groups'

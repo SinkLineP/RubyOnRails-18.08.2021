@@ -1,0 +1,42 @@
+.schedule
+  .schedule__toggle
+    = link_to '#', class: 'button button--action-fill', id: 'schedule-toggle', 'data-size' => 'sm', 'data-type' => 'text' do
+      %span На консультацию
+      %svg.icon(role='img' data-size='18')
+        %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+
+  .schedule__content#schedule-content
+    .schedule__form
+      - consultation = Consultation.new(name: current_user.try(:full_name), phone: current_user.try(:phone), email: current_user.try(:email))
+      = form_for consultation, url: courses_shop_course_consultations_path(@course), remote: true, html: {class: 'default-form'}, data: {trackable: 'true'} do |f|
+        .default-form__inner
+          %fieldset.default-form__group
+            %legend.default-form__group-title Выберите дату и&nbsp;время посещения офиса
+
+            = f.fields_for :used_time, UsedTime.new do |used_time_fields|
+              .default-form__cols
+                .default-form__col
+                  .text-input.text-input--datepicker
+                    = used_time_fields.text_field :date, class: 'js-datepicker', placeholder: 'Дата', data: {consultation_date: true}
+                    %i
+                .default-form__col
+                  .select
+                    = used_time_fields.select :time, [], {}, class: 'select2 js-select2', data: {placeholder: 'Выберите дату', consultation_time: true}
+
+          %fieldset.default-form__group
+            %legend.default-form__group-title Укажите данные
+
+            .default-form__row
+              .text-input
+                = f.text_field :name, placeholder: 'Имя, Фамилия'
+
+            .default-form__row
+              .text-input
+                = f.email_field :email, placeholder: 'Электронная почта'
+
+            .default-form__row
+              .text-input
+                = f.telephone_field :phone, class: 'input js-intl-tel'
+
+            .default-form__row
+              %button.button.button--base-fill(type='submit' data-size='lg') Записаться <span class='is-lg'>на&nbsp;консультацию</span>

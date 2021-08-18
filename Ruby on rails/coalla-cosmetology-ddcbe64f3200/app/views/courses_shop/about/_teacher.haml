@@ -1,0 +1,9 @@
+%li.teachers-cards__card
+  %article.teacher-card
+    = image_tag teacher.avatar? ? teacher.avatar_url(:middle) : placeholder_url('120x120'), width: '120', height: '120', alt: '', class: 'teacher-card__photo'
+    .h5.teacher-card__name= teacher.full_name
+    - faculties = teacher.faculties.map{|f| "факультет #{f.title}"}
+    - if faculties.any?
+      %p.teacher-card__department= faculties.join(', ').mb_chars.downcase
+    - if teacher.description.present?
+      = simple_format(teacher.description, class: 'teacher-card__education')

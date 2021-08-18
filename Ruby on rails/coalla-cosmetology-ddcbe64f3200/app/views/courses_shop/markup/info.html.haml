@@ -1,0 +1,76 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Сведения об&nbsp;образовательной организации
+
+      .info-accordion
+        .info-accordion__list.accordion.js-accordion
+          %div.dl(data-state='collapsed')
+            %div.dt
+              %span Устав
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+            %div.dd
+              .content.js-content(data-size='lg')
+                %iframe(src='https://www.youtube.com/embed/xI6i6SAAKI8' width='560' height='315' frameborder='0' allowfullscreen)
+
+
+
+          %div.dl(data-state='collapsed')
+            %div.dt
+              %span Учредители
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+            %div.dd
+              .content.js-content(data-size='lg')
+                %p
+                  %b Сикорская Светлана Всеволодовна
+                  %br
+                  Доктор наук, (PhD&nbsp;Biochemistry), преподаватель
+                %p Автор более 100 научных публикаций и&nbsp;более 30&nbsp;книг по&nbsp;косметологии и&nbsp;макияжу. Создатель учебно-методических материалов по&nbsp;новым направлениям подготовки специалистов в&nbsp;индустрии красоты. Для Академии Косметологии и&nbsp;Макияжа подготовила ряд образовательных программ, в&nbsp;том числе: эстетическая косметология, космецевтика, аппаратная косметология, фито- и&nbsp;ароматерапия в&nbsp;косметологии, визажное искусство для кино, театра и&nbsp;телевидения, СПА-терапия. Разработала программы дистанционного обучения специалистов индустрии красоты.
+                %p Инициатор создания и&nbsp;ведущая телепрограмм на&nbsp;центральных каналах телевидения&nbsp;&mdash; Первый канал, Россия, НТВ. Провела более ста газетных и&nbsp;телевизионных интервью на&nbsp;тему красоты и&nbsp;здоровья с&nbsp;известными российскими персонами, в&nbsp;их&nbsp;числе: Горбачев, Явлинский, Жириновский, Зюганов, Хакамада, Памфилова, Михалков-Кончаловский, Глазунов.
+                %p
+                  %b Сикорская Анна Владимировна
+                  %br
+                  Проректор, руководитель консалтингового центра ДРК
+                %p Выпускница философского факультета МГУ им. М.В.Ломоносова, политолог. Прошла профессиональную подготовку по&nbsp;косметологии и&nbsp;имиджмейкерству при ЦНДИСИ АН&nbsp;СССР. Сертифицированный тренер НЛП (ИГиСП), сертифицированный специалист по&nbsp;классическому и&nbsp;эриксоновскому гипнозу. Соучредитель Международной академии генной психологии. Автор более 10&nbsp;книг и&nbsp;учебных пособий по&nbsp;салонному бизнесу, менеджменту, имиджмейкерству и&nbsp;косметологии.
+                %p Для Академии Косметологии и&nbsp;Макияжа подготовила ряд образовательных программ, в&nbsp;том числе: &laquo;Владелец/управляющий салоном красоты&raquo;, &laquo;Салон красоты &laquo;Под ключ&raquo;, &laquo;Имиджмейкер/PR-консультант&raquo;. Постоянный участник, автор и&nbsp;ведущая популярных телевизионных и&nbsp;радио-программ.
+                %p
+                  %b Бельченко Евгений Николаевич
+                  %br
+                  Соучредитель, главный идеолог создания ДРК
+                %p Выпускник факультета журналистики МГУ им. М.В.Ломоносова, отделение телевидения. Писатель, публицист, фотохудожник. Один из&nbsp;ведущих обозревателей в&nbsp;области красоты. В&nbsp;соавторстве со&nbsp;Светланой Сикорской издал 20&nbsp;популярных книг и&nbsp;брошюр о&nbsp;косметике, красоте, моде и&nbsp;уходе за&nbsp;внешностью. Автор первой в&nbsp;СССР книги о&nbsp;косметике с&nbsp;цветными иллюстрациями&nbsp;&mdash; &laquo;Секреты красоты&raquo; (1986&nbsp;год). Издатель &laquo;Газеты для женщин&raquo;, награжденной Дипломом и&nbsp;Премией Союза журналистов России как лучшее издание для женщин (1997&nbsp;год).
+                %p Автор известных PR-проектов и&nbsp;акций в&nbsp;области красоты. Учредитель национальной ежегодной премии &laquo;Стильмедиа&raquo; для журналистов и&nbsp;СМИ за&nbsp;пропаганду здорового образа жизни. Один из&nbsp;продюсеров телепрограмм о&nbsp;красоте на&nbsp;центральных
+                %p и&nbsp;кабельных каналах телевидения.
+
+
+
+          %div.dl(data-state='collapsed')
+            %div.dt
+              %span Образовательные и&nbsp;медицинские лицензии
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+            %div.dd
+              .content.js-content(data-size='lg')
+                %p= link_to 'Посмотреть лицензии', '#'
+
+
+
+          %div.dl(data-state='collapsed')
+            %div.dt.js-images-slider-init
+              %span Образцы выпускных документов
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+            %div.dd
+              = render 'layouts/courses_shop/components/images_slider'
+
+
+
+          %div.dl(data-state='collapsed')
+            %div.dt.js-teachers-items-slider-init
+              %span Профессорско-преподавательский состав
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+            %div.dd
+              = render 'layouts/courses_shop/components/teachers_items'

@@ -1,0 +1,23 @@
+.page.page--promo
+  = render 'courses_shop/about/menu'
+
+  .tab{style: 'display: block;'}
+    .page-section
+      .container
+        .filter
+          %ul.filter__list
+            %li.filter__item
+              .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+                %span= @current_speciality.try(:title) || 'Все направления'
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                .tooltip__popup
+                  .tooltip__popup-inner
+                    %ul
+                      %li= link_to 'Все направления', courses_shop_teachers_path
+                      - @specialities.each do |speciality|
+                        %li= link_to speciality.title, courses_shop_teachers_path(speciality_id: speciality.id)
+        .teachers-cards
+          %ul.teachers-cards__list#teachers_list
+            = render partial: 'courses_shop/about/teacher', collection: @teachers, as: :teacher
+        = pagination_complex(@teachers, '#teachers_list', false)

@@ -1,0 +1,86 @@
+.courses-items
+  %ul.courses-items__list
+    - 1.upto(2) do
+      %li.courses-items__item
+        %article.course-item(data-actions-show='hover')
+          = link_to '#course-item-1', class: 'course-item__image has-promotion-flag js-hover', 'data-promotion-caption' => 'Подарок' do
+            = image_tag 'https://placehold.it/260x260?text=∴', alt: ''
+          .course-item__content
+            %ul.course-meta
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                %span пн-пт, с&nbsp;10:00 до&nbsp;15:00'
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                %span Осталось 6&nbsp;мест
+            .h4.course-item__title
+              = link_to 'Врач-косметолог (Косметология)', '#course-item-1', class: 'js-hover'
+            .course-item__price
+              %b от&nbsp;3&nbsp;516&nbsp;руб./мес
+            %ul.course-item__actions
+              %li
+                = link_to 'Подробнее', '#course-item-1', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+              %li
+                = link_to 'Записаться', '#', class: 'button button--base-fill', 'data-size' => 'sm'
+
+      %li.courses-items__item
+        %article.course-item(data-actions-show='hover')
+          = link_to '#course-item-2', class: 'course-item__image js-hover' do
+            = image_tag 'https://placehold.it/260x260?text=∴', alt: ''
+          .course-item__content
+            %ul.course-meta
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                %span &mdash;
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                %span &mdash;
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                %span &mdash;
+            .h4.course-item__title
+              = link_to 'Сестринская косметология', '#course-item-2', class: 'js-hover'
+            .course-item__price
+              %b 29&nbsp;000&nbsp;руб./мес
+            %ul.course-item__actions
+              %li
+                = link_to 'Подробнее', '#course-item-2', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+              %li
+                = link_to 'Записаться', '#', class: 'button button--base-fill', 'data-size' => 'sm'
+
+      %li.courses-items__item
+        %article.course-item(data-actions-show='hover')
+          = link_to '#course-item-3', class: 'course-item__image has-promotion-flag js-hover', 'data-promotion-caption' => '-40%' do
+            = image_tag 'https://placehold.it/260x260?text=∴', alt: ''
+          .course-item__content
+            %ul.course-meta
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                %span пн-пт, с&nbsp;10:00 до&nbsp;15:00
+              %li
+                %svg.icon(role='img' data-size='18')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                %span Осталось 6&nbsp;мест
+            .h4.course-item__title
+              = link_to 'Косметик Эстетист для людей с&nbsp;мед. образованием'.html_safe, '#course-item-3', class: 'js-hover'
+            .course-item__price
+              %b от&nbsp;26&nbsp;000&nbsp;руб./мес
+            %ul.course-item__actions
+              %li
+                = link_to 'Подробнее', '#course-item-3', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+              %li
+                = link_to 'Записаться', '#', class: 'button button--base-fill', 'data-size' => 'sm'

@@ -1,0 +1,4 @@
+.mt-1
+  %label.form_el.form_label= Student.human_attribute_name(field_name)
+  .form_el.js-form_el.form_tx
+    = f.text_field field_name, class: local_assigns.fetch(:input_class, 'form_el_tag form_tx_tag'), data: {target_field: field_name}, readonly: local_assigns[:readonly]

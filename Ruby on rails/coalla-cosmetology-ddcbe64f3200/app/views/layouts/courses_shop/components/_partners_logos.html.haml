@@ -1,0 +1,16 @@
+%section.partners-logos
+  .h4.partners-logos__title Партнеры института
+
+  .partners-logos__wrap
+    .partners-logos__list#partners-logos-slider
+      - 1.upto(6) do
+        .partners-logos__logo
+          %figure.partner-logo
+            = image_tag 'https://placehold.it/130x40?text=∴', alt: '', class: 'partner-logo__logo'
+
+    = link_to '#', class: 'partners-logos__nav partners-logos__nav--prev', id: 'partners-logos-slider-prev' do
+      %svg.icon(role='img' data-size='34')
+        %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+    = link_to '#', class: 'partners-logos__nav partners-logos__nav--next', id: 'partners-logos-slider-next' do
+      %svg.icon(role='img' data-size='34')
+        %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

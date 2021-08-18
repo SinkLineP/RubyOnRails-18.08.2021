@@ -1,0 +1,36 @@
+- main_info = @html_items[0]
+- requisites = @html_items[1]
+- footer = @html_items[2]
+
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title= ty_html(main_info.try(:title))
+
+      .content-announce
+        .content-announce__text
+          %p= ty_html(main_info.try(:description))
+
+      .content-narrow
+        .content.js-content(data-size='sm')
+          = safe_html_content(replace_video_links(main_info.try(:content)))
+
+  %section.page-section.page-section--background.page-section--content
+    .container
+      .h4.page-section__title= ty_html(requisites.try(:title))
+
+      .content-announce
+        .content-announce__text
+          %p= ty_html(requisites.try(:description))
+
+      .content-narrow
+        .content.js-content(data-size='sm')
+          = safe_html_content(requisites.try(:content))
+
+  %section.page-section
+    .container
+      .content-narrow
+        .content.js-content(data-size='sm')
+          = safe_html_content(footer.try(:content))

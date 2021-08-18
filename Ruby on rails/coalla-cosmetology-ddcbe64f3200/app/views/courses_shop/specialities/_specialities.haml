@@ -1,0 +1,65 @@
+%section.page-promo#page-promo
+  .page-promo__breadcrumbs
+    .container
+      %nav
+        %ul
+          %li
+            = link_to shop_title, root_path
+          - if @current_speciality != @parent_speciality
+            %li= link_to @parent_speciality.genitive_form, alternative_speciality_url(@parent_speciality)
+            %li= @current_speciality.display_title
+          - else
+            %li= @parent_speciality.genitive_form
+      %script{type: "application/ld+json"}
+        :erb
+          {
+          "@context": "http://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@id": "<%= root_url %>",
+              "name": "<%= shop_title %>"
+            }
+            },
+            {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+            "@id": "<%= alternative_speciality_url(@parent_speciality) %>",
+            "name": "<%= @parent_speciality.genitive_form %>"
+             }
+            }
+            <% if @current_speciality != @parent_speciality %>
+            ,
+            {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@id": "<%= alternative_speciality_url(@current_speciality) %>",
+              "name": "<%= @current_speciality.display_title %>"
+            }
+            }
+            <% end %>
+          ]
+          }
+
+  .container
+    %header.page-promo__header
+      %h1.page-promo__title= @current_speciality.page_title
+      = render 'layouts/courses_shop/hr_large'
+
+  .page-promo__tabs
+    %select.select2.js-select2.js-select-courses
+      %option{selected: @current_speciality == @parent_speciality, value: alternative_speciality_url(@parent_speciality) } Все курсы
+      - @specialities.each do |speciality|
+        %option{selected: @current_speciality == speciality, value: alternative_speciality_url(speciality)}= speciality.display_title
+
+    %ul
+      %li
+        = link_to @current_shop.barbershop? ? 'Все курсы' : 'Все курсы направления', alternative_speciality_url(@parent_speciality), class: (@current_speciality == @parent_speciality && 'is-active')
+      - @specialities.each do |speciality|
+        %li
+          = link_to speciality.display_title, alternative_speciality_url(speciality), class: (@current_speciality == speciality && 'is-active')

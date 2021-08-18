@@ -1,0 +1,31 @@
+.grid.nested-fields
+  .grid_i.grid_i__grid-2-9>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Дата начала
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx.form_tx_time
+          = f.text_field :begin_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.begin_on), readonly: true
+  .grid_i.grid_i__grid-2-9>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Дата окончания
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx.form_tx_time
+          = f.text_field :end_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.end_on), readonly: true
+  .grid_i.grid_i__grid-2-9>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Время начала
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx.form_tx_time
+          = f.text_field :start_time, class: 'form_el_tag form_tx_tag js-timepicker', value: f.object.formatted_start_time
+  .grid_i.grid_i__grid-2-9>
+    .grid
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .tx-700 Время окончания
+      .grid_i.grid_i__grid-1-2.nested-fields_elements
+        .form_el.js-form_el.form_tx.form_tx_time
+          = f.text_field :end_time, class: 'form_el_tag form_tx_tag js-timepicker', value: f.object.formatted_end_time
+  .grid_i.grid_i__grid-1-9.tx-right>
+    = link_to_remove_association raw('<div class="icon_del">X</div>'), f

@@ -1,0 +1,17 @@
+%section.page-promo-index#page-promo{style: current_shop.barbershop? && 'background-image: url("/assets/courses_shop/page_promo/page_promo_barbershop_index.jpg")'}
+  .page-promo-index__inner
+
+    .container
+      %header.page-promo-index__header
+        - if !current_shop.barbershop? && show_configurator_on_main?
+          %h1.page-promo-index__title Выберем курс?
+        - else
+          %h1.page-promo-index__title= current_shop.barbershop? ? 'Искусство дарить красоту' : 'Качественное образование в индустрии красоты<br>с 1989 года'.html_safe
+
+      - if !current_shop.barbershop? && show_configurator_on_main?
+        = form_for CourseConfigurator.new, url: courses_shop_configurator_url, as: 'c', method: :get, html: {class: 'course-select'} do |f|
+          .course-select__content
+            = render 'courses_shop/common/configurator', f: f
+      - else
+        .page-promo-index__education-groups
+          = render 'layouts/courses_shop/components/education_group_select'

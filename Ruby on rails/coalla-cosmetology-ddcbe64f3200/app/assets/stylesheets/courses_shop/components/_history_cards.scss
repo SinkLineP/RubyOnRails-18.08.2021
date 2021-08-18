@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+// History cards
+.history-cards {
+  position: relative;
+
+  @include media($breakpoint-lg) {
+    width: 100% / 3 * 2;
+    margin: {
+      right: auto;
+      left: auto;
+    }
+  }
+
+  // List
+  &__list {
+    &:not(.slick-initialized) {
+      .history-cards__card:nth-child(n+2) {
+        display: none !important;
+      }
+
+      // Hiding arrows nav until slider init
+      ~ .history-cards__nav {
+        display: none;
+      }
+    }
+  }
+
+  // Card
+  &__card {
+    @include media($breakpoint-sm) {
+      margin: { // Same as .courses-cards__card
+        right: .75rem;
+        left: .75rem;
+      }
+    }
+  }
+
+  // Nav
+  &__nav {
+    @include size(6rem);
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    @include transition(box-shadow $transition-duration-base);
+    @include hover(box-shadow, none);
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    margin-top: -3rem;
+    background: $color-bg;
+    border-radius: 50%;
+    box-shadow: 0 1rem 3rem 0 rgba(196, 170, 165, .4);
+
+    @include media($breakpoint-lg) {
+      @include transform(translateY(-50%));
+      top: 50%;
+      margin-top: -1rem;
+    }
+
+    &--prev {
+      @include media($breakpoint-sm) {
+        right: 50%;
+        margin-right: .5rem;
+      }
+
+      @include media($breakpoint-lg) {
+        left: -3rem;
+      }
+    }
+
+    &--next {
+      @include media($breakpoint-sm) {
+        left: 50%;
+        margin-left: .5rem;
+      }
+
+      @include media($breakpoint-lg) {
+        right: -3rem;
+      }
+    }
+
+    .icon {
+      fill: $color-brand;
+    }
+  }
+
+  .icon {
+    @include hover(fill, $color-base, '.history-card__nav:hover');
+  }
+
+  // If slider init
+  .slick-slider {
+    z-index: 1;
+
+    .slick-track {
+      @include display(flex);
+      @include align-items(stretch);
+    }
+  }
+
+  .slick-initialized {
+    // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+    .slick-slide {
+      @include display(flex);        // 1
+      @include align-items(stretch); // 1
+      height: auto;
+    }
+  }
+}
+
+// History card
+// 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+.history-card {
+  @include flex(1);              // 1
+  @include display(flex);        // 1
+  @include align-items(stretch); // 1
+  padding: 3rem 3rem 6rem;
+  background: #fff;
+  border-radius: $border-radius-lg;
+
+  @include media($breakpoint-lg) {
+    padding: 5rem 6rem 3rem;
+  }
+
+  // Inner
+  // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+  &__inner {
+    @include flex(1); // 1
+    @include display(flex);
+    @include flex-direction(column);
+  }
+
+  // Header, footer
+  &__header {
+    margin-bottom: 3.5rem;
+    text-align: center;
+  }
+
+  // Title
+  &__title {
+    letter-spacing: -1pt;
+  }
+
+  // Caption
+  &__caption {
+    margin-top: 1.5rem;
+  }
+
+  // Content
+  &__content {
+    margin-bottom: 3.5rem;
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include align-items(flex-start);
+    }
+  }
+
+  // Photo
+  &__photo {
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+  }
+
+  // Text
+  &__text {
+    @include media($breakpoint-sm) {
+      margin-top: 3.5rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+
+    > p {
+      @include text-sm;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  // Footer
+  &__footer {
+    margin-top: auto;
+    text-align: center;
+  }
+}

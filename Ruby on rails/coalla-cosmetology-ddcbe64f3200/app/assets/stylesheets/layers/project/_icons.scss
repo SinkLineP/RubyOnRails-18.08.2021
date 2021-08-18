@@ -1,0 +1,75 @@
+@include class(ico) {}
+
+.square_icon {
+  display: inline-block;
+  height: 3.3rem;
+  width: 3.3rem;
+  margin-right: 1.7rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'PT Sans Caption', sans-serif;
+  line-height: 3.3rem;
+  background-color: #fff;
+  border-radius: .4rem;
+}
+
+.icon_del {
+  display: inline-block;
+  width: 1.9rem;
+  height: 1.9rem;
+  background-color: #999;
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.9rem;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: #ba3c5f;
+  }
+}
+
+.icon_edit {
+  display: inline-block;
+  width: 1.9rem;
+  height: 1.9rem;
+  background-color: #3F8EDF;
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.9rem;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    background-color: #ba3c5f;
+  }
+}
+
+.icon_tooltip {
+  display: inline-block;
+  width: 1.9rem;
+  height: 1.9rem;
+  background-color: #ddd;
+  text-align: center;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.9rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon_add {
+  display: inline-block;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-right: .5rem;
+  background-color: $voice-color;
+  text-align: center;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1.8rem;
+  border-radius: 50%;
+  &:hover {
+    background-color: #ba3c5f;
+  }
+}

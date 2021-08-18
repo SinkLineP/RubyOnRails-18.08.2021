@@ -1,0 +1,43 @@
+%main#main.main{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_6
+        .flowers_inner
+          .h2 ПРОВЕРКА ПОДЛИННОСТИ
+          .h2 ВЫПУСКНЫХ ДОКУМЕНТОВ
+
+      - if @subscription_document.present?
+        .tx-center.mt-2.mb-2
+          .tx-700.mb-1 Результат
+          %div= @subscription_document.student_full_name
+          %div= @subscription_document.course_name
+          %div= @subscription_document.issued_at.year
+          %div= @subscription_document.document_title
+      - elsif action_name == 'create'
+        .tx-center.mt-2.mb-2
+          .tx-700.mb-1 Результат
+          %div Документов, удовлетворяющих Вашему запросу, не&nbsp;найдено
+
+      = form_tag document_verification_path, class: 'form js-form' do
+        .grid.grid__collapse.tx-center
+          .grid_i.grid_i__grid-7-12.mb-1>
+            .form_el.js-form_el.form_el__block.form_tx
+              = text_field_tag :number, @number, class: 'form_el_tag form_tx_tag js-number', placeholder: 'Регистрационный номер'
+          .grid_i.grid_i__grid-7-12>
+            .form_el.js-form_el.form_el__block.form_btn
+              %p.form_el_inner.form_btn_inner ПРОВЕРИТЬ
+              = submit_tag '', class: 'form_el_tag form_btn_tag', disabled: @number.blank?, id: 'submit_verification'
+
+      .h3.tx-center.mt-4 Где смотреть регистрационный номер
+      - if @tutorial.pdf_present?
+        .grid
+          .grid_i.grid_i__grid-3-4.grid_i__prefix-1-8
+            .fotorama{data: {allowfullscreen: 'native', arrows: 'always', nav: 'false'}}
+              - @tutorial.pdf_images.each do |pdf_image|
+                = link_to nil, pdf_image.image_url(:main)
+            %p.tx-center.mt-1 Страница 1 из #{@tutorial.pdf_images.count}
+      - else
+        .tx-center
+          = @tutorial.value.try(:html_safe)
+
+      .mt-2.tx-center.tx-i Проверка дипломов работает в&nbsp;тестовом режиме для документов, выданных после 1 сентября 2017 года

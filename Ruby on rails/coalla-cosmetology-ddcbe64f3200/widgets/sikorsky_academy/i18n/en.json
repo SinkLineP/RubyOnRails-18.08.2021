@@ -1,0 +1,11 @@
+{
+  "widget": {
+    "name": "Cards customization",
+    "short_description": "Add additional logic to cards",
+    "description": "Some new fields for cards"
+  },
+  "settings": {
+    "api_key": "API key",
+    "api_host": "API host"
+  }
+}

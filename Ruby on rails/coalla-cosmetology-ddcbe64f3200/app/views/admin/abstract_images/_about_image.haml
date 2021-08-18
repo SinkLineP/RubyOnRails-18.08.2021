@@ -1,0 +1,7 @@
+.grid_i.grid_i__grid-7-9>
+  = about_image.name
+.grid_i.grid_i__grid-2-9.tx-center>
+  = link_to url_for(action: :edit, id: about_image.id) do
+    .icon_edit &#9998;
+  = link_to url_for(action: :destroy, id: about_image.id), title: 'Удалить', method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

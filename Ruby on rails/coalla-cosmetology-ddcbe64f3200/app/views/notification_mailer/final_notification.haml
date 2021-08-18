@@ -1,0 +1,16 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Здравствуйте, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}= ty('Спасибо, что учились в институте «Дом Русской Косметики»!')
+    %p{style: 'margin: 0;text-align: left;'}= ty('Мы хотим сделать обучение лучше и очень просим вас нам в этом помочь.')
+    %p{style: 'margin: 0;text-align: left;'}
+      = ty('Пожалуйста, ответьте на несколько вопросов об обучении. Это займет не более пяти минут.')
+      = link_to 'Ответить', "https://surveymonkey.com/r/YNL5XZR?gs=#{@subscription.id}", target: '_blank', rel: 'nofollow'

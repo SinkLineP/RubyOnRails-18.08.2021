@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+// Select
+.select {
+  &[data-validation="invalid"] {
+    &[data-validation-text] {
+      &::after {
+        @include text-sm;
+        display: block;
+        margin-top: .25rem;
+        color: $color-error;
+        content: attr(data-validation-text);
+        text-align: left;
+      }
+    }
+
+    .select2-container--default .select2-selection--single {
+      border-color: $color-error;
+    }
+  }
+}

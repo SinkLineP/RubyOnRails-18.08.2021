@@ -1,0 +1,77 @@
+.courses-cards
+  .courses-cards__list#courses-cards-slider
+    - 1.upto(3) do
+      .courses-cards__card
+        %article.course-card.has-promotion-flag.js-course-card(data-promotion-caption='-30%')
+          .course-card__inner
+            .course-card__image.js-course-card-image
+              = image_tag 'https://placehold.it/370x210?text=∴', alt: ''
+            .course-card__content.js-course-card-content
+              %ul.course-meta.course-card__meta.js-course-card-meta
+                %li
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                  10&nbsp;июля
+                %li
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                  %span <span class='is-lg'>Осталось </span>4&nbsp;места
+              .h5.course-card__title
+                = link_to 'Лазерные медоты лечения патологий кожи', '#course-card-1', class: 'js-hover'
+              %p.course-card__announce Курс для врачей-косметологов и&nbsp;дерматовенерологов, которые хотят освоить лечение сосудистых образований...
+              %p.course-card__price от&nbsp;2&nbsp;155&nbsp;руб./мес
+              %ul.course-card__actions
+                %li
+                  = link_to 'Подробнее', '#course-card-1', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+                %li
+                  = link_to 'Записаться', '#', class: 'button button--base-fill', 'data-size' => 'sm'
+
+      .courses-cards__card
+        %article.course-card.js-course-card
+          .course-card__inner
+            .course-card__image.js-course-card-image
+              = image_tag 'https://placehold.it/370x210?text=∴', alt: ''
+            .course-card__content.js-course-card-content
+              %ul.course-meta.course-card__meta.js-course-card-meta
+                %li
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                  15&nbsp;июля
+                %li
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                  %span <span class='is-lg'>Осталось </span>12&nbsp;мест
+              .h5.course-card__title
+                = link_to 'Врач-косметолог', '#course-card-2', class: 'js-hover'
+              %p.course-card__announce Курс для врачей дерматологов, без подготовки и&nbsp;опыта в&nbsp;косметологии. Выпускники могут работать врачом...
+              %p.course-card__price от&nbsp;35&nbsp;167&nbsp;руб./мес
+              %ul.course-card__actions
+                %li
+                  = link_to 'Подробнее', '#course-card-2', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+                %li
+                  = link_to 'Записаться', '#', class: 'button button--base-fill', 'data-size' => 'sm'
+
+      .courses-cards__card
+        %article.course-card.has-promotion-flag.js-course-card(data-promotion-caption='Подарок')
+          .course-card__inner
+            .course-card__image.js-course-card-image
+              = image_tag 'https://placehold.it/370x210?text=∴', alt: ''
+            .course-card__content.js-course-card-content
+              %ul.course-meta.course-card__meta.js-course-card-meta
+                %li
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                  25&nbsp;июля
+                %li
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#user')
+                  %span <span class='is-lg'>Осталось </span>5&nbsp;мест
+              .h5.course-card__title
+                = link_to 'Наращивание и&nbsp;восстановление бровей'.html_safe, '#course-card-3', class: 'js-hover'
+              %p.course-card__announce Курс поможет вам за&nbsp;один день освоить востребованный и&nbsp;модный навык.
+              %p.course-card__price от&nbsp;9&nbsp;000&nbsp;руб./мес
+              %ul.course-card__actions
+                %li
+                  = link_to 'Подробнее', '#course-card-3', class: 'button button--base-outline js-hover', 'data-size' => 'sm'
+                %li
+                  = link_to 'Записаться', '#', class: 'button button--base-fill', 'data-size' => 'sm'

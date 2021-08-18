@@ -1,0 +1,17 @@
+%main#main.main{role: 'main'}
+  %section.test_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.header
+        .grid.grid__collapse
+          = render 'tasks/additional/attempt'
+          .grid_i.grid_i__grid-4-6>
+            %h1= result_header
+            .tx-i= @task.display_name.mb_chars.downcase
+          .grid_i.grid_i__grid-1-6.pt-1>
+      - if current_user.task_failed?(@task)
+        = render 'results/additional/all_attempts_failed'
+      - else
+        - if @result.time_expired?
+          = render 'results/additional/expired'
+        - else
+          = render "results/#{@result.type_name.downcase}"

@@ -1,0 +1,19 @@
+- share_params = local_assigns[:share_params]
+- if share_params.all?{|key, value| value.present?}
+  - share_params.merge!(user: current_user.id)
+  - url = share_url(share_params.merge(user: current_user.id))
+  - title = share_title(share_params)
+  - image = root_url + 'assets/share.jpg'
+- else
+  - url = static_page_url(:about)
+  - title = 'Дом Русской Косметики'
+.social-likes{data: {url: url, title: title, image: image}, style: 'display: none;'}
+  .twitter{style: 'display: none;'}
+  .facebook{style: 'display: none;'}
+  .vkontakte{style: 'display: none;'}
+%a.social_links-a{:href => '#', data: {target: 'twitter'}}
+  %i.fa.fa-twitter
+%a.social_links-a{:href => '#', data:{target: 'facebook'}}
+  %i.fa.fa-facebook
+%a.social_links-a{:href => '#', data: {target: 'vkontakte'}}
+  %i.fa.fa-vk

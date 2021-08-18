@@ -1,0 +1,18 @@
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        %h1.page__title Сведения об&nbsp;образовательной организации
+
+      .info-accordion
+        .info-accordion__list.accordion.js-accordion
+          = render partial: 'institution_block', collection: @institution_blocks, as: :institution_block
+
+          %div.dl(data-state='collapsed')
+            %div.dt.js-teachers-items-slider-init
+              %span Профессорско-преподавательский состав
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+            %div.dd
+              = render 'courses_shop/courses/instructors'

@@ -1,0 +1,26 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+    <center><h2>Messages</h2></center>
+        <hr>
+            <button class=" btn btn-info" type="submit" onclick="window.location.href='http://127.0.0.1:5000'">Главная</button>
+        <hr>
+<form method="post" action="/add_message">
+    <input class="border border-info" type="text" name="text">
+    <input class="border border-info" type="text" name="tag">
+    <button class="btn btn-info" type="submit">Add message</button>
+</form>
+
+<h3>Messages list</h3>
+{% for message in messages %}
+<div>{{ message.text }}&nbsp;<b>#{{ message.tag }}</b></div>
+{% endfor %}
+
+</body>
+</html>

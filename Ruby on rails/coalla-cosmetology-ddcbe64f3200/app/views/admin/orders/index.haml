@@ -1,0 +1,28 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @student.display_name => edit_admin_student_path(@student), 'заказы' => '#'}
+      %h3.tx-center ЗАКАЗЫ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_student_order_path(@student), class: 'a_under' do
+              %span.icon-add> +
+              Добавить заказ
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-2-12>
+                %p № заказа
+              .grid_i.grid_i__grid-2-12>
+                %p Кол-во сделок
+              .grid_i.grid_i__grid-5-12.tx-center>
+                %p Дата создания
+              .grid_i.grid_i__grid-2-12.tx-right>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @orders, partial: 'order'
+      = will_paginate @orders, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

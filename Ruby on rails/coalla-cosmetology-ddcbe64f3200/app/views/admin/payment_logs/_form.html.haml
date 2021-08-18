@@ -1,0 +1,40 @@
+= render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @student.display_name => edit_admin_student_path(@student), 'платежи' => admin_student_payment_logs_path(@student), 'платеж' => '#'}
+%h3.tx-center= 'ПЛАТЕЖ'
+= form_for [:admin, @student, @payment_log], html: {class: 'form js-form form__admin', autocomplete: 'off', id: 'payment_log_form'} do |f|
+  .admin_header
+    %label.form_el.form_label Сумма:
+    .form_el.js-form_el.form_tx
+      = f.text_field :amount, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Дата платежа:
+        .form_el.js-form_el.form_tx
+          = f.text_field :payed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.try(:payed_on)), readonly: true
+      .mt-1
+        %label.form_el.form_label Тип платежа:
+        .form_el.js-form_el
+          = f.select :payment_type, PaymentLog.payment_type.options, {}, class: 'form_el_tag form_select_tag selectordie js-payment-type-select', data: {size: 5}
+      .mt-1
+        %label.form_el.form_label Вид:
+        .form_el.js-form_el
+          = f.select :appointment, PaymentLog.appointment.options, {}, class: 'form_el_tag form_select_tag selectordie js-appointment-select', data: {size: 5}
+      .mt-1.js-group{style: !@payment_log.education? && 'display: none;'}
+        %label.form_el.form_label Группа
+        .form_el.js-form_el
+          = f.select :group_id, @student.groups.ascending_name.map{|l| [l.title, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie js-group-price-select', data: {size: 5}
+      .mt-1.js-comment{style: !@payment_log.extraordinary? && 'display: none;'}
+        %label.form_el.form_label Обоснование платежа:
+        .form_el.js-form_el.form_tx
+          = f.text_field :comment, class: 'form_el_tag form_tx_tag'
+      .mt-1.js-payment{style: !@payment_log.magazine? && 'display: none;'}
+        %label.form_el.form_label Обоснование платежа:
+        .form_el.js-form_el
+          = f.select :magazine_payment_type_id, MagazinePaymentType.ordered.map{|p| [p.title, p.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5}
+      .grid.mt-1
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @payment_log.errors

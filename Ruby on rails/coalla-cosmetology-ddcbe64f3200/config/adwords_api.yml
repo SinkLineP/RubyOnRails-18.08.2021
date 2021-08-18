@@ -1,0 +1,19 @@
+---
+:authentication:
+  :method: OAuth2
+  :oauth2_client_id: 512248889548-k2jifamee8p2um00ns48ote9tdve8v4u.apps.googleusercontent.com
+  :oauth2_client_secret: 4gMYNBW41uRanlQ4dQDf6AxP
+  :developer_token: oaUxQXm4NlsgnNDWkV2UDQ
+  :client_customer_id: 812-802-6434
+  :oauth2_token:
+    :access_token: ya29.Ci9mA3y7pbBZc4Ty-CDe_ICeO-J3Tot4PbWMYrz-xn6IC80n8Ll8bim_KgNaekPmBg
+    :refresh_token: 1/Hml_jKr1AaelE6csGVjSRzhUuXtbKeVARm1CWlBBtug
+    :issued_at: 2016-09-22 14:47:56.235785590 +03:00
+    :expires_in: 3600
+    :id_token:
+:service:
+  :environment: PRODUCTION
+:connection:
+  :enable_gzip: false
+:library:
+  :log_level: INFO

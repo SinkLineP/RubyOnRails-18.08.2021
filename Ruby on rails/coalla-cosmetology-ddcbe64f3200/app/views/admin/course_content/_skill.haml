@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= skill.name.truncate(100)
+    = hidden_field_tag 'course[skill_ids][]', skill.id, data: {block_id: true}

@@ -1,0 +1,54 @@
+- work = @work_result.work
+- if work.with_sheet_columns?
+  - if work.hairdresser_work?
+
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label Санитария и гигиена:
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :hygiene, class: 'form_el_tag form_tx_tag'
+
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label Эргономика:
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :ergonomic, class: 'form_el_tag form_tx_tag'
+
+  - else
+
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label Внешний вид:
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :presence, class: 'form_el_tag form_tx_tag'
+
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label Забота о клиенте:
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :customer_care, class: 'form_el_tag form_tx_tag'
+        
+    .grid_i.grid_i__grid-2-6
+      %label.form_el.form_label Гигиена и стерилизация:
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :hygiene, class: 'form_el_tag form_tx_tag'
+
+
+= f.fields_for :exercise_results, include_id: false do |exercise_result_field|
+  - exercise = exercise_result_field.object
+  - unless exercise.new_record?
+    = exercise_result_field.hidden_field :id
+  = exercise_result_field.hidden_field :exercise_id
+  = exercise_result_field.hidden_field :text
+  = exercise_result_field.hidden_field :parent_text
+  - if exercise.parent_text.present? && exercise_result_field.index % 3 == 0
+    .grid_i.grid_i__grid-1-1.mb-2
+      %label.form_el.form_label= exercise.parent_text
+  .grid_i.grid_i__grid-1-1
+    %label.form_el.form_label= exercise.text
+  .grid_i.grid_i__grid-2-6
+    %label.form_el.form_label Баллы:
+  .grid_i.grid_i__grid-3-6
+    .form_el.js-form_el.form_tx
+      = exercise_result_field.text_field :mark, class: 'form_el_tag form_tx_tag'

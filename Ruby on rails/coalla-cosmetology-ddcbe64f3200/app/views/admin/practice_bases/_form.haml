@@ -1,0 +1,77 @@
+= form_for [:admin, @practice_basis], url: @practice_basis.new_record? ? url_for(action: :create) : url_for(action: :update, id: @practice_basis.id), as: :practice_basis, html: {id: 'practice_basis_form', class: 'form js-form', remote: true} do |f|
+  .grid
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :title, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :title, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :address, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :address, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :legal_address, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :legal_address, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :inn, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :inn, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :kpp, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :kpp, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :account, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :account, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :bik, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :bik, class: 'form_el_tag form_tx_tag js-bic'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :bank, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :bank, class: 'form_el_tag form_tx_tag js-bank'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :correspondent_account, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :correspondent_account, class: 'form_el_tag form_tx_tag js-ca'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :phone, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :phone, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :email, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :email, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      %label.form_el.form_label Мед. лицензия
+    .grid_i.grid_i__grid-1-3>
+      .form_el.js-form_el.form_file{data: {placeholder: "#{@practice_basis.medical_license_filename || 'Загрузить'}"}}
+        %p.form_el_inner.js-form_el_inner.form_file_inner
+        %input.form_el_tag.form_file_tag.js-medical-license-file{:type => 'file'}
+        = f.hidden_field :remove_medical_license, data: {remove_medical_license: true}
+        = f.hidden_field :medical_license_cache, data: {medical_license_cache: true}
+    - if @practice_basis.medical_license.file.present?
+      .grid_i.grid_i__grid-1-6.tx-center>
+        = link_to 'скачать', admin_private_file_path(file: @practice_basis.medical_license.url), target: '_blank', class: 'a_under js-medical-license-download', title: 'Скачать'
+    .grid_i.grid_i__grid-1-12.tx-center>
+      = link_to 'X', '#', class: 'js-medical-license-destroy', title: 'Удалить', style: !@practice_basis.medical_license.file.present? && 'display: none;'
+    .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+      .form_el.js-form_el.form_btn
+        %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+        %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+  .icon_del.arcticmodal-close X
+
+= javascript_include_tag 'admin/practice_bases'

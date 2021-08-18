@@ -1,0 +1,16 @@
+= render 'admin/breadcrumbs', crumbs: {'раздел документов' => admin_document_sections_path, 'раздел' => '#'}
+%h3.tx-center= 'РАЗДЕЛЫ ДОКУМЕНТОВ'
+= form_for [:admin, @document_section], html: {id: 'document_section_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+  .admin_body
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @document_section.errors

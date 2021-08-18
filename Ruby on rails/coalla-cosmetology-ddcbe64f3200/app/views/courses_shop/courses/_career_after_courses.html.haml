@@ -1,0 +1,35 @@
+.career-after-courses
+  .career-after-courses__inner
+    .career-after-courses__sheets
+      %article.career-after-courses__sheet
+        %header.career-after-courses__header
+          = image_tag 'courses_shop/avatar.svg', width: '120', height: '120', alt: ''
+
+          .career-after-courses__record
+            .h4.career-after-courses__name Валентина Петрова
+            - if @course.job.present?
+              %p.career-after-courses__specialty= @course.job
+            - if @course.profit > 0
+              %p.career-after-courses__income доход #{format_money(@course.profit)}/мес
+
+        - if @course.skills.any? || @course.pictures.any?
+          .career-after-courses__content
+            - if @course.skills.any?
+              %div.dl.career-after-courses__key-skills
+                %div.dt Ключевые навыки
+                - @course.skills.each do |skill|
+                  %div.dd= skill.name
+
+            - if @course.pictures.any?
+              %div.dl.career-after-courses__documents
+                %div.dt После курса вы получите документы
+                %div.dd
+                  .career-after-courses__documents-list#career-after-courses-documents-slider
+                    = render partial: 'picture', collection: @course.pictures
+
+                  = link_to '#', class: 'career-after-courses__documents-nav career-after-courses__documents-nav--prev', id: 'career-after-courses-documents-slider-prev' do
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+                  = link_to '#', class: 'career-after-courses__documents-nav career-after-courses__documents-nav--next', id: 'career-after-courses-documents-slider-next' do
+                    %svg.icon(role='img' data-size='18')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

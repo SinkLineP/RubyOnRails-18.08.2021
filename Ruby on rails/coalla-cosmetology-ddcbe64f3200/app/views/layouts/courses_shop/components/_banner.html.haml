@@ -1,0 +1,8 @@
+- if user_signed_in?
+  = render "layouts/courses_shop/components/#{mobile? ? 'mobile_banner' : 'banner_call'}", banner: Banner.lucky_call(current_user.try(:phone).blank?)
+-else
+  - banner = Banner.lucky_registration
+  - if banner.present?
+    = render "layouts/courses_shop/components/#{mobile? ? 'mobile_banner' : 'banner_registration'}", banner: Banner.lucky_registration
+  - else
+    = render "layouts/courses_shop/components/#{mobile? ? 'mobile_banner' : 'banner_call'}", banner: Banner.lucky_call

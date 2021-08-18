@@ -1,0 +1,46 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@user.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+      %i= 'Поздравляем вас с началом обучения<br>в Школе Светланы Сикорской.'.html_safe
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 30px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}/
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Вам открыт доступ к системе дистанционного обучения к курсам:
+
+= render 'cosmetology_mailer/course', course: @subscription.course
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Вот ваши логин и пароль для входа в систему:
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Логин: #{@user.email}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Пароль: #{@user.password}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Ссылка для входа:
+      = link_to root_url(subdomain: 'sdo'), root_url(subdomain: 'sdo')
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Ваш номер группы:
+
+= render 'cosmetology_mailer/group', group: @subscription.group , course: @subscription.course
+= render 'student_alert'
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'} Внимание! Вы&nbsp;должны изучить теорию до&nbsp;начала практических занятий.Если к&nbsp;началу практики вы&nbsp;не&nbsp;освоите теорию, вас могут не&nbsp;допустить до&nbsp;практических занятий.
+    %p{style: 'margin: 0;text-align: left;'} Вам нужно перейти по&nbsp;ссылке, указанной в&nbsp;письме, ввести логин и&nbsp;пароль для входа в&nbsp;систему, а&nbsp;затем кликнуть по&nbsp;названию вашего курса. Это письмо&nbsp;&mdash; ваш единственный доступ в&nbsp;систему, никаких других доступов вам не&nbsp;нужно, вы&nbsp;можете проходить курс прямо сейчас.
+    %p{style: 'margin: 0;text-align: left;'} Доступ к&nbsp;материалам курса в&nbsp;системе остается открытым еще шесть месяцев после окончания обучения, чтобы вы&nbsp;могли освежить ваши знания.

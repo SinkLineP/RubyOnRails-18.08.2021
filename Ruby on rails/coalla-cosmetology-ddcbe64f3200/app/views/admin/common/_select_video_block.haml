@@ -1,0 +1,12 @@
+- uploaded_video = f.object.send(:item_video).try(:uploaded_video)
+= f.fields_for :item_video, f.object.send(:item_video) || ItemVideo.new, include_id: false do |fields|
+  - if uploaded_video
+    = fields.hidden_field :id
+  .mt-1
+    %label.form_el.form_label Видео из видеогалереи:
+    .form_el.form_el-select.js-form_el.form_tx
+      .select2_container{data: {size: size}}
+        = fields.select :uploaded_video_id, options_for_select(UploadedVideo.ordered.map{|video| [video.title, video.id, {data: {preview: full_image_url(video.preview_image.url(:main)).to_s}}]}, fields.object.send(:uploaded_video_id)), {include_blank: 'не выбрано'}, {class: 'js-video-select2'}
+
+- content_for :js do
+  = javascript_include_tag 'admin/select_for_videos'

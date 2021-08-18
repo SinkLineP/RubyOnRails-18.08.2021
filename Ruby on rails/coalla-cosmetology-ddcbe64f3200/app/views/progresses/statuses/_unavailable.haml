@@ -1,0 +1,10 @@
+.progress_info
+  %p Продолжительность курса #{display_total_hours(course)}
+  %p Вы прошли #{display_passed_hours(course)}, осталось #{display_rest_hours(course)}
+  %p
+    В курсе #{display_total_tasks(course)},&nbsp;
+    %a.a_under.modal{data: {modal: course_marks_popup_id(course)}}> вы сдали #{current_user.total_passed_tasks(course)} из них
+    , осталось #{current_user.total_rest_tasks(course)}
+
+  = render 'progresses/rating_block', group_subscription: group_subscription, course: course
+  = render 'common/marks_modal', course: course

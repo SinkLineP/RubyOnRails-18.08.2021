@@ -1,0 +1,27 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'выходные/занятое время' => '#'}
+      %h3.tx-center Выходные/занятое время
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            %a.a_under.modal{data: {url: new_admin_used_time_path}}>
+              %span.icon-add> +
+              Добавить время
+        .admin_body.table.table_base-color
+          = render 'admin/used_times/date_filter'
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-2-6>
+                %p дата
+              .grid_i.grid_i__grid-1-6>
+                %p время
+              .grid_i.grid_i__grid-2-6>
+              .grid_i.grid_i__grid-1-6.tx-right>
+                %p действия
+          .grid.grid__collapse
+            = render collection: @used_times, partial: 'admin/used_times/used_time'
+      = will_paginate @used_times, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

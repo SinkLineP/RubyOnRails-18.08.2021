@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @include text-base;
+
+  background-color: #fff;
+  color: $color-base;
+  font-weight: $font-weight-base;
+  font-family: $font-family-base;
+}
+
+a {
+  @include link;
+
+  text-decoration: none;
+  transition: $transition-base;
+}
+
+b,
+strong {
+  font-weight: $font-weight-solid;
+}
+
+button,
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  color: inherit;
+  font-family: inherit;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+select {
+  border-radius: 0;
+
+  &::-ms-expand { // IE11
+    display: none;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+h1, .h1 {
+  @include h1;
+
+  margin: 0;
+}
+
+h2, .h2 {
+  @include h2;
+}
+
+h3, .h3 {
+  @include h3;
+}
+
+h4, .h4 {
+  @include h4;
+}
+
+h5, .h5 {
+  @include h5;
+}
+
+h6, .h6 {
+  @include h6;
+}
+
+small {
+  font-size: 80%;
+}
+
+hr {
+  border: none;
+}
+
+iframe {
+  border: none;
+}
+
+img {
+  max-width: 100%;
+
+  &[width],
+  &[height] {
+    max-width: none;
+  }
+}
+
+figure {
+  margin: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+svg {
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:disabled {
+  cursor: not-allowed;
+}

@@ -1,0 +1,125 @@
+%aside.admin_sidebar
+  .avatar
+    = image_tag "https://placehold.it/110x110&text=#{current_user.avatar_placeholder}", class: 'avatar-img', alt: current_user.display_name
+    %p.tx-700= display_current_role
+    %p= current_user.display_name
+  %nav.admin_nav
+    - if current_user.admin?
+      = link_to 'Курсы', admin_courses_path, class: "nav-a #{'active' if current_page?(admin_courses_path)}"
+      = link_to 'Группы', admin_groups_path, class: "nav-a #{'active' if current_page?(admin_groups_path)}"
+      = link_to 'Блоки', admin_blocks_path, class: "nav-a #{'active' if current_page?(admin_blocks_path)}"
+      = link_to 'Баннеры', admin_banners_path, class: "nav-a #{'active' if current_page?(admin_banners_path)}"
+      = link_to 'Баннеры для Блога', admin_square_banners_path, class: "nav-a #{'active' if current_page?(admin_square_banners_path)}"
+      = link_to 'Занятия', admin_works_path, class: "nav-a #{'active' if current_page?(admin_works_path)}"
+      = link_to 'Рейтинг', admin_ratings_path, class: "nav-a #{'active' if current_page?(admin_ratings_path)}"
+      = link_to 'Опросы', admin_survey_responses_path, class: "nav-a #{'active' if current_page?(admin_survey_responses_path)}"
+      = link_to 'Группы вакансий', admin_vacancy_groups_path, class: "nav-a #{'active' if current_page?(admin_vacancy_groups_path)}"
+      = link_to 'Результаты&nbsp;занятий'.html_safe, admin_work_results_path, class: "nav-a #{'active' if current_page?(admin_work_results_path)}"
+      = link_to 'Виды&nbsp;платежа&nbsp;Магазин'.html_safe, admin_magazine_payment_types_path, class: "nav-a #{'active' if current_page?(admin_magazine_payment_types_path)}"
+      = link_to 'Документы', admin_documents_path, class: "nav-a #{'active' if current_page?(admin_documents_path)}"
+      = link_to 'Разделы документов', admin_document_sections_path, class: "nav-a #{'active' if current_page?(admin_document_sections_path)}"
+      = link_to 'Библиотека', admin_books_path, class: "nav-a #{'active' if current_page?(admin_books_path)}"
+      = link_to 'Страницы', admin_static_pages_path, class: "nav-a #{'active' if current_page?(admin_static_pages_path)}"
+      = link_to 'Презентация', edit_admin_tutorial_path, class: "nav-a #{'active' if current_page?(edit_admin_tutorial_path)}"
+      = link_to 'Дипломы', edit_admin_verification_tutorial_path, class: "nav-a #{'active' if current_page?(edit_admin_verification_tutorial_path)}"
+      = link_to 'Модули'.html_safe, admin_amo_modules_path, class: "nav-a #{'active' if controller_name == 'amo_modules'}"
+      = link_to 'Блог', admin_posts_path, class: "nav-a mb-2 #{'active' if controller_name == 'posts'}"
+      = link_to 'Страница на английском', edit_admin_en_page_path, class: "nav-a mb-2 #{'active' if controller_name == 'en_page'}"
+
+      = link_to 'Менеджеры', admin_managers_path, class: "nav-a #{'active' if controller_name == 'managers'}"
+      = link_to 'Студенты', admin_students_path, class: "nav-a #{'active' if controller_name == 'students'}"
+      = link_to 'Объединение&nbsp;контактов'.html_safe, new_admin_contacts_merge_path, class: "nav-a #{'active' if controller_name == 'contacts_merges'}"
+      = link_to 'Преподаватели', admin_instructors_path, class: "nav-a #{'active' if controller_name == 'instructors'}"
+      = link_to 'Администраторы', admin_administrators_path, class: "nav-a #{'active' if controller_name == 'administrators'}"
+      = link_to 'Посещаемость', admin_attendance_path, class: "nav-a mb-2 #{'active' if current_page?(admin_attendance_path)}"
+
+      = link_to 'Скидки', admin_discounts_path, class: "nav-a #{'active' if controller_name == 'discounts'}"
+      = link_to 'Автоматические скидки', admin_automatic_discounts_path, class: "nav-a #{'active' if controller_name == 'automatic_discounts'}"
+      = link_to 'Промокоды', admin_promo_codes_path, class: "nav-a #{'active' if controller_name == 'promo_codes'}"
+      = link_to 'Формы&nbsp;обучения'.html_safe, admin_education_forms_path, class: "nav-a #{'active' if controller_name == 'education_forms'}"
+      = link_to 'Факультеты', admin_faculties_path, class: "nav-a #{'active' if controller_name == 'faculties'}"
+      = link_to 'Уровни&nbsp;образования'.html_safe, admin_education_levels_path, class: "nav-a #{'active' if controller_name == 'education_levels'}"
+      = link_to 'Выпускные&nbsp;документы'.html_safe, admin_education_documents_path, class: "nav-a #{'active' if controller_name == 'education_documents'}"
+      = link_to 'Этапы&nbsp;продаж'.html_safe, admin_amocrm_statuses_path, class: "nav-a #{'active' if controller_name == 'amocrm_statuses'}"
+      = link_to 'Рекламные&nbsp;каналы'.html_safe, admin_campaigns_path, class: "nav-a #{'active' if controller_name == 'campaigns'}"
+      = link_to 'Базы&nbsp;практики'.html_safe, admin_practice_bases_path, class: "nav-a #{'active' if controller_name == 'practice_bases'}"
+
+      = link_to 'Расходы', admin_campaign_indices_path, class: "nav-a #{'active' if controller_name == 'campaign_indices'}"
+      = link_to 'Статистика&nbsp;кампаний'.html_safe, admin_indices_path, class: "nav-a mb-2 #{'active' if controller_name == 'indices'}"
+
+      = link_to 'Конфигуратор'.html_safe, edit_admin_configurator_path, class: "nav-a #{'active' if controller_name == 'configurator'}"
+      = link_to 'Ключевые навыки'.html_safe, admin_skills_path, class: "nav-a #{'active' if controller_name == 'skills'}"
+      = link_to 'Учебный&nbsp;план'.html_safe, admin_curriculum_blocks_path, class: "nav-a #{'active' if controller_name == 'curriculum_blocks'}"
+      = link_to 'Вопрос-ответ'.html_safe, admin_faq_index_path, class: "nav-a #{'active' if controller_name == 'faq'}"
+      = link_to 'Преимущества'.html_safe, admin_advantages_path, class: "nav-a #{'active' if controller_name == 'advantages'}"
+      = link_to 'Направления'.html_safe, admin_specialities_path, class: "nav-a #{'active' if controller_name == 'specialities'}"
+      = link_to 'Наши&nbsp;преимущества'.html_safe, admin_our_advantages_path, class: "nav-a #{'active' if controller_name == 'our_advantages'}"
+      = link_to 'Отзывы'.html_safe, admin_recalls_path, class: "nav-a #{'active' if controller_name == 'recalls'}"
+      = link_to 'Партнеры'.html_safe, admin_partners_path, class: "nav-a  #{'active' if controller_name == 'partners'}"
+      = link_to 'Оферта'.html_safe, admin_offers_path, class: "nav-a  #{'active' if controller_name == 'offers'}"
+      = link_to 'Политика и.п.д.'.html_safe, admin_privacy_policy_index_path, class: "nav-a  #{'active' if controller_name == 'privacy_policy'}"
+      = link_to 'Акции'.html_safe, admin_promotions_path, class: "nav-a  #{'active' if controller_name == 'promotions'}"
+      = link_to 'Видео'.html_safe, admin_uploaded_videos_path, class: "nav-a #{'active' if controller_name == 'uploaded_videos'}"
+      = link_to 'Наши&nbsp;услуги'.html_safe, admin_services_path, class: "nav-a  #{'active' if controller_name == 'services'}"
+      = link_to 'Для бизнеса'.html_safe, admin_business_pages_path, class: "nav-a  #{'active' if controller_name == 'business_pages'}"
+      = link_to 'Блог, Мы и СМИ, Наука и ДРК', admin_articles_path, class: "nav-a #{'active' if controller_name == 'articles'}"
+      = link_to 'Ссылки на соц.сети', admin_social_lookups_path, class: "nav-a mb-2 #{'active' if controller_name == 'social_lookups'}"
+
+      = link_to 'Об институте'.html_safe, admin_about_pages_path, class: "nav-a  #{'active' if controller_name == 'about_pages'}"
+      = link_to 'Руководитель'.html_safe, admin_about_lookups_path, class: "nav-a #{'active' if controller_name == 'about_lookups'}"
+      = link_to 'История'.html_safe, admin_history_events_path, class: "nav-a #{'active' if controller_name == 'history_events'}"
+      = link_to 'Награды'.html_safe, admin_reward_images_path, class: "nav-a #{'active' if controller_name == 'reward_images'}"
+      = link_to 'Выпускники'.html_safe, admin_graduates_path, class: "nav-a #{'active' if controller_name == 'graduates'}"
+      = link_to 'Экскурсия'.html_safe, admin_tour_images_path, class: "nav-a mb-2 #{'active' if controller_name == 'tour_images'}"
+
+      = link_to 'Сведения об организации', admin_institution_blocks_path, class: "nav-a mb-2 #{'active' if controller_name == 'institution_blocks'}"
+
+      = link_to 'Мета-теги', admin_meta_tags_path, class: "nav-a mb-2 #{'active' if controller_name == 'meta_tags'}"
+
+      = link_to 'Занятое&nbsp;время'.html_safe, admin_used_times_path, class: "nav-a #{'active' if controller_name == 'used_times'}"
+      = link_to 'Консультации'.html_safe, admin_consultations_path, class: "nav-a mb-2 #{'active' if controller_name == 'consultations'}"
+
+      = link_to 'Отпуска', admin_instructor_vacations_path, class: "nav-a #{'active' if controller_name == 'instructor_vacations'}"
+      = link_to 'Аудитории', admin_classrooms_path, class: "nav-a #{'active' if controller_name == 'classrooms'}"
+      = link_to 'Календарь', admin_holidays_path, class: "nav-a mb-2 #{'active' if controller_name == 'holidays'}"
+      = link_to 'Логи', admin_logs_path, class: "nav-a mb-2 #{'active' if controller_name == 'logs'}"
+
+    - if current_user.instructor?
+      = link_to 'Мои студенты', admin_my_students_path, class: "nav-a #{'active' if controller_name == 'my_students'}"
+      = link_to 'Рейтинг', admin_ratings_path, class: "nav-a #{'active' if current_page?(admin_ratings_path)}"
+      = link_to 'Результаты&nbsp;занятий'.html_safe, admin_work_results_path, class: "nav-a #{'active' if current_page?(admin_work_results_path)}"
+      = link_to 'Модули'.html_safe, admin_amo_modules_path, class: "nav-a #{'active' if controller_name == 'amo_modules'}"
+      = link_to 'Письма', admin_letters_path, class: "nav-a mb-2 #{'active' if controller_name == 'letters'}"
+
+    - if current_user.manager?
+      = link_to 'Группы', admin_groups_path, class: "nav-a #{'active' if current_page?(admin_groups_path)}"
+      = link_to 'Баннеры', admin_banners_path, class: "nav-a #{'active' if current_page?(admin_banners_path)}"
+      = link_to 'Баннеры для Блога', admin_square_banners_path, class: "nav-a #{'active' if current_page?(admin_square_banners_path)}"
+      = link_to 'Преподаватели', admin_instructors_path, class: "nav-a #{'active' if controller_name == 'instructors'}"
+      = link_to 'Студенты', admin_students_path, class: "nav-a  #{'active' if controller_name == 'students'}"
+      = link_to 'Рейтинг', admin_ratings_path, class: "nav-a #{'active' if current_page?(admin_ratings_path)}"
+      = link_to 'Занятия', admin_works_path, class: "nav-a #{'active' if current_page?(admin_works_path)}"
+      = link_to 'Группы вакансий', admin_vacancy_groups_path, class: "nav-a #{'active' if current_page?(admin_vacancy_groups_path)}"
+      = link_to 'Результаты&nbsp;занятий'.html_safe, admin_work_results_path, class: "nav-a #{'active' if current_page?(admin_work_results_path)}"
+      = link_to 'Объединение&nbsp;контактов'.html_safe, new_admin_contacts_merge_path, class: "nav-a #{'active' if controller_name == 'contacts_merges'}"
+      = link_to 'Посещаемость', admin_attendance_path, class: "nav-a mb-2 #{'active' if current_page?(admin_attendance_path)}"
+
+      = link_to 'Базы&nbsp;практики'.html_safe, admin_practice_bases_path, class: "nav-a #{'active' if controller_name == 'practice_bases'}"
+      = link_to 'Отзывы'.html_safe, admin_recalls_path, class: "nav-a #{'active' if controller_name == 'recalls'}"
+      = link_to 'Партнеры'.html_safe, admin_partners_path, class: "nav-a #{'active' if controller_name == 'partners'}"
+      = link_to 'Блог, Мы и СМИ, Наука и ДРК', admin_articles_path, class: "nav-a mb-2 #{'active' if controller_name == 'articles'}"
+
+      = link_to 'Занятое&nbsp;время'.html_safe, admin_used_times_path, class: "nav-a #{'active' if controller_name == 'used_times'}"
+      = link_to 'Консультации', admin_consultations_path, class: "nav-a mb-2 #{'active' if controller_name == 'consultations'}"
+      = link_to 'Акции'.html_safe, admin_promotions_path, class: "nav-a  #{'active' if controller_name == 'promotions'}"
+
+      = link_to 'Отпуска', admin_instructor_vacations_path, class: "nav-a #{'active' if controller_name == 'instructor_vacations'}"
+      = link_to 'Аудитории', admin_classrooms_path, class: "nav-a #{'active' if controller_name == 'classrooms'}"
+      = link_to 'Календарь', admin_holidays_path, class: "nav-a mb-2 #{'active' if controller_name == 'holidays'}"
+
+  - if current_user.admin? || current_user.manager?
+    = form_tag admin_search_path, class: 'form js-form form__search mb-2', method: :get do
+      .form_el.js-form_el.form_tx
+        %input.form_el_tag.form_tx_tag{type: 'text', name: :search, value: params[:search]}
+      %button.search-link{type: :submit}
+        %span.fa.fa-search

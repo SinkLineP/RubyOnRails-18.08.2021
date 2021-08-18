@@ -1,0 +1,10 @@
+.feedbacks-bubbles
+  .feedbacks-bubbles__list#feedbacks-bubbles-slider
+    = render partial: 'layouts/courses_shop/components/feedback_bubble', collection: @recalls, as: :feedback
+  - if @recalls.count > 1
+    = link_to '#', class: 'feedbacks-bubbles__nav feedbacks-bubbles__nav--prev', id: 'feedbacks-bubbles-slider-prev' do
+      %svg.icon(role='img' data-size='18')
+        %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+    = link_to '#', class: 'feedbacks-bubbles__nav feedbacks-bubbles__nav--next', id: 'feedbacks-bubbles-slider-next' do
+      %svg.icon(role='img' data-size='18')
+        %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

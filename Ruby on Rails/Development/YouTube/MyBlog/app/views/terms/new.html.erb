@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Абсолютное позиционирование</title>
+  <style type="text/css">
+   body { margin: 0; }
+   #sidebar, #content { position: absolute; } 
+   #sidebar, #content { overflow: auto; padding: 10px; }
+   #header {
+    height: 80px; /* Высота слоя */
+    background: #FEDFC0; border-bottom: 2px solid #7B5427;
+   }
+   #header h1 { padding: 20px; margin: 0; }
+   #sidebar { 
+    width: 150px; background: #ECF5E4; border-right: 1px solid #231F20;
+    top: 82px; /* Расстояние от верхнего края */ 
+    bottom: 0; /* Расстояние снизу  */
+   }
+   #content {
+    top: 82px; /* Расстояние от верхнего края */
+    left: 170px; /* Расстояние от левого края */ 
+    bottom: 0; right: 0;
+   }
+  </style>
+ </head>
+ <body>
+  <center><div id="header"><h1>Условия использования этого блога.</h1></div></center>
+  <div id="sidebar">
+  	<p><b>Наши контактные номера:</b></p>
+  	<p><i>+38(095)-615-06-37</i></p>
+  	<p><i>+38(050)-853-88-86</i></p>
+  	<p><i>+38(050)-815-42-17</i></p>
+  </div>
+  <div id="content">
+  	<p><h2>Мы приносим вам большую благодарность за использование нашего блога</h2></p>
+  	<p>Благодарим вас за использование нашего сайта</p>
+  	<p style="margin:0px 0px 0px 10px ;">Единственное что вы должны запомнить в использование нашего сайта это небольшие правила: </p>
+  	<ol start="1">
+  		<i>
+	   		<li>Во-первых наш дорогой пользователь вы не должны использовать в нашем блоге ругательские слова.</li>
+	   		<li>Во-вторых попрошу не спамить вас в нашем блоге.</li>
+	   		<li>Запомните разработчик для вас старается.</li>
+	   	</i>
+  	</ol>
+  </div>
+ </body>
+</html>

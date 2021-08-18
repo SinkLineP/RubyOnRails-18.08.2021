@@ -1,0 +1,28 @@
+- @marked_results.each do |result|
+  .exercise_info.active
+    .exercise_info__text.student_table
+      .grid
+        .grid_i.grid_i__grid-5-7>
+          .tx-700
+            #{display_result_name(result)}
+          %p.tx-700= result.task.description
+          %p= result.answer
+          - if result.file?
+            - if result.try(:result_file_items).present?
+              .attach
+                %span.tx-700 Прикрепленный файл:
+                - result.result_file_items.each do |result_file_item|
+                  - if result_file_item.file?
+                    %a.a_under{:href => result_file_item.file_url}= result_file_item.filename
+        .grid_i.grid_i__grid-1-7>
+          .tx-center= result.created_at.strftime('%d.%m.%Y %H:%S')
+        .grid_i.grid_i__grid-1-7>
+          .tx-center
+            .tx-700
+              оценка
+            .form_el.js-form_el.form_tx.form_tx__grade
+              - if can?(:update, Result)
+                %input.form_el_tag.form_tx_tag.js-mark{type: 'text', value: result.mark.present? ? result.mark :  '', data: {url: admin_my_student_result_path(@student, result)}}
+              - else
+                %span= result.mark
+      = render 'admin/my_students/result_comment', result: result

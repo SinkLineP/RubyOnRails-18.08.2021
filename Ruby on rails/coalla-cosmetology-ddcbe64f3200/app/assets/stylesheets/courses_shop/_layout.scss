@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+// Container
+.container {
+  @include fill-parent;
+  padding: {
+    right: $content-indent-sm;
+    left: $content-indent-sm;
+  }
+
+  @include media($breakpoint-lg) {
+    @include outer-container(137rem);
+    padding: {
+      right: $content-indent-lg;
+      left: $content-indent-lg;
+    }
+  }
+
+  @include media($breakpoint-xxl) {
+    padding: {
+      right: $content-indent-xl;
+      left: $content-indent-xl;
+    }
+  }
+}

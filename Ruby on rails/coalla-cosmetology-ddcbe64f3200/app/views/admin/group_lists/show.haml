@@ -1,0 +1,22 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'группы' => admin_groups_path, @group.name.presence => edit_admin_group_path(@group), 'список группы' => '#'}
+      %h3.tx-center Список группы
+      = form_for @group, url: admin_group_group_list_path(@group), method: :put, html: {class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+        .admin_header
+        .admin_body
+          .admin_settings_change
+            .mt-1
+              - @group.group_lists.each do |document|
+                %div= link_to document.file_name, download_admin_generated_document_path(document)
+          .grid.mt-2
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner Сгенерировать
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+- content_for :js do
+  = javascript_include_tag 'admin/subscription_contract'

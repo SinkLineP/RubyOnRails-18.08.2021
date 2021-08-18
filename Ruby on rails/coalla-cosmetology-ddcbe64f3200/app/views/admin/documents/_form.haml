@@ -1,0 +1,22 @@
+= render 'admin/breadcrumbs', crumbs: {'документы' => admin_documents_path, 'документ' => '#'}
+%h3.tx-center= 'ДОКУМЕНТ'
+= form_for [:admin, @document], html: {id: 'document_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Раздел документа:
+        .form_el.form_el-select.js-form_el
+          = f.select :document_section_id, options_from_collection_for_select(DocumentSection.alphabetical_order, :id, :title, @document.document_section_id), {include_blank: 'Не выбран'}, class: 'form_select_tag selectordie', data: {size: 10}
+      .mt-1
+        = f.label :file, class: 'form_el form_label'
+        .form_el.js-form_el.form_file{data: {placeholder: @document.file? ? @document.file.file.filename : 'Загрузить'}}
+          %p.form_el_inner.js-form_el_inner.form_file_inner.a_under.tx-xs.tx-700{style: 'margin-left: 0; margin-top: 10px;'}
+          = f.file_field :file, class: 'form_el_tag form_file_tag'
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @document.errors

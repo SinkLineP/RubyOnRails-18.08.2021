@@ -1,0 +1,23 @@
+<div class="container">
+
+
+    <center>
+        <h2>Edit Article</h2>
+    </center>
+
+    <%= form_with scope: :article, url: article_path(@article), method: :put do |form| %>
+    <p>
+        <%= form.label :title %><br>
+        <%= form.text_field :title, :class => 'form-control' %>
+    </p>
+
+    <p>
+        <%= form.label :text %><br>
+        <%= form.text_area :text, :class => 'form-control' %>
+    </p>
+
+    <p>
+        <%= form.submit 'Опубликовать!', :class => 'btn btn-success'%>
+    </p>
+    <% end %>
+</div>

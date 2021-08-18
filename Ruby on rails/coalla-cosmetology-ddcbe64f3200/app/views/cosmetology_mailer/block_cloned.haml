@@ -1,0 +1,12 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Блок
+      %strong= @block.name
+      был успешно клонирован
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Для продолжения редактирования перейдите по
+      = link_to 'ссылке', edit_admin_block_url(@block), target: '_blank'

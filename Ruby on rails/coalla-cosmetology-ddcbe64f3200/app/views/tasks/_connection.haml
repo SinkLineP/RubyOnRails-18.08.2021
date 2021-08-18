@@ -1,0 +1,22 @@
+.grid.grid__collapse
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6.grid_i__suffix-1-6.mt-4.tx-left>
+    %p
+      %span.tx-700= @task.description
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6.grid_i__suffix-1-6>
+    .tx-center.mt-2
+      .grid.grid__collapse
+        = render collection: @task.columns, partial: 'tasks/additional/column'
+  .grid_i.grid_i__grid-4-6.grid_i__prefix-1-6.grid_i__suffix-1-6>
+    .js-drop_ctn.tx-center.mt-2
+      = render collection: @task.random_variants, partial: 'tasks/additional/variant'
+  .grid_i.grid_i__grid-1-3.grid_i__prefix-1-3>
+    .mt-1
+      .form_el.js-form_el.form_el__block.form_btn
+        %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+        = submit_tag 'save', class: 'form_el_tag form_btn_tag', disabled: true, data: {disable_with: 'Подождите...'}
+  .grid_i.grid_i__grid-1-1>
+    .mt-8
+      = lecture_link
+
+= content_for :js do
+  = javascript_include_tag 'task_connection'

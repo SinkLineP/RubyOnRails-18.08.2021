@@ -1,0 +1,28 @@
+%section.page-promo#page-promo
+  .container
+    %header.page-promo__header
+      %h1.page-promo__title Об&nbsp;институте
+      = render 'layouts/courses_shop/hr_large'
+
+  .page-promo__tabs#tabs
+    %select.select2.js-select2
+      %option(data-href='#history') История института
+      %option(data-href='#teachers') Преподавательский состав
+      %option(data-href='#graduates') Выпускники института
+      %option(data-href='#partners') Партнеры
+      %option(data-href='#diploma') Международный диплом ITEC
+      %option(data-href='#tour') Экскурсия по&nbsp;институту
+
+    %ul
+      %li
+        = link_to 'История института', '#history'
+      %li
+        = link_to 'Преподавательский состав', '#teachers'
+      %li
+        = link_to 'Выпускники института', '#graduates'
+      %li
+        = link_to 'Партнеры', '#partners'
+      %li
+        = link_to 'Международный диплом<br>ITEC'.html_safe, '#diploma'
+      %li
+        = link_to 'Экскурсия по&nbsp;институту'.html_safe, '#tour'

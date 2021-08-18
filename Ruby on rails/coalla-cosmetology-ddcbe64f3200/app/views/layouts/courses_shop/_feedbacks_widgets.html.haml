@@ -1,0 +1,86 @@
+.feedbacks-widgets
+  .feedbacks-widgets__actions
+    %ul
+      %li
+        = link_to '#feedbacks-widgets-popup-call', class: 'js-feedbacks-widgets-popup-open' do
+          %svg.shape(xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50")
+            %path(d="M25,0h0A25,25,0,0,1,50,25V50a0,0,0,0,1,0,0H25A25,25,0,0,1,0,25v0A25,25,0,0,1,25,0Z")
+          %svg.icon(role='img' data-size='22')
+            %use(xlink:href='/assets/courses_shop/icons.svg#feedbacks-widgets-phone')
+      - if current_shop.cosmetic?
+        %li
+          = link_to '#feedbacks-widgets-popup-ask', class: 'js-feedbacks-widgets-popup-open' do
+            %svg.shape(xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50")
+              %path(d="M25,0h0A25,25,0,0,1,50,25V50a0,0,0,0,1,0,0H25A25,25,0,0,1,0,25v0A25,25,0,0,1,25,0Z")
+            %svg.icon(role='img' data-size='22')
+              %use(xlink:href='/assets/courses_shop/icons.svg#feedbacks-widgets-pencil')
+
+  %article.feedbacks-widgets__popup.js-feedbacks-widgets-popup#feedbacks-widgets-popup-call
+    %header.feedbacks-widgets__popup-header
+      %span
+        %svg.icon(role='img' data-size='22')
+          %use(xlink:href='/assets/courses_shop/icons.svg#feedbacks-widgets-phone')
+      .h5 Заказать звонок
+      = link_to '#', class: 'js-feedbacks-widgets-popup-close' do
+        %svg.icon(role='img' data-size='18')
+          %use(xlink:href='/assets/courses_shop/icons.svg#close')
+    .feedbacks-widgets__popup-content
+      - call_options = params.permit!.merge({name: current_user.full_name, phone: current_user.phone}) if user_signed_in?
+      = form_for CallParams.new(call_options), as: :data, url: send_form_data_courses_shop_callbacks_path, html: { class: "default-form #{current_shop.barbershop? ? 'js-vk-form-fill-started' : ''}" }, remote: true, data: { trackable: true } do |f|
+        = f.hidden_field :site, value: request.original_url
+        = f.hidden_field :utm_source
+        = f.hidden_field :utm_medium
+        = f.hidden_field :utm_campaign
+        = f.hidden_field :utm_content
+        = f.hidden_field :utm_term
+        = f.hidden_field :call_me, value: true
+        - if current_shop.barbershop?
+          = f.hidden_field :validate, value: 'true'
+        .default-form__inner
+          .default-form__row
+            .text-input
+              = f.telephone_field :phone, class: 'input js-intl-tel'
+          .default-form__row
+            .text-input
+              = f.text_field :name, placeholder: current_shop.cosmetic? ? 'Представьтесь (необязательно)' : 'Представьтесь'
+          .default-form__row
+            %button.button.button--base-outline-alt(type='submit' data-size='lg' name='call_me' data-disable-with='Подождите...') Перезвоните мне
+
+  - if current_shop.cosmetic?
+    %article.feedbacks-widgets__popup.js-feedbacks-widgets-popup#feedbacks-widgets-popup-ask
+      %header.feedbacks-widgets__popup-header
+        %span
+          %svg.icon(role='img' data-size='22')
+            %use(xlink:href='/assets/courses_shop/icons.svg#feedbacks-widgets-pencil')
+        .h5 Задать вопрос
+        = link_to '#', class: 'js-feedbacks-widgets-popup-close' do
+          %svg.icon(role='img' data-size='18')
+            %use(xlink:href='/assets/courses_shop/icons.svg#close')
+      .feedbacks-widgets__popup-content
+        - question_options = params.permit!.merge({name: current_user.full_name, phone: current_user.phone, email: current_user.email}) if user_signed_in?
+        = form_for QuestionParams.new(question_options), namespace: :question, as: :data, url: send_form_data_courses_shop_callbacks_path, html: { class: 'default-form' }, remote: true, data: { trackable: true, disable_with: 'Подождите...' } do |f|
+          = f.hidden_field :site, value: request.original_url
+          = f.hidden_field :utm_source
+          = f.hidden_field :utm_medium
+          = f.hidden_field :utm_campaign
+          = f.hidden_field :utm_content
+          = f.hidden_field :utm_term
+          .default-form__inner
+            .default-form__row
+              .text-input
+                = f.email_field :email, placeholder: 'Электронная почта'
+
+            .default-form__row
+              .textarea
+                = f.text_area :question, placeholder: 'Ваш вопрос', rows: 3
+            .default-form__row
+              .text-input
+                = f.telephone_field :phone, class: 'input js-intl-tel'
+            .default-form__row
+              .text-input
+                = f.text_field :name, placeholder: 'Представьтесь (необязательно)'
+            .default-form__row
+              %button.button.button--base-outline-alt(type='submit' data-size='lg' data-disable-with='Подождите...') Отправить
+  %span#return-to-top
+    %svg.icon.icon-chevron-up(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#chevron-up')

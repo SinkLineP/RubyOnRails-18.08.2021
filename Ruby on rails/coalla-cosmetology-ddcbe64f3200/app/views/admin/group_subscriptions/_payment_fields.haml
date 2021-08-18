@@ -1,0 +1,17 @@
+.mt-1.nested-fields.add_ctn.add_stage
+  - unless f.object.new_record?
+    = f.hidden_field :id
+  .grid.grid-close
+    .grid_i.grid_i__grid-1-9.grid_i__prefix-8-9.tx-right>
+      = link_to_remove_association raw('<div class="icon_del">X</div>'), f
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-1-6.grid_i__prefix-1-10
+      %label.form_el.form_label Сумма
+    .grid_i.grid_i__grid-3-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :amount, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-6.grid_i__prefix-1-10
+      %label.form_el.form_label Дата
+    .grid_i.grid_i__grid-2-6
+      .form_el.js-form_el.form_tx
+        = f.text_field :payed_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(f.object.payed_on), readonly: true

@@ -1,0 +1,7 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= group_subscription.group_title
+    %br
+    %span= group_period(group_subscription)
+    = hidden_field_tag 'order[group_subscription_ids][]', group_subscription.id, data: {block_id: true}

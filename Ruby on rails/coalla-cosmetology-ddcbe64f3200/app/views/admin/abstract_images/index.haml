@@ -1,0 +1,17 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {t("#{model.to_s.underscore}_title").mb_chars.downcase => '#'}
+      %h3.tx-center= t("#{model.to_s.underscore}_title").mb_chars.upcase
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to url_for(action: :new), class: 'a_under' do
+              %span.icon-add> +
+              Добавить изображение
+        .admin_body.table.table_base-color
+          .grid.grid__collapse
+            = render partial: 'admin/abstract_images/about_image', collection: @about_images
+      = will_paginate @about_images, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

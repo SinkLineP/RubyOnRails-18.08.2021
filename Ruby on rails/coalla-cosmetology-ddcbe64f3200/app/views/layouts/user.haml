@@ -1,0 +1,12 @@
+!!!
+%html.no-js{lang: 'ru-RU'}
+  %head
+    %title= page_title
+    = render 'layouts/head'
+
+  %body#page.page{class: @dashboard ? 'with_sidebar page-dashboard' : '' }
+    = render 'common/user_header'
+    = yield
+    = render 'layouts/footer'
+    - if @new_letter.present?
+      = render 'layouts/new_letter_modal'

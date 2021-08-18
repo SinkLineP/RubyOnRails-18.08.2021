@@ -1,0 +1,23 @@
+- %i(last_name first_name middle_name phones_string email emails_string).each do |field_name|
+  = render 'admin/contacts_merges/target_field', f: f, field_name: field_name
+= render 'admin/contacts_merges/target_field', f: f, field_name: :birthday, readonly: true, input_class: 'form_el_tag form_tx_tag js-datepicker'
+= render 'admin/contacts_merges/target_field', f: f, field_name: :wear_size
+
+.mt-1
+  %label.form_el.form_label Уровень образования:
+  .form_el.js-form_el
+    = f.select :education_level_id, EducationLevel.ordered.map{|l| [l.title, l.id]}, {include_blank: 'не выбрано'}, class: 'form_el_tag form_select_tag selectordie', data: {size: 5, target_field: :education_level_id}
+
+.mt-2.header_blocks_settings
+  .tx-s.tx-700 Паспортные данные
+= render 'admin/contacts_merges/target_field', f: f, field_name: :passport_series
+= render 'admin/contacts_merges/target_field', f: f, field_name: :passport_number
+= render 'admin/contacts_merges/target_field', f: f, field_name: :passport_issued_on, readonly: true, input_class: 'form_el_tag form_tx_tag js-datepicker'
+= render 'admin/contacts_merges/target_field', f: f, field_name: :passport_organisation
+= render 'admin/contacts_merges/target_field', f: f, field_name: :passport_address
+= render 'admin/contacts_merges/target_field', f: f, field_name: :address
+
+.mt-2.header_blocks_settings
+  .tx-s.tx-700 AMOcrm
+= render 'admin/contacts_merges/target_field', f: f, field_name: :amocrm_id
+= render 'admin/contacts_merges/target_field', f: f, field_name: :comagic_campaign, reandonly: true

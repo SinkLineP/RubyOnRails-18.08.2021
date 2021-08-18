@@ -1,0 +1,98 @@
+.page.page--promo
+  = render 'layouts/courses_shop/promo/course'
+
+  .page-section.page-section--background
+    .container
+      = render 'layouts/courses_shop/components/advantages_course'
+
+  .page-section
+    .container
+      = render 'layouts/courses_shop/components/course'
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title Отзывы выпускников
+      = render 'layouts/courses_shop/components/feedbacks_cards'
+
+  %section.page-section.page-section--background
+    .container
+      .h3.page-section__title Ваша карьера после курса
+      = render 'layouts/courses_shop/components/career_after_courses'
+
+  %section.page-section.page-section--arrow
+    .container
+      .h3.page-section__title Наши преподаватели
+      = render 'layouts/courses_shop/components/teachers_items'
+
+  %section.page-section.page-section--background
+    .container
+      .h4.page-section__title Понравился курс?<br>Порекомендуйте его друзьям!
+      = render 'layouts/courses_shop/social_likes'
+
+  %section.page-section
+    .container
+      .h3.page-section__title Похожие курсы
+      = render 'layouts/courses_shop/components/courses_cards'
+
+  %section.page-section.page-section--background.page-section--arrow
+    .container
+      .h4.page-section__title Часто задаваемые вопросы
+      .faq-accordion
+        .faq-accordion__list.accordion.js-accordion
+          - 1.upto(2) do
+            = render 'layouts/courses_shop/components/faq_accordion_content'
+        .faq-accordion__all
+          = link_to 'Все вопросы и&nbsp;ответы'.html_safe, '#', class: 'button button--base-outline', 'data-size' => 'lg'
+
+  %section.page-section
+    .container
+      .h4.page-section__title У меня остались вопросы.<br>Хочу поговорить с менеджером!
+
+      .schedule
+        .schedule__toggle
+          = link_to '#', class: 'button button--action-fill', id: 'schedule-toggle', 'data-size' => 'sm', 'data-type' => 'text' do
+            %span На консультацию
+            %svg.icon(role='img' data-size='18')
+              %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+
+        .schedule__content#schedule-content
+          .schedule__form
+            %form.default-form(action='#')
+              .default-form__inner
+                %fieldset.default-form__group
+                  %legend.default-form__group-title Выберите дату и&nbsp;время посещения офиса
+
+                  .default-form__cols
+                    .default-form__col
+                      .text-input.text-input--datepicker
+                        %input.js-datepicker(type='text' placeholder='Дата')
+                        %i
+                    .default-form__col
+                      %select.select2.js-select2(data-placeholder='Время')
+                        // Empty first option for placeholder to work
+                        %option &nbsp;
+                        %option 09:00
+                        %option 12:00
+                        %option 14:00
+                        %option 16:00
+
+                %fieldset.default-form__group
+                  %legend.default-form__group-title Укажите данные
+
+                  .default-form__row
+                    .text-input(data-validation='invalid' data-validation-text='Текст валидации')
+                      %input(type='text' placeholder='Имя, Фамилия')
+
+                  .default-form__row
+                    .text-input
+                      %input(type='email' placeholder='Электронная почта')
+
+                  .default-form__row
+                    .text-input
+                      %input(type='tel' placeholder='Телефон')
+
+                  .default-form__row
+                    %button.button.button--base-fill(type='submit' data-size='lg') Записаться <span class='is-lg'>на&nbsp;консультацию</span>
+
+.page-next.page-next--primary.js-page-next#page-promo-scroll
+  = render 'layouts/courses_shop/page_next'

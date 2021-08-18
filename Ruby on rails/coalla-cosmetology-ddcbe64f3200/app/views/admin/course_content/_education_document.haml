@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= education_document.title.truncate(100)
+    = hidden_field_tag 'course[education_document_ids][]', education_document.id, data: {block_id: true}

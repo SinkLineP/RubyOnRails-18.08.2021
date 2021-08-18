@@ -1,0 +1,27 @@
+.page.page--sections.page--course-added
+  .page-section
+    .container
+      %article.course-added
+        .h4.course-added__title Курс добавлен в&nbsp;корзину
+        .course-added__content
+          %svg.icon(role='img' data-size='66')
+            %use(xlink:href='/assets/courses_shop/icons.svg#mirror')
+          %p
+            &laquo;Косметик Эстетист для всех!&raquo;
+            %br
+            3&nbsp;августа&mdash;17 сентября (2/2, с&nbsp;9:00 до&nbsp;18:00)
+        %ul.course-added__actions
+          %li
+            = link_to 'Другие курсы', '#', class: 'button button--base-outline', 'data-size' => 'lg'
+          %li
+            = link_to 'К&nbsp;оплате'.html_safe, '#', class: 'button button--base-fill', 'data-size' => 'lg'
+        = render 'layouts/courses_shop/hr_small'
+
+  %section.page-section
+    .container
+      %header.page__header
+        .h3.page__title С&nbsp;этим курсом также покупают:
+
+      = render 'layouts/courses_shop/components/courses_items'
+
+      = render 'layouts/courses_shop/components/pagination_simple'

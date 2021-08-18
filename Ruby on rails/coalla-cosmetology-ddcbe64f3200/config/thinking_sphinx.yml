@@ -1,0 +1,25 @@
+defaults: &defaults
+  charset_table: "0..9, A..Z->a..z, _, a..z, U+0401->U+0435, U+0451->U+0435, U+410..U+42F->U+430..U+44F, U+430..U+44F"
+  min_infix_len: 3
+  html_strip: true
+  64bit_timestamps: true
+  indexed_models:
+    - User
+    - Post
+    - Course
+    - Book
+    - Block
+development:
+  <<: *defaults
+  mysql41: 9311
+staging:
+  <<: *defaults
+  mysql41: 9310
+  configuration_file: /var/www/virtual-hosts/cosmetic.coalla.ru/shared/staging.sphinx.conf
+  binlog_path: /var/www/virtual-hosts/cosmetic.coalla.ru/current/tmp/binlog
+
+production:
+  <<: *defaults
+  mysql41: 9307
+  configuration_file: /var/www/virtual-hosts/sikorsky.academy/shared/production.sphinx.conf
+  binlog_path: /var/www/virtual-hosts/sikorsky.academy/current/tmp/binlog

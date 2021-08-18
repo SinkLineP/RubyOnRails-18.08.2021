@@ -1,0 +1,8 @@
+.grid_i.grid_i__grid-1-12.tx-center>
+  = group_subscription.rating_place
+.grid_i.grid_i__grid-7-12.tx-center>
+  = link_to group_subscription.student.full_name, edit_admin_student_path(group_subscription.student)
+.grid_i.grid_i__grid-1-12.tx-center>
+  = group_subscription.rating_score
+.grid_i.grid_i__grid-3-12.tx-center>
+  = format_date_full(group_subscription.end_on)

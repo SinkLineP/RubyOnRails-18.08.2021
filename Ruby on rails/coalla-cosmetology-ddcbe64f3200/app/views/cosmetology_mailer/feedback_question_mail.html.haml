@@ -1,0 +1,21 @@
+= render 'cosmetology_mailer/feedback_question_fields'
+- unless @feedback_question.absenteeism?
+  %p
+    Вопрос:
+    = @feedback_question.text
+- else
+  %p
+    Какое занятие пропустили:
+    = @feedback_question.work_title
+  %p
+    Даты пропущенных занятий:
+    = @feedback_question.absent_dates
+  %p
+    Удобные даты и время отработки:
+    = @feedback_question.new_dates
+  %p
+    Отработку занятия прошу предоставить
+    = @feedback_question.working_off_type_text
+  %p
+    Причина пропуска:
+    = @feedback_question.text

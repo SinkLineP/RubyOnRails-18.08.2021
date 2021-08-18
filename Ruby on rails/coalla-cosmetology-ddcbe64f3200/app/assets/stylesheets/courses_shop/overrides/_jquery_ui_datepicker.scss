@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+// 1. Show datepicker after positioning complete
+.ui-datepicker {
+  @include transition(opacity $transition-duration-base);
+  position: fixed; // To prevent document height jumping on open
+  margin-top: 1.5rem;
+  padding: 2rem 2rem 1.75rem;
+  background: #fff;
+  border-radius: $border-radius-sm;
+  box-shadow: 0 1rem 3rem 0 rgba(196, 170, 165, .4);
+  opacity: 0;         // 1
+  visibility: hidden; // 1
+
+  &::before {
+    @include user-select(none);
+    @include triangle(2rem .5rem, #fff, up);
+    @include transform(translateX(-50%));
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    content: "";
+  }
+
+  // Header
+  &-header {
+    position: relative;
+  }
+
+  &-prev,
+  &-next {
+    @include transition(fill $transition-duration-base);
+    @include transform(translateY(-45%));
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+
+    &.ui-state-disabled {
+      display: none;
+    }
+
+    .ui-icon {
+      display: block;
+      padding: .75rem;
+    }
+
+    .icon {
+      @include hover(fill, $color-base, '.ui-icon:hover');
+      fill: $color-ui;
+    }
+  }
+
+  &-prev {
+    left: 0;
+  }
+
+  &-next {
+    right: 0;
+  }
+
+  // Title
+  &-title {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  // Month
+  &-month {
+    @include h5;
+  }
+
+  // Year
+  &-year {
+    display: none;
+  }
+
+  // Calendar
+  &-calendar {
+    th, td {
+      text-align: center;
+    }
+
+    th {
+      @include text-sm;
+      padding: .5rem .75rem;
+      color: $color-base-lighter;
+      font-weight: 700;
+    }
+
+    td {
+      @include text-lg;
+      letter-spacing: -1px;
+
+      &.ui-state-disabled span { // Disabled dates
+        color: $color-base-lighter;
+      }
+
+      a, span {
+        display: block;
+        padding: .5rem .75rem;
+        color: $color-base;
+      }
+
+      a {
+        @include hover(color, $color-brand);
+
+        &.ui-state-highlight { // Current date
+          //color: $color-brand;
+        }
+
+        &.ui-state-active { // Selected date
+          color: $color-brand;
+        }
+      }
+    }
+  }
+}

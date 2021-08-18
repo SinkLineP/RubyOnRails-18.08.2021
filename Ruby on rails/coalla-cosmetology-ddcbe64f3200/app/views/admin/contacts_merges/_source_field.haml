@@ -1,0 +1,7 @@
+- field_value = student.send(field_name)
+%label.form_el.form_label.form_label__el
+  .form_el.js-form_el.form_checkbox
+    = check_box_tag :field, field_value, false, data: {source_field: field_name}, class: 'form_el_tag form_checkbox_tag', id: '', disabled: field_value.blank?
+  %p.form_el_inner.form_label_inner
+    %span #{Student.human_attribute_name(field_name)}:
+    %span.form_label__value= field_value

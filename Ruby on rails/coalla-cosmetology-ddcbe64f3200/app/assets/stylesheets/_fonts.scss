@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+// PT Sans
+@font-face {
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: normal;
+    src: font_url('PT_Sans/PT_Sans-Web-Regular.ttf');
+}
+
+@font-face {
+    font-family: "PT Sans";
+    font-style: italic;
+    font-weight: normal;
+    src: font_url('PT_Sans/PT_Sans-Web-Italic.ttf');
+}
+
+@font-face {
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: bold;
+    src: font_url('PT_Sans/PT_Sans-Web-Bold.ttf');
+}
+
+// PT Serif
+@font-face {
+    font-family: "PT Serif";
+    font-style: normal;
+    font-weight: normal;
+    src: font_url('PT_Serif/PT_Serif-Web-Regular.ttf');
+}
+
+@font-face {
+    font-family: "PT Serif";
+    font-style: normal;
+    font-weight: bold;
+    src: font_url('PT_Serif/PT_Serif-Web-Bold.ttf');
+}
+
+// PT Sans Caption
+@font-face {
+    font-family: "PT Sans Caption";
+    font-style: normal;
+    font-weight: bold;
+    src: font_url('PT_Sans_Caption/PT_Sans-Caption-Web-Bold.ttf');
+}

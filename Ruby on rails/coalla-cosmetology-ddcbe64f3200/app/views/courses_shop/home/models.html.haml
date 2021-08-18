@@ -1,0 +1,62 @@
+.page.page--promo.page--models
+  %section.page-promo-models#page-promo
+    - title = 'Приглашаем моделей'
+    .page-promo__breadcrumbs
+      .container
+        %nav
+          %ul
+            %li
+              = link_to shop_title, root_path
+            %li= title
+    .page-promo-models__background(style='background-image: url("/assets/courses_shop/page_promo/page_promo_models.jpg")')
+    .page-promo-models__inner
+      .container
+        %header.page-promo-models__header
+          %h1.page-promo-models__title= title
+
+        .page-promo-models__text
+          - if current_shop.barbershop?
+            %p= ty('Вы можете записаться на бесплатные стрижки, окрашивание или бритье к нашим парикмахерам-стажерам.')
+          - else
+            %p= ty('Вы можете записаться на бесплатные процедуры по косметологии, в том числе инъекционные процедуры, перманентный макияж, химические пилинги.')
+
+        .page-promo-models__schedule
+          = render 'layouts/courses_shop/hr_large'
+          = link_to 'Записаться', 'https://n204024.yclients.com', class: 'button button--base-outline',
+                                                                  target: '_blank',
+                                                                  'data-size' => 'lg'
+
+  // Promo
+  .page-section
+    .container
+      .content-narrow
+        .content.js-content
+          - if current_shop.barbershop?
+            %p= ty("Процедуры выполняют парикмахеры-стажеры Института. С полным перечнем используемых марок косметики и красок для волос вы можете ознакомиться в разделе <a href=#{courses_shop_about_partners_path}>Партнеры</a>.").html_safe
+          - else
+            %p= ty('Процедуры выполняют косметологи-стажеры Института. Процедуры проводятся с применением высококачественной косметики ведущих производителей.')
+          - unless current_shop.barbershop?
+            %p С&nbsp;полным перечнем используемых марок косметики вы&nbsp;можете ознакомиться в&nbsp;разделе <a href=#{courses_shop_about_partners_path}>Партнеры</a>. Вы&nbsp;также можете записаться на&nbsp;процедуры ботулотоксина к&nbsp;преподавателям Института на&nbsp;платной основе.
+
+  .page-section#models-schedule
+    .container
+      .h4.page-section__title Записаться на&nbsp;процедуры
+
+      .schedule
+        .schedule__content
+          .schedule__warning
+            %p Внимание! Модели должны прийти за&nbsp;15&nbsp;минут до&nbsp;начала процедур и&nbsp;строго следовать указаниям администрации Института, преподавателей и&nbsp;косметологов-стажеров. Институт самостоятельно определяет протокол процедуры, список используемых средств.
+
+          .schedule__form
+            %form.default-form
+              .default-form__inner
+                .default-form__row
+                  %a.button.button--base-fill(href='https://n204024.yclients.com' type='submit' data-size='lg' target="_blank") Записаться
+
+                .default-form__text
+                  Записываясь на процедуры, вы соглашаетесь с&nbsp<a href='/offer' target='_blank'>условиями использования</a>
+                  и
+                  %a(href='/privacy_policy' target='_blank')политикой защиты персональных данных
+
+.page-next.page-next--primary.js-page-next#page-promo-scroll
+  = render 'layouts/courses_shop/page_next'

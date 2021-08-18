@@ -1,0 +1,36 @@
+.page.page--promo#page-slides
+  = render 'layouts/courses_shop/promo/index'
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title Отзывы выпускников
+      %p= link_to 'Все отзывы', '#'
+      = render 'layouts/courses_shop/components/feedbacks_bubbles'
+      = render 'layouts/courses_shop/components/partners_logos'
+
+  %section.page-section.page-section--background
+    .container
+      .h3.page-section__title Наши преимущества
+      = render 'layouts/courses_shop/components/advantages_index'
+
+  %section.page-section.page-section--gradient
+    .container
+      .h3.page-section__title Специальные предложения
+      = render 'layouts/courses_shop/components/courses_cards'
+
+  %section.page-section.page-section--background
+    .container
+      .h3.page-section__title Все направления обучения
+      = render 'layouts/courses_shop/components/education_groups'
+
+  -#%section.page-section.page-section--gradient
+  -#  .container
+  -#    .h3.page-section__title Выберем курс прямо сейчас?
+  -#    %form.course-select(action='#')
+  -#      .course-select__content
+  -#        = render 'layouts/courses_shop/components/course_select_content'
+
+.page-next.js-page-next#page-next-slide
+  = render 'layouts/courses_shop/page_next'
+
+= render 'layouts/cookie_warning'

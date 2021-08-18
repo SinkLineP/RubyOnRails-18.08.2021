@@ -1,0 +1,23 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'вопрос-ответ' => admin_faq_index_path}
+      %h3.tx-center ВОПРОС-ОТВЕТ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_faq_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить вопрос
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-7-9>
+                %p вопрос
+              .grid_i.grid_i__grid-2-9.tx-center>
+                %p действия
+          .grid.grid__collapse
+            = render collection: @faq, partial: 'faq'
+      = will_paginate @faq, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

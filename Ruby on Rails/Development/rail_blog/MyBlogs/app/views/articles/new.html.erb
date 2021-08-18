@@ -1,0 +1,34 @@
+<div class="container">
+
+	<h2>New Article</h2>
+
+	<p>
+		<% if @article && @article.errors.any? %>
+	    <ul>
+	      <% @article.errors.full_messages.each do |msg| %>
+	        <i><li style="color: red;"><%= msg %></li></i>
+	      <% end %>
+	    </ul>
+	  <% end %>
+	</p>
+
+	<%= simple_form_for :article, url: articles_path do |f| %>
+	  <div class="popa">
+	  	<%= f.input :title,
+	  							required: true,
+	  							autofocus: true,
+	  							input_html: {
+	  							class: 'form-control',
+	  							autocomplete: "title"}
+	  	%>
+	  </div>
+	    
+	  <div>
+	  	<%= f.input :text, :class => 'form-control' %>
+		</div>
+		
+		<div>
+			<%= f.submit 'Опубликовать!', :class => 'btn btn-success'%>
+		</div>
+	<% end %>
+</div>

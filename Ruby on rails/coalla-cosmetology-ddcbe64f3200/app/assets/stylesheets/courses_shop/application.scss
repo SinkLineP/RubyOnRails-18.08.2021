@@ -1,0 +1,135 @@
+// Vendors
+@import "vendor/normalize.css";
+@import "vendor/magnific-popup.css";
+@import "vendor/select2.css";
+@import "vendor/slick.css";
+@import "vendor/social-likes.css";
+@import "vendor/csspin-round.css";
+@import "bourbon";
+@import "neat";
+@import "../vendor/intlTelInput/css/intlTelInput";
+@import "../vendor/intlTelInput/css/phone_mask";
+
+// Config
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "styles";
+@import "helpers";
+@import "layout";
+
+// Overrides
+@import "overrides/magnific_popup";
+@import "overrides/select2";
+@import "overrides/jquery_ui_datepicker";
+@import "overrides/slick";
+@import "overrides/social_likes";
+
+// Components
+@import "components/site_header";
+@import "components/site_phone";
+@import "components/site_logo";
+@import "components/site_footer";
+
+@import "components/icons";
+@import "components/popups";
+@import "components/ruble";
+@import "components/tooltips";
+
+@import "components/forms/buttons";
+@import "components/forms/checkbox_inputs";
+@import "components/forms/file_inputs";
+@import "components/forms/forms";
+@import "components/forms/labels";
+@import "components/forms/radio_inputs";
+@import "components/forms/selects";
+@import "components/forms/text_inputs";
+@import "components/forms/textareas";
+
+@import "components/page";
+@import "components/mobile_menu";
+@import "components/mobile_user_nav";
+
+@import "components/accordion";
+@import "components/advantages";
+@import "components/awards";
+@import "components/banners";
+@import "components/basket";
+@import "components/career_after_courses";
+@import "components/contacts";
+@import "components/content";
+@import "components/course";
+@import "components/course_meta";
+@import "components/course_select";
+@import "components/courses_cards";
+@import "components/courses_items";
+@import "components/cookie_warning";
+@import "components/disability";
+@import "components/document_item";
+@import "components/education_groups";
+@import "components/faq";
+@import "components/feedbacks_widgets";
+@import "components/feedbacks_bubbles";
+@import "components/feedbacks_cards";
+@import "components/feedbacks_items";
+@import "components/cookie_warning";
+@import "components/filter";
+@import "components/graduates_cards";
+@import "components/history_cards";
+@import "components/images_gallery";
+@import "components/images_slider";
+@import "components/info";
+@import "components/licenses_items";
+@import "components/lists";
+@import "components/media_cards";
+@import "components/pagination";
+@import "components/partners_items";
+@import "components/partners_logos";
+@import "components/payment_method_select";
+@import "components/personal_cabinet";
+@import "components/promotions_cards";
+@import "components/search_row";
+@import "components/seo_text";
+@import "components/social";
+@import "components/schedule";
+@import "components/services_table";
+@import "components/subscription";
+@import "components/tabs";
+@import "components/teachers_cards";
+@import "components/paykeeper_form";
+@import "components/teachers_items";
+
+.breadcrumbs {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+  list-style-type: none;
+  padding-top: 2rem;
+}
+
+.preloader {
+  display: none;
+  position: fixed;
+  z-index: 9999999;
+  width: 150px;
+  overflow: visible;
+  margin: auto;
+  top: 35%;
+  left: 50%;
+}
+// Z-indexes:
+// @include background-gradient(): -1
+// .mobile-menu: 200
+// .mobile-user-nav: 200
+// .tooltip__popup: 199
+// .feedbacks-widgets: 151
+// .banner: 110
+// .site-header: 101
+// .page-promo-course__breadcrumbs: 102
+// .site-footer: 100
+// .page-slide-next: 100
+// .mfp-arrow-custom: 1100
+// .banner: 110
+// .cookie-warning 1100

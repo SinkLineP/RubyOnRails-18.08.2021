@@ -1,0 +1,6 @@
+.grid_i.grid_i__grid-1-6.pt-1>
+  - if @task.time_limit.present?
+    .test_timer
+      = text_field_tag :timer, @task.time_limit, class: 'test_timer-input js-timer', data: {task_id: @task.id, activity_id: @user_activity.id, course_id: @course.id}
+    - content_for :js do
+      = javascript_include_tag 'timer'

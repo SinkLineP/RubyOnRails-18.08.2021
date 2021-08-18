@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+.search-row {
+  margin-bottom: 4rem;
+
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // Inner
+  &__inner {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+
+  // Form
+  &__form {
+    position: relative;
+
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    > input {
+      @include size(100% 6rem);
+      @include text-lg;
+      padding: 0 3rem 0 8rem;
+      background: $color-ui;
+      border-radius: 3rem;
+    }
+
+    > button {
+      @include transform(translateY(-50%));
+      position: absolute;
+      top: 50%;
+      left: 2.3rem;
+      cursor: pointer;
+
+      .icon {
+        fill: $color-base;
+      }
+    }
+
+    .icon {
+      @include hover(fill, $color-brand, 'button:hover');
+    }
+  }
+
+  // Results
+  &__results {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  // Related
+  &__related {
+    margin: 3.75rem 0 5.5rem;
+    text-align: center;
+
+    @include media($breakpoint-lg) {
+      margin-top: 7.5rem;
+    }
+  }
+}

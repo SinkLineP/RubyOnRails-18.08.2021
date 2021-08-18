@@ -1,0 +1,69 @@
+.page.page--sections
+  = render 'courses_shop/common/breadcrumbs'
+  %section.page-section
+    .container
+      %header.page__header
+        %h1.page__title Контакты
+        %script{type: "application/ld+json"}
+          :erb
+            {
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "Автономная некоммерческая организация дополнительного профессионального образования
+             «Институт косметологии, эстетической медицины и визажного искусства — Дом Русской Косметики»",
+            "email": "info(at)cosmeticru.com",
+            "telephone": "+7-495-256-03-82",
+            "openingHours": "9:00 - 21:00",
+            "location": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Москва, Россия",
+                "streetAddress": "Большая Татарская ул., д. 35с3, третий этаж"
+              }
+            }
+            }  
+
+      .contacts
+        .contacts__inner
+          .contacts__item
+            .contacts-overview
+              .contacts-overview__contacts
+                %div.dl
+                  %div.dt
+                    %svg.icon(role='img' data-size='66')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#smartphone')
+                  %div.dd
+                    - if current_shop.barbershop?
+                      = link_to 'tel:74951911571', class: 'roistat-phone' do
+                        %span.roistat-phone +7&nbsp;495 191-15-71
+                    - else
+                      = link_to 'tel:74952560382', class: 'roistat-phone' do
+                        %span.roistat-phone +7&nbsp;495 256-03-82
+                    %p Ежедневно,
+                    %p 9:00-21:00
+                %div.dl
+                  %div.dt
+                    %svg.icon(role='img' data-size='66')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#placemark')
+                  %div.dd
+                    = link_to 'Москва,<br>Большая Татарская ул.,<br>д. 35с3, третий этаж'.html_safe, '#'
+                %div.dl
+                  %div.dt
+                    %svg.icon(role='img' data-size='66')
+                      %use(xlink:href='/assets/courses_shop/icons.svg#mail')
+                  %div.dd
+                    = link_to 'info@cosmeticru.com', 'mailto:info@cosmeticru.com'
+              = render 'layouts/courses_shop/hr_small'
+              %p.contacts-overview__text Автономная некоммерческая организация дополнительного профессионального образования<br>&laquo;Институт косметологии, эстетической медицины и&nbsp;визажного искусства&nbsp;&mdash; Дом Русской Косметики&raquo;
+
+          .contacts__item
+            .contacts-routes
+              .h4.contacts-routes__title Как к&nbsp;нам добраться
+
+              .contacts-routes__accordion
+                = render 'courses_shop/home/map_items'
+
+= content_for :js do
+  = javascript_include_tag '//api-maps.yandex.ru/2.1/?lang=ru_RU'
+  = javascript_include_tag 'courses_shop/components/_barbershop_contacts'

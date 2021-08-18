@@ -1,0 +1,27 @@
+= render 'admin/breadcrumbs', crumbs: {'исторические события' => admin_history_events_path, (@history_event.title.presence || 'новое историческое событие ') => '#'}
+%h3.tx-center= @history_event.title.presence || 'НОВОЕ ИСТОРИЧЕСКОЕ СОБЫТИЕ'
+= form_for [:admin, @history_event], html: {id: 'history_event_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+
+  .admin_header
+    %label.form_el.form_label Название:
+    .form_el.js-form_el.form_tx
+      = f.text_field :title, class: 'form_el_tag form_tx_tag'
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Год:
+        .form_el.js-form_el.form_tx
+          = f.text_field :year, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Описание:
+        .form_el.js-form_el.form_textarea{data: {valid: ''}, style: 'height: 24rem; '}
+          = f.text_area :description, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+      .mt_1
+        = render 'admin/common/image_loader', f: f, field: :image, size: '392x241', uploader: HistoryEventImageUploader, version: :main, placeholder: 'placeholder3.png'
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+= render 'admin/errors', errors: @history_event.errors

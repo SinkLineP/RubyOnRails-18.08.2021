@@ -1,0 +1,8 @@
+.grid_i.grid_i__grid-8-9>
+  = link_to graduate.name, edit_admin_graduate_path(graduate)
+.grid_i.grid_i__grid-1-9>
+  .tx-center
+    = link_to edit_admin_graduate_path(graduate), title: 'Редактировать' do
+      .icon_edit &#9998;
+    = link_to admin_graduate_path(graduate), title: 'Удалить', method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X

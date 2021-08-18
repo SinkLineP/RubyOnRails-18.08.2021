@@ -1,0 +1,24 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'выпускники' => admin_graduates_path}
+      %h3.tx-center ВЫПУСКНИКИ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_graduate_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить выпускника
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-8-9>
+                %p ФИО
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @graduates, partial: 'graduate'
+      = will_paginate @graduates, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

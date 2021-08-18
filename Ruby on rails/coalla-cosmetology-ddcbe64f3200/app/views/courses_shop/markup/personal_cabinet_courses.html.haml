@@ -1,0 +1,230 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          .personal-cabinet__tabs
+            %select.select2.js-select2
+              %option(selected) Мои курсы
+              %option Расписание
+              %option Документы
+              %option Настройки
+
+            %ul
+              %li
+                = link_to 'Мои курсы', courses_shop_markup_personal_cabinet_courses_path, class: 'is-active'
+              %li
+                = link_to 'Расписание', courses_shop_markup_personal_cabinet_schedule_path
+              %li
+                = link_to 'Документы', courses_shop_markup_personal_cabinet_documents_path
+              %li
+                = link_to 'Настройки', courses_shop_markup_personal_cabinet_settings_path
+
+          .filter
+            %ul.filter__list
+              %li.filter__item
+                .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+                  %span Активные курсы
+                  %svg.icon(role='img' data-size='18')
+                    %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+                  .tooltip__popup
+                    .tooltip__popup-inner
+                      %ul
+                        %li= link_to 'Неактивные курсы', '#'
+                        %li= link_to 'Завершенные курсы', '#'
+
+          .personal-cabinet__content
+            .personal-cabinet-courses
+              %ul.personal-cabinet-courses__list
+                %li.personal-cabinet-courses__item
+                  .personal-cabinet-course.js-personal-cabinet-course
+                    .personal-cabinet-course__overview
+                      .personal-cabinet-course__state(data-state='warning') Ожидание оплаты
+
+                      %ul.course-meta.personal-cabinet-course__meta
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                          %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                          %span пн-пт, с&nbsp;10:00 до&nbsp;15:00
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#calculator')
+                          %span 37&nbsp;560&nbsp;руб. <span>полная стоимость</span>
+
+                      %ul.personal-cabinet-course__documents
+                        %li
+                          = link_to 'Anketa_4678298401.pdf', '#'
+                        %li
+                          = link_to 'Dogovor_4678298403.pdf', '#'
+
+                    %article.personal-cabinet-course__content
+                      .personal-cabinet-course__info
+                        .h4.personal-cabinet-course__title
+                          = link_to 'Косметик Эстетист для людей с&nbsp;мед. образованием'.html_safe, '#'
+                        .personal-cabinet-course__payment
+                          %p
+                            %b 9&nbsp;190 руб./мес
+                          %p Ближайший платеж 15 февраля. <a href='#' class='js-personal-cabinet-course-payments-toggle'>Показать график</a>
+                      .personal-cabinet-course__action
+                        = link_to 'Оплатить', '#', class: 'button button--base-fill js-personal-cabinet-course-payments-action', 'data-size' => 'sm'
+
+                    %ul.personal-cabinet-course__payments.js-personal-cabinet-course-payments-list
+                      %li.is-muted(data-initial='is-muted')
+                        %span 1.
+                        %span 17&nbsp;июля
+                        %span 24&nbsp;700&nbsp;руб.
+                        %span Оплачен
+                      %li.is-muted(data-initial='is-muted')
+                        %span 2.
+                        %span 23&nbsp;июля
+                        %span 9&nbsp;190&nbsp;руб.
+                        %span Не подтвержден
+                      %li
+                        %span 3.
+                        %span 29&nbsp;июля
+                        %span 9&nbsp;190&nbsp;руб.
+                        %span
+                          = link_to 'Оплатить', '#', class: 'button button--base-outline', 'data-size' => 'sm'
+                      %li
+                        %span 4.
+                        %span 8&nbsp;августа
+                        %span 9&nbsp;190&nbsp;руб.
+                        // Do not remove empty elements for proper flexbox layout
+                        %span
+                      %li
+                        %span 5.
+                        %span 16&nbsp;августа
+                        %span 9&nbsp;190&nbsp;руб.
+                        // Do not remove empty elements for proper flexbox layout
+                        %span
+                      %li
+                        %span 6.
+                        %span 23&nbsp;августа
+                        %span 9&nbsp;190&nbsp;руб.
+                        // Do not remove empty elements for proper flexbox layout
+                        %span
+                      %li.is-muted(data-initial='is-muted')
+                        %span
+                          %span.checkbox-input(data-size='sm')
+                            %input.js-personal-cabinet-course-payments-all#personal-cabinet-course-payments-checkbox-1(type='checkbox')
+                            %span
+                        %span <label for='personal-cabinet-course-payments-checkbox-1'><span class='is-lg'>Сумма п</span><span class='is-sm'>П</span>олностью</label>
+                        %span 36&nbsp;790&nbsp;руб.
+                        %span
+                          = link_to 'Оплатить', '#', class: 'button button--base-fill', 'data-size' => 'sm'
+
+                %li.personal-cabinet-courses__item
+                  .personal-cabinet-course.js-personal-cabinet-course
+                    .personal-cabinet-course__overview
+                      .personal-cabinet-course__state(data-state='error') Задолженность
+
+                      %ul.course-meta.personal-cabinet-course__meta
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                          %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                          %span пн-пт, с&nbsp;10:00 до&nbsp;15:00
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#calculator')
+                          %span 37&nbsp;560&nbsp;руб. <span>полная стоимость</span>
+
+                      %ul.personal-cabinet-course__documents
+                        %li
+                          = link_to 'Anketa_4678298401.pdf', '#'
+                        %li
+                          = link_to 'Dogovor_4678298403.pdf', '#'
+
+                    %article.personal-cabinet-course__content
+                      .personal-cabinet-course__info
+                        .h4.personal-cabinet-course__title
+                          = link_to 'Косметик Эстетист для людей с&nbsp;мед. образованием'.html_safe, '#'
+                        .personal-cabinet-course__payment
+                          %p
+                            %b 9&nbsp;190 руб./мес
+                          %p Ближайший платеж 15 февраля. <a href='#' class='js-personal-cabinet-course-payments-toggle'>Показать график</a>
+                      .personal-cabinet-course__action
+                        = link_to 'Оплатить', '#', class: 'button button--base-fill js-personal-cabinet-course-payments-action', 'data-size' => 'sm'
+
+                    %ul.personal-cabinet-course__payments.js-personal-cabinet-course-payments-list
+                      %li.is-muted(data-initial='is-muted')
+                        %span 1.
+                        %span 17&nbsp;июля
+                        %span 24&nbsp;700&nbsp;руб.
+                        %span Оплачен
+                      %li.is-muted(data-initial='is-muted')
+                        %span 2.
+                        %span 23&nbsp;июля
+                        %span 9&nbsp;190&nbsp;руб.
+                        %span Не подтвержден
+                      %li
+                        %span 3.
+                        %span 29&nbsp;июля
+                        %span 9&nbsp;190&nbsp;руб.
+                        %span
+                          = link_to 'Оплатить', '#', class: 'button button--base-outline', 'data-size' => 'sm'
+                      %li
+                        %span 4.
+                        %span 8&nbsp;августа
+                        %span 9&nbsp;190&nbsp;руб.
+                        // Do not remove empty elements for proper flexbox layout
+                        %span
+                      %li
+                        %span 5.
+                        %span 16&nbsp;августа
+                        %span 9&nbsp;190&nbsp;руб.
+                        // Do not remove empty elements for proper flexbox layout
+                        %span
+                      %li
+                        %span 6.
+                        %span 23&nbsp;августа
+                        %span 9&nbsp;190&nbsp;руб.
+                        // Do not remove empty elements for proper flexbox layout
+                        %span
+                      %li.is-muted(data-initial='is-muted')
+                        %span
+                          %span.checkbox-input(data-size='sm')
+                            %input.js-personal-cabinet-course-payments-all#personal-cabinet-course-payments-checkbox-2(type='checkbox')
+                            %span
+                        %span <label for='personal-cabinet-course-payments-checkbox-2'><span class='is-lg'>Сумма п</span><span class='is-sm'>П</span>олностью</label>
+                        %span 36&nbsp;790&nbsp;руб.
+                        %span
+                          = link_to 'Оплатить', '#', class: 'button button--base-fill', 'data-size' => 'sm'
+
+                %li.personal-cabinet-courses__item
+                  .personal-cabinet-course
+                    .personal-cabinet-course__overview
+                      .personal-cabinet-course__state(data-state='success') Оплачен полностью
+
+                      %ul.course-meta.personal-cabinet-course__meta
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#calendar')
+                          %span 15&nbsp;июля&nbsp;&mdash; 20&nbsp;августа
+                        %li
+                          %svg.icon(role='img' data-size='18')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#clock')
+                          %span пн-пт, с&nbsp;10:00 до&nbsp;15:00
+
+                      %ul.personal-cabinet-course__documents
+                        %li
+                          = link_to 'Anketa_4678298401.pdf', '#'
+                        %li
+                          = link_to 'Soglashenie_oplatelschike_4678298403.pdf', '#'
+                        %li
+                          = link_to 'Dogovor_4678298403.pdf', '#'
+
+                    %article.personal-cabinet-course__content
+                      .personal-cabinet-course__info
+                        .h4.personal-cabinet-course__title
+                          = link_to 'Врач-косметолог (Косметология)'.html_safe, '#'

@@ -1,0 +1,5 @@
+.course_block>
+  .icon_del.js-remove-block X
+  .course_block_inner
+    %span= instructor.full_name
+    = hidden_field_tag 'course[instructor_ids][]', instructor.id, data: {block_id: true}

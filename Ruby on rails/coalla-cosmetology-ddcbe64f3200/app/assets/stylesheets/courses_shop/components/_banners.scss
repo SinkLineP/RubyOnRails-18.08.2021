@@ -1,0 +1,263 @@
+@charset "UTF-8";
+
+// Banner
+.banner {
+  @include display(flex);
+  @include justify-content(center);
+  @include align-items(center);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 110;
+  width: 100%;
+  background: {
+    color: $color-brand;
+    position: 50%;
+    repeat: no-repeat;
+    size: cover;
+  }
+
+  @include media($breakpoint-sm) {
+    padding: 4rem 0 2rem;
+  }
+
+  @include media($breakpoint-lg) {
+    height: 10rem;
+  }
+
+  &::before {
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, .4);
+    content: "";
+  }
+
+  &__close {
+    @include hover(opacity, 1);
+    position: absolute;
+    top: 2.2rem;
+    right: 3rem;
+    z-index: 3;
+    opacity: .4;
+    will-change: opacity;
+
+    @include media($breakpoint-lg) {
+      @include transform(translateY(-50%));
+      top: 2.2rem;
+      right: 3rem;
+    }
+
+    .icon {
+      fill: #fff;
+    }
+  }
+
+  &__row {
+    position: relative;
+    z-index: 2;
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+      @include align-items(center);
+    }
+  }
+
+  &__col {
+    @include media($breakpoint-lg) {
+      @include grid-columns(5, 6);
+      @include grid;
+      @include align-items(center);
+    }
+  }
+
+  &__title {
+    @include font(1.9rem, 3rem);
+    color: #fff;
+    font: {
+      family: $headings-font-family;
+      weight: 400;
+    }
+
+    @include media($breakpoint-sm) {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+  }
+
+  &__form {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include align-items(center);
+    }
+  }
+
+  &__form-item {
+    @include media($breakpoint-sm) {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+
+      .text-input {
+        margin-right: -2.33vw;
+      }
+    }
+  }
+
+  // Button
+  .button.button { // Increasing specifity
+    @include fill-parent;
+    background: #f61067;
+  }
+
+  // Modifiers
+  &--link {
+    .banner__title {
+      @include media($breakpoint-lg) {
+        @include grid-columns(7, 10);
+      }
+    }
+
+    .banner__action {
+      @include media($breakpoint-lg) {
+        @include grid-columns(3, 10);
+      }
+    }
+  }
+
+  &--form {
+    .banner__title {
+      @include media($breakpoint-lg) {
+        @include grid-columns(4, 10);
+      }
+    }
+
+    .banner__action {
+      @include media($breakpoint-lg) {
+        @include grid-columns(6, 10);
+      }
+    }
+  }
+}
+
+.mobile-banner-fade {
+  display: none;
+
+  @include media($breakpoint-sm) {
+    @include size(100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba($color-ui, .7);
+    z-index: 9999;
+
+    &.is-active {
+      display: block;
+    }
+  }
+}
+
+.mobile-banner {
+  @include media($breakpoint-sm) {
+    position: fixed;
+    left: 2rem;
+    right: 2rem;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    display: none;
+    z-index: 10000;
+
+    &.is-active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+
+  &__content-box {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 60rem;
+
+    > img {
+      display: block;
+      width: auto;
+      height: auto;
+      vertical-align: top;
+    }
+  }
+
+  &__content {
+    @include size(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__content-fade {
+    @include size(100%);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: -moz-linear-gradient( 90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    z-index: 1;
+  }
+
+  &__article {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 3rem 2rem;
+    z-index: 2;
+
+    > h3, > .h3 {
+      @include font(1.9rem,3rem);
+      margin-bottom: 2rem;
+      font-family: $headings-font-family;
+      text-align: center;
+      color: #fff;
+    }
+
+    > a, button {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    opacity: .7;
+    background: {
+      size: contain;
+      repeat: no-repeat;
+      position: 50% 50%;
+      image: asset_url('assets/courses_shop/close.svg');;
+    };
+    z-index: 50;
+  }
+
+  &__input-block {
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+  }
+}

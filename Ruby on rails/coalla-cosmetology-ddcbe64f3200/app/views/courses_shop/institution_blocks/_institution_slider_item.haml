@@ -1,0 +1,4 @@
+.images-slider__slide
+  = link_to institution_image.image_url, target: '_blank', class: 'image-slide zoom-in' do
+    = image_tag institution_image.image_url(:main), alt: ''
+    = render 'layouts/courses_shop/image_zoom_in_icon'

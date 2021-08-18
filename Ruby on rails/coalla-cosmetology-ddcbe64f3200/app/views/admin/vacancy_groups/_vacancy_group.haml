@@ -1,0 +1,8 @@
+.grid_i.grid_i__grid-5-9.table_ellipsis>
+  = link_to edit_admin_vacancy_group_path(vacancy_group) do
+    = vacancy_group.name
+.grid_i.grid_i__grid-4-9.tx-right>
+  = link_to admin_vacancy_group_path(vacancy_group), method: :delete, data: {confirm: 'Вы уверены?'}  do
+    .icon_del X
+  = link_to edit_admin_vacancy_group_path(vacancy_group) do
+    .icon_edit &#9998;

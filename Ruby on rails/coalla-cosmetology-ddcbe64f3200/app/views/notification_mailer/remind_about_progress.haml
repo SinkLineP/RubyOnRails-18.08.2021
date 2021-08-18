@@ -1,0 +1,26 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Добрый день, #{@student.short_name}!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      = ty('Спасибо, что учитесь в Доме Русской Косметики.')
+      %br
+      = ty('Вот ваши успехи в освоении материалов за неделю.')
+    - @progress.each do |progress|
+      - spent_hours_value = spent_hours(progress.spent_time)
+      - spent_minutes_values = spent_minutes(progress.spent_time)
+      %p{style: 'margin-top: 10px;text-align: left;'}
+        = ty("Вы провели в системе по курсу <b>#{progress.course.name}</b> #{spent_hours_value} #{spent_hours_title(spent_hours_value)} #{spent_minutes_values} #{spent_minutes_title(spent_minutes_values)}, сдали #{progress.results} #{Russian.p(progress.results,'тест','теста','тестов')} и изучили #{progress.lectures} #{Russian.p(progress.lectures,'лекцию','лекции','лекций')}.").html_safe
+        %br
+        - if progress.results == 0
+          = ty('Вам стоит потратить больше времени на изучение материала. Если изучать материал в том же темпе, что и сейчас, то вы не освоите программу.')
+        - else
+          = ty("Так держать, продолжайте осваивать материал в том же темпе, и вы освоите программу за #{progress.weeks_left} #{Russian.p(progress.weeks_left,'неделю','недели','недель')}")
+%a{ href: 'http://sdo.sikorsky.academy' } Перейти к дистанционному обучению

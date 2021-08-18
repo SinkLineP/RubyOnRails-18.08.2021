@@ -1,0 +1,47 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @student.display_name => edit_admin_student_path(@student), 'сделки' => '#'}
+      %h3.tx-center СДЕЛКИ
+      .form__admin
+        - if @student.group_subscriptions.only_deleted.present?
+          .tx-center.mb-2
+            = link_to 'Очиcтить удаленные сделки', really_destroy_admin_student_group_subscriptions_path(@student), method: :delete, data: {confirm: 'Вы уверены?'}, title: 'Очистить удаленные сделки', class: 'a_under'
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_student_group_subscription_path(@student), class: 'a_under' do
+              %span.icon-add> +
+              Добавить сделку
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-1-12>
+                %p курс
+              .grid_i.grid_i__grid-1-12>
+                %p признак
+              .grid_i.grid_i__grid-1-12>
+                %p группа
+              .grid_i.grid_i__grid-1-12.tx-center>
+                %p сроки обучения
+              .grid_i.grid_i__grid-1-12>
+                %p форма обучения
+              .grid_i.grid_i__grid-2-12.tx-center>
+                %p этап продажи
+              .grid_i.grid_i__grid-1-12.tx-center>
+                %p бюджет
+              .grid_i.grid_i__grid-1-12.tx-center>
+                %p модуль
+              .grid_i.grid_i__grid-1-12.tx-center>
+                %p рейтинг
+              .grid_i.grid_i__grid-1-12.tx-right>
+                %p создана
+              .grid_i.grid_i__grid-1-12.tx-right>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @group_subscriptions.not_created_from_module, partial: 'group_subscription'
+          .grid.grid__collapse
+            = render collection: @group_subscriptions.created_form_module_without_module, partial: 'group_subscription'
+      = will_paginate @group_subscriptions, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

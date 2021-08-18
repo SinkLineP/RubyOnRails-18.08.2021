@@ -1,0 +1,10 @@
+- if discount
+  - if discount.composite?
+    - discount.discounts.each do |dependent_discount|
+      %div.dl
+        %div.dt= dependent_discount.title
+        %div.dd= discount_value_text(dependent_discount)
+  - else
+    %div.dl
+      %div.dt= discount.title
+      %div.dd= discount_value_text(discount)

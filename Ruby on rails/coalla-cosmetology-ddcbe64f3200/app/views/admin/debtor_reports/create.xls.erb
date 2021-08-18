@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+
+  <Styles>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sTitle">
+      <Alignment ss:Horizontal="Center"/>
+      <Font ss:Bold="1"/>
+    </Style>
+
+    <Style ss:ID="1">
+      <Font ss:Bold="1"/>
+    </Style>
+  </Styles>
+
+  <Worksheet ss:Name="Должники">
+    <Table>
+      <Column ss:Width="100"/>
+      <Column ss:Width="100"/>
+      <Column ss:Width="100"/>
+      <Column ss:Width="100"/>
+      <Column ss:Width="200"/>
+      <Column ss:Width="200"/>
+      <Column ss:Width="300"/>
+
+      <Row>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">ФИО студента</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">ID в СДО</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">Курс</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">Группа</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">Задолженность, руб.</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">Общий долг, руб.</Data></Cell>
+        <Cell ss:StyleID="sTitle"><Data ss:Type="String">Оплата до</Data></Cell>
+      </Row>
+
+      <% @statistic.each do |group_subscription, row| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= group_subscription.student_full_name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= group_subscription.student.try(:id) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= group_subscription.group.try(:course_name) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= group_subscription.group.try(:name) %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= row.left_to_pay %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= row.left_to_pay_all %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= row.debt_dates %></Data></Cell>
+        </Row>
+      <% end %>
+
+      <Row ss:StyleID="1">
+        <% formula = "=SUM(R[-1]C:R[-#{@statistic.count}]C)" %>
+        <Cell ss:StyleID="1"><Data ss:Type="String">Итого:</Data></Cell>
+        <Cell ss:StyleID="1" ss:Index='5' ss:Formula="<%=formula%>" ><Data ss:Type="Number"/></Cell>
+        <Cell ss:StyleID="1" ss:Index='6' ss:Formula="<%=formula%>" ><Data ss:Type="Number"/></Cell>
+      </Row>
+
+    </Table>
+  </Worksheet>
+
+</Workbook>

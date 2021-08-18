@@ -1,0 +1,8 @@
+- group = group_subscription.group
+- if group
+  %p
+    = group.title
+    - if group_subscription.amo_module
+      Модуль:&nbsp;#{group_subscription.amo_module.title}
+    - if group.course_timetable.present?
+      = link_to '(расписание)', group.course_timetable, target: '_blank', class: 'a_under modal'

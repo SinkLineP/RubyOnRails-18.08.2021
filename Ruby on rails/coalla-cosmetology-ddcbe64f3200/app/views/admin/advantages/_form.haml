@@ -1,0 +1,24 @@
+= render 'admin/breadcrumbs', crumbs: {'преимущества' => admin_advantages_path, 'преимущество' => '#'}
+%h3.tx-center= 'ПРЕИМУЩЕСТВО'
+= form_for [:admin, @advantage], html: {class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-2
+        = f.label :icon, class: 'form_el form_label'
+        .form_el.js-form_el.form_tx
+          = image_tag "courses_shop/advantages/#{@advantage.icon}.png"
+
+      .mt-6
+        = f.label :title, class: 'form_el form_label'
+        .form_el.js-form_el.form_textarea{style: 'height: 24rem; '}
+          = f.text_area :title, class: 'form_el_tag form_textarea_tag', style: 'height: 24rem;'
+
+
+    .grid.mt-2
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @advantage.errors

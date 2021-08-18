@@ -1,0 +1,464 @@
+ru:
+  errors:
+    messages:
+      extension_white_list_error: Файл не является картинкой
+      carrierwave_processing_error: 'ошибка обработки'
+      carrierwave_integrity_error: 'неразрешенного типа'
+      extension_white_list_error: "Запрещена загрузка файлов типа %{extension}, разрешенные типы файлов: %{allowed_types}"
+      rmagick_processing_error: "Ошибка работы с rmagick, возможно это не изображение? Описание ошибки: %{e}"
+      mime_types_processing_error: "Ошибка обработки файла с MIME::Types, возможно неверный тип содержимого (content-type)? Описание ошибки: %{e}"
+      mini_magick_processing_error: "Ошибка работы с MiniMagick, возможно это не изображение? Описание ошибки: %{e}"
+      third_party_links_in_question: "В теле вопроса присутствуют ссылки на сторонние страницы"
+  business:
+    consulting: Консалтинг
+    partners: Наши партнеры
+    regional_schools: Для региональных школ
+    manufacturers_and_dealers: Производителям и дилерам
+    mass_media: Для СМИ
+    corporate_education: Корпоративное обучение
+    recruitment: Подбор персонала
+  about:
+    history: История института
+    teachers: Преподавательский состав
+    graduates: Выпускники института
+    partners: Партнеры
+    diploma: Аккредитация в ITEC
+    tour: Экскурсия по институту
+    director_photo: Изображение руководителя
+    director_name: ФИО руководителя
+    director_position: Должность руководителя
+    cecutient_version: Версия для слабовидящих
+    home_about: Главная. Блок "Об институте"
+  socials:
+    facebook_link: Ссылка на Facebook
+    vkontakte_link: Ссылка на Vkontakte
+    youtube_link: Ссылка на Youtube
+    instagram_link: Ссылка на Intagram
+    slideshare_link: Ссылка на SlideShare
+  documents:
+    expulsion_order: Приказ об отчислении
+    questionnaire: Анкета
+    multiple_questionnaire: Анкета для нескольких курсов
+    addition_order: Приказ о зачислении
+    subscription_contract: Договор
+    order_contract: Договор
+    payer_agreement: Соглашение о плательщике
+    practice_agreement: Соглашение о практике
+    ladder_sheet: Ведомость (зачет)
+    final_work_sheet: Ведомость (выпускная работа)
+    exam_simple_sheet: Ведомость (простой экзамен)
+    practice_simple_sheet: Ведомость (простая практика)
+    hairdresser_work_sheet: Ведомость (для парикмахеров)
+    exam_sheet: Ведомость (экзамен)
+    practice_work_sheet: Ведомость (практика)
+    vacation_order: Приказ об академическом отпуске
+    final_work_registry: Реестр выпускных документов
+    attendance_log: Журнал посещаемости
+    group_list: Список группы
+    change_group_order: Приказ о переводе в другую группу
+    expulsion_notification: Уведомление об отчислении
+    payment_receipt: Квитанция по оплате
+    working_off_sheet: Лист отработок
+    education_certificate: Справка об обучении
+
+  tasks:
+    essay_task: ЗАДАНИЕ-СОЧИНЕНИЕ
+    text_task: ЗАДАНИЕ-СОЧИНЕНИЕ
+    file_task: ЗАДАНИЕ-ФАЙЛЫ
+    calculation_task: ЗАДАНИЕ-РАСЧЕТ
+    connection_task: ЗАДАНИЕ-СОЕДИНЕНИЕ
+    test_task: ТЕСТ
+  cosmetic_mailer:
+    title:
+      failed_payment: ПЛАТЁЖ НЕ СОЗДАН
+      extraordinary_payment: ВНЕПЛАНОВЫЙ ПЛАТЁЖ
+      new_sdo_url: НОВЫЙ АДРЕС
+      amocrm_errors: ОШИБКИ AMO
+      study_question_mail_without_instructor: ВОПРОС ОТ СТУДЕНТА
+      feedback_question_mail: ВОПРОС ОТ СТУДЕНТА
+      feedback_mail: ОБРАТНАЯ СВЯЗЬ
+      final_notification: СПАСИБО ЗА ОБУЧЕНИЕ
+      notify_about_discount: СКИДКА НА ДЕНЬ РОЖДЕНИЯ
+      notify_about_end_of_education: ОКОНЧАНИЕ ОБУЧЕНИЯ
+      notify_about_itec: ДИПЛОМ ITEC
+      notify_about_payment: ОПЛАТА ОБУЧЕНИЯ
+      notify_about_payment_debt: ОПЛАТА ОБУЧЕНИЯ
+      notify_about_today_payment: ОПЛАТА ОБУЧЕНИЯ
+      notify_about_lecture: НАЧАЛО ЗАНЯТИЙ
+      notify_about_practice: ПРАКТИЧЕСКИЕ ЗАНЯТИЯ
+      notify_about_course_links: СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ
+      notify_about_expired_education_debts: ОКОНЧАНИЕ ОБУЧЕНИЯ ПО КУРСУ
+      notify_about_tech_error: ОБУЧЕНИЕ БЕСПЛАТНО!
+      notify_about_missing_student_docs: НЕОБХОДИМО ПРЕДОСТАВИТЬ ДОКУМЕНТЫ
+      notify_about_materials_for_k_dist: СПИСОК МАТЕРИАЛОВ ДЛЯ ОБУЧЕНИЯ ПО КУРСУ
+      block_cloned: БЛОК КЛОНИРОВАН
+      block_copied: БЛОК СКОПИРОВАН
+      sign_up: ДОСТУП ОТКРЫТ
+      notify_about_new_courses: ДОСТУП ОТКРЫТ
+      notify_blog_subscriber: В БЛОГЕ ПОЯВИЛАСЬ НОВАЯ СТАТЬЯ
+      instructor_password_changed: ИЗМЕНЕНИЕ ПАРОЛЯ
+      new_password: НОВЫЙ ПАРОЛЬ
+      notify_student: ВАЖНОЕ СООБЩЕНИЕ
+      letters_loading_errors: ОШИБКИ ЗАГРУЗКИ ПИСЕМ
+      notify_extend_training: ДОСТУП ИСТЕКАЕТ
+      send_student_contract: ДОГОВОР НА ОКАЗАНИЕ УСЛУГ
+      send_student_order_contract: ДОГОВОР НА ОКАЗАНИЕ УСЛУГ
+      notify_about_academic_vacation: АКАДЕМИЧЕСКИЙ ОТПУСК
+      notify_about_new_address: НОВЫЙ ОФИС
+      notify_about_new_documents: ВАЖНОЕ ОБНОВЛЕНИЕ В СДО
+      notify_about_chat: Надоело ждать на телефоне, пока ваш вопрос решат?
+      notify_about_expulsion: УВЕДОМЛЕНИЕ ОБ ОТЧИСЛЕНИИ
+      notify_student_academic_debt: ПЕРЕСДАЧА ЭКЗАМЕНА
+      notify_admin_about_academic_debt: ПЕРЕСДАЧА ЭКЗАМЕНА
+      notify_student_education_debt: АКАДЕМИЧЕСКАЯ ЗАДОЛЖЕННОСТЬ
+      notify_before_first_practice: ПЕРВАЯ ПРАКТИКА
+      notify_practice_access: ДОПУСК К ПРАКТИКЕ
+      changed_group_title_notification: УВЕДОМЛЕНИЕ О СМЕНЕ НОМЕРА ГРУППЫ
+      remind_about_course: ДИСТАНЦИОННОЕ ОБУЧЕНИЕ
+      remind_about_progress: ЖУРНАЛ ПРОГРЕССА
+      notify_about_poor_progress_expulsion: УВЕДОМЛЕНИЕ ОБ ОТЧИСЛЕНИИ
+      result_comment: КОММЕНТАРИЙ ПРЕПОДАВАТЕЛЯ
+      consultation: ЗАПИСЬ НА КОНСУЛЬТАЦИЮ
+      subscription: ГОРЯЧИЙ ЛИД
+      sign_in: РЕГИСТРАЦИЯ
+      promo_code: ПРОМО-КОД
+      restore_password: ВОССТАНОВЛЕНИЕ ПАРОЛЯ
+      payment_message: СООБЩЕНИЕ ОБ ОПЛАТЕ
+      procedure_request_to_admin: ОПОВЕЩЕНИЕ О ЗАПИСИ ПОЛЬЗОВАТЕЛЯ
+      procedure_request_to_user: ОПОВЕЩЕНИЕ О ЗАПИСИ
+      user_question_notification: ВОПРОС ОТ ПОЛЬЗОВАТЕЛЯ
+      user_subscribed_on_blog: УВЕДОМЛЕНИЕ
+      notify_unisender_subscriber: ВЫ ЗАРЕГИСТРИРОВАЛИСЬ НА САЙТЕ
+      add_phone_discount: СКИДКА ЗА УКАЗАНИЕ ТЕЛЕФОНА
+      lection_file_attached_notification: ЗАГРУЗКА КАРТ ИЛИ ДИПЛОМНОЙ РАБОТЫ
+      primary_treatment: ИНФОРМАЦИЯ ПО ОБУЧЕНИЮ
+      meeting_status_notification: СХЕМА, КАК ПРОЙТИ ОТ МЕТРО ПЕШКОМ ДО ДРК
+      ks_notification: ИНФОРМАЦИЯ ПО ОБУЧЕНИЮ
+      other_notification: ИНФОРМАЦИЯ ПО ОБУЧЕНИЮ
+      ke_notification: ИНФОРМАЦИЯ ПО ОБУЧЕНИЮ
+      sk_notification: ИНФОРМАЦИЯ ПО ОБУЧЕНИЮ
+      skdi_notification: ИНФОРМАЦИЯ ПО ОБУЧЕНИЮ
+      group_places_ended: ЗАКОНЧИЛИСЬ МЕСТА В ГРУППЕ
+      report_ready: ПОСЕЩАЕМОСТЬ
+      requisites_changed: СМЕНА РЕКВИЗИТОВ
+      institute_relocation_notification: НОВЫЙ ПРОСТОРНЫЙ ОФИС
+      institute_relocation_notification_new_entrance: ВАЖНАЯ ИНФОРМАЦИЯ!
+      subscription_success_notification: МЫ ЖДЕМ ВАШИ ДОКУМЕНТЫ
+      building_entrance_changed: СМЕНА ВХОДА В ИНСТИТУТ
+      polling_result_send_mail: ОСТАВТЕ ОТЗЫВ ОБ ОБУЧЕНИИ!
+      notify_corona_virus_mail: ИЗМЕНЕНИЯ В РАБОТЕ ИНСТИТУТА!
+      institute_break_notify: ПЕРЕРЫВ В РАБОТЕ ИНСТИТУТА
+      notify_about_webinar: ВЕБИНАР НАЧНЕТСЯ ЧЕРЕЗ ЧАС
+      cashback: ''
+  course:
+    appointment:
+      retraining: прохождения профессиональной переподготовки по программе
+      advanced_training: прохождения повышения квалификации по программе
+      additional_education: получения дополнительного образования по программе
+      traineeship: обучения по программе ординатуры по специальности
+  enumerize:
+    feedback_question:
+      working_off_type: &working_off_type
+        wc_document: Без оплаты с группой, на основании предоставленного документа
+        wc_change_group: Без оплаты, в связи со сменой группы более чем за 7 дней до начала обучения по курсу
+        wc_vip: Без оплаты, с группой, на основании обучения на курсе ВИП
+        c_with_group: На платной основе, с группой
+        c_individual: На платной основе, индивидуально
+    working_off_list:
+      variant:
+        individual: Индивидуально
+        in_group: В группе
+      working_off_type:
+        <<: *working_off_type
+        not_chosen: Не выбрано
+        wc_individual_vip: Без оплаты, индивидуально, на основании обучения на курсе ВИП
+    order:
+      payment_type:
+        cash: Оплата наличными
+        bank: Оплата картой
+        bank_tkb: Оплата картой
+        receipt: Оплата по квитанции
+        terminal: Оплата через терминал
+      status:
+        pending_payment: Ожидает оплаты
+        paid: Оплачен
+    recall:
+      directions:
+        cosmetology: Косметология
+        massage: Массаж
+        makeup: Макияж и бровистика
+        management: Менеджмент
+        base_learning: Обучение с нуля
+        training: Повышение квалификации
+        online_education: Онлайн курсы
+        barbershop_online_education: Онлайн школа парикмахеров
+    education_level:
+      level:
+        secondary: Среднее
+        secondary_professional: Среднее профессиональное
+        incomplete_higher: Неполное высшее
+        higher: Высшее профессиональное
+    student_document:
+      document_type:
+        other_document: Другие документы
+        passport: Паспорт
+        photo: Фотография
+        health_insurance: Мед. книжка/справки
+        medical_license: Мед. лицензия базы практики
+        name_change_certificate: Свидетельство об изменении фамилии
+    group:
+      week_days:
+        monday: Понедельник
+        tuesday: Вторник
+        wednesday: Среда
+        thursday: Четверг
+        friday: Пятница
+        saturday: Суббота
+        sunday: Воскресенье
+      schedule_type:
+        specific_days: Дни недели
+        shift_work: Cменный график 2/2
+    group_price:
+      education_form:
+        academic: Очная
+        distance: Очно-дистанционная
+    group_subscription:
+      practice:
+        institute: В институте
+        practice: На базе практики
+      payer_type:
+        student: Студент
+        government: Гос программа
+        other: Другое лицо
+    course:
+      appointment:
+        retraining: Переподготовка
+        advanced_training: Повышение квалификации
+        additional_education: Дополнительное образование
+        traineeship: Ординатура
+      subject:
+        face_care: Уход за лицом
+        body_care: Уход за телом
+        injections: Инъекции
+        instrumental_cosmetology: Аппартная косметология
+      status_notification_name:
+        skdi_notification: СКДИ
+        sk_notification: СК
+        ke_notification: КЭ
+        ks_notification: КС
+        other_notification: Другое
+    payment_log:
+      payment_type:
+        cash: Наличные
+        bank: Оплата картой
+        bank_tkb: Оплата картой
+        site: Сайт
+        terminal_mkb: Терминал МКБ
+        terminal_uralsib: Терминал УРАЛСИБ
+        credit: Кредит
+        gift_certificate: Подарочный сертификат
+        receipt: Квитанция
+        terminal: Терминал
+      appointment:
+        education: Обучение
+        extraordinary: Внеплановый
+        magazine: Магазин
+    banner:
+      type_banner:
+        call: Call-to-action
+        registration: Регистрация
+        without_phone: Без телефона
+    work:
+      form_sheet:
+        simple: Простой
+        f_3_5: 3-5
+        f_3_6: 3-6
+        f_3_7: 3-7
+        f_3_8: 3-8
+        f_3_9: 3-9
+        f_3_3_3_1: 3-3-3-1
+        f_0_9: 0-9
+      hairdresser_form_sheet:
+        f_2_5: 2-5
+        f_2_6: 2-6
+        f_2_7: 2-7
+        f_2_8: 2-8
+        f_2_9: 2-9
+        f_2_10: 2-10
+        f_2_11: 2-11
+        f_2_12: 2-12
+      criterion:
+        purification: Очищение
+        eyebrows_painting: Окраска бровей и ресниц
+        face_massage: Массаж лица
+        masks: Маски
+        depilation: Депиляция
+        makeup: Макияж
+        shaping_nails: Придание формы ногтям
+        not_selected: Не выбран
+        manicure: Маникюр
+        hairdresser: Парикмахер
+      statement_criterion:
+        not_selected: Не выбран
+        classic_long_shape: №5 Классическая длинная форма
+        mens_fingers_haircut: №7 Классическая мужская стрижка на пальцах
+        classic_square_shape: №10 Классическая квадратная форма. Тушевка
+        classic_mens_haircut: №15 Классическая мужская стрижка. Практика на моделях
+        fade_haircut: №20 Стрижка «Fade». Практика на моделях
+        final_work: №24 Итоговая аттестационная работа
+        highlighting: Мелирование, практика на моделях
+        coloring: Стойкое окрашивание, окрашивание в 1 тон, прикорневое окрашивание
+        texturing: Текстурирование
+        women_haircut: Экзамен по женским стрижкам
+        lightening: Обесцвечивание и осветление волос
+        highlighting_advanced_level: Мелирование, продвинутый уровень
+    service:
+      units:
+        rub: руб
+        rub_per_meter: руб/кв.м
+        rub_per_month: руб/мес
+  accordeon_blank_description: Дополнительная информация отсутствует
+  business_title: Для бизнеса
+  about_title: Об институте
+  tour_image_title: Изображения для экскурсии
+  reward_image_title: Изображения для наград
+  MassMedia: Мы и СМИ
+  ScienceAndDrk: Наука и ДРК
+  Blog: Блог
+  about_title: НАСТРОЙКИ ОБ ИНСТИТУТЕ
+  socials_title: ССЫЛКИ НА СОЦ. СЕТИ
+  documents_list:
+    government: диплом о профессиональной переподготовке установленного институтом образца
+    ko: Сертификат Международного терапевтического совета ITEC, Диплом о профессиональной переподготовке установленного Институтом образца, Настенный диплом, обучающимся, чей уровень профессионального образования соответствует требованиям законодательства Российской Федерации к лицам, имеющим право получить сертификат специалиста государственного образца по специальности «Сестринское дело в косметологии», после успешной итоговой аттестации выдается сертификат специалиста государственного образца.
+    sk: Диплом о профессиональной переподготовке установленного Институтом образца, Настенный диплом, обучающимся, чей уровень профессионального образования соответствует требованиям законодательства Российской Федерации к лицам, имеющим право получить сертификат специалиста государственного образца по специальности «Сестринское дело в косметологии», после успешной итоговой аттестации выдается сертификат специалиста государственного образца.
+    kc: Диплом о профессиональной переподготовке установленного Институтом образца, Настенный диплом, обучающимся, чей уровень профессионального образования соответствует требованиям законодательства Российской Федерации к лицам, имеющим право получить сертификат специалиста государственного образца по специальности «Косметологии», после успешной итоговой аттестации выдается сертификат специалиста государственного образца.
+  institution_block:
+    requisites: Реквизиты Института
+    charter: Устав
+    founders: Учредители
+    controls: Информация об органах управления
+    licenses: Образовательные и медицинские лицензии
+    final_documents: Образцы выпускных документов
+    contract_for_education_services: Образец договора на оказание платных образовательных услуг
+    rates_for_education_services: Расценки на оказание платных образовательных услуг
+    self_report: Отчет о самообследовании
+    expenditure_report: Отчет о расходовании некоммерческой организацией денежных средств и об использовании иного имущества, включая полученные от международных и иностранных организаций, иностранных граждан и лиц без гражданства
+    logistics_process: Материально-техническое обеспечение и оснащенность образовательного процесса
+  meta_tag_identifier:
+    default: Для главной
+    about: Об институте
+    info: Сведения об организации
+    contacts: Контакты
+    promotions: Акции
+    license: Лицензии
+    faqs: Вопрос
+    mass_media: Мы и СМИ
+    blogs: Блог
+    science_and_drks: Наука и ДРК
+    offer: Оферта и условия использования
+    business: Для бизнеса
+    articles: Статьи
+    models: Приглашаем моделкй
+    errors: Страница ошибки
+    specialities: Список курсов
+    recalls: Отзывы выпускников
+  breadcrumbs:
+    default: Для главной
+    about: Об институте
+    info: Сведения об организации
+    contacts: Контакты
+    promotions: Акции
+    license: Лицензии
+    faqs: Вопрос
+    mass_media: Мы и СМИ
+    blogs: Блог
+    science_and_drks: Наука и ДРК
+    offer: Оферта и условия использования
+    business: Для бизнеса
+    articles: Статьи
+    models: Приглашаем моделкй
+    errors: Страница ошибки
+    specialities: Список курсов
+    recalls: Отзывы выпускников
+    cookies_policy: Предупреждение об использовании файлов cookies
+  page_titles:
+    mass_media: Мы и СМИ
+    blogs: Блог
+    science_and_drk: Наука и ДРК
+    recalls: Отзывы выпускников
+  course_filter:
+    active: Активные курсы
+    pending: Курсы, требующие оплаты
+    archive: Архивные курсы
+    payment_not_completed: Оплата не завершена
+  payment_state_text:
+    pending_payment: Ожидание оплаты
+    debts: Задолженность
+    full_paid: Оплачен полностью
+    archive: Архив
+    payment_not_completed: Оплата не завершена
+  errors_page:
+    text_404: "Сожалеем, но&nbsp;запрашиваемая страница не&nbsp;найдена, возможно она удалена, перемещена или никогда не&nbsp;существовала&nbsp;&mdash; проверьте правильность написания адреса или перейдите <a href='/'>на&nbsp;главную</a>."
+    text_500: "Извините, произошла ошибка, мы&nbsp;были оповещены о&nbsp;проблеме и&nbsp;уже работаем над её&nbsp;исправлением&nbsp;&mdash; перейдите <a href='/'>на&nbsp;главную</a>."
+  education_form:
+    offline: "Очная"
+    online: "Очно-дист."
+  payment_type:
+    cash: "<br><b>Оплата наличными в офисе</b>"
+    receipt: "<br><b>Оплата квитанцией для банка</b>"
+    terminal: "<br><b>Оплата в терминалах МКБ или Уралсиб</b>"
+    bank: "<br><b>Оплата банковской картой</b>"
+    bank_tkb: "<br><b>Оплата банковской картой</b>"
+  shops:
+    title:
+      barbershop: Парикмахерская академия
+      cosmetic: Институт косметологии
+  order_title:
+    AdditionPeriodOrder: Отчет о зачислении
+    ExpulsionPeriodOrder: Отчет об отчислении
+  feedback_questions:
+    study_question: Вопрос преподавателю
+    technical_question: Техническая проблема
+    expulsion_question: Академический отпуск/расторжение договора
+    absenteeism_question: Пропуск/перенос занятий
+    student_comment: Жалоба/благодарность
+    other_question: Другие вопросы
+  reports:
+    attendance:
+      user_fullname: ФИО
+      user_type: Тип пользователя
+      user_groups: Группы
+      date: Дата
+      in_at: Время прихода
+      out_at: Время ухода
+      door_name: Аудитория
+
+  barbershop:
+    review: Отзывы
+    about: О школе Светланы Сикорской
+    blogs: Блог школы Светланы Сикорски
+    menu_about: О школе
+    partners: Партнеры школы
+    history: История школы
+    graduates: Выпускники школы
+    tour: Экскурсия по школе
+    teachers: Преподавательский состав
+    diploma: Международный диплом ITEC
+
+  cosmetic:
+    review: Отзывы выпускников
+    about: Об институте
+    menu_about: Об институте
+    partners: Партнеры института
+    history: История института
+    graduates: Выпускники института
+    tour: Экскурсия по институту
+    teachers: Преподавательский состав
+    diploma: Аккредитация в ITEC
+  logs:
+    User: Пользователи
+    actions:
+      deleted: Удаление
+      created: Добавление
+      merged: Объединение
+      updated: Обновление

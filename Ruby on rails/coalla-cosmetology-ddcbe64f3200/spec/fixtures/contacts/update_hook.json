@@ -1,0 +1,126 @@
+{
+  "contacts": {
+    "update": {
+      "0": {
+        "id": "72595229",
+        "name": "Макарова Екатерина Игоревна",
+        "responsible_user_id": "1786506",
+        "date_create": "1487023896",
+        "last_modified": "1510783931",
+        "created_user_id": "367294",
+        "modified_user_id": "406681",
+        "custom_fields": {
+          "0": {
+            "id": "1641411",
+            "name": "Телефон",
+            "values": {
+              "0": {
+                "value": "+79104950985",
+                "enum": "3816491"
+              }
+            },
+            "code": "PHONE"
+          },
+          "1": {
+            "id": "1641413",
+            "name": "Email",
+            "values": {
+              "0": {
+                "value": "dyagileva-1992@mail.ru",
+                "enum": "3816499"
+              }
+            },
+            "code": "EMAIL"
+          },
+          "2": {
+            "id": "1760649",
+            "name": "education_level_id",
+            "values": {
+              "0": {
+                "value": "4"
+              }
+            }
+          },
+          "3": {
+            "id": "1766553",
+            "name": "main",
+            "values": {
+              "0": {
+                "value": "1"
+              }
+            }
+          },
+          "4": {
+            "id": "1748622",
+            "name": "CoMagic_Site",
+            "values": {
+              "0": {
+                "value": "cosmeticru.com"
+              }
+            }
+          },
+          "5": {
+            "id": "1772081",
+            "name": "communication_id",
+            "values": {
+              "0": {
+                "value": "360381920"
+              }
+            }
+          },
+          "6": {
+            "id": "1772079",
+            "name": "communication_source",
+            "values": {
+              "0": {
+                "value": "va"
+              }
+            }
+          },
+          "7": {
+            "id": "1772077",
+            "name": "communication_type",
+            "values": {
+              "0": {
+                "value": "call"
+              }
+            }
+          },
+          "8": {
+            "id": "1772065",
+            "name": "communication_time",
+            "values": {
+              "0": {
+                "value": "2017-10-16 14:48:37.836"
+              }
+            }
+          },
+          "9": {
+            "id": "1741979",
+            "name": "MailChimp",
+            "values": {
+              "0": {
+                "value": "0"
+              }
+            }
+          },
+          "10": {
+            "id": "1748618",
+            "name": "CoMagic_Campaign",
+            "values": {
+              "0": {
+                "value": "Поисковое продвижение"
+              }
+            }
+          }
+        },
+        "linked_leads_id": {
+          "44457232": {
+            "ID": "44457232"
+          }
+        },
+        "type": "contact"
+      }
+    }
+  }
+}

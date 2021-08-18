@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+
+  <Styles>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sGreen">
+      <Alignment ss:Horizontal="Left"/>
+      <Interior ss:Color="#18CD2F" ss:Pattern="Solid"/>
+    </Style>
+    <Style xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" ss:ID="sCenter">
+      <Alignment ss:Horizontal="Center"/>
+    </Style>
+  </Styles>
+
+  <%= render 'contingent' %>
+
+  <%= render 'plan' %>
+
+</Workbook>

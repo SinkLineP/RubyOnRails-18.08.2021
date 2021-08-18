@@ -1,0 +1,9 @@
+.grid_i.grid_i__grid-3-7>
+  %a.modal{data: {url: edit_admin_instructor_vacation_path(instructor_vacation)}}= instructor_vacation.instructor.full_name
+.grid_i.grid_i__grid-1-7>
+  = format_date(instructor_vacation.begin_on)
+.grid_i.grid_i__grid-1-7>
+  = format_date(instructor_vacation.end_on)
+.grid_i.grid_i__grid-1-7.tx-center>
+  = link_to admin_instructor_vacation_path(instructor_vacation), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

@@ -1,0 +1,54 @@
+= render 'admin/breadcrumbs', crumbs: {'сведения об организации' => admin_institution_blocks_path, t("institution_block.#{@institution_block.code}") => '#'}
+%h3.tx-center= t("institution_block.#{@institution_block.code}")
+= form_for [:admin, @institution_block], html: {id: 'institution_block_form', class: 'form js-form form__admin', autocomplete: 'off'} do |f|
+  .admin_header
+  .admin_body
+    .admin_settings_change
+      .mt-1
+        %label.form_el.form_label Ссылка на видео:
+        .form_el.js-form_el.form_tx
+          = f.text_field :video_url, class: 'form_el_tag form_tx_tag'
+
+      = render 'admin/common/select_video_block', size: 300, f: f
+
+      .mt-1
+        %label.form_el.form_label Название ссылки:
+        .form_el.js-form_el.form_tx
+          = f.text_field :link_title, class: 'form_el_tag form_tx_tag'
+      .mt-1
+        %label.form_el.form_label Ссылка:
+        .form_el.js-form_el.form_tx
+          = f.text_field :link, class: 'form_el_tag form_tx_tag'
+      = f.cktext_area :content, placeholder: 'Текст'
+
+      .mt-2.mb-2
+        .tx-s.tx-700 Изображения
+        .course_blocks.js-institution-images
+          - @institution_block.institution_images.ordered.each_with_index do |institution_image, idx|
+            .course_block{data: {institution_image: institution_image.id || idx}, class: (idx == 0 && 'course_block__current')}>
+              = render 'institution_image', institution_image: institution_image, idx: idx
+          %a.course_block.course_block__add.js-add-institution-image>
+            .course_block_inner
+              .icon_add> +
+              Добавить изображение
+          = f.fields_for :institution_images, include_id: false do |institution_image_fields|
+            = render 'institution_image_fields', f: institution_image_fields
+      .grid
+        .grid_i.grid_i__grid-1-2>
+          .form_el.js-form_el.form_btn.form_el_block
+            %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+            = button_tag type: 'submit', class: 'form_el_tag form_btn_tag', name: 'commit', value: 'save'
+
+  - content_for :js do
+    %script#institution_image_template{type: 'text/template'}
+      = f.fields_for :institution_images, InstitutionImage.new, child_index: '__id__', include_id: false do |institution_image_fields|
+        = render 'institution_image_fields', f: institution_image_fields
+    %script#institution_image_thumb_template{type: 'text/template'}
+      .course_block>
+        .icon_del.js-remove-institution_image X
+        .course_block_inner
+
+= render 'admin/errors', errors: @institution_block.errors
+
+- content_for :js do
+  = javascript_include_tag 'admin/ckeditor'

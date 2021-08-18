@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+// Tooltip container
+.tooltip {
+  position: relative;
+
+  @include media($breakpoint-lg) {
+    cursor: pointer;
+  }
+
+  &:not(.button) {
+    display: inline;
+  }
+
+  &:not(.js-tooltip) {
+    .tooltip__popup {
+      @include media($breakpoint-sm) {
+        display: none !important;
+      }
+    }
+  }
+
+  [data-position='left'] {
+    &::after {
+      @include triangle(2rem .5rem, $color-ui, left);
+    }
+  }
+
+  // Visible
+  &[data-visibility="visible"] {
+    &.button {
+      background: $color-bg;
+      color: $color-base;
+
+      > .icon {
+        @include transform(rotate(-180deg));
+        fill: $color-base;
+      }
+    }
+
+    .tooltip__popup {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  // Popup
+  &__popup {
+    @include transition(opacity $transition-duration-base);
+    @include hover(opacity visibility, 1 visible, '.tooltip:not(.js-tooltip):hover');
+    position: absolute;
+    z-index: 199;
+    display: block;
+    width: 28rem;
+    cursor: default;
+    opacity: 0;
+    visibility: hidden;
+
+    // Top
+    [data-position='top'] & {
+      @include transform(translateX(-50%));
+      bottom: 100%;
+      left: 50%;
+      padding-bottom: 1rem;
+    }
+
+    // Bottom
+    [data-position='bottom'] & {
+      @include transform(translateX(-50%));
+      top: 100%;
+      left: 50%;
+      padding-top: 1rem;
+
+      &::after {
+        @include transform(translateX(-50%));
+        bottom: 100%;
+        left: 50%;
+      }
+    }
+  }
+
+  &__popup-inner {
+    position: relative;
+    display: block;
+    padding: 3rem 2rem;
+    background: $color-ui;
+    border-radius: $border-radius-lg;
+    text-align: center;
+
+    &::after {
+      position: absolute;
+      content: "";
+
+      // Top
+      [data-position='top'] & {
+        @include triangle(2rem .5rem, $color-ui, down);
+        @include transform(translateX(-50%));
+        top: 100%;
+        left: 50%;
+      }
+
+      // Bottom
+      [data-position='bottom'] & {
+        @include triangle(2rem .5rem, $color-ui, up);
+        @include transform(translateX(-50%));
+        bottom: 100%;
+        left: 50%;
+      }
+
+      [data-position='right'] & {
+        @include triangle(2rem .5rem, $color-ui, left);
+
+        top: 50%;
+        right: -1rem;
+        left: auto;
+        transform: translate(100%, -50%);
+
+        &::after {
+          top: 50%;
+          left: -1rem;
+          width: 0;
+          height: 0;
+          transform: translateY(-50%);
+          border-top: 10px solid transparent;
+          border-bottom: 10px solid transparent;
+          border-right:10px solid blue;
+        }
+      }
+    }
+
+    // Styles
+    header {
+      color: $color-error;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      .hr {
+        margin-top: 1rem;
+        fill: $color-base;
+      }
+    }
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    ul {
+      li {
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.icon {
+  @include hover(transform, rotate(-180deg), '.button.tooltip:not(.js-tooltip):hover');
+}

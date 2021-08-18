@@ -1,0 +1,5 @@
+%p
+  - if vacancy.pdf?
+    = link_to vacancy.name, vacancy.file_url, target: '_blank', class: 'a_under'
+  - else
+    = link_to vacancy.name, vacancy_show_content_path(vacancy), target: '_blank', class: 'a_under'

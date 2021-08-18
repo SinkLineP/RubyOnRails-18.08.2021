@@ -1,0 +1,36 @@
+.page.page--sections
+  .page-section
+    .container
+
+      - if @courses.blank?
+        .search-row
+          .search-row__inner
+            = form_tag courses_shop_search_url, class: 'search-row__form', method: :get do
+              = text_field_tag :q, params[:q]
+              %button(type='submit')
+                %svg.icon(role='img' data-size='34')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#search')
+
+            %p.search-row__results По&nbsp;вашему запросу ничего не&nbsp;найдено (
+
+      - else
+        .search-row
+          .search-row__inner
+            = form_tag courses_shop_search_url, class: 'search-row__form', method: :get do
+              = text_field_tag :q, params[:q]
+              %button(type='submit')
+                %svg.icon(role='img' data-size='34')
+                  %use(xlink:href='/assets/courses_shop/icons.svg#search')
+
+            %p.search-row__results По&nbsp;вашему запросу найдено <b>#{@courses.count}&nbsp;#{Russian.p(@courses.count, 'курс', 'курса', 'курсов')}</b>:
+
+        .courses-items.courses-items_grid
+          -unless @current_shop.barbershop?
+            %ul.courses-items__list_grid#courses_list_grid
+              = render partial: 'courses_shop/courses/course_li_grid', collection: @courses
+          -else
+            %ul.courses-items__list#courses_list
+              = render partial: 'courses_shop/courses/course_li', collection: @courses
+            
+
+        = pagination_complex(@courses, '#courses_list')

@@ -1,0 +1,4 @@
+- if current_user.respond_to?(:lag_time_for_course) && current_user.lag_time_for_course(@course) > 0
+  .alert.mb-1
+    - lag_time = current_user.lag_time_for_course(@course)
+    %p ВЫ ОТСТАЕТЕ ОТ ГРАФИКА НА #{lag_time} #{Russian.p(lag_time, 'день', 'дня', 'дней')}

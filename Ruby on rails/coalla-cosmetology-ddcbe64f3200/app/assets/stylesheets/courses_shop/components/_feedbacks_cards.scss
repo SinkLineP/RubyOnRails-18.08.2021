@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+// Feedbacks cards
+.feedbacks-cards {
+  @include media($breakpoint-lg) {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-sm) {
+      &:not(.slick-initialized) {
+        .feedbacks-cards__card {
+          &:nth-child(n+2) {
+            display: none !important;
+          }
+        }
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include align-items(stretch);
+      width: 100%;
+    }
+  }
+
+  // Card
+  // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+  &__card {
+    outline: none; // If slick.js is "unslick", but keeps markup
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+      @include display(flex);        // 1
+      @include align-items(stretch); // 1
+      position: relative;
+
+      &:not(:last-child)::after {
+        position: absolute;
+        top: 3rem;
+        right: 0;
+        bottom: 3rem;
+        width: 1px;
+        background: $color-ui;
+        content: "";
+      }
+    }
+  }
+
+  // All
+  &__all {
+    margin-top: 3rem;
+
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+    }
+
+    > .button {
+      @include fill-parent;
+    }
+  }
+
+  // If slider init
+  @include media($breakpoint-sm) {
+    .slick-slider {
+      padding-bottom: 4rem;
+    }
+
+    .slick-initialized {
+      .slick-slide {
+        height: auto;
+      }
+
+      .slick-dots {
+        @include transform(translateX(-50%));
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+      }
+    }
+  }
+}
+
+// Feedback card
+// 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+.feedback-card {
+  padding: 0 3rem;
+  text-align: center;
+
+  @include media($breakpoint-lg) {
+    @include display(flex);        // 1
+    @include align-items(stretch); // 1
+  }
+
+  // Inner
+  &__inner {
+    @include media($breakpoint-lg) {
+      @include display(flex);
+      @include flex-direction(column);
+    }
+  }
+
+  // Image
+  &__image {
+    a {
+      display: inline-block;
+    }
+
+    img {
+      vertical-align: top;
+    }
+  }
+
+  // Quote
+  &__quote {
+    margin-top: 2rem;
+
+    @include media($breakpoint-lg) {
+      @include flex(1);
+      @include display(flex);
+      @include flex-direction(column);
+      @include justify-content(space-between);
+    }
+
+    > p {
+      @include text-lg;
+    }
+
+    > footer {
+      @include text-sm;
+      margin-top: 1.5rem;
+      color: $color-base-lighter;
+    }
+  }
+}

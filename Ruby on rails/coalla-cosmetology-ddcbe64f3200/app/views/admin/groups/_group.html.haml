@@ -1,0 +1,31 @@
+.grid_i.grid_i__grid-4-12.table_ellipsis>
+  = link_to edit_admin_group_path(group) do
+    = group.name
+.grid_i.grid_i__grid-2-12.period_time>
+  = group_period(group)
+.grid_i.grid_i__grid-1-12.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: group.active?, disabled: true}
+.grid_i.grid_i__grid-1-12.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: group.fake?, disabled: true}
+.grid_i.grid_i__grid-1-12.tx-center>
+  = group.academics_place
+  \/
+  = group.academics_count
+.grid_i.grid_i__grid-1-12.tx-center>
+  = group.distances_place
+  \/
+  = group.distances_count
+.grid_i.grid_i__grid-2-13.tx-right>
+  - if !group.students.any? && can?(:destroy, Group)
+    = link_to admin_group_path(group), method: :delete do
+      .icon_del X
+  = link_to edit_admin_group_path(group) do
+    .icon_edit &#9998;
+  = link_to clone_admin_group_path(group), method: :post do
+    .icon_edit +
+  - if group.students.any?
+    = link_to 'Рассылка', new_admin_course_notice_path(group.course, group_id: group.id), class: 'a_under tx-xs'

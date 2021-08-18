@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.contacts {
+    @include mq(md) {
+        display: flex;
+        align-items: center;
+    }
+
+    &__map,
+    &__address {
+        flex: 0 0 50%;
+    }
+
+    &__map {
+        @include size(100%, 0);
+        position: relative;
+        height: 0;
+        padding-bottom: 100%;
+        overflow: hidden;
+
+        @include mq(md) {
+            @include size(50%, 0);
+            padding-bottom: 50%;
+        }
+
+        > div {
+            @include size(100%);
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-color: #eee;
+        }
+    }
+
+    &__address {
+        padding: map-get($mq-indents, "sm");
+
+        @include mq(md) {
+            padding: map-get($mq-indents, "md");
+        }
+
+        @include mq(lg) {
+            padding: map-get($mq-indents, "lg");
+        }
+
+        p {
+            margin-top: map-get($mq-indents, "sm");
+
+            @include mq(md) {
+                margin-top: map-get($mq-indents, "md");
+            }
+
+            @include mq(lg) {
+                margin-top: map-get($mq-indents, "lg");
+            }
+        }
+    }
+}

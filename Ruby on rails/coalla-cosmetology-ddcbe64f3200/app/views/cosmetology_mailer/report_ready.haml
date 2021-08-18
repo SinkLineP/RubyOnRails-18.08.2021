@@ -1,0 +1,9 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Отчёт о посещаемости был успешно сгенерирован.
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      Вы можете скачать его, перейдя по
+      = link_to 'ссылке', admin_private_file_url(file: @path), target: '_blank'

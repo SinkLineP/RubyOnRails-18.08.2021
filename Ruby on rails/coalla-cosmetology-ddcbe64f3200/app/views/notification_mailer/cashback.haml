@@ -1,0 +1,17 @@
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %h2{style: "margin: 0;font-size: 30px; line-height: 36px; font-family: 'PT Sans Caption', Helvetica, Arial, sans-serif; font-weight: 400;"} Дорогие студенты!
+    %p{style: 'margin: 0;font-size: 14px; line-height: 24px; padding: 0 50px 0'}
+
+%tr
+  %td{border: '0',align: 'center', style: 'padding:20px 0 20px 0;'}
+    %hr{width: '220', style: 'margin: 0;'}
+
+%tr
+  %td{border: '0', style: 'text-align:center;'}
+    %p{style: 'margin: 0;text-align: left;'}
+      = "Скоро Новый год и мы подготовили для вас подарок - кэшбэк в размере #{@sum}р., который вы можете потратить на обучение уже сейчас!"
+      %br
+      Кэшбэк можно потратить до 20 декабря. Им можно оплатить до 25% курса
+      %br
+      = "Оставьте заявку на #{ link_to 'нашем сайте', 'https://promo.sikorsky.academy/2020-111220' } и воспользуйтесь вашим кэшбэком уже сегодня!".html_safe

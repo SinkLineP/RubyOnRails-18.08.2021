@@ -1,0 +1,33 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=cyrillic');
+
+// Vendors
+@import 'vendor/normalize.css';
+@import 'vendor/magnific-popup.css';
+@import 'vendor/slick.css';
+
+// Core
+@import 'config';
+@import 'functions';
+@import 'variables';
+@import 'mixins';
+@import 'styles';
+
+// Components
+@import 'components/container';
+
+@import 'components/forms/buttons';
+@import 'components/forms/checkboxes';
+@import 'components/forms/inputs';
+@import 'components/forms/labels';
+
+@import 'components/popups';
+
+@import 'components/banner';
+@import 'components/notice';
+@import 'components/reasons';
+@import 'components/partners';
+@import 'components/promo';
+@import 'components/feedbacks';
+@import 'components/skills';
+@import 'components/footer';

@@ -1,0 +1,4 @@
+= stylesheet_link_tag 'sikorsky_school/components/_group_places'
+.tabs
+  - @groups.each_with_index do |group, index|
+    = render 'group_places/tab', title: group[1], scope: group[0], checked: index.zero?, index: index

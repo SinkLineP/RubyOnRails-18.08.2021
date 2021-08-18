@@ -1,0 +1,12 @@
+.history-cards__card
+  %article.history-card
+    .history-card__inner
+      %header.history-card__header
+        .h4.history-card__title= history_event.year
+        .h6.history-card__caption= history_event.title
+      %figure.history-card__content
+        = image_tag history_event.image.main, alt: '', class: 'history-card__photo'
+        %figcaption.history-card__text
+          %p= history_event.description.html_safe
+      %footer.history-card__footer
+        = render 'layouts/courses_shop/hr_small'

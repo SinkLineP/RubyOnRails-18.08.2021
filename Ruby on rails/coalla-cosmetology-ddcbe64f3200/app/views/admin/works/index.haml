@@ -1,0 +1,28 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'занятия' => admin_works_path}
+      %h3.tx-center ЗАНЯТИЯ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_work_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить занятие
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-3-9>
+                %p название
+              .grid_i.grid_i__grid-2-9>
+                %p тип
+              .grid_i.grid_i__grid-2-9.tx-center>
+                %p вид бланка
+              .grid_i.grid_i__grid-2-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @works, partial: 'work'
+      = will_paginate @works, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

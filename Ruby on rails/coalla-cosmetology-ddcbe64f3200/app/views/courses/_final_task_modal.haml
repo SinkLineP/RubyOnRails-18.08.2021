@@ -1,0 +1,23 @@
+.popup_ctn
+  .popup#final_task
+    .tx-center
+      .mb-3
+        .h5 ИТОГОВОЕ ЗАДАНИЕ
+    .mb-3
+      %p Внимание! Оценка за&nbsp;это задание идет в&nbsp;диплом.
+      %p
+        - if @lecture.task.max_attempts_count.present?
+          У&nbsp;вас есть #{@lecture.task.max_attempts_count.to_i} #{Russian.p(@lecture.task.max_attempts_count.to_i, 'попытка', 'попытки', 'попыток')} для сдачи задания.
+        - if @lecture.task.test?
+          В&nbsp;задании #{@lecture.task.items_count.to_i} #{Russian.p(@lecture.task.items_count.to_i, 'вопрос', 'вопроса', 'вопросов')}.
+      %p Если вы&nbsp;его не&nbsp;сдадите, то&nbsp;не&nbsp;сможете учиться дальше.
+      %p Вы&nbsp;точно хотите сдать задание?
+    .grid
+      .grid_i.grid_i__grid-1-2.form.js-form>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner ПЕРЕЙТИ К ЗАДАНИЮ
+          = link_to '', course_task_path(@course, @lecture.task), class: 'form_el_tag form_btn_tag'
+      .grid_i.grid_i__grid-1-2.form.js-form>
+        .form_el.js-form_el.form_btn.form_el_block.arcticmodal-close
+          %p.form_el_inner.form_btn_inner ВЕРНУТЬСЯ К ЛЕКЦИИ
+    .icon_del.arcticmodal-close X

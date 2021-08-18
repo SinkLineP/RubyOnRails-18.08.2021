@@ -1,0 +1,6 @@
+%script{type: 'text/template', id: "#{item_name}_template"}
+  .course_block>
+    .icon_del.js-remove-block X
+    .course_block_inner
+      %span{data: {block_name: true}}
+      = hidden_field_tag "course[#{item_name}_ids][]", nil, data: {block_id: true}

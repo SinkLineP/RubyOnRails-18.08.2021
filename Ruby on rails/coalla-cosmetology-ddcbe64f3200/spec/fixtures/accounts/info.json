@@ -1,0 +1,1918 @@
+{
+  "response": {
+    "account": {
+      "id": "8391781",
+      "name": "cosmeticru",
+      "subdomain": "cosmeticru",
+      "currency": "RUB",
+      "timezone": "Europe/Moscow",
+      "language": "ru",
+      "notifications_base_url": "https://notifications.amocrm.ru",
+      "notifications_ws_url": "wss://notifications.amocrm.ru",
+      "notifications_ws_url_v2": "wss://ws.amocrm.ru/cosmeticru/v2/rtm?stand=v3",
+      "amojo_base_url": "https://amojo.amocrm.ru",
+      "amojo_rights": {
+        "can_direct": true,
+        "can_group_create": true
+      },
+      "current_user": 367294,
+      "version": 3,
+      "date_pattern": "d.m.Y H:i",
+      "short_date_pattern": {
+        "date": "d.m.Y",
+        "time": "H:i",
+        "date_time": "d.m.Y H:i"
+      },
+      "date_format": "d.m.Y",
+      "time_format": "H:i:s",
+      "country": "ru",
+      "unsorted_on": "N",
+      "mobile_feature_version": 3,
+      "customers_enabled": "Y",
+      "loss_reasons_enabled": false,
+      "limits": {
+        "users_count": 22,
+        "contacts_count": 1100000,
+        "active_deals_count": 220000
+      },
+      "users": [
+        {
+          "id": "2043849",
+          "mail_admin": "D",
+          "name": "Мария Корабейник",
+          "last_name": null,
+          "login": "maria@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 93346,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "2006964",
+          "mail_admin": "D",
+          "name": "Вероника Скачковейте",
+          "last_name": "",
+          "login": "v.skach@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "M",
+          "free_user": false
+        },
+        {
+          "id": "1984671",
+          "mail_admin": "D",
+          "name": "Ольга Кочергина",
+          "last_name": null,
+          "login": "o.kochergina@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "84953746438 (доб.128)",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1927455",
+          "mail_admin": "A",
+          "name": "Разработка Coalla",
+          "last_name": null,
+          "login": "vl@coalla.ru",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": "Y",
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 93346,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "A",
+          "rights_lead_export": "A",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "A",
+          "rights_contact_export": "A",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "A",
+          "rights_company_export": "A",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "1906222",
+          "mail_admin": "D",
+          "name": "bulat",
+          "last_name": null,
+          "login": "b.ziatdinov@medianation.ru",
+          "photo_url": null,
+          "phone_number": "",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 93346,
+          "rights_lead_add": "D",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "D",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "A",
+          "rights_contact_add": "D",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "D",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "D",
+          "rights_company_view": "A",
+          "rights_company_edit": "D",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "D",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1786506",
+          "mail_admin": "A",
+          "name": "Черненко Елена",
+          "last_name": null,
+          "login": "e.chernenko@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "84953746438 доб.121 моб. 8 958 581 93 04",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1783665",
+          "mail_admin": "D",
+          "name": "Виктор Редькин",
+          "last_name": null,
+          "login": "v.redkin@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "+79160074001",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 45831,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "1671516",
+          "mail_admin": "A",
+          "name": "Валерия Нестеренко",
+          "last_name": "",
+          "login": "v.nesterenko@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "84953746438 доб.125",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1670958",
+          "mail_admin": "A",
+          "name": "Марина Евдокимова",
+          "last_name": "",
+          "login": "m.evdokimova@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 45831,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "1562298",
+          "mail_admin": "A",
+          "name": "Ирина Удовиченко",
+          "last_name": "",
+          "login": "i.udovichenko@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 45831,
+          "rights_lead_add": "D",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "D",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "D",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "D",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "D",
+          "rights_company_view": "A",
+          "rights_company_edit": "D",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "1495365",
+          "mail_admin": "A",
+          "name": "Любовь Уланова",
+          "last_name": "",
+          "login": "l.ulanova@cosmeticru.com",
+          "photo_url": "/upload/main/31f/1495365.jpeg",
+          "phone_number": "84953746438 доб.122, моб. 89265216288",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1431907",
+          "mail_admin": "A",
+          "name": "Ульяна",
+          "last_name": "",
+          "login": "u.filippova@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "A",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "A",
+          "rights_contact_export": "D",
+          "rights_company_add": "D",
+          "rights_company_view": "A",
+          "rights_company_edit": "D",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1403763",
+          "mail_admin": "A",
+          "name": "Любовь Алещенко",
+          "last_name": null,
+          "login": "l.aleshenko@cosmeticru.com",
+          "photo_url": "/upload/main/293/1403763.jpeg",
+          "phone_number": "84952560382 доб.118",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1403712",
+          "mail_admin": "A",
+          "name": "Анастасия Воротникова",
+          "last_name": "",
+          "login": "a.vorotnikova@cosmeticru.com",
+          "photo_url": "/upload/main/e19/1403712.jpeg",
+          "phone_number": "+7 (495) 256-03-82 доб.117",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "D",
+          "free_user": false
+        },
+        {
+          "id": "1233406",
+          "mail_admin": "D",
+          "name": "Лилия Фитиева",
+          "last_name": "",
+          "login": "shop@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": null,
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 93346,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "772455",
+          "mail_admin": "A",
+          "name": "Учебная часть делопроизводство",
+          "last_name": null,
+          "login": "delo@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "84953746438, доб.101",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 45831,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "772452",
+          "mail_admin": "A",
+          "name": "Ольга Кузнецова",
+          "last_name": "",
+          "login": "info@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "84953746438 доб.100, 89250930315",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "N",
+          "catalogs_access": "N",
+          "group_id": 45831,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "406681",
+          "mail_admin": "A",
+          "name": "Евгения Рубаненко",
+          "last_name": "",
+          "login": "e.rubanenko@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "",
+          "language": "ru",
+          "active": true,
+          "is_admin": null,
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 45831,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "D",
+          "rights_lead_export": "D",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "D",
+          "rights_contact_export": "D",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "D",
+          "rights_company_export": "D",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "406555",
+          "mail_admin": "A",
+          "name": "Марина Никонова",
+          "last_name": "",
+          "login": "marinanikonova9@gmail.com",
+          "photo_url": null,
+          "phone_number": null,
+          "language": "ru",
+          "active": true,
+          "is_admin": "Y",
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 93346,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "A",
+          "rights_lead_export": "A",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "A",
+          "rights_contact_export": "A",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "A",
+          "rights_company_export": "A",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "406546",
+          "mail_admin": "A",
+          "name": "Ирина Наумова",
+          "last_name": null,
+          "login": "i.naumova@cosmeticru.com",
+          "photo_url": "/upload/main/28e/406546.jpeg",
+          "phone_number": "84953746438 доб.103, моб.89250930315",
+          "language": "ru",
+          "active": true,
+          "is_admin": "Y",
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "A",
+          "rights_lead_export": "A",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "A",
+          "rights_contact_export": "A",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "A",
+          "rights_company_export": "A",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        },
+        {
+          "id": "367294",
+          "mail_admin": "A",
+          "name": "Всеволод Бельченко",
+          "last_name": null,
+          "login": "seva@cosmeticru.com",
+          "photo_url": null,
+          "phone_number": "84953746438 доб. 100",
+          "language": "ru",
+          "active": true,
+          "is_admin": "Y",
+          "unsorted_access": "Y",
+          "catalogs_access": "Y",
+          "group_id": 0,
+          "rights_lead_add": "A",
+          "rights_lead_view": "A",
+          "rights_lead_edit": "A",
+          "rights_lead_delete": "A",
+          "rights_lead_export": "A",
+          "rights_contact_add": "A",
+          "rights_contact_view": "A",
+          "rights_contact_edit": "A",
+          "rights_contact_delete": "A",
+          "rights_contact_export": "A",
+          "rights_company_add": "A",
+          "rights_company_view": "A",
+          "rights_company_edit": "A",
+          "rights_company_delete": "A",
+          "rights_company_export": "A",
+          "rights_task_edit": "A",
+          "rights_task_delete": "A",
+          "free_user": false
+        }
+      ],
+      "groups": [
+        {
+          "id": 45831,
+          "name": "Учебная часть"
+        },
+        {
+          "id": 93346,
+          "name": "Административный отдел"
+        }
+      ],
+      "leads_statuses": [
+        {
+          "id": 11990269,
+          "name": "Первичное обращение",
+          "pipeline_id": 279892,
+          "sort": 10,
+          "color": "#99ccff",
+          "editable": "Y"
+        },
+        {
+          "id": 11990272,
+          "name": "Следующее касание",
+          "pipeline_id": 279892,
+          "sort": 20,
+          "color": "#ffff99",
+          "editable": "Y"
+        },
+        {
+          "id": 11990275,
+          "name": "Встреча",
+          "pipeline_id": 279892,
+          "sort": 30,
+          "color": "#ffcc66",
+          "editable": "Y"
+        },
+        {
+          "id": 11990278,
+          "name": "Планирование оплаты",
+          "pipeline_id": 279892,
+          "sort": 40,
+          "color": "#fffeb2",
+          "editable": "Y"
+        },
+        {
+          "id": 14558649,
+          "name": "Условный отказ",
+          "pipeline_id": 279892,
+          "sort": 50,
+          "color": "#ff8f92",
+          "editable": "Y"
+        },
+        {
+          "id": 15678654,
+          "name": "Дубль",
+          "pipeline_id": 279892,
+          "sort": 60,
+          "color": "#fffeb2",
+          "editable": "Y"
+        },
+        {
+          "id": 142,
+          "name": "Успешно реализовано",
+          "pipeline_id": 279892,
+          "sort": 10000,
+          "color": "#CCFF66",
+          "editable": "N"
+        },
+        {
+          "id": 143,
+          "name": "Закрыто и не реализовано",
+          "pipeline_id": 279892,
+          "sort": 11000,
+          "color": "#D5D8DB",
+          "editable": "N"
+        }
+      ],
+      "custom_fields": {
+        "contacts": [
+          {
+            "id": "1641409",
+            "name": "Должность",
+            "code": "POSITION",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 22
+          },
+          {
+            "id": "1641411",
+            "name": "Телефон",
+            "code": "PHONE",
+            "multiple": "Y",
+            "type_id": "8",
+            "disabled": "",
+            "sort": 4,
+            "enums": {
+              "3816487": "WORK",
+              "3816489": "WORKDD",
+              "3816491": "MOB",
+              "3816493": "FAX",
+              "3816495": "HOME",
+              "3816497": "OTHER"
+            }
+          },
+          {
+            "id": "1641413",
+            "name": "Email",
+            "code": "EMAIL",
+            "multiple": "Y",
+            "type_id": "8",
+            "disabled": "",
+            "sort": 6,
+            "enums": {
+              "3816499": "WORK",
+              "3816501": "PRIV",
+              "3816503": "OTHER"
+            }
+          },
+          {
+            "id": "1641417",
+            "name": "Мгн. сообщения",
+            "code": "IM",
+            "multiple": "Y",
+            "type_id": "8",
+            "disabled": "0",
+            "sort": 13,
+            "enums": {
+              "3816505": "SKYPE",
+              "3816507": "ICQ",
+              "3816509": "JABBER",
+              "3816511": "GTALK",
+              "3816513": "MSN",
+              "3816515": "OTHER"
+            }
+          },
+          {
+            "id": "1741979",
+            "name": "MailChimp",
+            "code": "",
+            "multiple": "N",
+            "type_id": "3",
+            "disabled": "1",
+            "sort": 521
+          },
+          {
+            "id": "1748618",
+            "name": "CoMagic_Campaign",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 523
+          },
+          {
+            "id": "1748620",
+            "name": "CoMagic_SearchQuery",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 510
+          },
+          {
+            "id": "1748622",
+            "name": "CoMagic_Site",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 512
+          },
+          {
+            "id": "1760649",
+            "name": "education_level_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 504
+          },
+          {
+            "id": "1766553",
+            "name": "main",
+            "code": "",
+            "multiple": "N",
+            "type_id": "3",
+            "disabled": "0",
+            "sort": 506
+          },
+          {
+            "id": "1768889",
+            "name": "Курс",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 508
+          },
+          {
+            "id": "1772065",
+            "name": "communication_time",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 519
+          },
+          {
+            "id": "1772067",
+            "name": "ua_client_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 511
+          },
+          {
+            "id": "1772069",
+            "name": "utm_content",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 520
+          },
+          {
+            "id": "1772071",
+            "name": "utm_source",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 509
+          },
+          {
+            "id": "1772073",
+            "name": "CoMagic_SessionId",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "1",
+            "sort": 516
+          },
+          {
+            "id": "1772075",
+            "name": "utm_medium",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 514
+          },
+          {
+            "id": "1772077",
+            "name": "communication_type",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 518
+          },
+          {
+            "id": "1772079",
+            "name": "communication_source",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 517
+          },
+          {
+            "id": "1772081",
+            "name": "communication_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "1",
+            "sort": 515
+          },
+          {
+            "id": "1773584",
+            "name": "График",
+            "code": "",
+            "multiple": "N",
+            "type_id": "5",
+            "disabled": "0",
+            "sort": 505,
+            "enums": {
+              "4134780": "Утро",
+              "4134782": "День",
+              "4134784": "Вечер",
+              "4134786": "2/2",
+              "4134788": "ГВД",
+              "4134790": "Интенсив"
+            }
+          },
+          {
+            "id": "1776250",
+            "name": "Профиль Instagram",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 507
+          },
+          {
+            "id": "1777882",
+            "name": "utm_term",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 500
+          },
+          {
+            "id": "1779030",
+            "name": "CF_NAME_USER_AGREEMENT",
+            "code": "USER_AGREEMENT",
+            "multiple": "N",
+            "type_id": "3",
+            "disabled": "1",
+            "sort": 10002
+          },
+          {
+            "id": "1779828",
+            "name": "Ирина",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 500
+          },
+          {
+            "id": "1779830",
+            "name": "8123456799",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 500
+          }
+        ],
+        "leads": [
+          {
+            "id": "1760641",
+            "name": "group_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 504
+          },
+          {
+            "id": "1760643",
+            "name": "education_form_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 501
+          },
+          {
+            "id": "1760645",
+            "name": "group_price_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 505
+          },
+          {
+            "id": "1760647",
+            "name": "discount_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 506
+          },
+          {
+            "id": "1772083",
+            "name": "CoMagic_Campaign",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 525
+          },
+          {
+            "id": "1772085",
+            "name": "communication_time",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 522
+          },
+          {
+            "id": "1772087",
+            "name": "communication_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "1",
+            "sort": 517
+          },
+          {
+            "id": "1772089",
+            "name": "CoMagic_SessionId",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "1",
+            "sort": 519
+          },
+          {
+            "id": "1772091",
+            "name": "utm_content",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 515
+          },
+          {
+            "id": "1772093",
+            "name": "utm_source",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 512
+          },
+          {
+            "id": "1772095",
+            "name": "CoMagic_SearchQuery",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 524
+          },
+          {
+            "id": "1772097",
+            "name": "communication_type",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 523
+          },
+          {
+            "id": "1772099",
+            "name": "utm_medium",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 513
+          },
+          {
+            "id": "1772101",
+            "name": "CoMagic_Site",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 521
+          },
+          {
+            "id": "1772103",
+            "name": "communication_source",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 520
+          },
+          {
+            "id": "1772105",
+            "name": "ua_client_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 518
+          },
+          {
+            "id": "1772732",
+            "name": "Реальный бюджет",
+            "code": "",
+            "multiple": "N",
+            "type_id": "2",
+            "disabled": "0",
+            "sort": 507
+          },
+          {
+            "id": "1772735",
+            "name": "Дата встречи",
+            "code": "",
+            "multiple": "N",
+            "type_id": "6",
+            "disabled": "0",
+            "sort": 502
+          },
+          {
+            "id": "1772898",
+            "name": "removed_from_sdo",
+            "code": "",
+            "multiple": "N",
+            "type_id": "3",
+            "disabled": "0",
+            "sort": 508
+          },
+          {
+            "id": "1773574",
+            "name": "График",
+            "code": "",
+            "multiple": "N",
+            "type_id": "5",
+            "disabled": "0",
+            "sort": 509,
+            "enums": {
+              "4134764": "Утро",
+              "4134766": "День",
+              "4134768": "Вечер",
+              "4134770": "2/2",
+              "4134772": "ГВД",
+              "4134774": "Интенсив"
+            }
+          },
+          {
+            "id": "1775978",
+            "name": "Время встречи",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 503
+          },
+          {
+            "id": "1777152",
+            "name": "Новая дата закрытия",
+            "code": "",
+            "multiple": "N",
+            "type_id": "6",
+            "disabled": "0",
+            "sort": 526
+          },
+          {
+            "id": "1777884",
+            "name": "utm_term",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 516
+          },
+          {
+            "id": "1779194",
+            "name": "utm_campaign",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 514
+          },
+          {
+            "id": "1779196",
+            "name": "Источник трафика",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "1",
+            "sort": 511
+          },
+          {
+            "id": "1779746",
+            "name": "roistat",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 528
+          },
+          {
+            "id": "1779748",
+            "name": "roistat_marker",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 529
+          },
+          {
+            "id": "1779748",
+            "name": "roistat_old",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 533
+          },
+          {
+            "id": "1779752",
+            "name": "promotion_source",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 531
+          },
+          {
+            "id": "1779754",
+            "name": "promotion_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 532
+          },
+          {
+            "id": "1779750",
+            "name": "Форма захвата",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 527
+          },
+          {
+            "id": "1781856",
+            "name": "amo_module_id",
+            "code": "",
+            "multiple": "N",
+            "type_id": "1",
+            "disabled": "0",
+            "sort": 510
+          }
+        ],
+        "companies": [
+          {
+            "id": "1641411",
+            "name": "Телефон",
+            "code": "PHONE",
+            "multiple": "Y",
+            "type_id": "8",
+            "disabled": "",
+            "sort": 4,
+            "enums": {
+              "3816487": "WORK",
+              "3816489": "WORKDD",
+              "3816491": "MOB",
+              "3816493": "FAX",
+              "3816495": "HOME",
+              "3816497": "OTHER"
+            }
+          },
+          {
+            "id": "1641413",
+            "name": "Email",
+            "code": "EMAIL",
+            "multiple": "Y",
+            "type_id": "8",
+            "disabled": "",
+            "sort": 6,
+            "enums": {
+              "3816499": "WORK",
+              "3816501": "PRIV",
+              "3816503": "OTHER"
+            }
+          },
+          {
+            "id": "1641415",
+            "name": "Web",
+            "code": "WEB",
+            "multiple": "N",
+            "type_id": "7",
+            "disabled": "",
+            "sort": 8
+          },
+          {
+            "id": "1641419",
+            "name": "Адрес",
+            "code": "ADDRESS",
+            "multiple": "N",
+            "type_id": "9",
+            "disabled": "",
+            "sort": 12
+          }
+        ],
+        "customers": []
+      },
+      "note_types": [
+        {
+          "id": 1,
+          "name": "",
+          "code": "DEAL_CREATED",
+          "editable": "N"
+        },
+        {
+          "id": 2,
+          "name": "",
+          "code": "CONTACT_CREATED",
+          "editable": "N"
+        },
+        {
+          "id": 3,
+          "name": "",
+          "code": "DEAL_STATUS_CHANGED",
+          "editable": "N"
+        },
+        {
+          "id": 4,
+          "name": "",
+          "code": "COMMON",
+          "editable": "Y"
+        },
+        {
+          "id": 5,
+          "name": "",
+          "code": "ATTACHEMENT",
+          "editable": "N"
+        },
+        {
+          "id": 6,
+          "name": "",
+          "code": "CALL",
+          "editable": "N"
+        },
+        {
+          "id": 7,
+          "name": "",
+          "code": "MAIL_MESSAGE",
+          "editable": "N"
+        },
+        {
+          "id": 8,
+          "name": "",
+          "code": "MAIL_MESSAGE_ATTACHMENT",
+          "editable": "N"
+        },
+        {
+          "id": 9,
+          "name": "",
+          "code": "EXTERNAL_ATTACH",
+          "editable": "N"
+        },
+        {
+          "id": 10,
+          "name": "",
+          "code": "CALL_IN",
+          "editable": "N"
+        },
+        {
+          "id": 11,
+          "name": "",
+          "code": "CALL_OUT",
+          "editable": "N"
+        },
+        {
+          "id": 12,
+          "name": "",
+          "code": "COMPANY_CREATED",
+          "editable": "N"
+        },
+        {
+          "id": 13,
+          "name": "",
+          "code": "TASK_RESULT",
+          "editable": "N"
+        },
+        {
+          "id": 17,
+          "name": "",
+          "code": "CHAT",
+          "editable": "N"
+        },
+        {
+          "id": 99,
+          "name": "",
+          "code": "MAX_SYSTEM",
+          "editable": "N"
+        },
+        {
+          "id": 101,
+          "name": "Ссылка",
+          "code": "DROPBOX",
+          "editable": "N"
+        },
+        {
+          "id": 102,
+          "name": "Входящее",
+          "code": "SMS_IN",
+          "editable": "N"
+        },
+        {
+          "id": 103,
+          "name": "Исходящее",
+          "code": "SMS_OUT",
+          "editable": "N"
+        }
+      ],
+      "task_types": [
+        {
+          "id": 1,
+          "name": "Связаться с клиентом",
+          "code": "FOLLOW_UP"
+        },
+        {
+          "id": 1,
+          "name": "Звонок",
+          "code": "CALL"
+        },
+        {
+          "id": 2,
+          "name": "Встреча",
+          "code": "MEETING"
+        },
+        {
+          "id": 3,
+          "name": "Письмо",
+          "code": "LETTER"
+        },
+        {
+          "id": "544774",
+          "name": "клиент думает",
+          "code": ""
+        },
+        {
+          "id": "544777",
+          "name": "нет связи",
+          "code": ""
+        },
+        {
+          "id": "559530",
+          "name": "подготовка док",
+          "code": ""
+        },
+        {
+          "id": "710217",
+          "name": "Инфобот",
+          "code": ""
+        },
+        {
+          "id": "753771",
+          "name": "поянение",
+          "code": ""
+        },
+        {
+          "id": "754548",
+          "name": "КОНТРОЛЬ ОПЛАТЫ",
+          "code": ""
+        },
+        {
+          "id": "756300",
+          "name": "Модуль",
+          "code": ""
+        },
+        {
+          "id": "756318",
+          "name": "условное",
+          "code": ""
+        },
+        {
+          "id": "756357",
+          "name": "СРОЧНО",
+          "code": ""
+        },
+        {
+          "id": "756567",
+          "name": "запрос группа",
+          "code": ""
+        },
+        {
+          "id": "756855",
+          "name": "обновить договор",
+          "code": ""
+        },
+        {
+          "id": "757065",
+          "name": "ФИО",
+          "code": ""
+        },
+        {
+          "id": "757101",
+          "name": "согласование дат",
+          "code": ""
+        },
+        {
+          "id": "758241",
+          "name": "проверить план",
+          "code": ""
+        },
+        {
+          "id": "758556",
+          "name": "объединить",
+          "code": ""
+        },
+        {
+          "id": "763944",
+          "name": "для информации",
+          "code": ""
+        },
+        {
+          "id": "764472",
+          "name": "академ",
+          "code": ""
+        },
+        {
+          "id": "764551",
+          "name": "отчисление",
+          "code": ""
+        },
+        {
+          "id": "767142",
+          "name": "открыть ITEC",
+          "code": ""
+        },
+        {
+          "id": "775851",
+          "name": "заявление:",
+          "code": ""
+        },
+        {
+          "id": "776025",
+          "name": "Разбитые платежи",
+          "code": ""
+        },
+        {
+          "id": "779061",
+          "name": "модель",
+          "code": ""
+        }
+      ],
+      "pipelines": {
+        "279892": {
+          "id": 279892,
+          "value": 279892,
+          "label": "Отдельная воронка",
+          "name": "Отдельная воронка",
+          "sort": 1,
+          "is_main": true,
+          "statuses": {
+            "11990269": {
+              "id": 11990269,
+              "name": "Первичное обращение",
+              "pipeline_id": 279892,
+              "sort": 10,
+              "color": "#99ccff",
+              "editable": "Y"
+            },
+            "11990272": {
+              "id": 11990272,
+              "name": "Следующее касание",
+              "pipeline_id": 279892,
+              "sort": 20,
+              "color": "#ffff99",
+              "editable": "Y"
+            },
+            "11990275": {
+              "id": 11990275,
+              "name": "Встреча",
+              "pipeline_id": 279892,
+              "sort": 30,
+              "color": "#ffcc66",
+              "editable": "Y"
+            },
+            "11990278": {
+              "id": 11990278,
+              "name": "Планирование оплаты",
+              "pipeline_id": 279892,
+              "sort": 40,
+              "color": "#fffeb2",
+              "editable": "Y"
+            },
+            "14558649": {
+              "id": 14558649,
+              "name": "Условный отказ",
+              "pipeline_id": 279892,
+              "sort": 50,
+              "color": "#ff8f92",
+              "editable": "Y"
+            },
+            "15678654": {
+              "id": 15678654,
+              "name": "Дубль",
+              "pipeline_id": 279892,
+              "sort": 60,
+              "color": "#fffeb2",
+              "editable": "Y"
+            },
+            "142": {
+              "id": 142,
+              "name": "Успешно реализовано",
+              "color": "#CCFF66",
+              "sort": 10000,
+              "editable": "N",
+              "pipeline_id": 279892
+            },
+            "143": {
+              "id": 143,
+              "name": "Закрыто и не реализовано",
+              "color": "#D5D8DB",
+              "sort": 11000,
+              "editable": "N",
+              "pipeline_id": 279892
+            }
+          },
+          "leads": 9973
+        },
+        "15591": {
+          "id": 15591,
+          "value": 15591,
+          "label": "Воронка",
+          "name": "Воронка",
+          "sort": 2,
+          "is_main": false,
+          "statuses": {
+            "8391787": {
+              "id": 8391787,
+              "name": "Первичное обращение",
+              "pipeline_id": 15591,
+              "sort": 10,
+              "color": "#99ccff",
+              "editable": "Y"
+            },
+            "8391790": {
+              "id": 8391790,
+              "name": "Может быть купять",
+              "pipeline_id": 15591,
+              "sort": 20,
+              "color": "#ffff99",
+              "editable": "Y"
+            },
+            "8391793": {
+              "id": 8391793,
+              "name": "Теплые",
+              "pipeline_id": 15591,
+              "sort": 30,
+              "color": "#ffcc66",
+              "editable": "Y"
+            },
+            "9007842": {
+              "id": 9007842,
+              "name": "Агенты",
+              "pipeline_id": 15591,
+              "sort": 40,
+              "color": "#fffeb2",
+              "editable": "Y"
+            },
+            "11937384": {
+              "id": 11937384,
+              "name": "Встречи",
+              "pipeline_id": 15591,
+              "sort": 50,
+              "color": "#fffeb2",
+              "editable": "Y"
+            },
+            "142": {
+              "id": 142,
+              "name": "Успешно реализовано",
+              "color": "#CCFF66",
+              "sort": 10000,
+              "editable": "N",
+              "pipeline_id": 15591
+            },
+            "143": {
+              "id": 143,
+              "name": "Закрыто и не реализовано",
+              "color": "#D5D8DB",
+              "sort": 11000,
+              "editable": "N",
+              "pipeline_id": 15591
+            }
+          },
+          "leads": 9468
+        },
+        "589968": {
+          "id": 589968,
+          "value": 589968,
+          "label": "Воронка Допродаж",
+          "name": "Воронка Допродаж",
+          "sort": 3,
+          "is_main": false,
+          "statuses": {
+            "14787777": {
+              "id": 14787777,
+              "name": "Получить фидбэк",
+              "pipeline_id": 589968,
+              "sort": 10,
+              "color": "#99ccff",
+              "editable": "Y"
+            },
+            "14787780": {
+              "id": 14787780,
+              "name": "выбор курса",
+              "pipeline_id": 589968,
+              "sort": 20,
+              "color": "#ffff99",
+              "editable": "Y"
+            },
+            "14787783": {
+              "id": 14787783,
+              "name": "встреча",
+              "pipeline_id": 589968,
+              "sort": 30,
+              "color": "#ffcc66",
+              "editable": "Y"
+            },
+            "17366091": {
+              "id": 17366091,
+              "name": "планирование оплаты",
+              "pipeline_id": 589968,
+              "sort": 40,
+              "color": "#99ccff",
+              "editable": "Y"
+            },
+            "17366094": {
+              "id": 17366094,
+              "name": "условный отказ",
+              "pipeline_id": 589968,
+              "sort": 50,
+              "color": "#99ccff",
+              "editable": "Y"
+            },
+            "142": {
+              "id": 142,
+              "name": "Успешно реализовано",
+              "color": "#CCFF66",
+              "sort": 10000,
+              "editable": "N",
+              "pipeline_id": 589968
+            },
+            "143": {
+              "id": 143,
+              "name": "Закрыто и не реализовано",
+              "color": "#D5D8DB",
+              "sort": 11000,
+              "editable": "N",
+              "pipeline_id": 589968
+            }
+          },
+          "leads": 108
+        },
+        "872490": {
+          "id": 872490,
+          "value": 872490,
+          "label": "Нулевая воронка",
+          "name": "Нулевая воронка",
+          "sort": 4,
+          "is_main": false,
+          "statuses": {
+            "17394444": {
+              "id": 17394444,
+              "name": "Первичный контакт",
+              "pipeline_id": 872490,
+              "sort": 10,
+              "color": "#99ccff",
+              "editable": "Y"
+            },
+            "142": {
+              "id": 142,
+              "name": "Успешно реализовано",
+              "color": "#CCFF66",
+              "sort": 10000,
+              "editable": "N",
+              "pipeline_id": 872490
+            },
+            "143": {
+              "id": 143,
+              "name": "Закрыто и не реализовано",
+              "color": "#D5D8DB",
+              "sort": 11000,
+              "editable": "N",
+              "pipeline_id": 872490
+            }
+          },
+          "leads": 1858
+        }
+      },
+      "timezoneoffset": "+03:00"
+    },
+    "server_time": 1510913198
+  }
+}

@@ -1,0 +1,16 @@
+-sub_menu ||= false
+%li{ class: sub_menu ? "" : "education-groups__group"}
+  %div{ class: sub_menu ? "" : "dl education-group js-education-group"}
+    -unless sub_menu
+      %div.dt.education-group__title.js-education-group-title
+        %svg.icon.education-group__icon(role='img' data-size='66')
+          %use(xlink:href="/assets/courses_shop/icons.svg##{speciality.icon}")
+        .education-group__name= ty(speciality.title)
+        %svg.icon.education-group__toggle.js-education-group-toggle(role='img' data-size='18')
+          %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+        = render 'layouts/courses_shop/hr_small'
+    %div{ class: sub_menu ? "" : "dd education-group__description js-education-group-description"}
+      %ul
+        - speciality.children.visible.ordered.each do |child|
+          %li
+            = link_to ty(child.title), alternative_speciality_url(child), data: {caption: ty(child.description || '')}

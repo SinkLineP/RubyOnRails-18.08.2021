@@ -1,0 +1,79 @@
+<p style="color: red"><%= @error %></p>
+
+<form action="/visit" method="POST">
+
+ 
+   <div class="form-group">
+    <label for="exampleInputEmail1">Ваше имя</label>
+    <input name="client[name]" type="text" class="form-control" placeholder="Ваше имя" value="<%= @c.name %>">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your Name with anyone else.</small>
+  </div>
+
+ 
+   <div class="form-group">
+    <label for="exampleInputEmail1">Ваш телефон</label>
+    <input name="client[phone]" type="text" class="form-control" placeholder="Ваш телефон" value="<%= @c.phone %>">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your Number phone with anyone else.</small>
+   </div>
+
+
+ 
+  <div class="form-group">
+    <label for="exampleInputEmail1">Когда Вас ждать</label>
+    <input id="datetimepicker" name="client[datestamp]" type="text" class="form-control" placeholder="Дата и время" value="<%= @c.datestamp %>">
+  
+  </div>
+
+  <div class="form-group">
+    <p><label for="barber">Парикмахер:</label>
+      <select name="client[barber]" class="form-control">
+        <option value="" selected>Выбрать парикмахера...</option>
+
+        <% @barbers.each do |barber| %>
+        <option value="<%= barber.name %>"><%= barber.name %></option>
+        <% end %>
+
+      </select>
+    </p>
+  </div>
+
+   
+
+   <div class="form-group">
+      <label for="exampleInputEmail1">Выберите цвет краски:</label>
+       <select id="colorpicker" name="client[color]">
+          <option value="#7bd148">Green</option>
+          <option value="#5484ed">Bold blue</option>
+          <option value="#a4bdfc">Blue</option>
+          <option value="#46d6db">Turquoise</option>
+          <option value="#7ae7bf">Light green</option>
+          <option value="#51b749">Bold green</option>
+          <option value="#fbd75b">Yellow</option>
+          <option value="#ffb878">Orange</option>
+          <option value="#ff887c">Red</option>
+          <option value="#dc2127">Bold red</option>
+          <option value="#dbadff">Purple</option>
+          <option value="#e1e1e1">Gray</option>
+          <option value="#272d31">Black</option>
+       </select>
+    
+    </div>
+
+  <br>
+  <p><button type="submit" class="btn btn-primary">Записаться</button></p>
+
+</form>
+
+<script type="text/javascript">
+
+  $(function() {
+    $('select[id="colorpicker"]').simplecolorpicker();
+    $.datetimepicker.setLocale('ru');
+    $('#datetimepicker').datetimepicker();
+  });
+//  $('select[name="colorpicker"]').simplecolorpicker({
+//  picker: true
+//}).on('change', function() {
+//  $(document.body).css('background-color', $('select[name="colorpicker"]').val());
+//});
+</script>

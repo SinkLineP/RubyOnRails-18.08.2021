@@ -1,0 +1,42 @@
+- return if scope.blank?
+
+%table
+  %thead
+    %tr
+      %th Номер группы
+      %th График
+      %th Даты практики
+      %th Время практики
+      %th План мест
+      %th Набрано
+      %th Остаток мест
+      %th Общий план мест
+      %th Общий набор
+      %th Общий остаток
+  %tbody
+    - scope.each do |month, groups|
+      %tr
+        %td{colspan: 10, style: 'text-align: center;'}= Russian.strftime(month, '%B')
+      - groups.each do |group|
+        - groups_information = group.groups_information
+        - rowspan = groups_information.count
+        %tr
+          %td{style: 'background-color: azure;'}= group.min_begin_practice_date
+        - sorted_groups_information = groups_information.sort_by { |g| g['title'] }
+        - sorted_groups_information.each_with_index  do |group_info, idx|
+          %tr
+            %td= group_info['title']
+            - if idx.zero?
+              %td{rowspan: rowspan}= group.schedule
+            %td.col-dates= group_info['dates'].gsub('\n', "\n")
+            - if idx.zero?
+              %td.col-dates{rowspan: rowspan}= group.times.gsub('\n', "\n")
+            %td= group_info['distances_place']
+            %td= group_info['distances_count']
+            - total_group_place = group_info['distances_place'] - group_info['distances_count']
+            %td{class: total_group_place < 1 && 'alert'}= total_group_place
+            - if idx.zero?
+              %td{rowspan: rowspan}= group.total_distances_place
+              %td{rowspan: rowspan}= group.total_distances_count
+              - total_place = group.total_distances_place - group.total_distances_count
+              %td{class: total_place < 1 && 'alert', rowspan: rowspan}= total_place

@@ -1,0 +1,58 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Отзывы выпускников
+
+      .filter
+        %ul.filter__list
+          %li.filter__item
+            .button.button--action-fill.tooltip.js-tooltip(data-size='sm' data-type='text' data-position='bottom' data-visibility='hidden')
+              %span Все отзывы
+              %svg.icon(role='img' data-size='18')
+                %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+              .tooltip__popup
+                .tooltip__popup-inner
+                  %ul
+                    %li= link_to 'Последние', '#'
+                    %li= link_to 'Первые', '#'
+
+      .feedbacks-items
+        %ul.feedbacks-items__list
+          %li.feedbacks-items__item
+            .feedback-item
+              .feedback-item__image
+                = link_to 'https://placehold.it/600x450?text=∴', target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+                  = image_tag 'https://placehold.it/190x139?text=∴', alt: ''
+                  = render 'layouts/courses_shop/image_zoom_in_icon'
+              %blockquote.feedback-item__quote
+                %p Хорошо устроена практика. Преподаватели&nbsp;&mdash; Алексеева, Баронова, Романова, да&nbsp;и&nbsp;остальные, тоже отличные, но&nbsp;вели у&nbsp;нас меньше. Много бумажной работы, не&nbsp;очень нужной. Сам диплом (дипломная работа)&nbsp;&mdash; лишняя трата времени.
+                %footer Бартенева Ольга
+
+          %li.feedbacks-items__item
+            .feedback-item
+              .feedback-item__image
+                = link_to 'https://placehold.it/600x450?text=∴', target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+                  = image_tag 'https://placehold.it/190x139?text=∴', alt: ''
+                  = render 'layouts/courses_shop/image_zoom_in_icon'
+              %blockquote.feedback-item__quote
+                %p Я&nbsp;очень рада, что выбрала именно &laquo;Дом Русской Косметики&raquo; для обучения по&nbsp;всем инъекционным методам. Очень сильные преподаватели! Спасибо большое за&nbsp;полученные знания!
+                %p Очень много информации за&nbsp;один день. 12&nbsp;часов много в&nbsp;сутки. Голова не&nbsp;успевает до&nbsp;конца усваивать ту&nbsp;ценную информацию, которую дают преподаватели. Хотелось&nbsp;бы сначала теорию, а&nbsp;на&nbsp;следующий день практику.
+                %footer Бартенева Ольга
+
+          %li.feedbacks-items__item
+            .content.js-content
+              %iframe(src='https://www.youtube.com/embed/xI6i6SAAKI8' width='560' height='315' frameborder='0' allowfullscreen)
+
+          - 1.upto(4) do
+            %li.feedbacks-items__item
+              .feedback-item
+                .feedback-item__image
+                  = link_to 'https://placehold.it/600x450?text=∴', target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+                    = image_tag 'https://placehold.it/190x139?text=∴', alt: ''
+                    = render 'layouts/courses_shop/image_zoom_in_icon'
+                %blockquote.feedback-item__quote
+                  %p 7&nbsp;баллов
+                  %footer Белецкая Екатерина
+
+      = render 'layouts/courses_shop/components/pagination_complex'

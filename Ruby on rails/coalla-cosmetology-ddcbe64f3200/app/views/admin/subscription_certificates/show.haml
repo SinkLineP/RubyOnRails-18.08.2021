@@ -1,0 +1,52 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'студенты' => admin_students_path, @group_subscription.student.display_name => edit_admin_student_path(@group_subscription.student), 'сделки' => admin_student_group_subscriptions_path(@group_subscription.student), @group_subscription.group_title.presence => edit_admin_student_group_subscription_path(@group_subscription.student, @group_subscription), 'справки' => '#'}
+      %h3.tx-center СПРАВКИ
+      = form_for @group_subscription, url: admin_group_subscription_certificate_path(@group_subscription), method: :put, html: {class: 'form js-form form__admin', autocomplete: 'off', id: 'subscription_certificate_form'} do |f|
+        .admin_header
+        .admin_body
+          .admin_settings_change
+            .mt-1.tx-s.tx-700.header_blocks_settings
+              Справка об обучении
+              - if @education_certificate.generated?
+                |
+                = link_to 'Скачать', download_admin_generated_document_path(@education_certificate), class: 'a_under'
+              - if @education_certificate.try(:user_file).present?
+                |
+                = link_to 'Копия', admin_private_file_path(file: @education_certificate.user_file.url), target: '_blank', class: 'a_under'
+            = f.fields_for :education_certificate, @education_certificate do |certificate_fields|
+              .mt-1
+                %label.form_el.form_label Номер договора:
+                .form_el.js-form_el.form_tx
+                  = certificate_fields.text_field :number, class: 'form_el_tag form_tx_tag'
+              .mt-1
+                %label.form_el.form_label Дата договора:
+                .form_el.js-form_el.form_tx
+                  = certificate_fields.text_field :created_on, class: 'form_el_tag form_tx_tag js-datepicker', value: format_date(@education_certificate.created_on), readonly: true
+              .mt-1
+                %label.form_el.form_label С печатью:
+                .form_el.js-form_el.form_checkbox
+                  = certificate_fields.check_box :with_print, class: 'form_el_tag form_checkbox_tag'
+              .mt-1
+                .form_el.js-form_el.form_file{data: {placeholder: "#{ @education_certificate.user_filename || 'Загрузить копию'}"}}
+                  %p.form_el_inner.js-form_el_inner.form_file_inner
+                  %input.form_el_tag.form_file_tag.js-user-file{:type => 'file'}
+                  = certificate_fields.hidden_field :user_file_cache, data: {file_cache: true}
+
+          .grid.mt-2
+            .grid_i.grid_i__grid-1-2>
+              .form_el.js-form_el.form_btn.form_el_block
+                %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+                = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/errors', errors: @group_subscription.errors
+
+- content_for :js do
+  :javascript
+    $(function () {
+      initDatepicker();
+      initFileUpload();
+    });

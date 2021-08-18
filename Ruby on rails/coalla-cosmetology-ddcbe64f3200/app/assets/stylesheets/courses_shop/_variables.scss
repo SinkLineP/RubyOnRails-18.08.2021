@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+// Breakpoints
+$breakpoint-mobile-xsm: new-breakpoint(min-width 0px);
+$breakpoint-mobile-sm:  new-breakpoint(min-width 320px);
+$breakpoint-mobile-msm:  new-breakpoint(min-width 360px);
+$breakpoint-mobile-md:  new-breakpoint(min-width 480px);
+$breakpoint-mobile-lg:  new-breakpoint(min-width 768px);
+$breakpoint-mobile-xl:  new-breakpoint(min-width 960px);
+$breakpoint-sm:  new-breakpoint(max-width 999px);
+$breakpoint-md:  new-breakpoint(min-width 1000px max-width 1279px);
+$breakpoint-lg:  new-breakpoint(min-width 1000px);
+$breakpoint-xl:  new-breakpoint(min-width 1280px);
+$breakpoint-xxl: new-breakpoint(min-width 1441px);
+
+// Layout
+$content-indent-sm: 6vw;
+$content-indent-lg: 3vw;
+$content-indent-xl: 3rem;
+
+// Fonts
+$base-font-family:      "Noto Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+$headings-font-family:  Merriweather, Georgia, Times, "Times New Roman", serif;
+
+// Colors
+$color-base:            #312228;
+$color-base-light:      rgba($color-base, .6);
+$color-base-lighter:    rgba($color-base, .4);
+$color-base-lightest:   rgba($color-base, .2);
+
+$color-brand:           #3734c2;
+$color-brand-light:     rgba($color-brand, .6);
+$color-brand-lighter:   rgba($color-brand, .4);
+$color-brand-lightest:  rgba($color-brand, .2);
+
+$color-ui:              #ffe4e0;
+$color-bg:              #fff5f4;
+
+$color-error:           #f61067;
+$color-warning:         #ffdc3f;
+$color-success:         #00f0b5;
+
+$color-facebook:        #3d5b96;
+$color-vkontakte:       #4f7297;
+$color-odnoklassniki:   #f2842c;
+
+// Transitions
+$transition-duration-base: .2s;
+
+// Styles
+$border-radius-sm: .6rem;
+$border-radius-lg: 1.6rem;
+
+$box-shadow-lg: 0 1rem 2rem 0 rgba(196, 170, 165, .2);
+
+// Measurements
+$site-header-sm-height: 7.5rem;  // Header top/bottom padding + content height
+$site-header-lg-height: 17.7rem; // Header top/bottom padding + logo height

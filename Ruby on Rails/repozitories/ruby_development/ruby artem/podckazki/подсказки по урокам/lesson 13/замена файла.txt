@@ -1,0 +1,3 @@
+ruby app1.rb > file.txt
+
+он замещает файл

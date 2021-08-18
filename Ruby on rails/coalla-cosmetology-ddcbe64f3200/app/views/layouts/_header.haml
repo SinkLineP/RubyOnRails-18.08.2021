@@ -1,0 +1,8 @@
+%header#header.header-top{role: 'banner'}
+  .ctn.header_inner
+    %a.header_logo{:href => '/'}
+    %nav.header_nav
+      = link_to 'БЛОГ', blog_path, class: "nav-a #{'active' if current_page?(blog_path)}"
+      = link_to 'ДИПЛОМЫ', document_verification_path, class: "nav-a #{'active' if controller_name == 'document_verifications'}"
+      = link_to 'О ПРОЕКТЕ', static_page_path(:about), class: "nav-a #{'active' if current_static_page?(:about)}"
+      = link_to 'КОНТАКТЫ', static_page_path(:contacts), class: "nav-a #{'active' if current_static_page?(:contacts)}"

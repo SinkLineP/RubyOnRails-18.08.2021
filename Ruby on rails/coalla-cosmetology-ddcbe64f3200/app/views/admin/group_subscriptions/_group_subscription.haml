@@ -1,0 +1,35 @@
+.grid.grid__collapse.table-min-height{ class: subscription_class(group_subscription) }
+  .grid_i.grid_i__grid-1-12.table_ellipsis>
+    = link_to edit_admin_course_path(group_subscription.course), title: group_subscription.course_name  do
+      = group_subscription.course_display_name
+  .grid_i.grid_i__grid-1-12.table_ellipsis>
+    = group_subscription.info
+  .grid_i.grid_i__grid-1-12.table_ellipsis>
+    = link_to edit_admin_group_path(group_subscription.group), title: group_subscription.group_title do
+      = group_subscription.group_title
+  .grid_i.grid_i__grid-1-12.period_time>
+    = group_period(group_subscription)
+  .grid_i.grid_i__grid-1-12.tx-center>
+    = group_subscription.education_form_short_title
+  .grid_i.grid_i__grid-2-12.tx-center.relative
+    - if group_subscription.imported_from_amo
+      %span.status_warning.imported{ style: 'background-color: #5bc0de'}
+    - if group_subscription.amocrm_id.blank?
+      %span.status_warning{ style: 'background-color: #f0ad4e'}
+    = group_subscription.amocrm_status_title
+  .grid_i.grid_i__grid-1-12.tx-center>
+    = group_subscription.price
+  .grid_i.grid_i__grid-1-12.tx-center.relative{ class: group_subscription.amo_module ? 'module' : '' }
+    - if group_subscription.amo_module
+      %span.plus_hidden +
+    %span.btn{title: group_subscription.amo_module.try(:title)}= module_label(group_subscription)
+  .grid_i.grid_i__grid-1-12.tx-center>
+    = group_subscription.show_rating? ? "#{group_subscription.rating_place} / #{group_subscription.rating_score}" : ''
+  .grid_i.grid_i__middle.grid_i__grid-1-12.tx-right.tx-xs>
+    = format_date(group_subscription.created_at)
+  .grid_i.grid_i__grid-1-12.tx-right>
+    = link_to edit_admin_student_group_subscription_path(@student, group_subscription) do
+      .icon_edit &#9998;
+  - if group_subscription.amo_module
+    .grid.grid__collapse.module_hidden{ style: 'display: none;' }
+      = render collection: group_subscription.module_subscriptions, partial: 'group_subscription'

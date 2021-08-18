@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+// Teachers cards
+.teachers-cards {
+  // List
+  &__list {
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include justify-content(center);
+      margin-top: -#{$content-indent-lg};
+    }
+
+    @include media($breakpoint-xxl) {
+      margin-top: -#{$content-indent-xl};
+    }
+  }
+
+  // Card
+  &__card {
+    @include media($breakpoint-sm) {
+      &:not(:last-child) {
+        margin-bottom: $content-indent-sm * 2;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 3);
+      margin-top: $content-indent-lg;
+    }
+
+    @include media($breakpoint-xxl) {
+      margin-top: $content-indent-xl;
+    }
+  }
+}
+
+// Teacher card
+.teacher-card {
+  text-align: center;
+
+  // Photo
+  &__photo {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+    vertical-align: top;
+  }
+
+  // Name
+  &__name {
+    @include h5;
+    margin-top: 1.25rem;
+  }
+
+  // Department
+  &__department {
+    @include text-lg;
+  }
+
+  // Education
+  &__education {
+    @include text-sm;
+    margin-top: 2.5rem;
+    color: $color-base-light;
+  }
+
+  > .hr {
+    margin-top: 3rem;
+  }
+}
+.home{
+  .teacher-card {
+    &__education {
+      overflow: hidden;
+    }
+  }
+}

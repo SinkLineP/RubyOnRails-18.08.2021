@@ -1,0 +1,200 @@
+<script type="text/template" id="lecture-body-template">
+  <div class='grid_i grid_i__grid-1-1'>
+    <div class='tx-700'>Описание</div>
+  </div>
+  <div class='grid_i grid_i__grid-1-1'>
+    <div class='mb-2'>
+      <div class='form_el js-form_el form_el__block form_textarea'>
+        <textarea id="lecture-body-description" class='form_el_tag form_textarea_tag'></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="grid_i grid_i__grid-1-1">
+    <div class="grid">
+      <div class='grid_i grid_i__grid-1-3'>
+        <div class="grid">
+          <div class="grid_i grid_i__grid-1-1">
+            <div class='tx-700'>Длительность лекции</div>
+          </div>
+          <div class="grid_i grid_i__grid-1-4">
+              <div class="form_el js-form_el form_tx form_tx_time">
+                <input id="lecture-body-time" class="form_el_tag form_tx_tag" type="text"/>
+              </div>
+          </div><div class="grid_i grid_i__grid-1-4">
+            <label class="form_el form_label">часов</label>
+          </div>
+        </div>
+      </div><div class='grid_i grid_i__grid-1-3'>
+      <div class="grid">
+        <div class="grid_i grid_i__grid-1-1">
+          <div class='tx-700'>Время прохождения лекции</div>
+        </div>
+        <div class="grid_i grid_i__grid-1-4">
+          <div class="form_el js-form_el form_tx form_tx_time">
+            <input id="lecture-body-term" class="form_el_tag form_tx_tag" type="text"/>
+          </div>
+        </div><div class="grid_i grid_i__grid-1-4">
+        <label class="form_el form_label">дней</label>
+      </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+  <div class="grid_i grid_i__grid-1-1">
+    <div class="tx-700">Материалы Scribd</div>
+  </div>
+  <div class="grid_i grid_i__grid-1-1 js-scribd-materials-list">
+    <div class="edit_books">
+      <div class="grid">
+        <div class="grid_i grid_i__grid-1-12 js-add-scribd-material-btn">
+          <div class="tx-center">
+            <div class="book js-book" id="add-scribd-material">
+              <div class="icon_add">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid_i grid_i__grid-1-1">
+    <div class="tx-700">Материалы PDF</div>
+  </div>
+  <div class="grid_i grid_i__grid-1-1 js-pdf-materials-list">
+    <div class="edit_books">
+      <div class="grid">
+        <div class="grid_i grid_i__grid-1-12 js-add-pdf-material-btn">
+          <div class="tx-center">
+            <div class="book js-book" id="add-pdf-material">
+              <div class="icon_add">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='grid_i grid_i__grid-1-1'>
+    <div class='tx-700'>Лекция</div>
+  </div>
+  <div class='grid_i grid_i__grid-1-6'>
+    <label class='form_el form_label'>Ссылка на лекцию</label>
+  </div>
+  <div class='grid_i grid_i__grid-3-7'>
+    <div class='form_el js-form_el form_tx'>
+      <input id="lecture-link" class='form_el_tag form_tx_tag' type="text">
+    </div>
+  </div>
+  <div class='grid_i grid_i__grid-1-1'>
+    <div class='edit_materials'>
+      <div class='grid'>
+        <div class='grid_i grid_i__middle grid_i__grid-1-2 js-pdf-button'>
+          <div class='form_el js-form_el form_file'>
+            <p class='form_el_inner form_file_inner a_under'>
+            <div class='icon_add'>+</div>
+            <span class='a_under'>Загрузить PDF</span>
+            </p>
+            <input class='form_el_tag form_file_tag js-pdf-input' type='file'>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class='grid_i grid_i__grid-1-7'>-->
+    <!--<label class='form_el form_label'>-->
+      <!--<div class='icon_add'>+</div>-->
+    <!--</label>-->
+  <!--</div>-->
+
+  <div class='grid_i grid_i__grid-1-1'>
+    <div class='tx-700'>Материалы для скачивания</div>
+  </div><div class='grid_i grid_i__grid-1-1'>
+    <div class='edit_materials'>
+      <div class='grid'>
+        <div class='grid_i grid_i__middle grid_i__grid-1-2 js-download-button'>
+          <div class='form_el js-form_el form_file'>
+            <p class='form_el_inner form_file_inner a_under'>
+              <div class='icon_add'>+</div>
+              <span class='a_under'>Загрузить</span>
+            </p>
+            <input class='form_el_tag form_file_tag js-download-input' type='file'>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='grid_i grid_i__grid-1-1'>
+    <div class='tx-700'>Учебное видео</div>
+  </div>
+  <!--<div class='grid_i grid_i__grid-1-1'>-->
+    <!--<div>-->
+      <!--<span>Vimeo:</span>-->
+      <!--<a class='a_under' href='#'>Аппаратная космтеология</a>-->
+      <!--<div class='icon_del'>X</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div class='grid_i grid_i__grid-1-6'>
+    <label class='form_el form_label'>Ссылка на видео</label>
+  </div>
+  <div class='grid_i grid_i__grid-3-7'>
+    <div class='form_el js-form_el form_tx'>
+      <input id="video-link" class='form_el_tag form_tx_tag'>
+    </div>
+  </div>
+  <div class='grid_i grid_i__grid-1-6'>
+    <label class='form_el form_label'>Видео из видеогалереи</label>
+  </div>
+  <div class='grid_i grid_i__grid-3-7'>
+    <div class='form_el form_el-select js-form_el form_tx'>
+      <div class="select2_container" data-lecture data-bg-transparent data-size="300">
+        <%= select_tag :uploaded_video_id, options_for_select(UploadedVideo.ordered.map{|video| [video.title, video.id, {data: {preview: full_image_url(video.preview_image.url(:main)).to_s}}]}), prompt: 'Выберите видео', class: 'js-video-select2' %>
+      </div>
+    </div>
+  </div>
+  </div><div class='grid_i grid_i__grid-1-1'>
+    <label class='form_el form_label form_label__el'>
+      <div class='form_el js-form_el form_checkbox'>
+        <%% if (read_before_practice) { %>
+          <input id="read_before_practice" class='form_el_tag form_checkbox_tag js-read-before-practice' type="checkbox" checked="checked">
+        <%% } else { %>
+          <input id="read_before_practice" class='form_el_tag form_checkbox_tag js-read-before-practice' type="checkbox">
+        <%% } %>
+      </div>
+      <p class='form_el_inner form_label_inner'>Нужно прочитать к практике</p>
+    </label>
+  </div>
+  <!--<div class='grid_i grid_i__grid-1-7'>-->
+    <!--<label class='form_el form_label'>-->
+      <!--<div class='icon_add'>+</div>-->
+    <!--</label>-->
+  <!--</div>-->
+  <div class='grid_i grid_i__grid-1-1 mt-4'>
+    <div class='tx-700'>Задание</div>
+  </div>
+
+  <div class="grid_i grid_i__grid-1-1 js-task-selector">
+    <span>Добавить задание</span>
+    <span class="js-exercise exercise_link" data-task-type="TextTask" data-exercise="exercise_esse">текстовое</span>
+    <span class="js-exercise exercise_link" data-task-type="TestTask" data-exercise="exercise_test">тест</span>
+    <span class="js-exercise exercise_link" data-task-type="FileTask" data-exercise="exercise_files">файлы</span>
+    <span class="js-exercise exercise_link" data-task-type="EssayTask" data-exercise="exercise_esse">сочинение</span>
+    <span class="js-exercise exercise_link" data-task-type="ConnectionTask" data-exercise="exercise_connect">соединение</span>
+    <span class="js-exercise exercise_link" data-task-type="CalculationTask" data-exercise="exercise_calc">расчет</span>
+  </div>
+
+  <div class="grid_i grid_i__grid-1-1 js-tasks-form">
+    <div class="add_ctn add_exercise">
+      <div class="arrow_tocurrent js-task-arrow"/>
+      <div class="js-task exercise" data-task-type="TextTask"/>
+      <div class="js-task exercise open" data-task-type="TestTask"/>
+      <div class="js-task exercise" data-task-type="FileTask"/>
+      <div class="js-task exercise" data-task-type="EssayTask"/>
+      <div class="js-task exercise" data-task-type="ConnectionTask"/>
+      <div class="js-task exercise" data-task-type="CalculationTask"/>
+    </div>
+  </div>
+
+</script>
+
+

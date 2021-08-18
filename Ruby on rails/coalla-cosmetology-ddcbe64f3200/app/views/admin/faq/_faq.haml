@@ -1,0 +1,8 @@
+.grid_i.grid_i__grid-7-9>
+  = link_to faq.question, edit_admin_faq_path(faq)
+
+.grid_i.grid_i__grid-2-9.tx-center>
+  = link_to edit_admin_faq_path(faq) do
+    .icon_edit &#9998;
+  = link_to admin_faq_path(faq), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

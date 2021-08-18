@@ -1,0 +1,27 @@
+- if @course.present?
+  %header.flowers-dashboard
+    %a.popup_link.modal{:data => {:modal => 'materials'}} СПРАВОЧНЫЕ МАТЕРИАЛЫ
+    %a.popup_link.modal{:data => {:modal => course_marks_popup_id(@course)}} ПОРТФОЛИО
+    .flowers-dashboard_inner
+      %h1.tx-upper
+        Курс
+        #{@course.name}
+    - unless @preview_mode
+      .progress
+        %div
+          %span.digit.tx-700
+            #{@course.lectures_count}
+            #{Russian.p(@course.lectures_count, 'лекция', 'лекции', 'лекций')}
+          &nbsp;
+          %span.digit.tx-700
+            #{@course.total_hours}
+            #{pluralize_hours(@course.total_hours)}
+        %span.digit.tx-700= display_progress(@course)
+        .progressbar
+          .progressbar_inner{style: "width: #{display_progress(@course)}"}
+        %span до
+        %span.digit.tx-700= end_date_num
+        %span= end_date_month
+        %span.digit.tx-700= end_date_year
+    .social_links
+      = render 'common/sharing', share_params: {type: :course, course: @course.id}

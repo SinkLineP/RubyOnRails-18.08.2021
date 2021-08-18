@@ -1,0 +1,9 @@
+.grid_i.grid_i__grid-2-9>= consultation.date
+.grid_i.grid_i__grid-1-9>= consultation.formatted_time
+.grid_i.grid_i__grid-3-9>= consultation.name
+.grid_i.grid_i__grid-2-9>= consultation.email
+.grid_i.grid_i__grid-1-9.tx-center>
+  = link_to edit_admin_consultation_path(consultation) do
+    .icon_edit &#9998;
+  = link_to admin_consultation_path(consultation), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

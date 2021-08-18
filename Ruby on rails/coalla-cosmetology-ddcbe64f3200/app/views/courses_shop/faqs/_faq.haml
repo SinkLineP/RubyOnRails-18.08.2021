@@ -1,0 +1,7 @@
+%div.dl(data-state='collapsed')
+  %div.dt
+    %span= faq.question.html_safe
+    %svg.icon(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+  %div.dd
+    %p= faq.answer.html_safe

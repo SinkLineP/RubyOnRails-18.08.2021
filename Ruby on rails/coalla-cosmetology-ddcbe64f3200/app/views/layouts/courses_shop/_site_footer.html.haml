@@ -1,0 +1,134 @@
+%footer.site-footer#site-footer
+  .container
+    .site-footer__accessibility
+      = link_to courses_shop_cecutient_version_path do
+        %svg.icon(role='img' data-size='34')
+          %use(xlink:href='/assets/courses_shop/icons.svg#glasses')
+        Версия для<br>слабовидящих
+
+    %nav.site-footer__nav
+      %ul
+        %li
+          = link_to t("#{current_shop.code}.menu_about"), courses_shop_history_path
+        %li
+          = link_to 'Отзывы', courses_shop_recalls_path
+        - unless current_shop.barbershop?
+          %li
+            = link_to 'Мы&nbsp;и&nbsp;СМИ'.html_safe, courses_shop_mass_media_section_index_path
+          %li
+            = link_to 'Наука и&nbsp;ДРК'.html_safe, courses_shop_science_and_drks_path
+        %li
+          = link_to 'Акции', courses_shop_promotions_path
+        %li
+          = link_to 'Лицензии', courses_shop_license_path
+      %ul
+        %li
+          = link_to 'Сведения об&nbsp;образовательной организации'.html_safe, courses_shop_institution_blocks_path
+        %li
+          = link_to 'Оферта и&nbsp;условия использования'.html_safe, courses_shop_offer_path
+
+        %li
+          = link_to 'Политика использования персональных данных', courses_shop_privacy_policy_path
+        %li
+          = link_to 'Предупреждение об использовании файлов&nbspcookies'.html_safe, courses_shop_cookies_policy_path
+
+      %ul
+        - unless current_shop.barbershop?
+          %li
+            = link_to 'Для бизнеса', courses_shop_consulting_path
+        %li
+          = link_to 'Блог', courses_shop_blogs_path
+        %li
+          = link_to 'Моделям', courses_shop_models_path
+        %li
+          = link_to 'Контакты', courses_shop_contacts_path
+        %li
+          = link_to 'Вопрос-ответ', courses_shop_faqs_path
+        -#TODO(ar): вернуть магазин, когда потребуется
+        -#%li
+        -#  = link_to 'Магазин', 'http://shop.cosmeticru.com/', target: '_blank'
+
+    .site-footer__authentication
+      %p= link_to 'Проверка подлинности выпускных документов', document_verification_url, target: '_blank'
+
+    .site-footer__logos
+      %ul
+        %li
+          = link_to 'http://www.itecworld.co.uk/', target: '_blank' do
+            = image_tag 'courses_shop/itec_logo.svg', size: '150x50', alt: 'ITEC'
+        - if current_shop.barbershop?
+          %li
+            = link_to 'https://www.cosmeticru.com/', target: '_blank' do
+              = image_tag 'courses_shop/cosmetic_logo.svg', size: '130x40', alt: 'Дом Русской Косметики', style: 'margin-top: -4px;'
+
+    .site-footer__social
+      %ul
+        %li
+          = link_to lookup(:facebook_link), target: '_blank', title: 'Facebook', onclick: ya_counter_click('FACEBOOK') do
+            %svg.icon(role='img' data-size='26')
+              %use(xlink:href='/assets/courses_shop/icons.svg#facebook')
+        %li
+          = link_to lookup(:vkontakte_link), target: '_blank', title: 'Вконтакте', onclick: ya_counter_click('VKONTAKTE') do
+            %svg.icon(role='img' data-size='26')
+              %use(xlink:href='/assets/courses_shop/icons.svg#vkontakte')
+        %li
+          = link_to lookup(:youtube_link), target: '_blank', title: 'Youtube', onclick: ya_counter_click('YOUTUBE') do
+            %svg.icon(role='img' data-size='26')
+              %use(xlink:href='/assets/courses_shop/icons.svg#youtube')
+        %li
+          = link_to lookup(:slideshare_link), target: '_blank', title: 'Slideshare', onclick: ya_counter_click('SLADESHARE') do
+            %svg.icon(role='img' data-size='26')
+              %use(xlink:href='/assets/courses_shop/icons.svg#slideshare')
+        %li
+          = link_to lookup(:instagram_link), target: '_blank', title: 'Instagram', onclick: ya_counter_click('INSTAGRAM') do
+            %svg.icon(role='img' data-size='26')
+              %use(xlink:href='/assets/courses_shop/icons.svg#instagram')
+
+    .site-footer__payments
+      %ul
+        %li
+          %svg.icon(role='img' data-size='payment-wide')
+            %use(xlink:href='/assets/courses_shop/icons.svg#paykeeper')
+        %li
+          %svg.icon(role='img' data-size='payment')
+            %use(xlink:href='/assets/courses_shop/icons.svg#american-express')
+        %li
+          %svg.icon(role='img' data-size='payment')
+            %use(xlink:href='/assets/courses_shop/icons.svg#diners-club')
+        %li
+          %svg.icon(role='img' data-size='payment')
+            %use(xlink:href='/assets/courses_shop/icons.svg#jcb')
+        %li
+          %svg.icon(role='img' data-size='payment')
+            %use(xlink:href='/assets/courses_shop/icons.svg#mastercard')
+        %li
+          %svg.icon(role='img' data-size='payment')
+            %use(xlink:href='/assets/courses_shop/icons.svg#visa')
+        %li
+          %svg.icon(role='img' data-size='payment')
+            %use(xlink:href='/assets/courses_shop/icons.svg#mir')
+        %li
+          %svg.icon(role='img' data-size='payment-wide')
+            %use(xlink:href='/assets/courses_shop/icons.svg#halva')
+        %li
+          = link_to 'https://www.pokupay.ru/credit_terms', target: '_blank' do
+            %svg.icon(role='img' data-size='payment-wide')
+              %use(xlink:href='/assets/courses_shop/sber_logo.svg#sber_logo')
+
+    .site-footer__copyright
+      %p &copy;&nbsp;Автономная некоммерческая организация дополнительного профессионального образования &laquo;Институт косметологии, эстетической медицины и&nbsp;визажного искусства&nbsp;&mdash; Дом Русской Косметики&raquo;, 2019
+
+    .site-footer__contacts
+      %p
+        г. Москва, Большая Татарская&nbsp;ул., д.&nbsp;35с3,&nbsp;
+        - if current_shop.barbershop?
+          = link_to 'tel:74951911571', class: 'roistat-phone' do
+            %span.roistat-phone +7&nbsp;495 191-15-71
+        - else
+          = link_to 'tel:74952560382', class: 'roistat-phone', rel: 'nofollow' do
+            %span.roistat-phone +7&nbsp;495 256-03-82
+
+        %br/
+        email:&nbsp;info@cosmeticru.com. График&nbsp;работы:&nbsp;ежедневно,&nbsp;9:00-21:00 |
+
+      %p= link_to 'Разработано в&nbsp;Coalla Agency'.html_safe, 'http://www.coalla.ru/', target: '_blank', rel: 'nofollow', title: 'Coalla Agency', class: 'coalla'

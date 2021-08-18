@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+// Course meta
+.course-meta {
+  @include text-sm;
+  font-weight: 700;
+  color: $color-base-lighter;
+
+  > li {
+    @include display(flex);
+    @include align-items(center);
+
+    &:not(:last-child) {
+      margin-bottom: .75rem;
+    }
+
+    // For caption "Полная стоимость" in .personal-cabinet-course item
+    .rub-sans + span {
+      font-weight: 400;
+    }
+  }
+
+  .icon {
+    margin-right: .9rem;
+    fill: $color-base-lighter;
+  }
+}

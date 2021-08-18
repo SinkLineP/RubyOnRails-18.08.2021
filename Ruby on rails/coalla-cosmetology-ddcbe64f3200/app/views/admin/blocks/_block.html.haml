@@ -1,0 +1,20 @@
+- block_in_course = block.courses.any?
+.grid_i.grid_i__grid-1-3{class: (block_in_course && 'js-block-in-course')}>
+  = link_to block.name, edit_admin_block_path(block), class: ['point', ('point__voice' if block.active?)]
+.grid_i.grid_i__grid-1-3>
+  - if block_in_course
+    %ul.courses-list.courses-list--vertical
+      = render collection: block.courses, partial: 'admin/common/course'
+.grid_i.grid_i__grid-1-12>
+  %p.tx-right
+    = link_to clone_admin_block_path(block), class: 'a_under tx-xs js-clone-block', remote: true, method: :post, title: "Клонировать" do
+      %i.fa.fa-clone
+.grid_i.grid_i__grid-1-12>
+  %form.form.js-form.tx-right
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag.js-block{type: 'checkbox', data: {id: block.id}}
+.grid_i.grid_i__grid-1-6.admin_time>
+  %time{datetime: ''}
+    = format_date(block.created_at)
+  \/
+  %time{datetime: ''}= format_date(block.updated_at)

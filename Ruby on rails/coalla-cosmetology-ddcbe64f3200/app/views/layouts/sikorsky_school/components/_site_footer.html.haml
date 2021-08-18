@@ -1,0 +1,24 @@
+- title ||= ''
+- link ||= '#'
+
+%footer.site-footer
+  .container.container--fluid
+    .site-footer__row
+      .site-footer__col
+        .site-footer__logo
+          = link_to link do
+            = image_tag 'sikorsky_school/logo.png', width: '150', alt: title
+
+      .site-footer__col
+        .site-footer__copyright
+          %p &copy;&nbsp;Все права защищены
+
+      .site-footer__col
+        .site-footer__social
+          %nav
+            = link_to 'https://www.facebook.com/sikorsky.academy', rel: 'nofollow', target: '_blank' do
+              = image_tag 'sikorsky_school/social_facebook.svg', size: '30', alt: 'Facebook'
+            = link_to 'https://vk.com/sikorsky.academy', rel: 'nofollow', target: '_blank' do
+              = image_tag 'sikorsky_school/social_vk.svg', size: '30', alt: 'VK'
+            = link_to 'https://www.instagram.com/sikorsky.academy/', rel: 'nofollow', target: '_blank' do
+              = image_tag 'sikorsky_school/social_instagram.svg', size: '30', alt: 'Instagram'

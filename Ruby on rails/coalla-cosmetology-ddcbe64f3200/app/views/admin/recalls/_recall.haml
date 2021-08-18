@@ -1,0 +1,13 @@
+.grid_i.grid_i__grid-2-9>
+  = link_to recall.author_name
+.grid_i.grid_i__grid-3-9>
+  = link_to recall.message.truncate(30), edit_admin_recall_path(recall)
+.grid_i.grid_i__grid-2-9>
+  - if recall.courses.any?
+    %ul.courses-list.courses-list--vertical
+      = render collection: recall.courses, partial: 'admin/common/course'
+.grid_i.grid_i__grid-2-9.tx-center>
+  = link_to edit_admin_recall_path(recall) do
+    .icon_edit &#9998;
+  = link_to admin_recall_path(recall), method: :delete, data: {confirm: 'Вы уверены?'} do
+    .icon_del X

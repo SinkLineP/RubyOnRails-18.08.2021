@@ -1,0 +1,7 @@
+.feedbacks-cards
+  .feedbacks-cards__list#feedbacks-cards-slider
+    = render partial: 'recall', collection: @recalls
+
+  - if @course.recalls.count > 3
+    .feedbacks-cards__all
+      = link_to 'Все отзывы', courses_shop_recalls_path, class: 'button button--base-outline', 'data-size' => 'lg'

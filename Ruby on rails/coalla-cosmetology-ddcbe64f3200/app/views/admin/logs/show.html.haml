@@ -1,0 +1,16 @@
+.popup.bg-muted
+  .mt-3.mb-3
+    .grid
+      .grid_i.grid_i__grid-5-5.grid_i__prefix-1-10
+        = @log.full_name
+      .grid_i.grid_i__grid-5-5.grid_i__prefix-1-10
+        = @log.email
+      .grid_i.grid_i__grid-5-5.grid_i__prefix-1-10
+        = t("logs.#{@log.loggerable_type}")
+      .grid_i.grid_i__grid-5-5.grid_i__prefix-1-10
+        = t("logs.actions.#{@log.action_type}")
+      .grid_i.grid_i__grid-5-5.grid_i__prefix-1-10
+        = format_date_time_full(@log.created_at)
+      .grid_i.grid_i__grid-5-5.grid_i__prefix-1-10
+        = @log.description.html_safe
+    .icon_del.arcticmodal-close X

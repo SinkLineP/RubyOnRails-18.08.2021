@@ -1,0 +1,16 @@
+- question = f.object.question
+- idx = f.options[:child_index]
+.grid{data: {question: true, answered: 'false'}, style: idx > 0 ? 'display: none;' : ''}
+  = f.hidden_field :question_id
+  .grid_i.question.grid_i__prefix-1-6{class: question.image.present?  ? 'grid_i__grid-5-12 grid_i__suffix-1-12' : 'grid_i__grid-4-6 grid_i__suffix-1-6'}>
+    .mb-2.tx-center.bold Вопрос №#{idx + 1}
+    %p.question_title= question.title
+    - question.random_answers.each do |answer|
+      %div.question_option
+        %label.form_el.form_label.form_label__el
+          .form_el.js-form_el.form_radio
+            = f.radio_button :question_answer_id, answer.id, class: 'form_el_tag form_radio_tag'
+          %p.form_el_inner.form_label_inner= answer.title
+  - if question.image.present?
+    .grid_i.grid_i__grid-2-6.mt-4>
+      = image_tag question.image_url(:main), alt: question.title.html_safe

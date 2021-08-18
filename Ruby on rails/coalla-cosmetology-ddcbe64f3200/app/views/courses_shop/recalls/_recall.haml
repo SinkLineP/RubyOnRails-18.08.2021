@@ -1,0 +1,17 @@
+- if recall.uploaded_video.present? || recall.video_link.present?
+  %li.feedbacks-items__item
+    - if recall.uploaded_video
+      = render 'courses_shop/common/jw_player_video', video: recall.uploaded_video
+    - else
+      .content.js-content
+        %iframe(src="#{embedded_url(recall.video_link)}" width='560' height='315' frameborder='0' allowfullscreen)
+- else
+  %li.feedbacks-items__item
+    .feedback-item
+      .feedback-item__image
+        = link_to recall.file_url(:popup), target: '_blank', class: 'zoom-in', 'data-mfp-type' => 'image' do
+          = image_tag recall.file_url(:main), alt: ''
+          = render 'layouts/courses_shop/image_zoom_in_icon'
+      %blockquote.feedback-item__quote
+        %p= recall.message.html_safe
+        %footer= recall.author_name

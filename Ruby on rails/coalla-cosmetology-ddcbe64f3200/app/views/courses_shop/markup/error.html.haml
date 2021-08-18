@@ -1,0 +1,16 @@
+!!!
+%html(lang='ru')
+  = render 'layouts/courses_shop/head'
+
+  %body{class: @body_class}
+    = render 'layouts/courses_shop/mobile_menu'
+    = render 'layouts/courses_shop/mobile_user_nav'
+
+    %main#main
+      .page.page--promo
+        = render 'layouts/courses_shop/promo/error'
+
+    = render 'layouts/courses_shop/popups_modal'
+
+    = javascript_include_tag 'courses_shop/application'
+    = yield :js

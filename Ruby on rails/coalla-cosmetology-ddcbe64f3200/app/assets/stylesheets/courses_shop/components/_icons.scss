@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.icon {
+  @include transition(all $transition-duration-base);
+  display: inline-block;
+  vertical-align: top;
+  fill: $color-base;
+  fill-rule: evenodd;
+
+  // Sizes
+  &[data-size="18"] {
+    @include size(1.8rem);
+  }
+
+  &[data-size="22"] {
+    @include size(2.2rem);
+  }
+
+  &[data-size="24"] {
+    @include size(2.4rem);
+  }
+
+  &[data-size="26"] {
+    @include size(2.6rem);
+  }
+
+  &[data-size="34"] {
+    @include size(3.4rem);
+  }
+
+  &[data-size="42"] {
+    @include size(4.2rem);
+  }
+
+  &[data-size="66"] {
+    @include size(6.6rem);
+  }
+
+  &[data-size="100"] {
+    @include size(10rem);
+  }
+
+  &[data-size="payment"] {
+    @include size(5rem 4rem);
+  }
+
+  &[data-size="payment-wide"] {
+    @include size(9.4rem 3.2rem);
+  }
+
+  // States
+  &.is-rotated {
+    @include transform(rotate(180deg));
+  }
+}

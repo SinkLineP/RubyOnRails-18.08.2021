@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+// Mobile user nav
+.mobile-user-nav {
+  @include size(100% 100vh);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  display: none;
+  padding: 6rem 0;
+  background: #fff;
+  overflow-y: auto;
+  text-align: center;
+
+  @include media($breakpoint-lg) {
+    display: none !important;
+  }
+
+  // Basket
+  &__basket {
+    @include h6;
+    text-align: center;
+  }
+
+  // Close
+  &__close {
+    margin-top: 1rem;
+
+    > a {
+      display: inline-block;
+      padding: 2rem;
+
+      .icon {
+        fill: $color-brand;
+      }
+    }
+  }
+}
+
+// User nav
+.user-nav {
+  > ul {
+    > li {
+      @include text-sm;
+      text-align: center;
+      white-space: nowrap;
+
+      &:not(:only-child) {
+        &:first-child {
+          > a {
+            padding-top: 2rem;
+          }
+        }
+
+        &:last-child {
+          > a {
+            padding-bottom: 2rem;
+          }
+        }
+      }
+
+      &:only-child {
+        > a {
+          padding: {
+            top: 2rem;
+            bottom: 2rem;
+          }
+          border-top: 1px solid $color-ui;
+        }
+      }
+
+      > a {
+        @include hover(color, $color-brand);
+        display: block;
+        padding: 1rem 2.5rem;
+        color: $color-base;
+
+        &.is-active {
+          color: $color-base-lighter !important;
+        }
+      }
+    }
+  }
+}

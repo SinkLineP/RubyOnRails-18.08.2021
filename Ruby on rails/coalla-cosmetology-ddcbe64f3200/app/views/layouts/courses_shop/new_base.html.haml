@@ -1,0 +1,27 @@
+!!!
+%html(lang='ru')
+  %head
+    - if Rails.env.production?
+      = render 'layouts/courses_shop/scripts/gtm_head'
+
+    %meta(charset='utf-8')
+
+    %title Обучение на косметолога с нуля до профессионала
+
+    %meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+    %meta(name='keywords' content='курсы косметолога')
+    %meta(name='description' content='Получите прибыльную профессию всего за полгода!')
+    %meta(name="robots" content="noyaca")
+
+    = favicon_link_tag 'courses_shop/favicons/cosmetic.png'
+    = stylesheet_link_tag 'courses_shop/new_base/application', media: 'all'
+
+  %body
+    - if Rails.env.production?
+      = render 'layouts/courses_shop/scripts/gtm_body'
+      = render 'layouts/courses_shop/scripts/roistat'
+
+    = yield
+
+    = javascript_include_tag 'courses_shop/new_base/application'

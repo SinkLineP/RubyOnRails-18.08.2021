@@ -1,0 +1,10 @@
+%li.promotions-cards__card
+  %article.promotion-card
+    .promotion-card__inner
+      = link_to promotions_url_with_marks(promotion.link), class: 'promotion-card__image js-hover js-promo-mindbox', data: {feed_id: promotion.feed_id}, target: '_blank' do
+        = image_tag promotion.image.main, alt: ''
+      .h4.promotion-card__title
+        = link_to promotion.title, promotions_url_with_marks(promotion.link), class: 'js-hover js-promo-mindbox', data: {feed_id: promotion.feed_id}, target: '_blank'
+      %p.promotion-card__caption= promotion.announce.html_safe
+      %footer.promotion-card__participate
+        = link_to 'Участвовать', promotions_url_with_marks(promotion.link), class: 'button button--base-outline js-hover js-promo-mindbox', 'data-size' => 'sm', data: {feed_id: promotion.feed_id}, target: '_blank'

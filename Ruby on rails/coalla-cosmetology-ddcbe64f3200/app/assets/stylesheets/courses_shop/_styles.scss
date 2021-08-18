@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+// 1. Properties for sticky footer
+
+// Html
+html {
+  height: 100%; // 1
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Body
+body {
+  @include text-base;
+  position: relative; // 1
+  min-height: 100%;   // 1
+  background: #fff;
+  color: $color-base;
+  font: {
+    family: $base-font-family;
+    weight: 400;
+  }
+
+  // Error page
+  &.error-page {
+    .site-header {
+      position: absolute !important;
+    }
+
+    [id="main"] {
+      padding-bottom: 0 !important; // Avoiding padding-bottom calculation for #site-footer
+    }
+
+    .site-footer {
+      border-top: none;
+    }
+  }
+
+  &.is-clipped {
+    @include media($breakpoint-sm) {
+      height: 100%;
+      overflow: hidden;
+    }
+  }
+}
+
+// Links
+a:not(.button) {
+  @include transition(all $transition-duration-base);
+  @include hover(color text-decoration, $color-base none);
+  color: $color-brand;
+  text-decoration: none;
+}
+
+// Blockquote
+blockquote {
+  margin: 0;
+}
+
+// Fieldset
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+// Figure
+figure {
+  margin: 0;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin: 0;
+}
+
+h1, .h1 {
+  @include h1;
+}
+
+h2, .h2 {
+  @include h2;
+}
+
+h3, .h3 {
+  @include h3;
+}
+
+h4, .h4 {
+  @include h4;
+}
+
+h5, .h5 {
+  @include h5;
+}
+
+h6, .h6 {
+  @include h6;
+}
+
+// Images
+img {
+  max-width: 100%;
+
+  &[width],
+  &[height] {
+    max-width: none;
+  }
+}
+
+// Lists
+div.dl, div.dd,
+div.ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Paragraph
+p {
+  margin: 0;
+}
+
+// Table
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// Textarea
+textarea {
+  resize: none;
+}

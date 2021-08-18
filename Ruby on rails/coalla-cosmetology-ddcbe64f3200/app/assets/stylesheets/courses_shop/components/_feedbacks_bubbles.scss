@@ -1,0 +1,256 @@
+@charset "UTF-8";
+
+// Feedbacks bubbles
+.feedbacks-bubbles {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 6rem;
+
+    @include media($breakpoint-lg) {
+      margin-bottom: 4rem;
+    }
+  }
+
+  @include media($breakpoint-lg) {
+    width: 100% / 3 * 2;
+      margin: {
+      right: auto;
+      left: auto;
+    }
+  }
+
+  // List
+  &__list {
+    &:not(.slick-initialized) {
+      .feedbacks-bubbles__bubble:nth-child(n+2) {
+        display: none !important;
+      }
+
+      // Hiding arrows nav until slider init
+      ~ .feedbacks-bubbles__nav {
+        display: none;
+      }
+    }
+  }
+
+  // Card
+  &__card {
+    @include media($breakpoint-sm) {
+      margin: { // Same as .courses-cards__card
+        right: .75rem;
+        left: .75rem;
+      }
+    }
+  }
+
+  // Nav
+  &__nav {
+    @include size(6rem);
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    @include transition(box-shadow $transition-duration-base);
+    @include hover(box-shadow, none);
+    position: absolute;
+    top: 100%;
+    z-index: 2;
+    margin-top: -3rem;
+    background: $color-bg;
+    border-radius: 50%;
+    box-shadow: 0 1rem 3rem 0 rgba(196, 170, 165, .4);
+
+    @include media($breakpoint-lg) {
+      @include transform(translateY(-50%));
+      top: 50%;
+      margin-top: -1rem;
+    }
+
+    &--prev {
+      @include media($breakpoint-sm) {
+        right: 50%;
+        margin-right: .5rem;
+      }
+
+      @include media($breakpoint-lg) {
+        left: -3rem;
+      }
+    }
+
+    &--next {
+      @include media($breakpoint-sm) {
+        left: 50%;
+        margin-left: .5rem;
+      }
+
+      @include media($breakpoint-lg) {
+        right: -3rem;
+      }
+    }
+
+    .icon {
+      fill: $color-brand;
+    }
+  }
+
+  .icon {
+    @include hover(fill, $color-base, '.feedbacks-bubbles__nav:hover');
+  }
+
+  // If slider init
+  .slick-slider {
+    z-index: 1;
+
+    .slick-track {
+      @include display(flex);
+      @include align-items(stretch);
+    }
+  }
+
+  .slick-initialized {
+    // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+    .slick-slide {
+      @include display(flex);        // 1
+      @include align-items(stretch); // 1
+      height: auto;
+    }
+  }
+}
+
+// Feedback bubble
+// 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+.feedback-bubble {
+  @include flex(1);              // 1
+  @include display(flex);        // 1
+  @include align-items(stretch); // 1
+
+  @include media($breakpoint-sm) {
+    text-align: center;
+  }
+
+  @include media($breakpoint-lg) {
+    position: relative;
+    height: 28rem;
+    padding-bottom: 2rem;
+
+    &::after {
+      @include triangle(6rem 2rem, $color-ui, up-left);
+      @include transform(translateX(-50%));
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      content: "";
+    }
+  }
+
+  // Inner
+  // 1. Extra styles for Safari, http://caniuse.com/#search=flexbox (see Known issues)
+  &__inner {
+    @include flex(1); // 1
+    @include display(flex);
+    @include align-items(center);
+    position: relative;
+    background: $color-ui;
+    border-radius: $border-radius-lg;
+
+    @include media($breakpoint-sm) {
+      @include flex-direction(column);
+      padding: 3rem 3rem 5.5rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include align-items(stretch);
+      overflow-y: hidden; // To clip content if its height is larger than container height
+    }
+  }
+
+  // Photo
+  &__photo {
+    border-radius: $border-radius-sm;
+    vertical-align: top;
+
+    @include media($breakpoint-sm) {
+      @include size(13rem);
+      margin-bottom: 2rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include size(26rem);
+      border-radius: $border-radius-lg 0 0 $border-radius-lg;
+    }
+  }
+
+  // Content
+  &__content {
+    @include media($breakpoint-lg) {
+      @include flex(1);
+      position: relative;
+      border-right: 6rem solid $color-ui;
+      border-left: 6rem solid $color-ui;
+      border-top: 3rem solid $color-ui;
+      border-bottom: 3rem solid $color-ui;
+    }
+  }
+
+  // Quote
+  &__quote {
+    @include media($breakpoint-lg) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    > p {
+      @include text-lg;
+    }
+
+    > footer {
+      @include text-sm;
+      margin-top: 1.5rem;
+      color: $color-base-lighter;
+
+      @include media($breakpoint-lg) {
+        @include display(flex);
+        @include align-items(center);
+        position: absolute;
+        bottom: -3rem;
+        left: 0;
+        right: 0;
+        height: 5.5rem;
+        background: $color-ui;
+      }
+    }
+  }
+
+  // Video
+  &__video {
+    width: 100%;
+    text-align: center;
+
+    a {
+      display: inline-block;
+    }
+
+    img {
+      display: inline;
+      vertical-align: top;
+
+      @include media($breakpoint-lg) {
+        display: block;
+        width: auto;
+        max-height: 22rem;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      position: absolute;
+      top: 2rem;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 22rem;
+    }
+  }
+}

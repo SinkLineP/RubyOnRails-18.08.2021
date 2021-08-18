@@ -1,0 +1,184 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.body {
+  background: #E6E9CE;
+  color: #333333;
+  
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+.bg-steel {
+  background-color: #5f788a;
+}
+
+.site-header .navbar-nav .nav-link {
+  color: #cbd5db;
+}
+
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #ffffff;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+
+.navbars {
+  background: #ffffff;
+  padding: 10px 20px;
+  //border: 2px solid #dddddd;
+  border-radius: 8px;
+  height: 444px;
+  font-family: Droid Sans;
+  font-size: 18px;
+}
+
+#color-link {
+  a {
+    color: #560505;
+  }
+}
+
+.navbars-top {
+  background: #629700;
+  color: #ffffff;
+  padding: 10px 20px;
+  //border: 2px solid #ffffff;
+  box-shadow: 0 0 5px 3px #ffffff;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  width: 100%;
+  a {
+    color: #ffffff;
+  }
+  
+}
+
+.navback {
+  background: #E6E9CE;
+  margin-top: -10px;
+  padding-top: 10px;
+  width: 100%;
+}
+
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  //border: 2px solid #dddddd;
+  border-radius: 8px;
+  //margin: 4px 4px 4px 4px;
+  //margin-bottom: 20px;
+}
+
+.content-border {
+  background: #36e90a;
+  margin-bottom: 20px;
+  margin-right: 4px;
+  //padding: 4px;
+  border-radius: 8px;
+  //border: 2px solid #619701;
+  box-shadow: 0 0 5px #619701;
+}
+
+.navbars-border {
+  background: #36e90a;
+  margin-bottom: 20px;
+  //padding: 4px;
+  border-radius: 8px;
+  //border: 2px solid #619701;
+  box-shadow: 0 0 5px #619701;
+  position: sticky;
+  top: 85px;
+  min-height: 2em;
+  
+  
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+  color: #560505;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 2px solid #A8C2CF
+  
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.footer {
+  background: #629700;
+  padding: 10px 20px;
+  //border: 2px solid #619701;
+  box-shadow: 0 0 5px 3px #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  height: 50px;
+  
+}
+
+.scrol {
+  // position:fixed;
+  // top:-5px; left:0;
+  // width:100%;
+  // padding:10px 0;
+  
+  // -moz-box-shadow: 5px 5px 20px #333;
+  // -webkit-box-shadow: 5px 5px 20px #333;
+  // box-shadow: 5px 5px 20px #333;
+
+   
+  
+  position: sticky;
+  top: 10px;
+  min-height: 2em;
+  z-index: 1030;
+}
+
+
+#header { font-family: Droid Sans; font-size: 18px; line-height: 1.6em; font-weight: bold; text-align: center; padding: 10px; text-shadow: 0 1px 1px rgba(0,0,0,.2); width:100%; box-sizing:border-box;}

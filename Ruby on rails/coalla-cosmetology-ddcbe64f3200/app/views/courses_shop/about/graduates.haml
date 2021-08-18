@@ -1,0 +1,11 @@
+.page.page--promo
+
+  = render 'courses_shop/about/menu'
+
+  .tab{style: 'display: block;'}
+    .page-section
+      .container
+        .graduates-cards
+          %ul.graduates-cards__list#graduates_list
+            = render partial: 'courses_shop/about/graduate', collection: @graduates
+        = pagination_complex(@graduates, '#graduates_list', false)

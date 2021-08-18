@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.notice {
+  padding: 2rem 0;
+  background-color: $color-base;
+  text-align: center;
+
+  &__title {
+    color: #fff;
+  }
+}

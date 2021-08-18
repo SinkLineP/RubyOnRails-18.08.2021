@@ -1,0 +1,23 @@
+- _classes = []
+- _classes << 'student-without-group' if student.groups.blank?
+- _classes << 'student-deleted' if student.deleted?
+.grid.grid__collapse{class: _classes.last}>
+  .grid_i.grid_i__grid-3-8
+    = link_to student.full_name, edit_admin_student_path(student), class: 'tx-700 point point__voice', title: student.deleted? && 'Контакт удалён'
+  .grid_i.grid_i__grid-1-8>
+    - if student.group_subscriptions.with_deleted.any?
+      = link_to 'достижения', admin_my_student_path(student), class: 'a_under tx-xs'
+  .grid_i.grid_i__grid-2-8>
+    = link_to 'сделки', admin_student_group_subscriptions_path(student), class: 'a_under tx-xs'
+    |
+    = link_to 'платежи', admin_student_payment_logs_path(student), class: 'a_under tx-xs'
+    |
+    = link_to 'заказы', admin_student_orders_path(student), class: 'a_under tx-xs'
+  .grid_i.grid_i__grid-1-8>
+    %time{datetime: student.last_sign_in_at}= format_date(student.last_sign_in_at)
+  .grid_i.grid_i__grid-1-8.tx-center>
+    = link_to edit_admin_student_path(student) do
+      .icon_edit &#9998;
+    - if student.unlinked?
+      = link_to admin_student_path(student), method: :delete, data: {confirm: 'Вы уверены?'} do
+        .icon_del X

@@ -1,0 +1,126 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title Личный кабинет
+
+      .personal-cabinet
+        .personal-cabinet__inner
+          .personal-cabinet__tabs
+            %select.select2.js-select2
+              %option Мои курсы
+              %option Расписание
+              %option Документы
+              %option(selected) Настройки
+
+            %ul
+              %li
+                = link_to 'Мои курсы', courses_shop_markup_personal_cabinet_courses_path
+              %li
+                = link_to 'Расписание', courses_shop_markup_personal_cabinet_schedule_path
+              %li
+                = link_to 'Документы', courses_shop_markup_personal_cabinet_documents_path
+              %li
+                = link_to 'Настройки', courses_shop_markup_personal_cabinet_settings_path, class: 'is-active'
+
+          .personal-cabinet__content
+            .settings-form
+              %form.settings-form__form(action='#')
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Имя
+                    .settings-form__col
+                      .text-input
+                        %input(type='text' value='Аркадий')
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Фамилия
+                    .settings-form__col
+                      .text-input
+                        %input(type='text' value='Константинопольский')
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Отчество
+                    .settings-form__col
+                      .text-input
+                        %input(type='text')
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Почта
+                    .settings-form__col
+                      .text-input
+                        %input(type='email' value='karabas@gmail.com')
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Телефон
+                    .settings-form__col
+                      .text-input
+                        %input.js-mask-tel(type='tel' placeholder='+7')
+
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Facebook
+                    .settings-form__col
+                      .social.social--link
+                        = link_to '#', class: 'is-facebook', 'data-linked' => 'true', 'data-text' => 'Подключен' do
+                          %svg.icon(role='img' data-size='26')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#facebook')
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Вконтакте
+                    .settings-form__col
+                      .social.social--link
+                        = link_to '#', class: 'is-vkontakte', 'data-linked' => 'false', 'data-text' => 'Связать' do
+                          %svg.icon(role='img' data-size='26')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#vkontakte')
+
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Одноклассники
+                    .settings-form__col
+                      .social.social--link
+                        = link_to '#', class: 'is-odnoklassniki', 'data-linked' => 'false', 'data-text' => 'Связать' do
+                          %svg.icon(role='img' data-size='26')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#odnoklassniki')
+
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Изменение пароля
+                    .settings-form__col
+                      .text-input.text-input--password.js-password
+                        %input.js-password-input(type='password' value='password')
+                        = link_to '#', class: 'js-password-toggle' do
+                          %svg.icon(role='img' data-size='34')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#eye')
+
+                  .settings-form__row
+                    .settings-form__col
+                    .settings-form__col
+                      .text-input.text-input--password.js-password
+                        %input.js-password-input(type='text' value='password')
+                        = link_to '#', class: 'js-password-toggle is-active' do
+                          %svg.icon(role='img' data-size='34')
+                            %use(xlink:href='/assets/courses_shop/icons.svg#eye')
+
+                %fieldset.settings-form__group
+                  .settings-form__row
+                    .settings-form__col
+                      %label.settings-form__label Подписка
+                    .settings-form__col.settings-form__col--full
+                      %label.label.label--has-input
+                        %span.checkbox-input
+                          %input(type='checkbox' checked)
+                          %span
+                        Присылать мне уведомления о&nbsp;новых записях в&nbsp;блоге
+
+                .settings-form__submit
+                  .setting-form__submit-inner
+                    %button.button.button--base-fill(type='submit' data-size='lg') Сохранить изменения

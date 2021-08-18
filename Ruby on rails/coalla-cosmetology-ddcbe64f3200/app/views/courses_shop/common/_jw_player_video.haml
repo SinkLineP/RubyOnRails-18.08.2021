@@ -1,0 +1,3 @@
+- if video.try(:file_url).present?
+  .content__video
+    .jw-player-item{data: {options: jw_player_options(video)}, id: "player_#{(Time.current.to_f * 1000).to_i}"}

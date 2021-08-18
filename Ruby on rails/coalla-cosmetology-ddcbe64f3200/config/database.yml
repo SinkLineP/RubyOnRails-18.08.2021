@@ -1,0 +1,44 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: cosmetology_development
+  pool: 5
+  username: postgres
+  password: resolve
+  host: 127.0.0.1
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: cosmetology_test
+  pool: 5
+  username: postgres
+  password: resolve
+  host: 127.0.0.1
+
+staging:
+  adapter: postgresql
+  encoding: unicode
+  database: cosmetology_test
+  pool: 5
+  username: cosmetology_test
+  password: zX5u2UQVTBHRXMFKw7M3
+  host: 127.0.0.1
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: cosmetology
+  pool: 5
+  username: cosmetology
+  password: ApvVtcLVTXZynLfKuYCE
+  host: 127.0.0.1
+
+time_control:
+  adapter: fb
+  database: C:\Program Files (x86)\TimeControl\BASE\OKO.FDB
+  username: MEGA
+  password: STMEGA21
+  host: 217.150.200.152
+  port: 3053
+  encoding: UTF-8

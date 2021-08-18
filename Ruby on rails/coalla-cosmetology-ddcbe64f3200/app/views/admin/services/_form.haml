@@ -1,0 +1,23 @@
+= form_for [:admin, @service], html: {id: 'service_form', class: 'form js-form', remote: true} do |f|
+  .grid
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :title, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_textarea
+        = f.text_area :title, class: 'form_el_tag form_textarea_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :price, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      .form_el.js-form_el.form_tx
+        = f.text_field :price, class: 'form_el_tag form_tx_tag'
+    .grid_i.grid_i__grid-1-5.grid_i__prefix-1-10>
+      = f.label :units, class: 'form_el form_label'
+    .grid_i.grid_i__grid-1-2>
+      = f.select :units, Service.units.options, {}, class: 'selectordie', data: {size: 5}
+    .grid_i.grid_i__grid-5-12.grid_i__prefix-3-10>
+      .form_el.js-form_el.form_btn
+        %p.form_el_inner.form_btn_inner СОХРАНИТЬ
+        %input.form_el_tag.form_btn_tag{type: 'submit', value: ''}
+  .icon_del.arcticmodal-close X
+
+= javascript_include_tag 'admin/service_form'

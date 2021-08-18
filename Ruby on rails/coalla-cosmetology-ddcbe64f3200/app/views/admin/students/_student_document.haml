@@ -1,0 +1,6 @@
+.icon_del.js-remove-student-document X
+.course_block_inner
+  %span= student_document.title_text
+  %span
+    - if student_document.file.present?
+      (#{student_document.filename})

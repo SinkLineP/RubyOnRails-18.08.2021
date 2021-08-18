@@ -1,0 +1,39 @@
+- if @lecture.present?
+  .grid_i.grid_i__grid-5-7.grid_i__suffix-1-7.mt-6>
+    .h4.tx-upper.p-r
+      Лекция #{@lecture.position}, #{@lecture.description}
+      .social_links__h.social_links__h__inline
+        = render 'common/sharing', share_params: {type: :lecture, lecture: @lecture.id, course: @course.try(:id)}
+  .grid_i.grid_i__grid-1-7.mt-6.tx-right>
+    .lection_time
+      %i.fa.fa-clock-o
+      %span= @lecture.time
+      #{pluralize_hours(@lecture.time)}
+  -#(vl): у лекции нет описания, сейчас описание - это название
+  -#.grid_i.grid_i__grid-6-7.grid_i__suffix-1-7.mb-5>
+  -#  %p Чему вы научитесь: краткое описание лекции, 1-2 текстовых предложения Чему вы научитесь: краткое описание лекции, 1-2 текстовых предложения
+  .grid_i.grid_i__grid-1-1>
+    .h4 МАТЕРИАЛЫ ДЛЯ ЧТЕНИЯ
+    .books-list
+      .grid
+        = render partial: 'lectures/material', collection: @lecture.materials
+  = render 'lectures/lecture_presentation'
+  .grid_i.grid_i__grid-1-1>
+    .h4 МАТЕРИАЛЫ ДЛЯ СКАЧИВАНИЯ
+    .mt-3.mb-5
+      .grid
+        = render partial: 'lectures/download', collection: @lecture.downloads
+  = render 'lectures/education_video'
+  - if @lecture.task.present? && !@lecture.task.new_record?
+    .grid_i.grid_i__grid-1-2.form.js-form>
+      .form_el.js-form_el.form_btn.form_el_block{disabled: !can?(:pass, @lecture.task, course: @course)}
+        %p.form_el_inner.form_btn_inner ПЕРЕЙТИ К ЗАДАНИЮ
+        - if @lecture.task.final? && current_user.try(:result_for_lecture, @lecture).blank?
+          = link_to '', '#', class: 'form_el_tag form_btn_tag modal', disabled: !can?(:pass, @lecture.task, course: @course), data: {modal: 'final_task'}
+        - else
+          - if @course.present?
+            = link_to '', course_task_path(@course, @lecture.task), class: 'form_el_tag form_btn_tag', disabled: !can?(:pass, @lecture.task, course: @course)
+  .grid_i.grid_i__grid-1-2.form.js-form>
+    .form_el.js-form_el.form_btn.form_el_block
+      %p.form_el_inner.form_btn_inner ЗАДАТЬ ВОПРОС
+      = link_to '', feedback_path(course_id: @course.try(:id), lecture_id: @lecture.id), class: 'form_el_tag form_btn_tag'

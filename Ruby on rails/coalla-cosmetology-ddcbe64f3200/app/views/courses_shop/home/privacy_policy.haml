@@ -1,0 +1,9 @@
+.page.page--sections
+  %section.page-section
+    .container
+      %header.page__header
+        .h2.page__title= ty_html(@html_item.try(:title))
+
+      .content-narrow
+        .content.js-content(data-size='sm')
+          = safe_html_content(replace_video_links(@html_item.try(:content)))

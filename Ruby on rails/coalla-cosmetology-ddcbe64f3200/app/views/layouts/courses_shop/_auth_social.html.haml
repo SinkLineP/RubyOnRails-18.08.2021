@@ -1,0 +1,13 @@
+%ul.social.social--auth
+  %li
+    = link_to courses_shop_user_omniauth_authorize_path(:facebook), class: 'is-facebook' do
+      %svg.icon(role='img' data-size='26')
+        %use(xlink:href='/assets/courses_shop/icons.svg#facebook')
+  %li
+    = link_to courses_shop_user_omniauth_authorize_path(:vkontakte), class: 'is-vkontakte' do
+      %svg.icon(role='img' data-size='26')
+        %use(xlink:href='/assets/courses_shop/icons.svg#vkontakte')
+  %li
+    = link_to courses_shop_user_omniauth_authorize_path(:odnoklassniki), class: 'is-odnoklassniki' do
+      %svg.icon(role='img' data-size='26')
+        %use(xlink:href='/assets/courses_shop/icons.svg#odnoklassniki')

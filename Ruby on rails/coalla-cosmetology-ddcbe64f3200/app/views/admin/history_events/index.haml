@@ -1,0 +1,28 @@
+%main#main.main.ctn
+  .grid.grid__collapse
+    .grid_i.grid_i__grid-2-9.sidebar>
+      = render 'common/admin_sidebar'
+    .grid_i.grid_i__grid-7-9>
+      = render 'admin/breadcrumbs', crumbs: {'исторические события' => admin_history_events_path}
+      %h3.tx-center ИСТОРИЧЕСКИЕ СОБЫТИЯ
+      .form__admin
+        .admin_header.tx-center
+          .header_inner
+            = link_to new_admin_history_event_path, class: 'a_under' do
+              %span.icon-add> +
+              Добавить событие
+            &nbsp;
+            = link_to sort_admin_history_events_path, class: 'a_under' do
+              %span.icon-add> +
+              Сортировать события
+        .admin_body.table.table_base-color
+          .table_head
+            .grid
+              .grid_i.grid_i__grid-8-9>
+                %p Название
+              .grid_i.grid_i__grid-1-9>
+                %p.tx-right
+                  действия
+          .grid.grid__collapse
+            = render collection: @history_events, partial: 'history_event'
+      = will_paginate @history_events, renderer: PageLinkRenderer, inner_window: 1, outer_window: 0

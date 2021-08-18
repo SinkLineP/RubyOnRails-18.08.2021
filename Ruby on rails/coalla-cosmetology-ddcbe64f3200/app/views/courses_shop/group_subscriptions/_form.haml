@@ -1,0 +1,24 @@
+.popup-modal#popup-course-entry(data-size='lg')
+  .popup-modal__header
+    %div
+      .h5 Запись на&nbsp;курс
+      %p= @course.name
+
+  .popup-modal__inner
+    = form_for @group_subscription, url: url, remote: true, html: { class: 'default-form', data: {course_id: @course.id, subscription_id: @group_subscription.id, trackable: true} } do |f|
+      = f.hidden_field :begin_on
+      = f.hidden_field :end_on
+      .default-form__inner
+        %fieldset.default-form__group
+          %legend.default-form__group-title Группа
+
+          .default-form__row
+            = f.select :group_id, @course.nearest_groups.map{|group| [education_period_short_with_schedule(group), group.id]}, {}, class: 'select2 js-select2'
+
+        .js-group-content
+          = render 'courses_shop/group_subscriptions/group_popup_fields', group_info: @group_info
+
+        .default-form__row
+          %button.button.button--base-outline{type: 'submit', disabled: @group_info.subscription_not_available?, data: {size:'lg'} } Добавить в&nbsp;корзину
+
+    = render 'layouts/courses_shop/popup_modal_close'

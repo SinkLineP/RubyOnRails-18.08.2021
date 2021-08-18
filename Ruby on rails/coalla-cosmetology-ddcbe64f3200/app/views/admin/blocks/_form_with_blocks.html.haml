@@ -1,0 +1,35 @@
+= render 'admin/breadcrumbs', crumbs: {'блоки' => admin_blocks_path, (@block.name.presence || 'новый блок') => '#'}
+.tx-center
+  %h3 КОПИРОВАНИЕ НЕСКОЛЬКИХ БЛОКОВ В ОДИН
+= form_for [:admin, @block], html: {id: 'block-form',
+                                    class: 'form js-form form__blocks',
+                                    autocomplete: 'off',
+                                    data: {block_id: @block.id}}, remote: true do |f|
+
+  .admin_header
+    - if @block.attribute_present?(:course_id)
+      = f.hidden_field :course_id
+    %label.form_el.form_label Заголовок:
+    .form_el.js-form_el.form_tx
+      = f.text_field :name, class: 'form_el_tag form_tx_tag'
+    %label.form_el.form_label.form_label__el
+      .form_el.js-form_el.form_checkbox
+        = f.check_box :active, class: 'form_el_tag form_checkbox_tag'
+      %p.form_el_inner.form_label_inner Блок включен
+  .admin_body.mt-2
+    .mt-1.js-block-list
+      = link_to '#', class: 'a_under js-block-add' do
+        .icon_add> +
+        Добавить блок
+
+
+    .grid.mt-5.js-block-submit{style: 'display: none;'}
+      .grid_i.grid_i__grid-1-2>
+        .form_el.js-form_el.form_btn.form_el_block
+          %p.form_el_inner.form_btn_inner СОБРАТЬ
+          = button_tag type: 'submit', class: 'form_el_tag form_btn_tag'
+
+= render 'admin/blocks/templates/block'
+
+= content_for :js do
+  = javascript_include_tag 'admin/copy_blocks'

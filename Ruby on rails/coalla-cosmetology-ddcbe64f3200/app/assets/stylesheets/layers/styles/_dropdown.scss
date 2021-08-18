@@ -1,0 +1,33 @@
+
+.dropdown-box {}
+
+.dropdown {
+
+  > div.dt {
+
+    > a {
+      display: block;
+      font: 2rem/4.8rem 'PT Sans Caption', sans-serif;
+      font-weight: 400;
+      color: $voice-color;
+      transition: all .2s;
+
+      &:hover {
+        color: $link-color-hover;
+      }
+    }
+
+    &.is-active {
+
+      + div.dd {
+        display: block;
+      }
+    }
+  }
+
+  > div.dd {
+    display: none;
+    margin-top: 2rem;
+  }
+
+}

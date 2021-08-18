@@ -1,0 +1,23 @@
+%main#main.main{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_2
+        .flowers_inner
+          %h1 КОНТАКТЫ
+          = raw(@static_page.content)
+
+      = form_for :feedback, url: feedbacks_path, html: {class: 'form js-form pt-2', id: 'feedback_form'} do |f|
+        .grid.grid__collapse.tx-center
+          .grid_i.grid_i__grid-7-12>
+            .form_el.js-form_el.form_el__block.form_tx
+              = f.text_field :email, class: 'form_el_tag form_tx_tag', placeholder: 'Ваш email'
+          .grid_i.grid_i__grid-7-12>
+            .form_el.js-form_el.form_el__block.form_textarea
+              = f.text_area :message, class: 'form_el_tag form_tx_tag', placeholder: 'Ваше сообщение'
+          .grid_i.grid_i__grid-7-12>
+            .form_el.js-form_el.form_el__block.form_btn
+              %p.form_el_inner.form_btn_inner ОТПРАВИТЬ
+              %a.form_el_tag.form_btn_tag.btn-submit{href: '#'}
+
+- content_for :js do
+  = javascript_include_tag 'feedback'

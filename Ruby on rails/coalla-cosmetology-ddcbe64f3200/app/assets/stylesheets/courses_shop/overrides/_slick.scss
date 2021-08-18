@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+// Slick
+.slick-initialized {
+  // Slide
+  .slick-slide {
+    outline: none;
+  }
+
+  // Dots
+  .slick-dots {
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+    
+    > li {
+      padding: .5rem;
+      cursor: pointer;
+
+      @include media($breakpoint-lg) {
+        padding: 1.5rem;
+      }
+
+      &:hover,
+      &.slick-active {
+        > span {
+          background: $color-brand;
+        }
+      }
+
+      > span {
+        @include transition(background $transition-duration-base);
+        @include size(.6rem);
+        display: block;
+        background: $color-brand-lightest;
+        border-radius: 50%;
+      }
+    }
+  }
+}

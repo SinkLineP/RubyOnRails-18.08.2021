@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+// Basket
+.basket {
+  @include media($breakpoint-lg) {
+    @include grid;
+    @include justify-content(center);
+  }
+
+  // Inner
+  &__inner {
+    @include media($breakpoint-lg) {
+      @include grid-columns(2, 3);
+    }
+  }
+
+  // List
+  &__list {
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+  }
+
+  // Item
+  &__item {
+    position: relative;
+    padding: {
+      top: 3rem;
+      bottom: 3rem;
+    }
+
+    @include media($breakpoint-lg) {
+      padding-left: 8rem;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      right: 1rem;
+      left: 1rem;
+      height: 1px;
+      background: $color-ui;
+      content: "";
+
+      @include media($breakpoint-lg) {
+        right: 6.5rem;
+        left: 6.5rem;
+      }
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    &:not(:first-child) {
+      margin-top: -1px;
+    }
+
+    &.is-muted {
+      opacity: .4;
+    }
+  }
+
+  // Checkbox
+  &__item-checkbox {
+    @include media($breakpoint-sm) {
+      margin-bottom: 3rem;
+    }
+
+    @include media($breakpoint-lg) {
+      @include transform(translateY(-50%));
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+  }
+
+  // Checkout
+  &__checkout {
+    margin-top: 3rem;
+
+    @include media($breakpoint-lg) {
+      @include grid;
+      @include flex-direction(column);
+      @include align-items(center);
+    }
+  }
+
+  // Promocode
+  &__checkout-promocode {
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+  }
+
+  // Overview
+  &__checkout-overview {
+    @include fill-parent;
+    margin: 2.5rem 0;
+
+    div.dl {
+      @include grid;
+
+      &:not(:last-child) {
+        margin-bottom: .5rem;
+      }
+
+      &.is-discount {
+        color: $color-error;
+      }
+
+      &.is-total {
+        margin-top: 2rem;
+        font-weight: 700;
+      }
+    }
+
+    div.dt, div.dd {
+      @include grid-columns(1, 2);
+    }
+
+    div.dt {
+      text-align: right;
+    }
+
+  }
+
+  // Submit
+  &__checkout-submit {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+
+    @include media($breakpoint-sm) {
+      margin: {
+        right: $content-indent-sm;
+        left: $content-indent-sm;
+      }
+    }
+
+    @include media($breakpoint-lg) {
+      @include grid-columns(1, 2);
+    }
+
+    // Button
+    .button {
+      @include fill-parent;
+      cursor: pointer;
+    }
+
+    a {
+      margin: 5px;
+    }
+  }
+}
+
+// Basket after payment overview
+.basket-after-payment-overview {
+  @include text-sm;
+  margin: -.5rem -2rem 2.5rem;
+  text-align: center;
+
+  > .icon {
+    margin-bottom: 1.5rem;
+    fill: $color-error;
+  }
+
+  > p {
+    color: $color-error;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+}

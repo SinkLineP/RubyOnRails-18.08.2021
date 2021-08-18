@@ -1,0 +1,32 @@
+%div.dl(data-state='collapsed' id="#{institution_block.code.parameterize.underscore}")
+  %div.dt.js-images-slider-init
+    %span= t("institution_block.#{institution_block.code}")
+    %svg.icon(role='img' data-size='18')
+      %use(xlink:href='/assets/courses_shop/icons.svg#chevron-down')
+  %div.dd
+    .content.js-content(data-size='lg')
+      - uploaded_video = institution_block.uploaded_video
+      - if uploaded_video
+        .content__video
+          - jw_script = uploaded_video.jw_script
+          - if jw_script.present?
+            = jw_script.html_safe
+          - else
+            #jw_player{data: {options: jw_player_options(uploaded_video)}}
+      - elsif institution_block.video_url.present?
+        %iframe(src="#{embedded_url(institution_block.video_url)}" width='560' height='315' frameborder='0' allowfullscreen)
+      - if institution_block.link.present?
+        %p= link_to institution_block.link_title || 'Посмотреть', institution_block.link
+      - if institution_block.content.present?
+        = replace_video_links(institution_block.content)
+      - if institution_block.institution_images.any?
+        .images-slider.js-images-slider
+          .images-slider__list.js-images-gallery.js-images-slider-list
+            = render partial: 'institution_slider_item', collection: institution_block.institution_images, as: :institution_image
+          - if institution_block.institution_images.count > 1
+            = link_to '#', class: 'images-slider__nav images-slider__nav--prev js-images-slider-prev' do
+              %svg.icon(role='img' data-size='34')
+                %use(xlink:href='/assets/courses_shop/icons.svg#arrow-left')
+            = link_to '#', class: 'images-slider__nav images-slider__nav--next js-images-slider-next' do
+              %svg.icon(role='img' data-size='34')
+                %use(xlink:href='/assets/courses_shop/icons.svg#arrow-right')

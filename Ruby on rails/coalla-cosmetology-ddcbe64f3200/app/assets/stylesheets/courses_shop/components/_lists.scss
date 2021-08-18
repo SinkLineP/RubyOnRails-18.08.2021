@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  list-style: none;
+
+  > li {
+    &:not(:last-child) {
+      margin-right: 1.6rem;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+
+      svg {
+        margin: 1px 1px 0 -4px;
+      }
+    }
+  }
+}
+
+.list-default {
+  list-style: none;
+
+  > li {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      display: inline-flex;
+      align-items: center;
+
+      svg {
+        margin: 1px 1px 0 -4px;
+      }
+    }
+  }
+}

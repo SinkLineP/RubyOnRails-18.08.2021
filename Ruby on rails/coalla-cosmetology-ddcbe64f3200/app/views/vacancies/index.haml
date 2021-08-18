@@ -1,0 +1,9 @@
+%main#main.library{role: 'main'}
+  %section.info_page{role: 'region', aria: {label: 'Index'}}
+    .ctn
+      %header.flowers.flowers_3
+        .flowers_inner
+          %h1 Вакансии
+      - @vacancy_groups.map do |vacancy_group, vacancies|
+        .h4.tx-center= vacancy_group.name
+        = render vacancies

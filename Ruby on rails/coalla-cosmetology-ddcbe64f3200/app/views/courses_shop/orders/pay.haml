@@ -1,0 +1,38 @@
+.page.page--sections
+  .page-section
+    .container
+      %header.page__header
+        .h3.page__title= "Заказ № #{@order.id} на сумму #{format_price(@order.full_price_with_discount)}"
+        .h4.page__title Выберите способ оплаты:
+
+      = form_tag Rails.application.secrets.paykeeper_form_url, class: 'paykeeper-form', method: :post do
+        = hidden_field_tag :clientid, @order.user.email
+        = hidden_field_tag :client_phone, @order.user.phone.to_s
+        = hidden_field_tag :orderid, @order.id
+        = hidden_field_tag :paymentid, @order.id
+        = hidden_field_tag :sum, @order.full_price_with_discount.to_i
+        = hidden_field_tag :user_result_callback, courses_shop_profile_courses_url
+
+        .paykeeper-form__body
+          .paykeeper-form__item
+            %label.paykeeper-form__radio
+              = radio_button_tag :payment_type, 'Mastercard', true
+              %span
+                %img{src: image_path('courses_shop/master_card.png'), alt: 'MasterCard'}
+            .paykeeper-form__label-description
+              .h6 MasterCard
+              %p Оплата пластиковыми картами MasterCard.
+              .paykeeper-form__label-description-footer Приём платежей обеспечивает <a href='https://mkb.ru/' target='_blank'>ОАО «Московский Кредитный Банк».</a>
+          .paykeeper-form__item
+            %label.paykeeper-form__radio
+              = radio_button_tag :payment_type, 'Visa'
+              %span
+                %img{src: image_path('courses_shop/visa.png'), alt: 'Visa'}
+            .paykeeper-form__label-description
+              .h6 Visa
+              %p Оплата пластиковыми картами Visa.
+              .paykeeper-form__label-description-footer Приём платежей обеспечивает <a href='https://mkb.ru/' target='_blank'>ОАО «Московский Кредитный Банк».</a>
+
+          .paykeeper-form__button-box
+            = button_tag 'Оплатить', type: 'submit', class: 'button button--base-fill', data: { size: 'sm' }
+            %span.paykeeper-form__form-footer-content Платежная форма <a href="http://paykeeper.ru/">PayKeeper</a>

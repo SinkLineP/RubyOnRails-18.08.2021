@@ -1,0 +1,12 @@
+.grid_i.grid_i__grid-8-12.table_ellipsis>
+  = square_banner.desktop_text
+.grid_i.grid_i__grid-1-12.tx-center>
+  %form.form.js-form
+    .form_el.js-form_el.form_checkbox.mt-1.mb-1
+      %input.form_el_tag.form_checkbox_tag{type: 'checkbox', checked: square_banner.active?, disabled: true}
+.grid_i.grid_i__grid-3-12.tx-right>
+  - if can?(:destroy, SquareBanner)
+    = link_to admin_square_banner_path(square_banner), method: :delete, data: {confirm: 'Вы уверены?'} do
+      .icon_del X
+  = link_to edit_admin_square_banner_path(square_banner) do
+    .icon_edit &#9998;

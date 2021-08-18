@@ -1,0 +1,27 @@
+#encoding: cp866
+
+
+arr=[]
+
+
+
+while true
+
+   
+
+   puts"Введите ваш любимый цвет (или stop для выхода): "
+   
+   n = gets.strip	
+	
+   if n == "stop"
+     puts"Вот ваши цвета."
+     puts arr.uniq!.reverse 
+     exit
+   
+
+   end
+   
+   arr << n
+
+
+end

@@ -1,0 +1,125 @@
+@charset "UTF-8";
+
+// Responsive
+.is-xsm {
+  @media only screen and (max-width:320px) {
+    display: none !important;
+  }
+}
+.is-sm {
+  @include media($breakpoint-lg) {
+    display: none !important;
+  }
+}
+
+.is-md {
+  @include media($breakpoint-xl) {
+    display: none !important;
+  }
+}
+
+.is-lg {
+  @include media($breakpoint-sm) {
+    display: none !important;
+  }
+}
+
+.is-xl {
+  display: none !important;
+
+  @include media($breakpoint-xl) {
+    display: block !important;
+  }
+}
+
+.is-xxl {
+  display: none !important;
+
+  @include media($breakpoint-xxl) {
+    display: block !important;
+  }
+}
+
+// Hr
+.hr {
+  fill-rule: evenodd;
+  vertical-align: top;
+}
+
+// Promotion flag
+.has-promotion-flag {
+  position: relative;
+
+  &::after {
+    @include size(11rem 5.2rem);
+    position: absolute;
+    top: 3rem;
+    right: -.6rem;
+    z-index: 3;
+    padding-left: .9rem;
+    background: asset_url("courses_shop/promotion_flag.svg") transparent 50% 50% no-repeat;
+    color: #fff;
+    content: attr(data-promotion-caption);
+    font: {
+      family: $headings-font-family;
+      weight: 700;
+      size: 1.2rem;
+    }
+    line-height: 4rem;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+// Zoom in
+.zoom-in {
+  position: relative;
+
+  &__icon {
+    @include size(6rem);
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    @include transition(opacity $transition-duration-base);
+    @include hover(opacity visibility, 1 visible, 'a:hover');
+    @include transform(translate(-50%, -50%));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: $color-bg;
+    border-radius: 50%;
+    box-shadow: 0 1rem 3rem 0 rgba(196, 170, 165, .4);
+    opacity: 0;
+    visibility: hidden;
+
+    .icon {
+      fill: $color-brand;
+    }
+  }
+
+  &__lock {
+    @include size(6rem);
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    @include transform(translate(-50%, -50%));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+
+    &:hover {
+      svg {
+        fill: $color-ui;
+      }
+    }
+
+    .icon {
+      fill: $color-brand;
+    }
+  }
+}
+
+.d-none {
+  display: none !important;
+}

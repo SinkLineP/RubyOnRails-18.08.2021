@@ -1,0 +1,47 @@
+.grid.nested-fields
+  .grid_i.grid_i__grid-4-5>
+    .grid
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .tx-700 Форма обучения
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .form_el.js-form_el.form_tx
+          = f.select :education_form_id, EducationForm.ordered.map{|f| [f.title, f.id]}, {}, class: 'form_el_tag form_select_tag selectordie', data: {size: 7}
+  .grid_i.grid_i__grid-1-5.tx-right>
+    = link_to_remove_association raw('<div class="icon_del">X</div>'), f
+  .grid_i.grid_i__grid-4-5>
+    .grid
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .tx-700 Полная стоимость обучения, руб.
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .form_el.js-form_el.form_tx
+          = f.text_field :amount, class: 'form_el_tag form_tx_tag js-number-mask'
+  .grid_i.grid_i__grid-4-5>
+    .grid
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .tx-700 Платежи, руб. (например: 10;30)
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .form_el.js-form_el.form_tx
+          = f.text_field :payments_text, class: 'form_el_tag form_tx_tag js-payment-mask'
+  .grid_i.grid_i__grid-4-5>
+    .grid
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .tx-700 Раннее бронирование
+      .grid_i.grid_i__grid-2-5
+        %div
+          .form_el.js-form_el.form_checkbox
+            = f.check_box :early_booking, class: 'form_el_tag form_checkbox_tag'
+  .grid_i.grid_i__grid-4-5>
+    .grid
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .tx-700 Рассрочка от банка
+      .grid_i.grid_i__grid-2-5
+        %div
+          .form_el.js-form_el.form_checkbox
+            = f.check_box :bank_installment, class: 'form_el_tag form_checkbox_tag'
+  .grid_i.grid_i__grid-4-5>
+    .grid
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .tx-700 Банковская рассрочка, мес.
+      .grid_i.grid_i__grid-2-5.nested-fields_elements
+        .form_el.js-form_el.form_tx
+          = f.text_field :bank_installment_months, class: 'form_el_tag form_tx_tag js-number-mask'

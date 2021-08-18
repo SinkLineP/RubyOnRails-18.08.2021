@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <%= display_meta_tags title: @page_title , descriptions: @page_descriptions, keywords: @page_keywords %>    
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %> 
+    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://bootstraptema.ru/snippets/slider/2016/flexslider/flexslider.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://bootstraptema.ru/snippets/slider/2016/flexslider/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="https://bootstraptema.ru/snippets/slider/2016/flexslider/modernizr.js"></script>
+    <script type="text/javascript" src="https://bootstraptema.ru/snippets/slider/2016/flexslider/jquery.mousewheel.js"></script>
+
+
+
+  
+</head>
+
+  <body>
+
+<!--top header-->
+  <%= render 'include/main/top_header' %>
+<!--top header-->
+
+<!-- notification -->
+  <%= render 'include/main/notifications' %>
+<!-- notification -->
+
+<!-- Start logo -->
+  <div class="logo">
+      <%= link_to root_path, data: {turbolinks: false} do %>
+      <h1> Luxury Watches</h1>
+      <% end %>
+    </div>
+<!-- End logo -->
+
+<!--bottom-header-->
+    <%= render 'include/main/bottom_header' %>
+<!--bottom-header-->
+
+<div class="content">
+  <%= yield %>
+</div>
+  
+<!--footer-->
+<%= render 'include/main/footer' %>
+<!--footer-->  
+   
+
+
+
+
+
+
+  <script>
+  $(window).load(function() {
+  $('.flexslider').flexslider({
+  animation: "slide",
+  controlNav: "thumbnails"
+  });
+  });
+  </script>
+  </body>
+</html>
